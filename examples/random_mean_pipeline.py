@@ -1,15 +1,14 @@
 import os, sys, random, time
 from statistics import mean
 
-# Ensure project root is on sys.path when running this file directly
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-from core.node import FunctionNode
-from adapters.python_fn_adapter import PythonFnAdapter
-from core.pipeline import Pipeline
+from src.adapters.python_fn_adapter import PythonFnAdapter
+from src.core.node import FunctionNode
+from src.core.pipeline import Pipeline
 
 
 # --- Function Node 1: Generate random numbers ---

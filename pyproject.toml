@@ -1,0 +1,21 @@
+[project]
+name = "nodeagent007"
+version = "0.1.0"
+description = "My poetry configuration to run my agents 007 from any Starbucks of Vienna"
+authors = [
+    {name = "Sergei Ovsiannikov", email = "a12230165@unet.univie.ac.at"}
+]
+readme = "README.md"
+packages = [
+    { include = "*", from = "src" }
+]
+requires-python = ">=3.11,<3.14"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+crewai = { version = "^1.6.1", python = ">=3.10,<3.14" }
+litellm = "^1.80.7"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
