@@ -56,10 +56,10 @@ ollama_llm = LLM(
 )
 
 number_summary_agent = Agent(
-    name="NumberSummaryAgent",
-    role="Expert in weather data analysis",
+    name="SummaryAgent",
+    role="Expert in summarizing search results",
     goal="Receive search results and return a brief summary",
-    backstory="Expert in weather data analysis with years of experience.",
+    backstory="Expert in summarizing search results with years of experience.",
     llm=ollama_llm
 )
 
