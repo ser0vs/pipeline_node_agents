@@ -20,9 +20,10 @@ class CrewAIAdapter(BaseAdapter):
                 ]
             else:
                 # default messages
+                input_text = ", ".join(f"{k}: {v}" for k, v in kwargs.items())
                 messages = [
                     {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": f"Summarize these numbers: {kwargs['random_numbers']}"}
+                    {"role": "user", "content": f"Process the following input: {input_text}"}
                 ]
             output = self.entity.kickoff(messages)
         else:

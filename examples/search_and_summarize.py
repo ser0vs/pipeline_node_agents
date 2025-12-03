@@ -79,7 +79,7 @@ def main():
         outputs=["summary"]
     )
 
-    pipeline = Pipeline(nodes=[search_node])
+    pipeline = Pipeline(nodes=[search_node, summary_node])
 
     context = {"query": "weather today", "max_results": 5}
     result = pipeline.run(context)
@@ -90,7 +90,7 @@ def main():
     sys.stderr = sys.__stderr__
 
     print("\n✅ Final Pipeline Output:")
-    print(json.dumps(result.get("search_results"), indent=2))
+    print(result.get("summary"))
 
 
 if __name__ == "__main__":
