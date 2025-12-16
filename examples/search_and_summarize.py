@@ -1,5 +1,5 @@
 import random, os, sys
-import time, json
+import time, json, requests
 
 os.environ["OLLAMA_HOST"] = "http://localhost:11434"
 
@@ -15,10 +15,17 @@ from src.core.node import FunctionNode, AgentNode
 from src.core.pipeline import Pipeline
 from crewai import Agent, LLM
 from duckduckgo_search import DDGS
+from bs4 import BeautifulSoup
 
 
+def extract_first_url(search_results: list) -> dict:
+    """Extract the first URL from search results."""
+    if search_results and len(search_results) > 0:
+        return {"url": search_results[0]["url"]}
+    raise ValueError("No search results to extract URL from")
 
-# --- Function Node 1: DuckDuckGo Search ---
+
+# --- Function Node: DuckDuckGo Search ---
 def duckduckgo_search(query: str, max_results: int = 5) -> dict:
     max_attempts = 5
     with DDGS() as ddgs:
@@ -47,19 +54,64 @@ def duckduckgo_search(query: str, max_results: int = 5) -> dict:
         raise RuntimeError("DuckDuckGo search failed after retries")
 
 
+def scrape_website(url: str, timeout: int = 10, max_attempts: int = 5) -> dict:
+    """
+    Scrape textual content from a website with retries.
+
+    Returns:
+        { "page_content": str }
+    """
+    headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; NodeAgents007/1.0)"
+    }
+
+    for attempt in range(1, max_attempts + 1):
+        try:
+            response = requests.get(url, headers=headers, timeout=timeout)
+            response.raise_for_status()
+
+            soup = BeautifulSoup(response.text, "lxml")
+
+            for tag in soup(["script", "style", "noscript", "header", "footer", "nav", "aside"]):
+                tag.decompose()
+
+            text = soup.get_text(separator=" ", strip=True)
+            text = " ".join(text.split())
+
+            return {"page_content": text}
+
+        except Exception as e:
+            print(f"[Scraper] Attempt {attempt}/{max_attempts} failed: {e}")
+            time.sleep(1)
+
+    raise RuntimeError(f"Failed to scrape {url} after {max_attempts} attempts")
 
 
-# --- CrewAI Node 2: Summarize numbers ---
+# --- Function Node: Chunk Text ---
+def chunk_text(page_content: str, chunk_size: int = 1500, overlap: int = 200) -> dict:
+    chunks = []
+    start = 0
+    length = len(page_content)
+
+    while start < length:
+        end = start + chunk_size
+        chunks.append(page_content[start:end])
+        start = end - overlap
+
+    return {"chunks": chunks}
+
+
+# --- CrewAI Node: Summarize results ---
 ollama_llm = LLM(
     model="ollama/llama3.2",
     base_url="http://localhost:11434"
 )
 
-number_summary_agent = Agent(
-    name="SummaryAgent",
-    role="Expert in summarizing search results",
-    goal="Receive search results and return a brief summary",
-    backstory="Expert in summarizing search results with years of experience.",
+analyst_agent = Agent(
+    name="AnalystAgent",
+    role="Expert business analyst.",
+    goal="Provide the best country for business based on text content.",
+    backstory="You are a highly skilled business analyst.",
     llm=ollama_llm
 )
 
@@ -71,17 +123,45 @@ def main():
         inputs=["query", "max_results"],
         outputs=["search_results"]
     )
-    # Node 2: CrewAI summarization
-    summary_node = AgentNode(
-        name="NumberSummaryNode",
-        adapter=CrewAIAdapter(number_summary_agent),
+    
+    # Node 2: Extract first URL from search results
+    extract_url_node = FunctionNode(
+        name="ExtractUrlNode",
+        adapter=PythonFnAdapter(extract_first_url),
         inputs=["search_results"],
+        outputs=["url"]
+    )
+    
+    # Node 3: Scrape website
+    scrape_node = FunctionNode(
+        name="ScrapeNode",
+        adapter=PythonFnAdapter(scrape_website),
+        inputs=["url"],
+        outputs=["page_content"]
+    )
+
+    chunk_node = FunctionNode(
+        name="ChunkNode",
+        adapter=PythonFnAdapter(chunk_text),
+        inputs=["page_content"],
+        outputs=["chunks"]
+    )
+
+    # Node 4: CrewAI summarization
+    analyst_node = AgentNode(
+        name="AnalystNode",
+        adapter=CrewAIAdapter(
+            analyst_agent,
+            task_description="Analyze the provided text content and determine the best country for business. Explain your reasoning based on the information given.",
+            expected_output="A single country recommendation with 2-3 bullet points explaining why it's the best choice."
+        ),
+        inputs=["page_content"],
         outputs=["summary"]
     )
 
-    pipeline = Pipeline(nodes=[search_node, summary_node])
+    pipeline = Pipeline(nodes=[search_node, extract_url_node, scrape_node, analyst_node])
 
-    context = {"query": "weather today", "max_results": 5}
+    context = {"query": "best country for business", "max_results": 5}
     result = pipeline.run(context)
 
     # Workaround for Rich FileProxy recursion issue
@@ -91,6 +171,7 @@ def main():
 
     print("\n✅ Final Pipeline Output:")
     print(result.get("summary"))
+
 
 
 if __name__ == "__main__":
