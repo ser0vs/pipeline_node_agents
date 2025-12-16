@@ -14,10 +14,6 @@ class CrewAIAdapter(BaseAdapter):
         if isinstance(self.entity, Agent):
             input_text = "\n\n".join(f"### {k.upper()} ###\n{v}" for k, v in kwargs.items())
             
-            max_input_length = 8000
-            if len(input_text) > max_input_length:
-                input_text = input_text[:max_input_length] + "\n\n[... content truncated ...]"
-            
             description = self.task_description or self.entity.goal or "Process this input"
             
             full_description = f"""YOUR TASK: {description}
@@ -36,7 +32,7 @@ Remember: {description}"""
                 expected_output=self.expected_output
             )
 
-            print(f"[CrewAIAdapter] Task description: {description}")
+            print(f"[CrewAIAdapter] Full task description: {full_description}")
             print(f"[CrewAIAdapter] Expected output: {self.expected_output}")
             print(f"[CrewAIAdapter] Input length: {len(input_text)} chars")
             

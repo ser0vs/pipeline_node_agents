@@ -88,7 +88,7 @@ def scrape_website(url: str, timeout: int = 10, max_attempts: int = 5) -> dict:
 
 
 # --- Function Node: Chunk Text ---
-def chunk_text(page_content: str, chunk_size: int = 1500, overlap: int = 200) -> dict:
+def chunk_text(page_content: str, chunk_size: int = 8000, overlap: int = 200) -> dict:
     chunks = []
     start = 0
     length = len(page_content)
@@ -116,7 +116,6 @@ analyst_agent = Agent(
 )
 
 def main():
-    # Node 1: DuckDuckGo Search
     search_node = FunctionNode(
         name="DuckDuckGoSearchNode",
         adapter=PythonFnAdapter(duckduckgo_search),
@@ -124,7 +123,6 @@ def main():
         outputs=["search_results"]
     )
     
-    # Node 2: Extract first URL from search results
     extract_url_node = FunctionNode(
         name="ExtractUrlNode",
         adapter=PythonFnAdapter(extract_first_url),
@@ -132,7 +130,6 @@ def main():
         outputs=["url"]
     )
     
-    # Node 3: Scrape website
     scrape_node = FunctionNode(
         name="ScrapeNode",
         adapter=PythonFnAdapter(scrape_website),
@@ -147,7 +144,6 @@ def main():
         outputs=["chunks"]
     )
 
-    # Node 4: CrewAI summarization
     analyst_node = AgentNode(
         name="AnalystNode",
         adapter=CrewAIAdapter(
