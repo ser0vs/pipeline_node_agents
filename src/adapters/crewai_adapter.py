@@ -5,11 +5,11 @@ from src.adapters.base_adapter import BaseAdapter
 from crewai import Agent, Task, Crew
 
 class CrewAIAdapter(BaseAdapter):
-    def __init__(self, agent_or_crew, task_description: str = None, expected_output: str = None):
+    def __init__(self, agent_or_crew, task_description: str = None, expected_output: str = None, outputs: str = "summary"):
         self.entity = agent_or_crew
         self.task_description = task_description
         self.expected_output = expected_output or "A detailed analysis based on the input."
-
+        self.outputs = outputs
     def invoke(self, messages_template: list[dict] | None = None, **kwargs) -> dict:
         if isinstance(self.entity, Agent):
             input_text = "\n\n".join(f"### {k.upper()} ###\n{v}" for k, v in kwargs.items())
@@ -38,11 +38,11 @@ Remember: {description}"""
             
             crew = Crew(agents=[self.entity], tasks=[task])
             output = crew.kickoff()
-            return {"summary": str(output)}
+            return {self.outputs: str(output)}
 
         elif hasattr(self.entity, "kickoff"):
             output = self.entity.kickoff(inputs=kwargs)
-            return {"summary": str(output)}
+            return {self.outputs: str(output)}
         
         else:
             raise ValueError("Entity must be a CrewAI Agent or Crew.")

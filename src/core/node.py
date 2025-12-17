@@ -17,7 +17,7 @@ class Node(ABC):
 
 
 class AgentNode(Node):
-    def __init__(self, name: str, adapter: BaseAdapter, inputs: list[str], outputs: list[str], messages_template: list[dict] | None = None):
+    def __init__(self, name: str, adapter: BaseAdapter, inputs: list[str], outputs: list[str] = None, messages_template: list[dict] | None = None):
         self.name = name
         self.adapter = adapter
         self.inputs = inputs

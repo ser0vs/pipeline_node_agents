@@ -11,7 +11,8 @@ class WebSearcher:
                     results = ddgs.text(
                         query=query,
                         max_results=max_results,
-                        region='wt-wt'
+                        region='wt-wt',
+                        backend='lite'
                     )
 
                     parsed = [

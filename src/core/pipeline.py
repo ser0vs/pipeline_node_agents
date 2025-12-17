@@ -25,6 +25,7 @@ class Pipeline:
             self._build_linear_pipeline(nodes)
         else:
             self.start_node = start_node.name
+            self.add_node(start_node)
 
 
     def add_node(self, node):
