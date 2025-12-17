@@ -1,20 +1,29 @@
+from __future__ import annotations
+
+
 class Pipeline:
     """Executes nodes in a defined order and manages shared context."""
 
-    def __init__(self, nodes=None, start_node=None):
+    def __init__(self, *, nodes: list["Node"] | None = None, start_node: "Node" | None = None):
         """
-        Build a simple linear pipeline, if nodes are provided: node1 -> node2 -> node3 -> ...
-        Otherwise, an empty pipeline is created.
+        Create a pipeline either from a list of nodes (linear pipeline)
+        or from a single start node (graph-based pipeline).
 
-        Args:
-            nodes (list[Node], optional): List of nodes to form a linear pipeline.
+        Exactly one of `nodes` or `start_node` must be provided.
         """
-        self.nodes = {}
-        self.edges = {}
+        if (nodes is None and start_node is None) or (nodes is not None and start_node is not None):
+            raise ValueError(
+                "Exactly one of 'nodes' or 'start_node' must be provided."
+            )
 
-        if nodes and len(nodes) > 0:
-            self.start_node = start_node or nodes[0].name
+        self.nodes: dict[str, Node] = {}
+        self.edges: dict[str, list[str]] = {}
+
+        if nodes is not None:
+            self.start_node = nodes[0].name
             self._build_linear_pipeline(nodes)
+        else:
+            self.start_node = start_node.name
 
 
     def add_node(self, node):
@@ -25,6 +34,20 @@ class Pipeline:
         condition: None | callable(context) -> bool
         """
         self.edges.setdefault(from_node, []).append((condition, to_node))
+
+    def add_pipeline(self, other_pipeline):
+        """
+        Adds all nodes and edges from another pipeline into this pipeline.
+        """
+
+        for node_name, node in other_pipeline.nodes.items():
+            if node_name in self.nodes:
+                raise ValueError(f"Node '{node_name}' already exists in pipeline")
+            self.nodes[node_name] = node
+
+        for from_node, transitions in other_pipeline.edges.items():
+            for condition, to_node in transitions:
+                self.edges.setdefault(from_node, []).append((condition, to_node))
 
     def run(self, initial_context=None, start_node=None):
         context = initial_context or {}
@@ -40,6 +63,8 @@ class Pipeline:
                 cond_str = "unconditional" if condition is None else "conditional"
                 print(f"→ {from_node} --({cond_str})--> {to_node}")
 
+        if current_node is None:
+            raise ValueError("No start node defined for the pipeline.")
 
         while current_node:
             node = self.nodes[current_node]
@@ -65,7 +90,7 @@ class Pipeline:
             self.add_edge(
                 from_node=nodes[i].name,
                 to_node=nodes[i + 1].name,
-                condition=None  # unconditional edge
+                condition=None
             )
 
         self.start_node = nodes[0].name
