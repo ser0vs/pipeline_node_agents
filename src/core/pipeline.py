@@ -1,4 +1,5 @@
 from __future__ import annotations
+from src.core.helpers.pipeline_visualizer import PipelineVisualizer
 
 
 class Pipeline:
@@ -17,7 +18,7 @@ class Pipeline:
             )
 
         self.nodes: dict[str, Node] = {}
-        self.edges: dict[str, list[str]] = {}
+        self.edges: dict[str, list[tuple[str, str]]] = {}
 
         if nodes is not None:
             self.start_node = nodes[0].name
@@ -54,6 +55,7 @@ class Pipeline:
         current_node = start_node or self.start_node
 
         print("=== Starting pipeline ===")
+
         print("List of nodes in the pipeline:")
         for node_name in self.nodes:
             print(f"→ {node_name}")
@@ -62,6 +64,9 @@ class Pipeline:
             for condition, to_node in edges:
                 cond_str = "unconditional" if condition is None else "conditional"
                 print(f"→ {from_node} --({cond_str})--> {to_node}")
+        
+        PipelineVisualizer.visualize(self.edges, self.start_node)
+    
 
         if current_node is None:
             raise ValueError("No start node defined for the pipeline.")
