@@ -19,6 +19,7 @@ duckduckgo-search = "^7.0.0"
 requests = "^2.32.0"
 beautifulsoup4 = "^4.14.3"
 lxml = "^6.0.2"
+ddgs = "^9.9.3"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

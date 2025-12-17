@@ -18,6 +18,8 @@ from duckduckgo_search import DDGS
 from bs4 import BeautifulSoup
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
+from src.tools.scraper import Scraper
+from src.tools.websearch import WebSearcher
 
 
 
@@ -28,88 +30,6 @@ def flip_coin() -> bool:
     print(f"[DecisionNode] Coin flip result: {'True -> Going to park!' if choice else 'False -> Going to cinema!'}")
     return {"decision": choice}
 
-
-def extract_first_url(search_results: list) -> dict:
-    """Extract the first URL from search results."""
-    if search_results and len(search_results) > 0:
-        return {"url": search_results[0]["url"]}
-    raise ValueError("No search results to extract URL from")
-
-
-# --- Function Node: DuckDuckGo Search ---
-def duckduckgo_search(query: str, max_results: int = 5) -> dict:
-    max_attempts = 5
-    with DDGS() as ddgs:
-        for attempt in range(max_attempts):
-            try:
-                results = ddgs.text(
-                    keywords=query,
-                    max_results=max_results
-                )
-
-                parsed = [
-                    {
-                        "title": r.get("title"),
-                        "snippet": r.get("body"),
-                        "url": r.get("href")
-                    }
-                    for r in results
-                ]
-
-                return {"search_results": parsed}
-
-            except Exception as e:
-                print(f"Retry due to: {e}")
-                time.sleep(1.2 * (attempt + 1))
-
-        raise RuntimeError("DuckDuckGo search failed after retries")
-
-
-def scrape(url: str, timeout: int = 10, max_attempts: int = 5) -> dict:
-    """
-    Scrape textual content from a website with retries.
-
-    Returns:
-        { "page_content": str }
-    """
-    headers = {
-        "User-Agent": "Mozilla/5.0 (compatible; NodeAgents007/1.0)"
-    }
-
-    for attempt in range(1, max_attempts + 1):
-        try:
-            response = requests.get(url, headers=headers, timeout=timeout)
-            response.raise_for_status()
-
-            soup = BeautifulSoup(response.text, "lxml")
-
-            for tag in soup(["script", "style", "noscript", "header", "footer", "nav", "aside"]):
-                tag.decompose()
-
-            text = soup.get_text(separator=" ", strip=True)
-            text = " ".join(text.split())
-
-            return {"page_content": text}
-
-        except Exception as e:
-            print(f"[Scraper] Attempt {attempt}/{max_attempts} failed: {e}")
-            time.sleep(1)
-
-    raise RuntimeError(f"Failed to scrape {url} after {max_attempts} attempts")
-
-
-# --- Function Node: Chunk Text ---
-def chunk_text(page_content: str, chunk_size: int = 8000, overlap: int = 200) -> dict:
-    chunks = []
-    start = 0
-    length = len(page_content)
-
-    while start < length:
-        end = start + chunk_size
-        chunks.append(page_content[start:end])
-        start = end - overlap
-
-    return {"chunks": chunks}
 
 
 # --- CrewAI Node: Summarize results ---
@@ -145,22 +65,16 @@ def main():
 
     search_node = FunctionNode(
         name="DuckDuckGoSearchNode",
-        adapter=PythonFnAdapter(duckduckgo_search),
+        adapter=PythonFnAdapter(WebSearcher.duckduckgo_search),
         inputs=["query", "max_results"],
         outputs=["search_results"]
     )
     
-    extract_url_node = FunctionNode(
-        name="ExtractUrlNode",
-        adapter=PythonFnAdapter(extract_first_url),
-        inputs=["search_results"],
-        outputs=["url"]
-    )
     
     scrape_node = FunctionNode(
         name="ScrapeNode",
-        adapter=PythonFnAdapter(scrape),
-        inputs=["url"],
+        adapter=PythonFnAdapter(Scraper.scrape),
+        inputs=["search_results"],
         outputs=["page_content"]
     )
 
@@ -190,7 +104,7 @@ def main():
     main_pipeline = Pipeline(start_node=decision_node)
     main_pipeline.add_node(decision_node)
     main_pipeline.add_node(local_expert_node)
-    main_pipeline.add_pipeline(Pipeline(nodes=[search_node, extract_url_node, scrape_node, cinema_expert_node]))
+    main_pipeline.add_pipeline(Pipeline(nodes=[search_node, scrape_node, cinema_expert_node]))
 
     main_pipeline.add_edge(
         "DecisionNode",
@@ -203,6 +117,7 @@ def main():
         condition=lambda ctx: ctx["decision"] is False
     )
 
+    # default query: imdb showtimes
     context = {"query": "imdb showtimes", "max_results": 5, "city": "Vienna", "type_of_place": "parks"}
     result = main_pipeline.run(context)
 

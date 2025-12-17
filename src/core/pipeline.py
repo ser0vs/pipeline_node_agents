@@ -55,18 +55,10 @@ class Pipeline:
         current_node = start_node or self.start_node
 
         print("=== Starting pipeline ===")
-
-        print("List of nodes in the pipeline:")
-        for node_name in self.nodes:
-            print(f"→ {node_name}")
-        print("List of edges in the pipeline:")
-        for from_node, edges in self.edges.items():
-            for condition, to_node in edges:
-                cond_str = "unconditional" if condition is None else "conditional"
-                print(f"→ {from_node} --({cond_str})--> {to_node}")
         
-        PipelineVisualizer.visualize(self.edges, self.start_node)
-    
+        print()
+        PipelineVisualizer.visualize(self.edges, self.start_node)    
+        print()
 
         if current_node is None:
             raise ValueError("No start node defined for the pipeline.")
