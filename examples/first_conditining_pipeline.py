@@ -65,7 +65,7 @@ def duckduckgo_search(query: str, max_results: int = 5) -> dict:
         raise RuntimeError("DuckDuckGo search failed after retries")
 
 
-def scrape_website(url: str, timeout: int = 10, max_attempts: int = 5) -> dict:
+def scrape(url: str, timeout: int = 10, max_attempts: int = 5) -> dict:
     """
     Scrape textual content from a website with retries.
 
@@ -159,7 +159,7 @@ def main():
     
     scrape_node = FunctionNode(
         name="ScrapeNode",
-        adapter=PythonFnAdapter(scrape_website),
+        adapter=PythonFnAdapter(scrape),
         inputs=["url"],
         outputs=["page_content"]
     )

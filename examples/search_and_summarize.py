@@ -54,7 +54,7 @@ def duckduckgo_search(query: str, max_results: int = 5) -> dict:
         raise RuntimeError("DuckDuckGo search failed after retries")
 
 
-def scrape_website(url: str, timeout: int = 10, max_attempts: int = 5) -> dict:
+def scrape(url: str, timeout: int = 10, max_attempts: int = 5) -> dict:
     """
     Scrape textual content from a website with retries.
 
@@ -86,19 +86,6 @@ def scrape_website(url: str, timeout: int = 10, max_attempts: int = 5) -> dict:
 
     raise RuntimeError(f"Failed to scrape {url} after {max_attempts} attempts")
 
-
-# --- Function Node: Chunk Text ---
-def chunk_text(page_content: str, chunk_size: int = 8000, overlap: int = 200) -> dict:
-    chunks = []
-    start = 0
-    length = len(page_content)
-
-    while start < length:
-        end = start + chunk_size
-        chunks.append(page_content[start:end])
-        start = end - overlap
-
-    return {"chunks": chunks}
 
 
 # --- CrewAI Node: Summarize results ---
@@ -132,17 +119,11 @@ def main():
     
     scrape_node = FunctionNode(
         name="ScrapeNode",
-        adapter=PythonFnAdapter(scrape_website),
+        adapter=PythonFnAdapter(scrape),
         inputs=["url"],
         outputs=["page_content"]
     )
 
-    chunk_node = FunctionNode(
-        name="ChunkNode",
-        adapter=PythonFnAdapter(chunk_text),
-        inputs=["page_content"],
-        outputs=["chunks"]
-    )
 
     analyst_node = AgentNode(
         name="AnalystNode",
