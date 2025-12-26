@@ -78,6 +78,10 @@ def scrape(url: str, timeout: int = 10, max_attempts: int = 5) -> dict:
             text = soup.get_text(separator=" ", strip=True)
             text = " ".join(text.split())
 
+            # # Truncate if too long
+            # if len(text) > 8000:
+            #     text = text[:8000] + " ... [truncated]"
+
             return {"page_content": text}
 
         except Exception as e:
