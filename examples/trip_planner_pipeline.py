@@ -20,7 +20,7 @@ from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 from src.tools.scraper import Scraper
 from src.tools.websearch import WebSearcher
-
+from datetime import datetime, timedelta
 
 
 
@@ -91,7 +91,7 @@ def research_cities(list_of_cities: list[str], dates: tuple[str, str]) -> dict:
 
         city_pipeline = Pipeline(nodes=[search_node, scrape_node, weather_summary_node])
 
-        city_context = {"query": f"weather in {city} from {dates[0]} to {dates[1]}", "max_results": 5}
+        city_context = {"query": f"weather forecast {city} from {dates[0]} to {dates[1]}", "max_results": 5}
         result = city_pipeline.run(city_context)
 
         time.sleep(0.1)
@@ -109,6 +109,12 @@ def research_cities(list_of_cities: list[str], dates: tuple[str, str]) -> dict:
     # return {"weather_summaries": "### Vienna\n\nThe weather in Vienna from 1 January 2026 to 10 January 2026 is expected to be cold with temperatures ranging from -2°C to 4°C. There may be occasional snowfall and cloudy days.\n\n### Madrid\n\nMadrid will experience mild winter weather during this period, with temperatures between 5°C and 15°C. Sunny days are expected with low chances of rain.\n\n### Paris\n\nParis is likely to have chilly weather with temperatures ranging from 1°C to 7°C. There may be some rainy days and overcast skies throughout the week.\n\n### Dubai\n\nDubai will have warm weather with temperatures ranging from 18°C to 26°C. Mostly sunny days are expected with very low humidity."}
 
 
+def extract_chosen_city(chosen_city_summary: str) -> dict:
+    """Extract the chosen city from the agent's summary."""
+    first_line = chosen_city_summary.splitlines()[0]
+    chosen_city = first_line.strip()
+    return {"chosen_city": chosen_city}
+
 def main():
     research_cities_node = FunctionNode(
         name="ResearchCitiesNode",
@@ -124,15 +130,26 @@ def main():
             city_selection_agent,
             task_description="Choose one city from the provided list based on the weather summaries.",
             expected_output="First line: Chosen city name. Following lines: brief explanation of why this city was chosen.",
-            outputs="chosen_city"
+            outputs="chosen_city_summary"
         ),
         inputs=["weather_summaries"]
     )
 
+    extract_chosen_city_node = FunctionNode(
+        name="ExtractChosenCityNode",
+        adapter=PythonFnAdapter(extract_chosen_city),
+        inputs=["chosen_city_summary"],
+        outputs=["chosen_city"]
+    )
 
-    main_pipeline = Pipeline(nodes=[research_cities_node, city_selection_node])
 
-    context = {"list_of_cities": ["Vienna", "Madrid", "Paris", "Dubai"], "dates": ("1 january 2026", "10 january 2026")}
+
+    main_pipeline = Pipeline(nodes=[research_cities_node, city_selection_node, extract_chosen_city_node])
+
+    start_date = (datetime.now() + timedelta(days=3)).strftime("%d %B")
+    end_date = (datetime.now() + timedelta(days=10)).strftime("%d %B")
+
+    context = {"list_of_cities": ["Madrid", "Dubai"], "dates": (start_date, end_date)}
     result = main_pipeline.run(context)
 
     time.sleep(0.1)
@@ -140,7 +157,9 @@ def main():
     sys.stderr = sys.__stderr__
 
     print("\n✅ Final Pipeline Output:")
-    print(result.get("chosen_city"))
+    print("chosen_city", result.get("chosen_city"))
+    print("chosen_city_summary", result.get("chosen_city_summary"))
+
 
 
 
