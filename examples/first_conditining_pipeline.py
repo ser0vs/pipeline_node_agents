@@ -26,7 +26,7 @@ from src.tools.websearch import WebSearcher
 def flip_coin() -> bool:
     """Flip a coin and return True (heads) or False (tails)."""
     choice = random.choice([True, False])
-    # choice = False  # For testing purposes, always go to cinema
+    choice = True  # For testing purposes, always go to cinema
     print(f"[DecisionNode] Coin flip result: {'True -> Going to park!' if choice else 'False -> Going to cinema!'}")
     return {"decision": choice}
 
@@ -119,7 +119,10 @@ def main():
 
     # default query: imdb showtimes
     context = {"query": "imdb showtimes", "max_results": 5, "city": "Vienna", "type_of_place": "parks"}
+    
+    start_time = time.perf_counter()
     result = main_pipeline.run(context)
+    elapsed_time = time.perf_counter() - start_time
 
     time.sleep(0.1)
     sys.stdout = sys.__stdout__ 
@@ -127,6 +130,7 @@ def main():
 
     print("\n✅ Final Pipeline Output:")
     print(result.get("summary"))
+    print(f"\n⏱️  Execution time: {elapsed_time:.2f} seconds")
 
 
 
