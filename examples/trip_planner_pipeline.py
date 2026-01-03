@@ -23,8 +23,6 @@ from src.tools.websearch import WebSearcher
 from datetime import datetime, timedelta
 
 
-
-
 # --- CrewAI Node: Summarize results ---
 ollama_llm = LLM(
     model="ollama/llama3.2",
@@ -47,6 +45,22 @@ city_selection_agent = Agent(
     llm=ollama_llm
 )
 
+local_expert_agent = Agent(
+    name="LocalExpertAgent",
+    role="Local Expert in defined city.",
+    goal="Provide the best recommendation where to go in defined city based on text content.",
+    backstory="You are a highly skilled local expert with deep knowledge of the city's culture, attractions, and hidden gems.",
+    llm=ollama_llm
+)
+
+travel_concierge_agent = Agent(
+    name="TravelConciergeAgent",
+    role="Expert in planning of trips and travel itineraries.",
+    goal="Plan the best trip itinerary based on the chosen city and provided information.",
+    backstory="You are a highly skilled travel concierge with expertise in creating personalized travel plans.",
+    llm=ollama_llm
+)
+
 
 def format_dict_as_sections(data: dict[str, str]) -> str:
     """Format a dictionary into sections with headers."""
@@ -55,7 +69,7 @@ def format_dict_as_sections(data: dict[str, str]) -> str:
         lines.append(f"### {key}")
         lines.append("")
         lines.append(str(value))
-        lines.append("")  # blank line between sections
+        lines.append("")
 
     return "\n".join(lines).strip()
 
@@ -142,14 +156,40 @@ def main():
         outputs=["chosen_city"]
     )
 
+    local_expert_node = AgentNode(
+        name="LocalExpertNodes",
+        adapter=CrewAIAdapter(
+            local_expert_agent,
+            task_description="Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.",
+            expected_output="City guide including hidden gems, cultural hotspots, and practical travel tips",
+            outputs="list_of_attractions"
+        ),
+        inputs=["chosen_city", "dates"]
+    )
+
+    travel_concierge_node = AgentNode(
+        name="TravelConciergeNode",
+        adapter=CrewAIAdapter(
+            travel_concierge_agent,
+            task_description="Plan a 7-day trip itinerary based on the chosen city and provided information.",
+            expected_output="Detailed 7-day itinerary including daily activities, dining options, and transportation tips.",
+            outputs="trip_itinerary"
+        ),
+        inputs=["chosen_city", "list_of_attractions", "dates"]
+    )
 
 
-    main_pipeline = Pipeline(nodes=[research_cities_node, city_selection_node, extract_chosen_city_node])
+
+    # main_pipeline = Pipeline(nodes=[research_cities_node, city_selection_node, extract_chosen_city_node, local_expert_node, travel_concierge_node])
+    ### debug simpler pipeline
+    main_pipeline = Pipeline(nodes=[local_expert_node, travel_concierge_node])
 
     start_date = (datetime.now() + timedelta(days=3)).strftime("%d %B")
     end_date = (datetime.now() + timedelta(days=10)).strftime("%d %B")
 
-    context = {"list_of_cities": ["Madrid", "Dubai"], "dates": (start_date, end_date)}
+    # context = {"list_of_cities": ["Madrid", "Dubai"], "dates": (start_date, end_date)}
+    ### debug simpler context
+    context = {"dates": (start_date, end_date), "chosen_city": "Dubai"}
     result = main_pipeline.run(context)
 
     time.sleep(0.1)
@@ -158,7 +198,7 @@ def main():
 
     print("\n✅ Final Pipeline Output:")
     print("chosen_city", result.get("chosen_city"))
-    print("chosen_city_summary", result.get("chosen_city_summary"))
+    print("trip_itinerary", result.get("trip_itinerary"))
 
 
 
