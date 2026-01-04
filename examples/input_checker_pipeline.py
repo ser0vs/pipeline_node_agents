@@ -1,5 +1,6 @@
 import random, os, sys
 import time, json, requests
+import argparse
 
 os.environ["OLLAMA_HOST"] = "http://localhost:11434"
 
@@ -59,6 +60,10 @@ input_validator_agent = Agent(
 )
 
 def main():
+    parser = argparse.ArgumentParser(description="Input checker pipeline")
+    parser.add_argument("--loop", type=lambda x: x.lower() == 'true', default=False, help="Enable loopback to UserInputNode if input is invalid (True/False)")
+    args = parser.parse_args()
+
     user_input_node = FunctionNode(
         name="UserInputNode",
         adapter=PythonFnAdapter(get_user_input),
@@ -86,11 +91,12 @@ def main():
 
     main_pipeline = Pipeline(nodes=[user_input_node, input_validator_node, input_validation_result_node])
     
-    main_pipeline.add_edge(
-        "InputValidationResultNode",
-        "UserInputNode",
-        condition=lambda ctx: ctx.get("is_valid") == False
-    )
+    if args.loop:
+        main_pipeline.add_edge(
+            "InputValidationResultNode",
+            "UserInputNode",
+            condition=lambda ctx: ctx.get("is_valid") == False
+        )
 
     context = {"input_parameters": {"list_of_cities": "Enter list of cities"}}
     
@@ -103,9 +109,9 @@ def main():
     sys.stderr = sys.__stderr__
 
     print("\n✅ Final Pipeline Output:")
-    print("is_valid", result.get("is_valid"))
-    print("validation_summary", result.get("validation_summary"))
-    print(f"\n⏱️  Execution time: {elapsed_time:.2f} seconds")
+    print("validation_summary:", result.get("validation_summary"))
+    print(f"\n⏱️  Execution time: {elapsed_time:.2f} seconds\n")
+    print("is_valid:", result.get("is_valid"))
 
 
 
