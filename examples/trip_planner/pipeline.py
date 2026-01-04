@@ -14,28 +14,28 @@ from examples.trip_planner.nodes import TripPlannerNodes
 
 def main():
     # Full pipeline
-    # main_pipeline = Pipeline(nodes=[
-    #     TripPlannerNodes.research_cities_node,
-    #     TripPlannerNodes.city_selection_node,
-    #     TripPlannerNodes.extract_chosen_city_node,
-    #     TripPlannerNodes.local_expert_node,
-    #     TripPlannerNodes.travel_concierge_node
-    # ])
-
-    # Debug: simpler pipeline
     main_pipeline = Pipeline(nodes=[
+        TripPlannerNodes.research_cities_node,
+        TripPlannerNodes.city_selection_node,
+        TripPlannerNodes.extract_chosen_city_node,
         TripPlannerNodes.local_expert_node,
         TripPlannerNodes.travel_concierge_node
     ])
 
-    start_date = (datetime.now() + timedelta(days=3)).strftime("%d %B")
-    end_date = (datetime.now() + timedelta(days=10)).strftime("%d %B")
+    # Debug: simpler pipeline
+    # main_pipeline = Pipeline(nodes=[
+    #     TripPlannerNodes.local_expert_node,
+    #     TripPlannerNodes.travel_concierge_node
+    # ])
+
+    start_date = (datetime.now() + timedelta(days=3)).strftime("%d %B %Y")
+    end_date = (datetime.now() + timedelta(days=10)).strftime("%d %B %Y")
 
     # Full context
-    # context = {"list_of_cities": ["Madrid", "Dubai"], "dates": (start_date, end_date)}
+    context = {"list_of_cities": ["Madrid", "Dubai"], "dates": (start_date, end_date)}
 
     # Debug: simpler context
-    context = {"dates": (start_date, end_date), "chosen_city": "Dubai"}
+    # context = {"dates": (start_date, end_date), "chosen_city": "Dubai"}
     
     start_time = time.perf_counter()
     result = main_pipeline.run(context)
