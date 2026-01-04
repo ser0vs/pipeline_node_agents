@@ -38,6 +38,8 @@ Remember: {description}"""
             
             crew = Crew(agents=[self.entity], tasks=[task])
             output = crew.kickoff()
+
+            print(f"[CrewAIAdapter] Output of the agent: {output}\n\n")
             return {self.outputs: str(output)}
 
         elif hasattr(self.entity, "kickoff"):
