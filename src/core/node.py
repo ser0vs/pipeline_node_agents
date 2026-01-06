@@ -17,20 +17,16 @@ class Node(ABC):
 
 
 class AgentNode(Node):
-    def __init__(self, name: str, adapter: BaseAdapter, inputs: list[str], outputs: list[str] = None, messages_template: list[dict] | None = None):
+    def __init__(self, name: str, adapter: BaseAdapter, inputs: list[str], outputs: list[str] = None):
         self.name = name
         self.adapter = adapter
         self.inputs = inputs
-        self.outputs = outputs
-        self.messages_template = messages_template
+        self.outputs = outputs or []
 
     def run(self, context: dict) -> dict:
         input_data = {k: context[k] for k in self.inputs}
         
-        if self.messages_template:
-            result = self.adapter.invoke(messages_template=self.messages_template, **input_data)
-        else:
-            result = self.adapter.invoke(**input_data)
+        result = self.adapter.invoke(**input_data)
 
         context.update(result)
         return context

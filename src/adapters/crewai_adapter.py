@@ -10,7 +10,7 @@ class CrewAIAdapter(BaseAdapter):
         self.task_description = task_description
         self.expected_output = expected_output or "A detailed analysis based on the input."
         self.outputs = outputs
-    def invoke(self, messages_template: list[dict] | None = None, **kwargs) -> dict:
+    def invoke(self, **kwargs) -> dict:
         if isinstance(self.entity, Agent):
             input_text = "\n\n".join(f"### {k.upper()} ###\n{v}" for k, v in kwargs.items())
             
