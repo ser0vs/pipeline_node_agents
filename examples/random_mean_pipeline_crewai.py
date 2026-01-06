@@ -1,5 +1,5 @@
-import random, os, sys
-from time import sleep
+import random, os, sys, time
+
 
 import os
 os.environ["OLLAMA_HOST"] = "http://localhost:11434"
@@ -55,10 +55,14 @@ def main():
     pipeline = Pipeline(nodes=[node1, node2])
 
     context = {"limit": 5}
-    result = pipeline.run(context)
 
-    # Workaround for Rich FileProxy recursion issue
-    sleep(0.1)
+    start_time = time.perf_counter()
+    result = pipeline.run(context)
+    elapsed_time = time.perf_counter() - start_time
+
+    print(f"\n⏱️  Execution time: {elapsed_time:.2f} seconds")
+
+    time.sleep(0.1)
     sys.stdout = sys.__stdout__ 
     sys.stderr = sys.__stderr__
 

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# ==============================================
-# Real-time logging script using tee
+# ==================================================
+# Real-time logging script for a single pipeline run
 #
 # Usage:
-#   ./run_with_tee.sh <path_to_pipeline> <log_folder> <runs> [input_strings]
+#   ./scripts/run_single_pipeline.sh <path_to_pipeline> <log_folder> <runs> [input_strings]
 #
 # Parameters:
 #   <path_to_pipeline>  - Path to the Python pipeline file (relative to project root)
@@ -14,17 +14,17 @@
 #                         Use $'\n' to separate multiple inputs
 #
 # Examples:
-#   ./run_with_tee.sh examples/trip_planner/pipeline.py trip_planner 3
-#   ./run_with_tee.sh examples/trip_planner/pipeline.py trip_planner 3 "Paris"
-#   ./run_with_tee.sh examples/trip_planner/pipeline.py trip_planner 3 $'Paris\n5 days\nbudget'
+#   ./scripts/run_single_pipeline.sh examples/trip_planner/pipeline.py trip_planner 3
+#   ./scripts/run_single_pipeline.sh examples/input_checker_pipeline.py input_checker 3 "Paris"
+#   ./scripts/run_single_pipeline.sh examples/input_checker_pipeline.py input_checker 3 $'Paris\n5 days\nbudget'
 #
 # Output:
 #   - Real-time terminal output during execution
 #   - Logs saved to: logs/<log_folder>/<pipeline_name>_run_<n>_<timestamp>.log
 # ==============================================
 
-# Get project root (directory where this script is located)
-PROJECT_ROOT="$(cd "$(dirname "$0")" && pwd)"
+# Get project root (parent directory of where this script is located)
+PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 # Input validation
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
@@ -34,7 +34,7 @@ if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
     echo ""
     echo "Examples:"
     echo "  $0 examples/trip_planner/pipeline.py trip_planner 3"
-    echo "  $0 examples/first_conditining_pipeline.py conditioning 5"
+    echo "  $0 examples/conditioning_pipeline.py conditioning 5"
     echo ""
     echo "Logs will be saved to: logs/<log_folder>/"
     exit 1

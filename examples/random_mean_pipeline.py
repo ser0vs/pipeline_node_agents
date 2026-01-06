@@ -45,7 +45,12 @@ def main():
 
     # Build and run pipeline
     pipeline = Pipeline(nodes=[node1, node2])
+
+    start_time = time.perf_counter()
     result = pipeline.run(initial_context={"limit": 5})
+    elapsed_time = time.perf_counter() - start_time
+
+    print(f"\n⏱️  Execution time: {elapsed_time:.2f} seconds")
 
     print("\n✅ Final Pipeline Output:")
     print(result)
