@@ -26,7 +26,6 @@ from src.tools.websearch import WebSearcher
 def flip_coin() -> bool:
     """Flip a coin and return True (heads) or False (tails)."""
     choice = random.choice([True, False])
-    choice = True  # For testing purposes, always go to cinema
     print(f"[DecisionNode] Coin flip result: {'True -> Going to park!' if choice else 'False -> Going to cinema!'}")
     return {"decision": choice}
 

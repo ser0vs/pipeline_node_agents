@@ -4,16 +4,19 @@
 # Real-time logging script using tee
 #
 # Usage:
-#   ./run_with_tee.sh <path_to_pipeline> <log_folder> <runs>
+#   ./run_with_tee.sh <path_to_pipeline> <log_folder> <runs> [input_strings]
 #
 # Parameters:
 #   <path_to_pipeline>  - Path to the Python pipeline file (relative to project root)
 #   <log_folder>        - Subfolder name inside logs/ directory
 #   <runs>              - Number of times to run the pipeline
+#   [input_strings]     - Optional: newline-separated inputs for interactive prompts
+#                         Use $'\n' to separate multiple inputs
 #
 # Examples:
 #   ./run_with_tee.sh examples/trip_planner/pipeline.py trip_planner 3
-#   ./run_with_tee.sh examples/first_conditining_pipeline.py conditioning 5
+#   ./run_with_tee.sh examples/trip_planner/pipeline.py trip_planner 3 "Paris"
+#   ./run_with_tee.sh examples/trip_planner/pipeline.py trip_planner 3 $'Paris\n5 days\nbudget'
 #
 # Output:
 #   - Real-time terminal output during execution
@@ -40,6 +43,7 @@ fi
 PIPELINE_PATH="$1"
 LOG_SUBDIR="$2"
 RUNS="$3"
+INPUT_STRINGS="$4"
 
 # Full log directory path
 LOG_DIR="$PROJECT_ROOT/logs/$LOG_SUBDIR"
@@ -70,8 +74,11 @@ for ((i = 1; i <= RUNS; i++)); do
     echo "Run $i of $RUNS → $LOG_FILE"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     
-    # Capture stdout and stderr, show in terminal AND save to file
-    poetry run python3 "$PIPELINE_PATH" 2>&1 | tee "$LOG_FILE"
+    if [ -n "$INPUT_STRINGS" ]; then
+        poetry run python3 -u "$PIPELINE_PATH" 2>&1 <<< "$INPUT_STRINGS" | tee "$LOG_FILE"
+    else
+        poetry run python3 "$PIPELINE_PATH" 2>&1 | tee "$LOG_FILE"
+    fi
     
     echo ""
 done
