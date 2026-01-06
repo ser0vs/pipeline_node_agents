@@ -38,9 +38,9 @@ echo "▶ Running Search and Summarize Pipeline..."
 "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/search_and_summarize.py" search_and_summarize "$RUNS"
 echo ""
 
-# echo "▶ Running Trip Planner Pipeline..."
-# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/trip_planner/pipeline.py" trip_planner "$RUNS"
-# echo ""
+echo "▶ Running Trip Planner Pipeline..."
+"$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/trip_planner/pipeline.py" trip_planner "$RUNS"
+echo ""
 
 
 echo "╔══════════════════════════════════════════╗"
