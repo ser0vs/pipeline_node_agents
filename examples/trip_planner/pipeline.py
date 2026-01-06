@@ -22,17 +22,19 @@ def main():
         TripPlannerNodes.travel_concierge_node
     ])
 
-    # Debug: simpler pipeline
-    # main_pipeline = Pipeline(nodes=[
-    #     TripPlannerNodes.local_expert_node,
-    #     TripPlannerNodes.travel_concierge_node
-    # ])
 
-    start_date = (datetime.now() + timedelta(days=3)).strftime("%d %B %Y")
-    end_date = (datetime.now() + timedelta(days=10)).strftime("%d %B %Y")
+    list_of_cities = input("Enter a list of cities (comma-separated): ").split(",")
+    start_date = input("Enter start date (DD Month YYYY): ")
+    end_date = input("Enter end date (DD Month YYYY): ")
+
+    print("\n🛫 Planning your trip...\n")
+
+    # start_date = (datetime.now() + timedelta(days=3)).strftime("%d %B %Y")
+    # end_date = (datetime.now() + timedelta(days=10)).strftime("%d %B %Y")
 
     # Full context
     context = {"list_of_cities": ["Madrid", "Dubai"], "dates": (start_date, end_date)}
+    print(f"Context: {context}\n")
 
     # Debug: simpler context
     # context = {"dates": (start_date, end_date), "chosen_city": "Dubai"}
