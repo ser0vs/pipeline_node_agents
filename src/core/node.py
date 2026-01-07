@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from src.adapters.base_adapter import BaseAdapter
+from src.core.logging_config import get_logger
 
+logger = get_logger(__name__)
 
 class Node(ABC):
     """Abstract base class for all nodes in the pipeline."""
@@ -39,5 +41,5 @@ class FunctionNode(Node):
         result = self.adapter.invoke(**input_data)
 
         context.update(result)
-        print(f"[FunctionNode] {self.name} executed. Outputs: {result}")
+        logger.info(f"[FunctionNode] {self.name} executed. Outputs: {result}")
         return context

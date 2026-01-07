@@ -17,7 +17,7 @@ from src.core.pipeline import Pipeline
 from crewai import Agent, LLM
 from src.core.logger_bootstrap import init_pipeline_logger
 
-init_pipeline_logger(log_path="../logs/", pipeline_name="random_mean_pipeline")
+init_pipeline_logger(pipeline_name="random_mean_pipeline")
 
 # --- Function Node 1: Generate random numbers ---
 def generate_random_numbers(limit: int) -> dict:

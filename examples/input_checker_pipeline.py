@@ -23,7 +23,7 @@ from src.tools.scraper import Scraper
 from src.tools.websearch import WebSearcher
 from src.core.logger_bootstrap import init_pipeline_logger
 
-init_pipeline_logger(log_path="../logs/", pipeline_name="input_checker_pipeline")
+init_pipeline_logger(pipeline_name="input_checker_pipeline")
 
 
 def get_user_input(input_parameters: dict[str, str]) -> dict[str, str]:

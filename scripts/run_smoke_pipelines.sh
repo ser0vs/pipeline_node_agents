@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # =============================================================
-# Run all smoke pipelines and save logs (smoke tests)
+# Run all smoke pipelines (smoke tests)
 #
 # Usage: ./run_smoke_pipelines.sh [number_of_runs_per_pipeline]
+#
+# Logs are handled by Python's logging system
 # =============================================================
 
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -26,23 +28,23 @@ SINGLE_PIPELINE_SCRIPT="$PROJECT_ROOT/scripts/run_single_pipeline.sh"
 
 
 # echo "▶ Running Random Mean Pipeline..."
-# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/random_mean_pipeline.py" random_mean "$RUNS"
+# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/random_mean_pipeline.py" "$RUNS"
 # echo ""
 
 # echo "▶ Running First Conditioning Pipeline..."
-# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/conditioning_pipeline.py" first_conditioning "$RUNS"
+# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/conditioning_pipeline.py" "$RUNS"
 # echo ""
 
 # echo "▶ Running Input Checker Pipeline..."
-# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/input_checker_pipeline.py" input_checker "$RUNS" "Munich, Vienna, Zurich"
+# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/input_checker_pipeline.py" "$RUNS" "Munich, Vienna, Zurich"
 # echo ""
 
-# echo "▶ Running Search and Summarize Pipeline..."
-# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/search_and_summarize.py" search_and_summarize "$RUNS"
-# echo ""
+echo "▶ Running Search and Summarize Pipeline..."
+"$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/search_and_summarize.py" "$RUNS"
+echo ""
 
 echo "▶ Running Trip Planner Pipeline..."
-"$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/trip_planner/pipeline.py" trip_planner "$RUNS" $'Madrid, Dubai\n'"${START_DATE}"$'\n'"${END_DATE}"
+"$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/trip_planner/pipeline.py" "$RUNS" $'Madrid, Dubai\n'"${START_DATE}"$'\n'"${END_DATE}"
 echo ""
 
 
@@ -50,5 +52,3 @@ echo "╔═══════════════════════�
 echo "║         All Pipelines Completed!         ║"
 echo "╚══════════════════════════════════════════╝"
 echo ""
-echo "Logs saved in: $PROJECT_ROOT/logs/"
-ls -la "$PROJECT_ROOT/logs/"

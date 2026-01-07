@@ -1,12 +1,23 @@
 from datetime import datetime
 from pathlib import Path
+
+from src.core.helpers.paths import get_project_root
 from src.core.logging_config import configure_logging
 
 
-def init_pipeline_logger(pipeline_name: str, log_path: str = "logs", level: str = "INFO"):
+def init_pipeline_logger(
+    pipeline_name: str,
+    log_subdir: str = "logs",
+    level: str = "INFO",
+):
+    project_root = get_project_root()
+
+    log_root = project_root / log_subdir
+
     timestamp = datetime.now().strftime("%d_%m_%y__%H_%M_%S")
+
     log_file = (
-        Path(log_path)
+        log_root
         / pipeline_name
         / f"{pipeline_name}_run_{timestamp}.log"
     )

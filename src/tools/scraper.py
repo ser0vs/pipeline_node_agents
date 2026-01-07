@@ -1,6 +1,16 @@
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
 import time
 import requests
 from bs4 import BeautifulSoup
+from src.core.logging_config import get_logger
+from src.core.logger_bootstrap import init_pipeline_logger
+
+logger = get_logger(__name__)
+
 
 class Scraper:
     @staticmethod
@@ -39,7 +49,7 @@ class Scraper:
                 return {"page_content": text}
 
             except Exception as e:
-                print(f"[Scraper] Attempt {attempt}/{max_attempts} failed: {e}")
+                logger.warning(f"[Scraper] Attempt {attempt}/{max_attempts} failed: {e}")
                 time.sleep(1)
 
         raise RuntimeError(f"Failed to scrape {url} after {max_attempts} attempts")
@@ -52,16 +62,18 @@ class Scraper:
             try:
                 return Scraper._scrape_url(url, timeout, max_attempts)
             except Exception as e:
-                print(f"[Scraper] Failed to scrape {url}: \n{e},\n going to next URL...")
+                logger.warning(f"[Scraper] Failed to scrape {url}: \n{e},\n going to next URL...")
         raise RuntimeError(f"Failed to scrape urls {search_results_urls[:max_urls]} after {max_attempts} attempts")
 
 
 
 if __name__ == "__main__":
     def main():
+        init_pipeline_logger(pipeline_name="scraper_test")
+
         search_results = [{"name": "AMC Theatres", "url": "https://www.amctheatres.com/movies"}, {"name": "Web scraping", "url": "https://en.wikipedia.org/wiki/Web_scraping"}]
         result = Scraper.scrape(search_results)
 
-        print(result["page_content"][:1000] + "...")
+        logger.info(result["page_content"][:1000] + "...")
 
     main()

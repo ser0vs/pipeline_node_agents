@@ -3,6 +3,9 @@ from crewai import Agent, Task, Crew
 
 from src.adapters.base_adapter import BaseAdapter
 from crewai import Agent, Task, Crew
+from src.core.logging_config import get_logger
+
+logger = get_logger(__name__)
 
 class CrewAIAdapter(BaseAdapter):
     def __init__(self, agent_or_crew, task_description: str = None, expected_output: str = None, outputs: str = "summary"):
@@ -32,14 +35,14 @@ Remember: {description}"""
                 expected_output=self.expected_output
             )
 
-            print(f"[CrewAIAdapter] Full task description: {full_description}")
-            print(f"[CrewAIAdapter] Expected output: {self.expected_output}")
-            print(f"[CrewAIAdapter] Input length: {len(input_text)} chars")
+            logger.info(f"[CrewAIAdapter] Full task description: {full_description}")
+            logger.info(f"[CrewAIAdapter] Expected output: {self.expected_output}")
+            logger.info(f"[CrewAIAdapter] Input length: {len(input_text)} chars")
             
             crew = Crew(agents=[self.entity], tasks=[task])
             output = crew.kickoff()
 
-            print(f"[CrewAIAdapter] Output of the agent: {output}\n\n")
+            logger.info(f"[CrewAIAdapter] Output of the agent: {output}\n\n")
             return {self.outputs: str(output)}
 
         elif hasattr(self.entity, "kickoff"):
