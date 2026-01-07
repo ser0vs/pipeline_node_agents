@@ -131,7 +131,7 @@ node = FunctionNode(
     name="MyNode",
     adapter=PythonFnAdapter(my_function),
     inputs=["input_value"],
-    outputs=["output_value"]
+    output="output_value"
 )
 ```
 
@@ -144,7 +144,7 @@ node = AgentNode(
     name="MyAgentNode",
     adapter=your_adapter,  # Use an appropriate adapter from src/adapters/
     inputs=["data"],
-    outputs=["result"]
+    output="result"
 )
 ```
 
@@ -229,7 +229,7 @@ nested_node = FunctionNode(
     name="NestedPipelineNode",
     adapter=PythonFnAdapter(process_items),
     inputs=["items"],
-    outputs=["aggregated_results"]
+    output="aggregated_results"
 )
 
 main_pipeline = Pipeline(nodes=[nested_node, final_node])
