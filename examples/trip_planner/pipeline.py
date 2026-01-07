@@ -10,7 +10,9 @@ if PROJECT_ROOT not in sys.path:
 
 from src.core.pipeline import Pipeline
 from examples.trip_planner.nodes import TripPlannerNodes
+from src.core.logger_bootstrap import init_pipeline_logger
 
+init_pipeline_logger(log_path="../../logs/", pipeline_name="trip_planner_pipeline")
 
 def main():
     # Full pipeline

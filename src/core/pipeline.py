@@ -1,5 +1,8 @@
 from __future__ import annotations
 from src.core.helpers.pipeline_visualizer import PipelineVisualizer
+from src.core.logging_config import get_logger
+
+logger = get_logger(__name__)
 
 
 class Pipeline:
@@ -55,18 +58,18 @@ class Pipeline:
         context = initial_context or {}
         current_node = start_node or self.start_node
 
-        print("=== Starting pipeline ===")
+        logger.info("=== Starting pipeline ===")
         
-        print()
+        logger.info("")
         PipelineVisualizer.visualize(self.edges, self.start_node)    
-        print()
+        logger.info("")
 
         if current_node is None:
             raise ValueError("No start node defined for the pipeline.")
 
         while current_node:
             node = self.nodes[current_node]
-            print(f"→ Running node: {node.name}")
+            logger.info(f"→ Running node: {node.name}")
             context = node.run(context)
 
             next_node = None
@@ -77,7 +80,7 @@ class Pipeline:
 
             current_node = next_node
 
-        print("=== Pipeline finished ===")
+        logger.info("=== Pipeline finished ===")
         return context
 
     def _build_linear_pipeline(self, nodes):

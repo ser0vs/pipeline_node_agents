@@ -18,7 +18,9 @@ from duckduckgo_search import DDGS
 from bs4 import BeautifulSoup
 from src.tools.scraper import Scraper
 from src.tools.websearch import WebSearcher
+from src.core.logger_bootstrap import init_pipeline_logger
 
+init_pipeline_logger(log_path="../logs/", pipeline_name="search_and_summarize_pipeline")
 
 # --- CrewAI Node: Summarize results ---
 ollama_llm = LLM(

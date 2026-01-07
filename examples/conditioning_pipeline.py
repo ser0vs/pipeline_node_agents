@@ -20,7 +20,9 @@ from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 from src.tools.scraper import Scraper
 from src.tools.websearch import WebSearcher
+from src.core.logger_bootstrap import init_pipeline_logger
 
+init_pipeline_logger(log_path="../logs/", pipeline_name="conditioning_pipeline")
 
 
 def flip_coin() -> bool:
