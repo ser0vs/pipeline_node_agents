@@ -34,15 +34,9 @@ def main():
 
     print("\n🛫 Planning your trip...\n")
 
-    # start_date = (datetime.now() + timedelta(days=3)).strftime("%d %B %Y")
-    # end_date = (datetime.now() + timedelta(days=10)).strftime("%d %B %Y")
-
     # Full context
-    context = {"list_of_cities": ["Madrid", "Dubai"], "dates": (start_date, end_date)}
+    context = {"list_of_cities": list_of_cities, "dates": (start_date, end_date), "location": "Vienna", "interests": "art, history, and food"}
     logger.info(f"Context: {context}\n")
-
-    # Debug: simpler context
-    # context = {"dates": (start_date, end_date), "chosen_city": "Dubai"}
     
     start_time = time.perf_counter()
     result = main_pipeline.run(context)
