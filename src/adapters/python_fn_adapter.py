@@ -7,7 +7,7 @@ class PythonFnAdapter(BaseAdapter):
         self.fn = fn
 
     def invoke(self, **kwargs) -> dict:
-        result = self.fn(**kwargs)
+        result = self.fn(*kwargs.values())
         if not isinstance(result, dict):
             raise ValueError("Function must return a dictionary of outputs.")
         return result

@@ -9,20 +9,19 @@ class TripPlannerNodes:
     research_cities_node = FunctionNode(
         name="ResearchCitiesNode",
         adapter=PythonFnAdapter(TripPlannerFunctions.research_cities),
-        inputs=["list_of_cities", "dates"],
-        outputs=["weather_summaries"]
+        inputs=["list_of_cities", "dates", "location"],
+        outputs=["weather_summaries", "tickets_summaries"]
     )
-
 
     city_selection_node = AgentNode(
         name="CitySelectionNode",
         adapter=CrewAIAdapter(
             TripPlannerAgents.city_selection_agent,
-            task_description="Choose one city from the provided list based on the weather summaries.",
+            task_description="Choose one city from the provided list for the trip based on the weather summaries, ticket prices and interests.",
             expected_output="First line: Chosen city name. Following lines: brief explanation of why this city was chosen.",
             outputs="chosen_city_summary"
         ),
-        inputs=["weather_summaries"]
+        inputs=["weather_summaries", "tickets_summaries", "interests"]
     )
 
     extract_chosen_city_node = FunctionNode(

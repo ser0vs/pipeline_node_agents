@@ -23,22 +23,30 @@ def main():
         TripPlannerNodes.research_cities_node,
         TripPlannerNodes.city_selection_node,
         TripPlannerNodes.extract_chosen_city_node,
-        TripPlannerNodes.local_expert_node,
-        TripPlannerNodes.travel_concierge_node
+        # TripPlannerNodes.local_expert_node,
+        # TripPlannerNodes.travel_concierge_node
     ])
 
 
-    list_of_cities = input("Enter a list of cities (comma-separated): ").split(",")
-    start_date = input("Enter start date (DD Month YYYY): ")
-    end_date = input("Enter end date (DD Month YYYY): ")
+    ### Debug user input (TODO: uncomment for real use case)
+    # list_of_cities = input("Enter a list of cities (comma-separated): ").split(",")
+    # start_date = input("Enter start date (DD Month YYYY): ")
+    # end_date = input("Enter end date (DD Month YYYY): ")
+    # location = input("Enter your current location: ")
+    # interests = input("Enter your interests: ")
 
     print("\n🛫 Planning your trip...\n")
 
-    # start_date = (datetime.now() + timedelta(days=3)).strftime("%d %B %Y")
-    # end_date = (datetime.now() + timedelta(days=10)).strftime("%d %B %Y")
+    # Debug values (TODO: remove for real use case)
+    list_of_cities = ["Madrid", "Dubai"]
+    start_date = (datetime.now() + timedelta(days=3)).strftime("%d %B %Y")
+    end_date = (datetime.now() + timedelta(days=10)).strftime("%d %B %Y")
+    location = "Vienna"
+    interests = "art, history, food"
 
     # Full context
-    context = {"list_of_cities": ["Madrid", "Dubai"], "dates": (start_date, end_date)}
+    context = {"list_of_cities": list_of_cities, "dates": (start_date, end_date), "location": location, "interests": interests}
+
     logger.info(f"Context: {context}\n")
 
     # Debug: simpler context
@@ -54,10 +62,11 @@ def main():
 
     print("\n✅ Final Pipeline Output:")
     print("Chosen city:", result.get("chosen_city"))
-    print("Trip itinerary:", result.get("trip_itinerary"))
+    print("Trip itinerary:", result.get("chosen_city_summary"))  # Debug TODO: change to itinerary when travel_concierge_node is enabled
     print(f"\n⏱️  Execution time: {elapsed_time:.2f} seconds")
 
-    logger.info(f"✅ Final Pipeline Output:\n chosen_city: {result.get('chosen_city')}\n trip_itinerary: {result.get('trip_itinerary')}")
+    # Debug TODO: change to itinerary when travel_concierge_node is enabled
+    logger.info(f"✅ Final Pipeline Output:\n chosen_city: {result.get('chosen_city')}\n chosen_city_summary: {result.get('chosen_city_summary')}")
     logger.info(f"⏱️  Execution time: {elapsed_time:.2f} seconds")
 
 
