@@ -10,8 +10,11 @@ from src.adapters.python_fn_adapter import PythonFnAdapter
 from src.core.node import FunctionNode
 from src.core.pipeline import Pipeline
 from src.core.logger_bootstrap import init_pipeline_logger
+from src.core.logging_config import get_logger
 
 init_pipeline_logger(pipeline_name="random_mean_pipeline")
+logger = get_logger(__name__)
+
 
 # --- Function Node 1: Generate random numbers ---
 def generate_random_numbers(limit: int) -> dict:
@@ -56,6 +59,9 @@ def main():
 
     print("\n✅ Final Pipeline Output:")
     print(result)
+
+    logger.info(f"✅Final Pipeline Output:\n{result}")
+    logger.info(f"⏱️  Execution time: {elapsed_time:.2f} seconds")
 
 
 if __name__ == "__main__":

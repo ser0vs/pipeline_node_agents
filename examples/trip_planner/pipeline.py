@@ -11,8 +11,11 @@ if PROJECT_ROOT not in sys.path:
 from src.core.pipeline import Pipeline
 from examples.trip_planner.nodes import TripPlannerNodes
 from src.core.logger_bootstrap import init_pipeline_logger
+from src.core.logging_config import get_logger
 
 init_pipeline_logger(pipeline_name="trip_planner_pipeline")
+logger = get_logger(__name__)
+
 
 def main():
     # Full pipeline
@@ -36,7 +39,7 @@ def main():
 
     # Full context
     context = {"list_of_cities": ["Madrid", "Dubai"], "dates": (start_date, end_date)}
-    print(f"Context: {context}\n")
+    logger.info(f"Context: {context}\n")
 
     # Debug: simpler context
     # context = {"dates": (start_date, end_date), "chosen_city": "Dubai"}
@@ -50,9 +53,12 @@ def main():
     sys.stderr = sys.__stderr__
 
     print("\n✅ Final Pipeline Output:")
-    print("chosen_city:", result.get("chosen_city"))
-    print("trip_itinerary:", result.get("trip_itinerary"))
+    print("Chosen city:", result.get("chosen_city"))
+    print("Trip itinerary:", result.get("trip_itinerary"))
     print(f"\n⏱️  Execution time: {elapsed_time:.2f} seconds")
+
+    logger.info(f"✅ Final Pipeline Output:\n chosen_city: {result.get('chosen_city')}\n trip_itinerary: {result.get('trip_itinerary')}")
+    logger.info(f"⏱️  Execution time: {elapsed_time:.2f} seconds")
 
 
 if __name__ == "__main__":

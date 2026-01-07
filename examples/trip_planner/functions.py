@@ -8,7 +8,9 @@ from src.core.pipeline import Pipeline
 from src.tools.scraper import Scraper
 from src.tools.websearch import WebSearcher
 from examples.trip_planner.agents import TripPlannerAgents
+from src.core.logging_config import get_logger
 
+logger = get_logger(__name__)
 
 class TripPlannerFunctions:
     @staticmethod
@@ -63,6 +65,8 @@ class TripPlannerFunctions:
 
             print(f"\n✅ Pipeline Output of {city}:")
             print(result.get("summary"))
+
+            logger.info(f"✅Pipeline Output of {city}:\n{result.get('summary')}")
 
             weather_summaries[city] = result.get("summary")
 

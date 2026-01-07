@@ -21,14 +21,16 @@ from requests.adapters import HTTPAdapter
 from src.tools.scraper import Scraper
 from src.tools.websearch import WebSearcher
 from src.core.logger_bootstrap import init_pipeline_logger
+from src.core.logging_config import get_logger
 
 init_pipeline_logger(pipeline_name="conditioning_pipeline")
+logger = get_logger(__name__)
 
 
 def flip_coin() -> bool:
     """Flip a coin and return True (heads) or False (tails)."""
     choice = random.choice([True, False])
-    print(f"[DecisionNode] Coin flip result: {'True -> Going to park!' if choice else 'False -> Going to cinema!'}")
+    logger.info(f"[DecisionNode] Coin flip result: {'True -> Going to park!' if choice else 'False -> Going to cinema!'}")
     return {"decision": choice}
 
 
@@ -132,6 +134,9 @@ def main():
     print("\n✅ Final Pipeline Output:")
     print(result.get("summary"))
     print(f"\n⏱️  Execution time: {elapsed_time:.2f} seconds")
+
+    logger.info(f"✅Final Pipeline Output: {result.get('summary')}")
+    logger.info(f"⏱️  Execution time: {elapsed_time:.2f} seconds")
 
 
 

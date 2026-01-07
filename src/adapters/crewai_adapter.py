@@ -35,14 +35,14 @@ Remember: {description}"""
                 expected_output=self.expected_output
             )
 
-            logger.info(f"[CrewAIAdapter] Full task description: {full_description}")
-            logger.info(f"[CrewAIAdapter] Expected output: {self.expected_output}")
-            logger.info(f"[CrewAIAdapter] Input length: {len(input_text)} chars")
+            logger.info(f"Full task description: {full_description}")
+            logger.info(f"Expected output: {self.expected_output}")
+            logger.info(f"Input length: {len(input_text)} chars")
             
             crew = Crew(agents=[self.entity], tasks=[task])
             output = crew.kickoff()
 
-            logger.info(f"[CrewAIAdapter] Output of the agent: {output}\n\n")
+            logger.info(f"Output of the agent: \n{output}\n\n")
             return {self.outputs: str(output)}
 
         elif hasattr(self.entity, "kickoff"):

@@ -22,8 +22,11 @@ from requests.adapters import HTTPAdapter
 from src.tools.scraper import Scraper
 from src.tools.websearch import WebSearcher
 from src.core.logger_bootstrap import init_pipeline_logger
+from src.core.logging_config import get_logger
 
 init_pipeline_logger(pipeline_name="input_checker_pipeline")
+logger = get_logger(__name__)
+
 
 
 def get_user_input(input_parameters: dict[str, str]) -> dict[str, str]:
@@ -111,9 +114,13 @@ def main():
     sys.stderr = sys.__stderr__
 
     print("\n✅ Final Pipeline Output:")
-    print("validation_summary:", result.get("validation_summary"))
+    print("Validation summary:", result.get("validation_summary"))
     print(f"\n⏱️  Execution time: {elapsed_time:.2f} seconds\n")
-    print("is_valid:", result.get("is_valid"))
+    print("Is input valid:", result.get("is_valid"))
+    
+    logger.info(f"⏱️  Execution time: {elapsed_time:.2f} seconds")
+    logger.info(f"✅Final Pipeline Output:\n validation_summary: {result.get('validation_summary')}\n is_valid: {result.get('is_valid')}")
+    
 
 
 

@@ -49,7 +49,7 @@ class Scraper:
                 return {"page_content": text}
 
             except Exception as e:
-                logger.warning(f"[Scraper] Attempt {attempt}/{max_attempts} failed: {e}")
+                logger.warning(f"Attempt {attempt}/{max_attempts} failed: {e}")
                 time.sleep(1)
 
         raise RuntimeError(f"Failed to scrape {url} after {max_attempts} attempts")
@@ -62,7 +62,7 @@ class Scraper:
             try:
                 return Scraper._scrape_url(url, timeout, max_attempts)
             except Exception as e:
-                logger.warning(f"[Scraper] Failed to scrape {url}: \n{e},\n going to next URL...")
+                logger.warning(f"Failed to scrape {url}: \n{e},\n going to next URL...")
         raise RuntimeError(f"Failed to scrape urls {search_results_urls[:max_urls]} after {max_attempts} attempts")
 
 
