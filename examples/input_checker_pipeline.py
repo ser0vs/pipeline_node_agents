@@ -29,7 +29,7 @@ logger = get_logger(__name__)
 
 
 
-def get_user_input(input_parameters: dict[str, str]) -> dict[str, str]:
+def get_user_input(input_parameters: dict[str, str]) -> str:
     """
     Get string input fields from user.
     
@@ -45,9 +45,9 @@ def get_user_input(input_parameters: dict[str, str]) -> dict[str, str]:
         result[name] = value
     return result
 
-def get_validation_result(validation_summary: str) -> dict[str, bool]:
+def get_validation_result(validation_summary: str) -> bool:
     is_valid = "false" not in validation_summary.lower()
-    return {"is_valid": is_valid}
+    return is_valid
 
 
 # --- CrewAI Node: Summarize results ---
@@ -73,7 +73,7 @@ def main():
         name="UserInputNode",
         adapter=PythonFnAdapter(get_user_input),
         inputs=["input_parameters"],
-        outputs=["list_of_cities"]
+        outputs="list_of_cities"
     )
 
     input_validator_node = AgentNode(
@@ -81,17 +81,17 @@ def main():
         adapter=CrewAIAdapter(
             input_validator_agent,
             task_description="Validate this statement: 'In the LIST_OF_CITIES all entries are populated places.' Say whether it is True or False.",
-            expected_output="Brief explanation of the validation result. The last word MUST contain either 'True' or 'False' based on the validity of the statement.",
-            outputs="validation_summary"
+            expected_output="Brief explanation of the validation result. The last word MUST contain either 'True' or 'False' based on the validity of the statement."
         ),
-        inputs=["list_of_cities"]
+        inputs=["list_of_cities"],
+        outputs="validation_summary"
     )
 
     input_validation_result_node = FunctionNode(
         name="InputValidationResultNode",
         adapter=PythonFnAdapter(get_validation_result),
         inputs=["validation_summary"],
-        outputs=["is_valid"]
+        outputs="is_valid"
     )
 
     main_pipeline = Pipeline(nodes=[user_input_node, input_validator_node, input_validation_result_node])

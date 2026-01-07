@@ -27,17 +27,21 @@ echo ""
 SINGLE_PIPELINE_SCRIPT="$PROJECT_ROOT/scripts/run_single_pipeline.sh"
 
 
-# echo "▶ Running Random Mean Pipeline..."
-# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/random_mean_pipeline.py" "$RUNS"
-# echo ""
+echo "▶ Running Random Mean Pipeline..."
+"$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/random_mean_pipeline.py" "$RUNS"
+echo ""
 
-# echo "▶ Running First Conditioning Pipeline..."
-# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/conditioning_pipeline.py" "$RUNS"
-# echo ""
+echo "▶ Running Random Mean Pipeline..."
+"$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/random_mean_pipeline_crewai.py" "$RUNS"
+echo ""
 
-# echo "▶ Running Input Checker Pipeline..."
-# "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/input_checker_pipeline.py" "$RUNS" "Munich, Vienna, Zurich"
-# echo ""
+echo "▶ Running First Conditioning Pipeline..."
+"$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/conditioning_pipeline.py" "$RUNS"
+echo ""
+
+echo "▶ Running Input Checker Pipeline..."
+"$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/input_checker_pipeline.py" "$RUNS" "Munich, Vienna, Zurich"
+echo ""
 
 echo "▶ Running Search and Summarize Pipeline..."
 "$SINGLE_PIPELINE_SCRIPT" "$PROJECT_ROOT/examples/search_and_summarize.py" "$RUNS"
