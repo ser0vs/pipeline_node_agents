@@ -62,7 +62,7 @@ def main():
         name="DecisionNode",
         adapter=PythonFnAdapter(flip_coin),
         inputs=[],
-        outputs="decision"
+        output="decision"
     )
 
 
@@ -70,7 +70,7 @@ def main():
         name="DuckDuckGoSearchNode",
         adapter=PythonFnAdapter(WebSearcher.duckduckgo_search),
         inputs=["query", "max_results"],
-        outputs="search_results"
+        output="search_results"
     )
     
     
@@ -78,7 +78,7 @@ def main():
         name="ScrapeNode",
         adapter=PythonFnAdapter(Scraper.scrape),
         inputs=["search_results"],
-        outputs="page_content"
+        output="page_content"
     )
 
     local_expert_node = AgentNode(
@@ -89,7 +89,7 @@ def main():
             expected_output="2-3 top places of this city with short descriptions."
         ),
         inputs=["city", "type_of_place"],
-        outputs="summary"
+        output="summary"
     )
 
     cinema_expert_node = AgentNode(
@@ -100,7 +100,7 @@ def main():
             expected_output="A single film recommendation with 2-3 highlights of this film."
         ),
         inputs=["page_content"],
-        outputs="summary"
+        output="summary"
     )
 
 

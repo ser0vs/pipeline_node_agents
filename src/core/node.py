@@ -6,10 +6,10 @@ logger = get_logger(__name__)
 
 class Node(ABC):
     """Abstract base class for all nodes in the pipeline."""
-    def __init__(self, name, inputs=None, outputs=None, adapter=None):
+    def __init__(self, name, inputs=None, output=None, adapter=None):
         self.name = name
         self.inputs = inputs or []
-        self.outputs = outputs or []
+        self.output = output
         self.adapter = adapter
 
     @abstractmethod
@@ -19,18 +19,18 @@ class Node(ABC):
 
 
 class AgentNode(Node):
-    def __init__(self, name: str, adapter: BaseAdapter, inputs: list[str], outputs: str = 'summary'):
+    def __init__(self, name: str, adapter: BaseAdapter, inputs: list[str], output: str = 'summary'):
         self.name = name
         self.adapter = adapter
         self.inputs = inputs
-        self.outputs = outputs or []
+        self.output = output
 
     def run(self, context: dict) -> dict:
         input_data = {k: context[k] for k in self.inputs}
         
         result = self.adapter.invoke(**input_data)
 
-        dict_result = {self.outputs: result}
+        dict_result = {self.output: result}
         context.update(dict_result)
         return context
 
@@ -41,7 +41,7 @@ class FunctionNode(Node):
 
         result = self.adapter.invoke(**input_data)
 
-        dict_result = {self.outputs: result}
+        dict_result = {self.output: result}
         context.update(dict_result)
         logger.info(f"[FunctionNode] {self.name} executed. Outputs: {result}")
         return context

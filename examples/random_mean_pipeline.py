@@ -38,14 +38,14 @@ def main():
         name="RandomNumberGenerator",
         adapter=PythonFnAdapter(generate_random_numbers),
         inputs=["limit"],
-        outputs="random_numbers"
+        output="random_numbers"
     )
 
     node2 = FunctionNode(
         name="MeanCalculator",
         adapter=PythonFnAdapter(calculate_mean),
         inputs=["random_numbers"],
-        outputs="mean_value"
+        output="mean_value"
     )
 
     # Build and run pipeline

@@ -47,7 +47,7 @@ def main():
         name="RandomNumberGenerator",
         adapter=PythonFnAdapter(generate_random_numbers),
         inputs=["limit"],
-        outputs="random_numbers"
+        output="random_numbers"
     )
 
     # Node 2: CrewAI summarization
@@ -55,7 +55,7 @@ def main():
         name="NumberSummaryNode",
         adapter=CrewAIAdapter(number_summary_agent),
         inputs=["random_numbers"],
-        outputs="summary"
+        output="summary"
     )
 
     pipeline = Pipeline(nodes=[node1, node2])

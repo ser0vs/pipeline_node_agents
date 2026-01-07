@@ -44,14 +44,14 @@ def main():
         name="DuckDuckGoSearchNode",
         adapter=PythonFnAdapter(WebSearcher.duckduckgo_search),
         inputs=["query", "max_results"],
-        outputs="search_results"
+        output="search_results"
     )
     
     scrape_node = FunctionNode(
         name="ScrapeNode",
         adapter=PythonFnAdapter(Scraper.scrape),
         inputs=["search_results"],
-        outputs="page_content"
+        output="page_content"
     )
 
 
@@ -63,7 +63,7 @@ def main():
             expected_output="A single country recommendation with 2-3 bullet points explaining why it's the best choice."
         ),
         inputs=["page_content"],
-        outputs="summary"
+        output="summary"
     )
 
     pipeline = Pipeline(nodes=[search_node, scrape_node, analyst_node])

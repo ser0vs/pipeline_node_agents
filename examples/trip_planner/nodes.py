@@ -10,7 +10,7 @@ class TripPlannerNodes:
         name="ResearchCitiesNode",
         adapter=PythonFnAdapter(TripPlannerFunctions.research_cities),
         inputs=["list_of_cities", "dates"],
-        outputs="weather_summaries"
+        output="weather_summaries"
     )
 
 
@@ -22,14 +22,14 @@ class TripPlannerNodes:
             expected_output="First line: Chosen city name. Following lines: brief explanation of why this city was chosen."
         ),
         inputs=["weather_summaries"],
-        outputs="chosen_city_summary"
+        output="chosen_city_summary"
     )
 
     extract_chosen_city_node = FunctionNode(
         name="ExtractChosenCityNode",
         adapter=PythonFnAdapter(TripPlannerFunctions.extract_chosen_city),
         inputs=["chosen_city_summary"],
-        outputs="chosen_city"
+        output="chosen_city"
     )
 
     local_expert_node = AgentNode(
@@ -40,7 +40,7 @@ class TripPlannerNodes:
             expected_output="City guide including hidden gems, cultural hotspots, and practical travel tips"
         ),
         inputs=["chosen_city", "dates"],
-        outputs="list_of_attractions"
+        output="list_of_attractions"
     )
 
     travel_concierge_node = AgentNode(
@@ -51,5 +51,5 @@ class TripPlannerNodes:
             expected_output="Detailed 7-day itinerary including daily activities, dining options, and transportation tips.",
         ),
         inputs=["chosen_city", "list_of_attractions", "dates"],
-        outputs="trip_itinerary"
+        output="trip_itinerary"
     )

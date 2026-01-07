@@ -73,7 +73,7 @@ def main():
         name="UserInputNode",
         adapter=PythonFnAdapter(get_user_input),
         inputs=["input_parameters"],
-        outputs="list_of_cities"
+        output="list_of_cities"
     )
 
     input_validator_node = AgentNode(
@@ -84,14 +84,14 @@ def main():
             expected_output="Brief explanation of the validation result. The last word MUST contain either 'True' or 'False' based on the validity of the statement."
         ),
         inputs=["list_of_cities"],
-        outputs="validation_summary"
+        output="validation_summary"
     )
 
     input_validation_result_node = FunctionNode(
         name="InputValidationResultNode",
         adapter=PythonFnAdapter(get_validation_result),
         inputs=["validation_summary"],
-        outputs="is_valid"
+        output="is_valid"
     )
 
     main_pipeline = Pipeline(nodes=[user_input_node, input_validator_node, input_validation_result_node])

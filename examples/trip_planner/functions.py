@@ -34,14 +34,14 @@ class TripPlannerFunctions:
                 name="DuckDuckGoSearchNode",
                 adapter=PythonFnAdapter(WebSearcher.duckduckgo_search),
                 inputs=["query", "max_results"],
-                outputs="search_results"
+                output="search_results"
             )
 
             scrape_node = FunctionNode(
                 name="ScrapeNode",
                 adapter=PythonFnAdapter(Scraper.scrape),
                 inputs=["search_results"],
-                outputs="page_content"
+                output="page_content"
             )
 
             weather_summary_node = AgentNode(
@@ -52,7 +52,7 @@ class TripPlannerFunctions:
                     expected_output="Short summary of the weather information."
                 ),
                 inputs=["page_content"],
-                outputs="summary"
+                output="summary"
             )
 
             city_pipeline = Pipeline(nodes=[search_node, scrape_node, weather_summary_node])
