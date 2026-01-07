@@ -26,6 +26,7 @@ pipeline_node_agents/
 │   │   └── pipeline.py      # Pipeline orchestration
 │   └── adapters/            # Adapters for different execution backends
 ├── examples/                # Example pipelines
+├── logs/                    # logs, saved locally
 ├── pyproject.toml
 └── README.md
 ```
@@ -49,25 +50,71 @@ pipeline_node_agents/
     poetry install --no-root
     ```
 
-## Running Examples
+## How to Run
 
-1) Run Ollama
-    ```bash
-    ollama serve
-    ```
+> **Prerequisites:**
+> 1. Start Ollama: `ollama serve`
+> 2. Make sure the required model is installed using `ollama list` (as of December 3rd 2025, it's *llama3.2*)
 
-> **Note:** Before the next step, make sure the corresponding model is installed using `ollama list` (as of December 3rd 2025, it's *llama3.2*)
+### Option 1: Run an example directly
 
-2) Run an example:
-    ```bash
-    poetry run python3 examples/<example_name>.py
-    ```
-    e.g.
-    ```bash
-    poetry run python3 examples/random_mean_pipeline.py
-    ```
+```bash
+poetry run python3 examples/<example_name>.py
+```
 
+e.g.
+```bash
+poetry run python3 examples/random_mean_pipeline.py
+```
 
+### Option 2: Using Runner Scripts
+
+> **Additional requirement:** All scripts in the `scripts/` folder must have execution permissions.
+>
+> If not, run:
+> ```bash
+> chmod +x scripts/*.sh
+> ```
+
+#### Run a Single Pipeline
+
+```bash
+./scripts/run_single_pipeline.sh <path_to_pipeline> <runs> [input_strings]
+```
+
+**Parameters:**
+- `<path_to_pipeline>` - Path to the Python pipeline file
+- `<runs>` - Number of times to run the pipeline
+- `[input_strings]` - Optional: newline-separated inputs for interactive prompts
+
+**Examples:**
+```bash
+# Run a simple pipeline 3 times
+./scripts/run_single_pipeline.sh examples/random_mean_pipeline.py 3
+
+# Run with single input
+./scripts/run_single_pipeline.sh examples/input_checker_pipeline.py 2 "Munich, Vienna"
+
+# Run with multiple inputs (use $'\n' to separate)
+./scripts/run_single_pipeline.sh examples/trip_planner/pipeline.py 1 $'Paris, Rome\n15 June 2025\n22 June 2025'
+```
+
+#### Run All Smoke Tests
+
+```bash
+./scripts/run_smoke_pipelines.sh [number_of_runs_per_pipeline]
+```
+
+**Examples:**
+```bash
+# Run all example pipelines once
+./scripts/run_smoke_pipelines.sh
+
+# Run all example pipelines 3 times each
+./scripts/run_smoke_pipelines.sh 3
+```
+
+Logs are automatically saved to `logs/` directory by the Python logging system.
 
 ## Usage
 
