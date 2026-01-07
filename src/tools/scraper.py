@@ -22,7 +22,7 @@ class Scraper:
 
 
     @staticmethod
-    def _scrape_url(url: str, timeout: int = 10, max_attempts: int = 5) -> dict:
+    def _scrape_url(url: str, timeout: int = 10, max_attempts: int = 5) -> str:
         """
         Scrape textual content from a website with retries.
 
@@ -46,7 +46,7 @@ class Scraper:
                 text = soup.get_text(separator=" ", strip=True)
                 text = " ".join(text.split())
 
-                return {"page_content": text}
+                return text
 
             except Exception as e:
                 logger.warning(f"Attempt {attempt}/{max_attempts} failed: {e}")
@@ -74,6 +74,6 @@ if __name__ == "__main__":
         search_results = [{"name": "AMC Theatres", "url": "https://www.amctheatres.com/movies"}, {"name": "Web scraping", "url": "https://en.wikipedia.org/wiki/Web_scraping"}]
         result = Scraper.scrape(search_results)
 
-        logger.info(result["page_content"][:1000] + "...")
+        logger.info(result[:1000] + "...")
 
     main()

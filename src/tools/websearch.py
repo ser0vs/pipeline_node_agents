@@ -15,7 +15,7 @@ class WebSearcher:
                         backend='lite'
                     )
 
-                    parsed = [
+                    parsed_results = [
                         {
                             "title": r.get("title"),
                             "snippet": r.get("body"),
@@ -24,7 +24,7 @@ class WebSearcher:
                         for r in results
                     ]
 
-                    return {"search_results": parsed}
+                    return parsed_results
 
                 except Exception as e:
                     print(f"Retry due to: {e}")
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         results = WebSearcher.duckduckgo_search("best ski resorts", max_results=5)
         
         print("Search Results for 'best ski resorts':\n")
-        for idx, result in enumerate(results["search_results"], 1):
+        for idx, result in enumerate(results, 1):
             print(f"{idx}. {result['title']}")
             print(f"   URL: {result['url']}")
             print(f"   Snippet: {result['snippet']}\n")

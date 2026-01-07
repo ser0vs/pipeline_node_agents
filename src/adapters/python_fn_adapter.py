@@ -6,8 +6,6 @@ class PythonFnAdapter(BaseAdapter):
     def __init__(self, fn):
         self.fn = fn
 
-    def invoke(self, **kwargs) -> dict:
+    def invoke(self, **kwargs):
         result = self.fn(**kwargs)
-        if not isinstance(result, dict):
-            raise ValueError("Function must return a dictionary of outputs.")
         return result

@@ -23,9 +23,9 @@ logger = get_logger(__name__)
 
 
 # --- Function Node 1: Generate random numbers ---
-def generate_random_numbers(limit: int) -> dict:
+def generate_random_numbers(limit: int) -> list:
     numbers = [random.uniform(0, limit) for _ in range(10)]
-    return {"random_numbers": numbers}
+    return numbers
 
 # --- CrewAI Node 2: Summarize numbers ---
 ollama_llm = LLM(
@@ -47,7 +47,7 @@ def main():
         name="RandomNumberGenerator",
         adapter=PythonFnAdapter(generate_random_numbers),
         inputs=["limit"],
-        outputs=["random_numbers"]
+        outputs="random_numbers"
     )
 
     # Node 2: CrewAI summarization
@@ -55,7 +55,7 @@ def main():
         name="NumberSummaryNode",
         adapter=CrewAIAdapter(number_summary_agent),
         inputs=["random_numbers"],
-        outputs=["summary"]
+        outputs="summary"
     )
 
     pipeline = Pipeline(nodes=[node1, node2])

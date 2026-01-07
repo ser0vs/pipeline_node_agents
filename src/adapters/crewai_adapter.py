@@ -8,12 +8,12 @@ from src.core.logging_config import get_logger
 logger = get_logger(__name__)
 
 class CrewAIAdapter(BaseAdapter):
-    def __init__(self, agent_or_crew, task_description: str = None, expected_output: str = None, outputs: str = "summary"):
+    def __init__(self, agent_or_crew, task_description: str = None, expected_output: str = None):
         self.entity = agent_or_crew
         self.task_description = task_description
         self.expected_output = expected_output or "A detailed analysis based on the input."
-        self.outputs = outputs
-    def invoke(self, **kwargs) -> dict:
+
+    def invoke(self, **kwargs):
         if isinstance(self.entity, Agent):
             input_text = "\n\n".join(f"### {k.upper()} ###\n{v}" for k, v in kwargs.items())
             
@@ -43,11 +43,11 @@ Remember: {description}"""
             output = crew.kickoff()
 
             logger.info(f"Output of the agent: \n{output}\n\n")
-            return {self.outputs: str(output)}
+            return str(output)
 
         elif hasattr(self.entity, "kickoff"):
             output = self.entity.kickoff(inputs=kwargs)
-            return {self.outputs: str(output)}
+            return str(output)
         
         else:
             raise ValueError("Entity must be a CrewAI Agent or Crew.")

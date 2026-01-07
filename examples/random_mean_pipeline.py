@@ -17,19 +17,19 @@ logger = get_logger(__name__)
 
 
 # --- Function Node 1: Generate random numbers ---
-def generate_random_numbers(limit: int) -> dict:
+def generate_random_numbers(limit: int) -> list:
     """Generates 10 random numbers between 0 and `limit`."""
     numbers = [random.uniform(0, limit) for _ in range(10)]
     time.sleep(1)
-    return {"random_numbers": numbers}
+    return numbers
 
 
 # --- Function Node 2: Compute mean ---
-def calculate_mean(random_numbers: list) -> dict:
+def calculate_mean(random_numbers: list) -> float:
     """Calculates the mean of 10 random numbers."""
     result = mean(random_numbers)
     time.sleep(3)
-    return {"mean_value": result}
+    return result
 
 
 def main():
@@ -38,14 +38,14 @@ def main():
         name="RandomNumberGenerator",
         adapter=PythonFnAdapter(generate_random_numbers),
         inputs=["limit"],
-        outputs=["random_numbers"]
+        outputs="random_numbers"
     )
 
     node2 = FunctionNode(
         name="MeanCalculator",
         adapter=PythonFnAdapter(calculate_mean),
         inputs=["random_numbers"],
-        outputs=["mean_value"]
+        outputs="mean_value"
     )
 
     # Build and run pipeline

@@ -4,6 +4,6 @@ class BaseAdapter(ABC):
     """Defines a unified interface for all adapters."""
 
     @abstractmethod
-    def invoke(self, **kwargs) -> dict:
-        """Executes the adapter and returns output as dict."""
+    def invoke(self, **kwargs):
+        """Executes the adapter and returns output."""
         pass

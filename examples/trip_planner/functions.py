@@ -25,7 +25,7 @@ class TripPlannerFunctions:
         return "\n".join(lines).strip()
 
     @staticmethod
-    def research_cities(list_of_cities: list[str], dates: tuple[str, str]) -> dict:
+    def research_cities(list_of_cities: list[str], dates: tuple[str, str]) -> str:
         """Choose a city out of the list with the best weather on provided dates."""
         weather_summaries = {}
         
@@ -34,14 +34,14 @@ class TripPlannerFunctions:
                 name="DuckDuckGoSearchNode",
                 adapter=PythonFnAdapter(WebSearcher.duckduckgo_search),
                 inputs=["query", "max_results"],
-                outputs=["search_results"]
+                outputs="search_results"
             )
 
             scrape_node = FunctionNode(
                 name="ScrapeNode",
                 adapter=PythonFnAdapter(Scraper.scrape),
                 inputs=["search_results"],
-                outputs=["page_content"]
+                outputs="page_content"
             )
 
             weather_summary_node = AgentNode(
@@ -52,7 +52,7 @@ class TripPlannerFunctions:
                     expected_output="Short summary of the weather information."
                 ),
                 inputs=["page_content"],
-                outputs=["summary"]
+                outputs="summary"
             )
 
             city_pipeline = Pipeline(nodes=[search_node, scrape_node, weather_summary_node])
@@ -70,11 +70,11 @@ class TripPlannerFunctions:
 
             weather_summaries[city] = result.get("summary")
 
-        return {"weather_summaries": TripPlannerFunctions.format_dict_as_sections(weather_summaries)}
+        return TripPlannerFunctions.format_dict_as_sections(weather_summaries)
 
     @staticmethod
-    def extract_chosen_city(chosen_city_summary: str) -> dict:
+    def extract_chosen_city(chosen_city_summary: str) -> str:
         """Extract the chosen city from the agent's summary."""
         first_line = chosen_city_summary.splitlines()[0]
         chosen_city = first_line.strip()
-        return {"chosen_city": chosen_city}
+        return chosen_city
