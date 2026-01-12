@@ -7,6 +7,7 @@ from crewai import LLM
 
 class TripPlannerConfig:
     ollama_llm = LLM(
-        model="ollama/llama3.2",
-        base_url="http://localhost:11434"
+        model="ollama/qwen3:8b",
+        base_url="http://localhost:11434",
+        extra_body={"options": {"think": False}}
     )
