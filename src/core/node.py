@@ -6,11 +6,12 @@ logger = get_logger(__name__)
 
 class Node(ABC):
     """Abstract base class for all nodes in the pipeline."""
-    def __init__(self, name, inputs=None, output=None, adapter=None):
+    def __init__(self, name, adapter=None, inputs=None, output=None, mock_value=None):
         self.name = name
+        self.adapter = adapter
         self.inputs = inputs or []
         self.output = output
-        self.adapter = adapter
+        self.mock_value = mock_value
 
     @abstractmethod
     def run(self, context: dict) -> dict:
@@ -19,16 +20,20 @@ class Node(ABC):
 
 
 class AgentNode(Node):
-    def __init__(self, name: str, adapter: BaseAdapter, inputs: list[str], output: str = 'summary'):
+    def __init__(self, name: str, adapter: BaseAdapter, inputs: list[str], output: str = 'summary', mock_value: str = None):
         self.name = name
         self.adapter = adapter
         self.inputs = inputs
         self.output = output
+        self.mock_value = mock_value
 
     def run(self, context: dict) -> dict:
         input_data = {k: context[k] for k in self.inputs}
         
-        result = self.adapter.invoke(**input_data)
+        if self.mock_value is None:
+            result = self.adapter.invoke(**input_data)
+        else:
+            result = self.mock_value
 
         dict_result = {self.output: result}
         context.update(dict_result)
@@ -39,7 +44,10 @@ class FunctionNode(Node):
     def run(self, context: dict) -> dict:
         input_data = {key: context[key] for key in self.inputs if key in context}
 
-        result = self.adapter.invoke(**input_data)
+        if self.mock_value is None:
+            result = self.adapter.invoke(**input_data)
+        else:
+            result = self.mock_value
 
         dict_result = {self.output: result}
         context.update(dict_result)

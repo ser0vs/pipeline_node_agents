@@ -1,0 +1,64 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class PipelineVisualizer
+
+abstract class BaseAdapter {
+  + invoke(**kwargs)
+}
+
+class CrewAIAdapter {
+  - entity
+  - task_description
+  - expected_output
+  + invoke(**kwargs): str
+}
+
+class PythonFnAdapter {
+  - fn
+  + invoke(**kwargs)
+}
+
+BaseAdapter <|-- CrewAIAdapter
+BaseAdapter <|-- PythonFnAdapter
+
+abstract class Node {
+  - name
+  - adapter: BaseAdapter
+  - inputs
+  - output
+  - mock_value
+  + run(context: dict): dict
+}
+
+Node ..> BaseAdapter : uses
+
+
+class AgentNode {
+  - messages_template
+  + run(context: dict): dict
+}
+
+class FunctionNode {
+  + run(context: dict): dict
+}
+
+Node <|-- AgentNode
+Node <|-- FunctionNode
+
+
+class Pipeline {
+  - nodes: dict<str, Node>
+  - edges: dict<str, list<(condition,str)>>
+  - start_node: str
+  + add_node(node)
+  + add_edge(from_node, to_node, condition=None)
+  + add_pipeline(other_pipeline)
+  + run(initial_context=None, start_node=None): dict
+  - _build_linear_pipeline(nodes)
+}
+
+Pipeline o-- "*" Node : manages >
+Pipeline ..> PipelineVisualizer : visualize()
+
+@enduml

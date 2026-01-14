@@ -1,0 +1,29 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class PipelineVisualizer
+
+abstract class BaseAdapter
+
+class CrewAIAdapter
+class PythonFnAdapter
+
+BaseAdapter <|-- CrewAIAdapter
+BaseAdapter <|-- PythonFnAdapter
+
+abstract class Node
+
+Node ..> BaseAdapter : uses
+
+class AgentNode
+class FunctionNode
+
+Node <|-- AgentNode
+Node <|-- FunctionNode
+
+class Pipeline
+
+Pipeline o-- "*" Node : manages >
+Pipeline ..> PipelineVisualizer : visualize()
+
+@enduml
