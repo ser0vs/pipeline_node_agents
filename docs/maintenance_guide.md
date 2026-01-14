@@ -203,9 +203,7 @@ pipeline.add_edge(
 
 If you want to use your own agent framework, feel free to add the corresponding adapter to the agent node. Simply inherit your custom adapter class from `BaseAdapter` and implement the `invoke` method.
 
-The key requirements for your adapter's `invoke` method are:
-1. Accept a `context` dictionary as input
-2. Return a dictionary with the output values
+The adapter's `invoke` method can accept any input fields, but it has to return only one output. 
 
 ## Testing
 
