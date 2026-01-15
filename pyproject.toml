@@ -1,15 +1,17 @@
 [project]
-name = "nodeagent007"
+name = "pipeline_node_agents"
 version = "0.1.0"
-description = "My poetry configuration to run my agents 007 from any Starbucks of Vienna"
+description = "A lightweight Python framework for building modular AI pipelines with function nodes and agent nodes."
 authors = [
     {name = "Sergei Ovsiannikov", email = "a12230165@unet.univie.ac.at"}
 ]
 readme = "README.md"
-packages = [
-    { include = "*", from = "src" }
-]
 requires-python = ">=3.11,<3.14"
+
+[tool.poetry]
+packages = [
+    { include = "pipeline_node_agents", from = "src" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.14"
