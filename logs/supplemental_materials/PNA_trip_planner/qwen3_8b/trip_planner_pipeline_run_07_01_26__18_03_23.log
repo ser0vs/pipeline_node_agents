@@ -1,0 +1,369 @@
+2026-01-07 18:03:23,729 | INFO     | pipeline.py:42 | __main__ | Context: {'list_of_cities': ['Madrid', 'Dubai'], 'dates': ('12 January 2026', '19 January 2026')}
+
+2026-01-07 18:03:23,729 | INFO     | pipeline.py:61 | src.core.pipeline | === Starting pipeline ===
+2026-01-07 18:03:23,729 | INFO     | pipeline.py:63 | src.core.pipeline | 
+2026-01-07 18:03:23,729 | INFO     | pipeline.py:65 | src.core.pipeline | 
+2026-01-07 18:03:23,729 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: ResearchCitiesNode
+2026-01-07 18:03:23,730 | INFO     | pipeline.py:61 | src.core.pipeline | === Starting pipeline ===
+2026-01-07 18:03:23,730 | INFO     | pipeline.py:63 | src.core.pipeline | 
+2026-01-07 18:03:23,730 | INFO     | pipeline.py:65 | src.core.pipeline | 
+2026-01-07 18:03:23,730 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-01-07 18:03:23,805 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-01-07 18:03:23,837 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine duckduckgo: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20Madrid%20from%2012%20January%202026%20to%2019%20January%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-01-07 18:03:24,081 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=a2_96EseUlm0rkYbkZDjXui6;_ylu=IdzZvELrpMGDGCwmr_CLj23J8z1XyJUVeHK-3Xw4QApK7Uc?p=weather+forecast+Madrid+from+12+January+2026+to+19+January+2026 200
+2026-01-07 18:03:24,667 | INFO     | node.py:44 | src.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: {'search_results': [{'title': 'Madrid weather in January 2026 | Madrid 14 day weather', 'snippet': 'Full weather forecast for Madrid in January 2026 . Check the temperatures, chance of rain and more in Madrid during January .', 'url': 'https://www.weather25.com/europe/spain/madrid?page=month&month=January'}, {'title': 'Weather in Madrid in January 2026 - Detailed Forecast', 'snippet': 'Discover the most accurate weather forecast for Madrid in January 2026 . Insights into temperature, precipitation, and weather trends.', 'url': 'https://www.easeweather.com/europe/FilueoIk/madrid/january'}, {'title': 'Weather in Madrid in January 2026 (Community of Madrid ...', 'snippet': "Madrid Weather Forecast for January 2026 is based on long term prognosis and previous years' statistical data. Wind direction chart for Madrid (daytime), based on January 2026 wind statistics. Average daytime values for January 2026 .", 'url': 'https://world-weather.info/forecast/spain/madrid/january-2026/'}, {'title': 'Madrid, Madrid, Spain Monthly Weather | AccuWeather', 'snippet': 'Get the monthly weather forecast for Madrid , Madrid , Spain, including daily high/low, historical averages, to help you plan ahead.', 'url': 'https://www.accuweather.com/en/es/madrid/308526/january-weather/308526'}, {'title': 'Madrid, Daily Weather Forecast for January 2026', 'snippet': 'Madrid , Daily Weather Forecast for January 2026 , derived from a dynamic long-range model, offers daily predictions for temperature and rainfall, grounded in over 50 years of privately funded research.', 'url': 'https://www.weathertab.com/en/d/e/01/kingdom-of-spain/28035-madrid/'}]}
+2026-01-07 18:03:24,667 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: ScrapeNode
+2026-01-07 18:03:24,938 | INFO     | node.py:44 | src.core.node | [FunctionNode] ScrapeNode executed. Outputs: {'page_content': "Madrid weather in January 2026 | Madrid 14 day weather Home Europe Spain Madrid January Location was added to My Locations Location was removed from My Locations December A Coruna Adeje Albir Alcoy Alcudia Alicante Almeria Almunecar Altea Arboleas Arguineguin Arona Arrecife Badajoz Ballermann Barcelona Benalmadena Benidorm Benitachell Bilbao Buenavista del Norte Burgos Busot Caceres Cadiz Cala Millor Cala Ratjada Calahonda Calella Caleta de Fuste Calpe Cambrils Canillas de Albaida Cartagena Competa Cordoba Cordoue Corralejo Costa Adeje Costa Blanca Costa Brava Costa Daurada Costa Teguise Costa de la Luz Costa del Sol Crevillente Denia Estaryit Estepona Finestrat Formentera Fuengirola Fuerteventura Gandia Gijon Girona Grado Gran Canaria Gran Tarajal Granada Guardamar Hondon de los Frailes Ibiza Jandia Javea Jerez de la Frontera L'Estartit La Gomera La Palma Lanzarote Las Palmas Lloret de Mar Los Alcázares Los Cristianos Los Gigantes Los Montesinos Madrid Majorca Malaga Malgrat de Mar Mallorca Marbella Maspalomas Mazarron Menorca Mijas Minorca Mogan Moraira Morro Jable Motril Murcia Nerja Oviedo Palma Pamplona Peguera Pilar de la Horadada Playa Blanca Playa de las America Playa del Ingles Porto Cristo Puerto Rico Puerto Rico de Gran Canaria Puerto de Mogan Puerto de Pollensa Puerto de Santiago Puerto de la Cruz Puerto del Carmen Ronda Roses Sagunto Salamanca Salobrena Salou San Pedro del Pinatar San Sebastian Sancti Petri Santa Cruz de Tenerife Santa Cruz de la Palma Santa Ponsa Santa Susanna Santander Santany Santiago de Compostela Segovia Seville Soller Tarajalejo Tarifa Tarragona Tenerife Toledo Torre de la Horadada Torremolinos Torrevieja Torrox Tuineje Valencia Valladolid Vigo Villamartin Zaragoza Zumaia February Madrid weather in January 2026 Click on a day for an hourly weather forecast Wednesday Jan 7 0 mm 7 ° / -1 ° Thursday Jan 8 0 mm 7 ° / 0 ° Friday Jan 9 0 mm 10 ° / 4 ° Saturday Jan 10 0 mm 8 ° / 4 ° Sunday Jan 11 0 mm 8 ° / 1 ° Monday Jan 12 0 mm 10 ° / 6 ° Tuesday Jan 13 5 mm 7 ° / 6 ° Wednesday Jan 14 0 mm 11 ° / 4 ° Thursday Jan 15 0.3 mm 9 ° / 2 ° Friday Jan 16 0 mm 10 ° / 4 ° Saturday Jan 17 0 mm 9 ° / 3 ° Sunday Jan 18 0.8 mm 9 ° / 4 ° Monday Jan 19 0 mm 10 ° / 1 ° Tuesday Jan 20 0 mm 9 ° / 4 ° Next Month >> The average weather in Madrid in January The weather in Madrid in January is very cold with temperatures between 3 ° C and 11 ° C , warm clothes are a must. You can expect about 3 to 8 days of rain in Madrid during the month of January. It’s a good idea to bring along your umbrella so that you don’t get caught in poor weather. Please note that Madrid can expect a few days of snow in January . Our weather forecast can give you a great sense of what weather to expect in Madrid in January 2026 . If you’re planning to visit Madrid in the near future, we highly recommend that you review the 14 day weather forecast for Madrid before you arrive. Temperatures 11 ° / 3 ° Rainy Days 4 Snowy Days 1 Dry Days 26 Rainfall 42 mm Sun Hours 10.0 Hrs Historic average weather for January January Sun Mon Tue Wed Thu Fri Sat 1 12 ° / 5 ° 2 12 ° / 5 ° 3 11 ° / 5 ° 4 11 ° / 5 ° 5 10 ° / 4 ° 6 10 ° / 4 ° 7 7 ° / -1 ° 8 7 ° / 0 ° 9 10 ° / 4 ° 10 8 ° / 4 ° 11 8 ° / 1 ° 12 10 ° / 6 ° 13 7 ° / 6 ° 14 11 ° / 4 ° 15 9 ° / 2 ° 16 10 ° / 4 ° 17 9 ° / 3 ° 18 9 ° / 4 ° 19 10 ° / 1 ° 20 9 ° / 4 ° 21 9 ° / 3 ° 22 10 ° / 4 ° 23 11 ° / 4 ° 24 11 ° / 4 ° 25 12 ° / 5 ° 26 11 ° / 6 ° 27 13 ° / 6 ° 28 12 ° / 5 ° 29 11 ° / 5 ° 30 12 ° / 6 ° 31 13 ° / 5 ° Click on a day for an hourly weather forecast Explore the weather in Madrid in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Madrid annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 11 ° / 3 ° 4 26 1 42 mm Ok Madrid in January February 13 ° / 4 ° 3 24 1 37 mm Ok Madrid in February March 16 ° / 6 ° 5 26 0 57 mm Good Madrid in March April 19 ° / 8 ° 4 26 0 64 mm Good Madrid in April May 25 ° / 12 ° 3 28 0 33 mm Perfect Madrid in May June 30 ° / 18 ° 2 28 0 25 mm Good Madrid in June July 34 ° / 22 ° 0 31 0 11 mm Ok Madrid in July August 34 ° / 21 ° 0 31 0 10 mm Ok Madrid in August September 29 ° / 17 ° 1 29 0 26 mm Good Madrid in September October 23 ° / 13 ° 3 28 0 59 mm Perfect Madrid in October November 15 ° / 7 ° 4 26 0 52 mm Good Madrid in November December 12 ° / 4 ° 3 27 0 45 mm Ok Madrid in December Temperatures in Madrid in January Rain in Madrid in January Recommended Hotels in Madrid We know that finding the ideal hotel in Madrid can be a hard task... That’s why we run our special tools and found the best hotels in Madrid. Click on hotel for more details. Hotels in Madrid VP Plaza España Design Book Now Barceló Imagine Book Now Barceló Emperatriz Book Now Weather in Madrid in January - FAQ What is the average temperature in Madrid in January? The average temperature in Madrid in January is 3 / 11 ° C . What is the chance of rain in Madrid in January? On average, there are 4 rainy days in Madrid during January. Weather wise, is January a good time to visit Madrid? The weather in Madrid in January is ok. Can it snow in Madrid in January? On average, there are 1 snowy days in Madrid in January. More about the weather in Madrid Madrid 14 day weather Long range weather for Madrid Madrid weather in February Madrid Webcam Weather tomorrow Hotels in Madrid"}
+2026-01-07 18:03:24,939 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: WeatherSummaryNode
+2026-01-07 18:03:24,939 | INFO     | crewai_adapter.py:38 | src.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in Madrid around dates 12 January 2026 and 19 January 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Madrid weather in January 2026 | Madrid 14 day weather Home Europe Spain Madrid January Location was added to My Locations Location was removed from My Locations December A Coruna Adeje Albir Alcoy Alcudia Alicante Almeria Almunecar Altea Arboleas Arguineguin Arona Arrecife Badajoz Ballermann Barcelona Benalmadena Benidorm Benitachell Bilbao Buenavista del Norte Burgos Busot Caceres Cadiz Cala Millor Cala Ratjada Calahonda Calella Caleta de Fuste Calpe Cambrils Canillas de Albaida Cartagena Competa Cordoba Cordoue Corralejo Costa Adeje Costa Blanca Costa Brava Costa Daurada Costa Teguise Costa de la Luz Costa del Sol Crevillente Denia Estaryit Estepona Finestrat Formentera Fuengirola Fuerteventura Gandia Gijon Girona Grado Gran Canaria Gran Tarajal Granada Guardamar Hondon de los Frailes Ibiza Jandia Javea Jerez de la Frontera L'Estartit La Gomera La Palma Lanzarote Las Palmas Lloret de Mar Los Alcázares Los Cristianos Los Gigantes Los Montesinos Madrid Majorca Malaga Malgrat de Mar Mallorca Marbella Maspalomas Mazarron Menorca Mijas Minorca Mogan Moraira Morro Jable Motril Murcia Nerja Oviedo Palma Pamplona Peguera Pilar de la Horadada Playa Blanca Playa de las America Playa del Ingles Porto Cristo Puerto Rico Puerto Rico de Gran Canaria Puerto de Mogan Puerto de Pollensa Puerto de Santiago Puerto de la Cruz Puerto del Carmen Ronda Roses Sagunto Salamanca Salobrena Salou San Pedro del Pinatar San Sebastian Sancti Petri Santa Cruz de Tenerife Santa Cruz de la Palma Santa Ponsa Santa Susanna Santander Santany Santiago de Compostela Segovia Seville Soller Tarajalejo Tarifa Tarragona Tenerife Toledo Torre de la Horadada Torremolinos Torrevieja Torrox Tuineje Valencia Valladolid Vigo Villamartin Zaragoza Zumaia February Madrid weather in January 2026 Click on a day for an hourly weather forecast Wednesday Jan 7 0 mm 7 ° / -1 ° Thursday Jan 8 0 mm 7 ° / 0 ° Friday Jan 9 0 mm 10 ° / 4 ° Saturday Jan 10 0 mm 8 ° / 4 ° Sunday Jan 11 0 mm 8 ° / 1 ° Monday Jan 12 0 mm 10 ° / 6 ° Tuesday Jan 13 5 mm 7 ° / 6 ° Wednesday Jan 14 0 mm 11 ° / 4 ° Thursday Jan 15 0.3 mm 9 ° / 2 ° Friday Jan 16 0 mm 10 ° / 4 ° Saturday Jan 17 0 mm 9 ° / 3 ° Sunday Jan 18 0.8 mm 9 ° / 4 ° Monday Jan 19 0 mm 10 ° / 1 ° Tuesday Jan 20 0 mm 9 ° / 4 ° Next Month >> The average weather in Madrid in January The weather in Madrid in January is very cold with temperatures between 3 ° C and 11 ° C , warm clothes are a must. You can expect about 3 to 8 days of rain in Madrid during the month of January. It’s a good idea to bring along your umbrella so that you don’t get caught in poor weather. Please note that Madrid can expect a few days of snow in January . Our weather forecast can give you a great sense of what weather to expect in Madrid in January 2026 . If you’re planning to visit Madrid in the near future, we highly recommend that you review the 14 day weather forecast for Madrid before you arrive. Temperatures 11 ° / 3 ° Rainy Days 4 Snowy Days 1 Dry Days 26 Rainfall 42 mm Sun Hours 10.0 Hrs Historic average weather for January January Sun Mon Tue Wed Thu Fri Sat 1 12 ° / 5 ° 2 12 ° / 5 ° 3 11 ° / 5 ° 4 11 ° / 5 ° 5 10 ° / 4 ° 6 10 ° / 4 ° 7 7 ° / -1 ° 8 7 ° / 0 ° 9 10 ° / 4 ° 10 8 ° / 4 ° 11 8 ° / 1 ° 12 10 ° / 6 ° 13 7 ° / 6 ° 14 11 ° / 4 ° 15 9 ° / 2 ° 16 10 ° / 4 ° 17 9 ° / 3 ° 18 9 ° / 4 ° 19 10 ° / 1 ° 20 9 ° / 4 ° 21 9 ° / 3 ° 22 10 ° / 4 ° 23 11 ° / 4 ° 24 11 ° / 4 ° 25 12 ° / 5 ° 26 11 ° / 6 ° 27 13 ° / 6 ° 28 12 ° / 5 ° 29 11 ° / 5 ° 30 12 ° / 6 ° 31 13 ° / 5 ° Click on a day for an hourly weather forecast Explore the weather in Madrid in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Madrid annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 11 ° / 3 ° 4 26 1 42 mm Ok Madrid in January February 13 ° / 4 ° 3 24 1 37 mm Ok Madrid in February March 16 ° / 6 ° 5 26 0 57 mm Good Madrid in March April 19 ° / 8 ° 4 26 0 64 mm Good Madrid in April May 25 ° / 12 ° 3 28 0 33 mm Perfect Madrid in May June 30 ° / 18 ° 2 28 0 25 mm Good Madrid in June July 34 ° / 22 ° 0 31 0 11 mm Ok Madrid in July August 34 ° / 21 ° 0 31 0 10 mm Ok Madrid in August September 29 ° / 17 ° 1 29 0 26 mm Good Madrid in September October 23 ° / 13 ° 3 28 0 59 mm Perfect Madrid in October November 15 ° / 7 ° 4 26 0 52 mm Good Madrid in November December 12 ° / 4 ° 3 27 0 45 mm Ok Madrid in December Temperatures in Madrid in January Rain in Madrid in January Recommended Hotels in Madrid We know that finding the ideal hotel in Madrid can be a hard task... That’s why we run our special tools and found the best hotels in Madrid. Click on hotel for more details. Hotels in Madrid VP Plaza España Design Book Now Barceló Imagine Book Now Barceló Emperatriz Book Now Weather in Madrid in January - FAQ What is the average temperature in Madrid in January? The average temperature in Madrid in January is 3 / 11 ° C . What is the chance of rain in Madrid in January? On average, there are 4 rainy days in Madrid during January. Weather wise, is January a good time to visit Madrid? The weather in Madrid in January is ok. Can it snow in Madrid in January? On average, there are 1 snowy days in Madrid in January. More about the weather in Madrid Madrid 14 day weather Long range weather for Madrid Madrid weather in February Madrid Webcam Weather tomorrow Hotels in Madrid
+---
+
+Remember: Analyze the provided text and summarize information about weather in Madrid around dates 12 January 2026 and 19 January 2026.
+2026-01-07 18:03:24,939 | INFO     | crewai_adapter.py:39 | src.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-01-07 18:03:24,939 | INFO     | crewai_adapter.py:40 | src.adapters.crewai_adapter | Input length: 5447 chars
+2026-01-07 18:03:24,961 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-01-07 18:03:55,861 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-01-07 18:03:56,078 | INFO     | crewai_adapter.py:45 | src.adapters.crewai_adapter | Output of the agent: 
+For Madrid on **12 January 2026**, the weather was dry with 0 mm of rainfall, and temperatures ranged between **6 °C (minimum)** and **10 °C (maximum)**. On **19 January 2026**, the weather was also dry, with 0 mm of rainfall, and temperatures ranged between **1 °C (minimum)** and **10 °C (maximum)**. The text notes that January 2026 in Madrid is expected to have **4 rainy days**, **1 snowy day**, and **26 dry days**, with average temperatures between **3 °C and 11 °C**. While specific snowfall dates are not detailed, the overall forecast highlights cold conditions, potential snow, and a mix of dry and rainy weather throughout the month.
+
+
+2026-01-07 18:03:56,079 | INFO     | pipeline.py:83 | src.core.pipeline | === Pipeline finished ===
+2026-01-07 18:03:56,182 | INFO     | functions.py:69 | examples.trip_planner.functions | ✅Pipeline Output of Madrid:
+For Madrid on **12 January 2026**, the weather was dry with 0 mm of rainfall, and temperatures ranged between **6 °C (minimum)** and **10 °C (maximum)**. On **19 January 2026**, the weather was also dry, with 0 mm of rainfall, and temperatures ranged between **1 °C (minimum)** and **10 °C (maximum)**. The text notes that January 2026 in Madrid is expected to have **4 rainy days**, **1 snowy day**, and **26 dry days**, with average temperatures between **3 °C and 11 °C**. While specific snowfall dates are not detailed, the overall forecast highlights cold conditions, potential snow, and a mix of dry and rainy weather throughout the month.
+2026-01-07 18:03:56,182 | INFO     | pipeline.py:61 | src.core.pipeline | === Starting pipeline ===
+2026-01-07 18:03:56,185 | INFO     | pipeline.py:63 | src.core.pipeline | 
+2026-01-07 18:03:56,185 | INFO     | pipeline.py:65 | src.core.pipeline | 
+2026-01-07 18:03:56,185 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-01-07 18:03:56,186 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-01-07 18:03:56,219 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine yandex: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20Dubai%20from%2012%20January%202026%20to%2019%20January%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-01-07 18:03:56,471 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=RRF1_4EE0jH5C6gIGOp7jFQX;_ylu=sL4m55F5cjLGVxfMnx7ocVlUETj_GISoOJ_zMARIm2pHb4M?p=weather+forecast+Dubai+from+12+January+2026+to+19+January+2026 200
+2026-01-07 18:03:57,759 | INFO     | lib.rs:464 | primp | response: https://yandex.com/search/site/?text=weather+forecast+Dubai+from+12+January+2026+to+19+January+2026&web=1&searchid=4558420 200
+2026-01-07 18:03:57,814 | INFO     | node.py:44 | src.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: {'search_results': [{'title': 'Dubai , Dubai , United Arab Emirates Weather Forecast | AccuWeather', 'snippet': "10-Day Weather Forecast . Tonight. 12 /29. Weather Forecasts . Rain to return to California, just in time for New Year's celebrations.", 'url': 'https://www.accuweather.com/en/ae/dubai/323091/weather-forecast/323091'}, {'title': 'Weather for Dubai , Dubai , United Arab Emirates', 'snippet': 'Current weather in Dubai and forecast for today, tomorrow, and next 14 days.Scattered clouds. Feels Like: 28 °C Forecast : 24 / 20 °C Wind: 26 km/h ↑ from Southwest. Location: Dubai International Airport. Current Time', 'url': 'https://www.timeanddate.com/weather/united-arab-emirates/dubai'}, {'title': 'Sea Water temperature in Dubai', 'snippet': 'Detailed information about the current sea water temperature in Dubai . The trend over the last two weeks, daily averages, and precise forecast of the temperature changes.', 'url': 'https://sea-temperature-en.com/united-arab-emirates/dubai-sea-temperature'}, {'title': 'Hainan weather in January 2026 | Hainan 14 day weather', 'snippet': 'Full weather forecast for Hainan in January 2026 . Check the temperatures, chance of rain and more in Hainan during January .', 'url': 'https://www.weather25.com/asia/china/hainan?page=month&month=January'}, {'title': 'Khaleej Times - Dubai News, UAE News, Gulf, News, Latest news...', 'snippet': "Khaleej Times provides the latest UAE news, Dubai headlines, world events, business updates, dubai gold prices, weather forecasts , and more.Paid parking announced in Abu Dhabi's Musaffah area from January 12 .", 'url': 'https://www.khaleejtimes.com/'}]}
+2026-01-07 18:03:57,814 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: ScrapeNode
+2026-01-07 18:03:58,091 | INFO     | node.py:44 | src.core.node | [FunctionNode] ScrapeNode executed. Outputs: {'page_content': 'Dubai, Dubai, United Arab Emirates Weather Forecast | AccuWeather Go Back For Business | Warnings Data Suite Forensics Advertising Superior Accuracy™ Dubai, Dubai 73° F Location Chevron down Location News Videos Use Current Location Recent Dubai Dubai 73° No results found. Try searching for a city, zip code or point of interest. settings Dubai, Dubai Weather Today WinterCast Local {stormName} Tracker Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Around the Globe Hurricane Tracker Radar & Maps News News & Features Astronomy Business Climate Health Recreation Sports Travel For Business Warnings Data Suite Forensics Advertising Superior Accuracy™ Video Today Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Tonight\'s Weather Wed, Jan 7 Clear Lo: 62° Tomorrow: Pleasant with plenty of sunshine Hi: 77° Current Weather 10:03 PM 73° F RealFeel® 71° Clear More Details Wind NNW 6 mph Wind Gusts 6 mph Air Quality Poor Looking Ahead Pleasant Saturday Dubai Weather Radar Static Radar Temporarily Unavailable Thank you for your patience as we work to get everything up and running again. Refresh Page Clouds Temperature Hourly Weather Chevron left 11 PM 70° 0% 12 AM 69° 0% 1 AM 68° 0% 2 AM 67° 0% 3 AM 66° 0% 4 AM 65° 0% 5 AM 64° 0% 6 AM 64° 0% 7 AM 62° 0% 8 AM 64° 0% 9 AM 66° 0% 10 AM 69° 0% Chevron right 10-Day Weather Forecast Tonight 1/7 62° Lo Clear 0% Thu 1/8 77° 62° Sunny and pleasant Night: Clear 1% Fri 1/9 76° 60° Hazy sunshine Partly cloudy 0% Sat 1/10 78° 61° Pleasant with sun and clouds Mainly clear 1% Sun 1/11 78° 61° Hazy sunshine Clear to partly cloudy 1% Mon 1/12 76° 63° Hazy sunshine Clear 1% Tue 1/13 77° 62° Hazy sun Clear 0% Wed 1/14 78° 58° Hazy sun Mainly clear 0% Thu 1/15 77° 55° Times of clouds and sun Partly cloudy 1% Fri 1/16 75° 51° Mostly sunny Partly cloudy 1% Sun & Moon 10 hrs 39 mins Rise 7:05 AM Set 5:44 PM Waning Gibbous Rise 9:59 PM Set 10:36 AM Air Quality See More Air Quality Poor The air has reached a high level of pollution and is unhealthy for sensitive groups. Reduce time spent outside if you are feeling symptoms such as difficulty breathing or throat irritation. Allergy Outlook See All Dust & Dander High Data is not supported in this location Top Stories Weather News Los Angeles wildfires one year later: rebuilding after $275B loss 4 hours ago Weather Forecasts Springlike warmth in East to be replaced by cold air, snowstorm risk 2 hours ago Winter Weather Alaska braces for new storms after extreme snowfall 34 minutes ago Winter Weather Heavy snow, travel problems to expand from Cascades to interior West 6 hours ago Winter Weather Snow and ice to precede larger late-week storm in central, eastern US 1 hour ago More Stories Featured Stories Astronomy Hubble telescope spots ‘failed’ starless galaxy known as Cloud 9 20 hours ago Climate Climate risk reshaping homeownership decisions, study finds 15 minutes ago Live Blog A Paris snowman at the Eiffel Tower LATEST ENTRY Snowman appears at Eiffel Tower after Paris Snowfall 23 hours ago Severe Weather Top 5 tornado states in 2025 1 day ago Astronomy January quietly brings a big change to daylight across the US 13 minutes ago World Middle East United Arab Emirates Dubai Dubai Weather Near Dubai: Ajman , Ajman Al Satwa , Dubai Sharjah , Ajman Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect RealFeel® and RealFeel Shade™ Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect RealFeel® and RealFeel Shade™ Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News © 2026 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved. Terms of Use | Privacy Policy | Cookie Policy | About Your Privacy Do Not Sell or Share My Personal Information | Data Sources ... ... ... ... ...'}
+2026-01-07 18:03:58,091 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: WeatherSummaryNode
+2026-01-07 18:03:58,092 | INFO     | crewai_adapter.py:38 | src.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in Dubai around dates 12 January 2026 and 19 January 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Dubai, Dubai, United Arab Emirates Weather Forecast | AccuWeather Go Back For Business | Warnings Data Suite Forensics Advertising Superior Accuracy™ Dubai, Dubai 73° F Location Chevron down Location News Videos Use Current Location Recent Dubai Dubai 73° No results found. Try searching for a city, zip code or point of interest. settings Dubai, Dubai Weather Today WinterCast Local {stormName} Tracker Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Around the Globe Hurricane Tracker Radar & Maps News News & Features Astronomy Business Climate Health Recreation Sports Travel For Business Warnings Data Suite Forensics Advertising Superior Accuracy™ Video Today Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Tonight's Weather Wed, Jan 7 Clear Lo: 62° Tomorrow: Pleasant with plenty of sunshine Hi: 77° Current Weather 10:03 PM 73° F RealFeel® 71° Clear More Details Wind NNW 6 mph Wind Gusts 6 mph Air Quality Poor Looking Ahead Pleasant Saturday Dubai Weather Radar Static Radar Temporarily Unavailable Thank you for your patience as we work to get everything up and running again. Refresh Page Clouds Temperature Hourly Weather Chevron left 11 PM 70° 0% 12 AM 69° 0% 1 AM 68° 0% 2 AM 67° 0% 3 AM 66° 0% 4 AM 65° 0% 5 AM 64° 0% 6 AM 64° 0% 7 AM 62° 0% 8 AM 64° 0% 9 AM 66° 0% 10 AM 69° 0% Chevron right 10-Day Weather Forecast Tonight 1/7 62° Lo Clear 0% Thu 1/8 77° 62° Sunny and pleasant Night: Clear 1% Fri 1/9 76° 60° Hazy sunshine Partly cloudy 0% Sat 1/10 78° 61° Pleasant with sun and clouds Mainly clear 1% Sun 1/11 78° 61° Hazy sunshine Clear to partly cloudy 1% Mon 1/12 76° 63° Hazy sunshine Clear 1% Tue 1/13 77° 62° Hazy sun Clear 0% Wed 1/14 78° 58° Hazy sun Mainly clear 0% Thu 1/15 77° 55° Times of clouds and sun Partly cloudy 1% Fri 1/16 75° 51° Mostly sunny Partly cloudy 1% Sun & Moon 10 hrs 39 mins Rise 7:05 AM Set 5:44 PM Waning Gibbous Rise 9:59 PM Set 10:36 AM Air Quality See More Air Quality Poor The air has reached a high level of pollution and is unhealthy for sensitive groups. Reduce time spent outside if you are feeling symptoms such as difficulty breathing or throat irritation. Allergy Outlook See All Dust & Dander High Data is not supported in this location Top Stories Weather News Los Angeles wildfires one year later: rebuilding after $275B loss 4 hours ago Weather Forecasts Springlike warmth in East to be replaced by cold air, snowstorm risk 2 hours ago Winter Weather Alaska braces for new storms after extreme snowfall 34 minutes ago Winter Weather Heavy snow, travel problems to expand from Cascades to interior West 6 hours ago Winter Weather Snow and ice to precede larger late-week storm in central, eastern US 1 hour ago More Stories Featured Stories Astronomy Hubble telescope spots ‘failed’ starless galaxy known as Cloud 9 20 hours ago Climate Climate risk reshaping homeownership decisions, study finds 15 minutes ago Live Blog A Paris snowman at the Eiffel Tower LATEST ENTRY Snowman appears at Eiffel Tower after Paris Snowfall 23 hours ago Severe Weather Top 5 tornado states in 2025 1 day ago Astronomy January quietly brings a big change to daylight across the US 13 minutes ago World Middle East United Arab Emirates Dubai Dubai Weather Near Dubai: Ajman , Ajman Al Satwa , Dubai Sharjah , Ajman Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect RealFeel® and RealFeel Shade™ Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect RealFeel® and RealFeel Shade™ Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News © 2026 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved. Terms of Use | Privacy Policy | Cookie Policy | About Your Privacy Do Not Sell or Share My Personal Information | Data Sources ... ... ... ... ...
+---
+
+Remember: Analyze the provided text and summarize information about weather in Dubai around dates 12 January 2026 and 19 January 2026.
+2026-01-07 18:03:58,092 | INFO     | crewai_adapter.py:39 | src.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-01-07 18:03:58,092 | INFO     | crewai_adapter.py:40 | src.adapters.crewai_adapter | Input length: 4635 chars
+2026-01-07 18:03:58,105 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-01-07 18:04:40,834 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-01-07 18:04:41,002 | INFO     | crewai_adapter.py:45 | src.adapters.crewai_adapter | Output of the agent: 
+The text provides weather details for Dubai around January 12, 2026, and January 19, 2026. For January 12, the forecast indicates "Mon 1/12 76° 63° Hazy sunshine Clear 1%", meaning clear skies with hazy sunshine, a high of 76°F, and a low of 63°F. For January 19, there is no specific data provided in the text, as the 10-Day Weather Forecast only extends to January 16, 2026, with no further details mentioned for later dates.
+
+
+2026-01-07 18:04:41,003 | INFO     | pipeline.py:83 | src.core.pipeline | === Pipeline finished ===
+2026-01-07 18:04:41,105 | INFO     | functions.py:69 | examples.trip_planner.functions | ✅Pipeline Output of Dubai:
+The text provides weather details for Dubai around January 12, 2026, and January 19, 2026. For January 12, the forecast indicates "Mon 1/12 76° 63° Hazy sunshine Clear 1%", meaning clear skies with hazy sunshine, a high of 76°F, and a low of 63°F. For January 19, there is no specific data provided in the text, as the 10-Day Weather Forecast only extends to January 16, 2026, with no further details mentioned for later dates.
+2026-01-07 18:04:41,106 | INFO     | node.py:44 | src.core.node | [FunctionNode] ResearchCitiesNode executed. Outputs: {'weather_summaries': '### Madrid\n\nFor Madrid on **12 January 2026**, the weather was dry with 0 mm of rainfall, and temperatures ranged between **6 °C (minimum)** and **10 °C (maximum)**. On **19 January 2026**, the weather was also dry, with 0 mm of rainfall, and temperatures ranged between **1 °C (minimum)** and **10 °C (maximum)**. The text notes that January 2026 in Madrid is expected to have **4 rainy days**, **1 snowy day**, and **26 dry days**, with average temperatures between **3 °C and 11 °C**. While specific snowfall dates are not detailed, the overall forecast highlights cold conditions, potential snow, and a mix of dry and rainy weather throughout the month.\n\n### Dubai\n\nThe text provides weather details for Dubai around January 12, 2026, and January 19, 2026. For January 12, the forecast indicates "Mon 1/12 76° 63° Hazy sunshine Clear 1%", meaning clear skies with hazy sunshine, a high of 76°F, and a low of 63°F. For January 19, there is no specific data provided in the text, as the 10-Day Weather Forecast only extends to January 16, 2026, with no further details mentioned for later dates.'}
+2026-01-07 18:04:41,106 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: CitySelectionNode
+2026-01-07 18:04:41,106 | INFO     | crewai_adapter.py:38 | src.adapters.crewai_adapter | Full task description: YOUR TASK: Choose one city from the provided list based on the weather summaries.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### WEATHER_SUMMARIES ###
+### Madrid
+
+For Madrid on **12 January 2026**, the weather was dry with 0 mm of rainfall, and temperatures ranged between **6 °C (minimum)** and **10 °C (maximum)**. On **19 January 2026**, the weather was also dry, with 0 mm of rainfall, and temperatures ranged between **1 °C (minimum)** and **10 °C (maximum)**. The text notes that January 2026 in Madrid is expected to have **4 rainy days**, **1 snowy day**, and **26 dry days**, with average temperatures between **3 °C and 11 °C**. While specific snowfall dates are not detailed, the overall forecast highlights cold conditions, potential snow, and a mix of dry and rainy weather throughout the month.
+
+### Dubai
+
+The text provides weather details for Dubai around January 12, 2026, and January 19, 2026. For January 12, the forecast indicates "Mon 1/12 76° 63° Hazy sunshine Clear 1%", meaning clear skies with hazy sunshine, a high of 76°F, and a low of 63°F. For January 19, there is no specific data provided in the text, as the 10-Day Weather Forecast only extends to January 16, 2026, with no further details mentioned for later dates.
+---
+
+Remember: Choose one city from the provided list based on the weather summaries.
+2026-01-07 18:04:41,107 | INFO     | crewai_adapter.py:39 | src.adapters.crewai_adapter | Expected output: First line: Chosen city name. Following lines: brief explanation of why this city was chosen.
+2026-01-07 18:04:41,107 | INFO     | crewai_adapter.py:40 | src.adapters.crewai_adapter | Input length: 1123 chars
+2026-01-07 18:04:41,129 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-01-07 18:05:00,933 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-01-07 18:05:01,099 | INFO     | crewai_adapter.py:45 | src.adapters.crewai_adapter | Output of the agent: 
+Dubai  
+The weather summaries for Dubai indicate consistently mild and dry conditions with clear skies and warm temperatures. On January 12, 2026, Dubai experienced clear skies, hazy sunshine, and a high of 76°F (24.4°C) with a low of 63°F (17.2°C). In contrast, Madrid’s January 2026 forecast includes cold temperatures (3°C–11°C), snowfall on one day, and rainy weather on four days, making it significantly less pleasant for travel. Dubai’s warm, dry climate with no snow or rain during the specified dates makes it the optimal choice for comfortable weather.
+
+
+2026-01-07 18:05:01,100 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: ExtractChosenCityNode
+2026-01-07 18:05:01,100 | INFO     | node.py:44 | src.core.node | [FunctionNode] ExtractChosenCityNode executed. Outputs: {'chosen_city': 'Dubai'}
+2026-01-07 18:05:01,100 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: LocalExpertNode
+2026-01-07 18:05:01,100 | INFO     | crewai_adapter.py:38 | src.adapters.crewai_adapter | Full task description: YOUR TASK: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Dubai
+
+### DATES ###
+('12 January 2026', '19 January 2026')
+---
+
+Remember: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+2026-01-07 18:05:01,100 | INFO     | crewai_adapter.py:39 | src.adapters.crewai_adapter | Expected output: City guide including hidden gems, cultural hotspots, and practical travel tips
+2026-01-07 18:05:01,100 | INFO     | crewai_adapter.py:40 | src.adapters.crewai_adapter | Input length: 79 chars
+2026-01-07 18:05:01,117 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-01-07 18:06:05,080 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-01-07 18:06:05,238 | INFO     | crewai_adapter.py:45 | src.adapters.crewai_adapter | Output of the agent: 
+**Dubai City Guide (12–19 January 2026): Key Attractions, Food, Activities, Hidden Gems, Culture, & Tips**  
+
+**Key Attractions:**  
+1. **Burj Khalifa** (828 meters tall): Visit the observation decks at *At the Top* (Level 124/125) for panoramic views. Book tickets in advance to avoid crowds.  
+2. **Dubai Mall**: Explore the indoor shopping complex, the Dubai Aquarium & Underwater Zoo, and the *Dubai Mall Fountain* at night.  
+3. **Palm Jumeirah**: Walk the crescent-shaped beach, visit the *Atlantis The Palm* (water parks, aquarium), and enjoy sunset cruises.  
+4. **Dubai Creek**: Take a dhow cruise, visit the *Al Fahidi Historic District*, and explore the *Dubai Museum* (free entry) in the old fort.  
+5. **Museum of the Future**: Admire the futuristic architecture and interactive exhibits on technology and sustainability.  
+
+**Food Places:**  
+1. **Middle Eastern Cuisine**:  
+   - *Zahra* (Dubai Mall): Modern take on Arabic dishes like *kabsa* and *mansaf*.  
+   - *Al Makan* (Jumeirah Beach): Chef Hisham Fageeh’s restaurant for *machboos* and *shakshuka*.  
+2. **International Eats**:  
+   - *The Capital* (Dubai Mall): French fine dining with a view of the fountain.  
+   - *Sushi Zo* (Burj Khalifa): High-end Japanese cuisine with skyline views.  
+3. **Street Food & Markets**:  
+   - *Gold Souk* (Deira): Sample *falafel*, *shawarma*, and *knafeh* from local vendors.  
+   - *Spice Souk* (Al Seef): Explore aromatic spices and try *maqluba* or *kareed* (spiced lamb).  
+
+**Daily Activity Recommendations:**  
+- **Day 1 (12 Jan)**: Morning at *Burj Khalifa*, afternoon at *Dubai Mall*, evening at *Dubai Fountain*.  
+- **Day 2 (13 Jan)**: *Dubai Creek* cruise, *Al Fahidi Fort*, and *Dubai Museum*.  
+- **Day 3 (14 Jan)**: *Palm Jumeirah* beach walk, *Atlantis The Palm* aquarium, and dinner at *Sushi Zo*.  
+- **Day 4 (15 Jan)**: *Museum of the Future*, *Dubai Frame* (panoramic view), and *Dubai Marina* sunset.  
+- **Day 5 (16 Jan)**: Desert safari (opt for a private tour to avoid crowds), followed by *Dhow Cruise* in the evening.  
+- **Day 6 (17 Jan)**: *Al Seef* (historic area with cafes), *Gold Souk*, and *Spice Souk*.  
+- **Day 7 (18 Jan)**: *Dubai Tram* to *Jumeirah Beach*, relax at *Atlantis The Palm* waterpark, and enjoy *Shark Reef* at the aquarium.  
+- **Day 8 (19 Jan)**: Free time for shopping (e.g., *Dubai Mall* or *Global Village*) or a final trip to *Dubai Marina* for dinner.  
+
+**Hidden Gems:**  
+- **Dubai Heritage Village**: A living museum with traditional architecture and cultural performances.  
+- **Al Seef**: A historic area with restored buildings, boutique cafes, and art galleries.  
+- **Dubai Marina**: A vibrant waterfront area with yachts, restaurants, and the *Dubai Marina Mall*.  
+- **Dubai Opera**: Attend a performance (check for events during your stay).  
+
+**Cultural Hotspots:**  
+- **Al Fahidi Historic District**: Explore wind towers, traditional houses, and the *Dubai Museum*.  
+- **Dubai Creek Heritage Park**: Learn about the city’s maritime history and take a *dhow* ride.  
+- **Sheikh Saeed Al Maktoum House**: A restored mansion showcasing Emirati architecture and heritage.  
+
+**Practical Travel Tips:**  
+1. **Weather**: January is cool (15–25°C), ideal for outdoor activities.  
+2. **Dress Code**: Dress modestly (long sleeves, trousers for men; hijabs for women). Avoid revealing attire in public.  
+3. **Transport**: Use the *Dubai Metro* (red and green lines) for efficient travel. Taxis and ride-hailing apps are reliable.  
+4. **Safety**: Avoid venturing into remote desert areas alone; opt for guided tours.  
+5. **Currency**: UAE Dirhams (AED) are used. Credit cards are widely accepted.  
+6. **Visa**: Check for visa requirements (e.g., e-Visa for tourists).  
+7. **Language**: Arabic is official, but English is widely spoken. Learn basic phrases for smoother interactions.  
+8. **Nightlife**: *Dubai Marina* and *Sheikh Zayed Road* offer vibrant nightlife, but avoid areas like *Deira* after dark.  
+
+Enjoy Dubai’s blend of luxury, culture, and innovation during your visit!
+
+
+2026-01-07 18:06:05,239 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: TravelConciergeNode
+2026-01-07 18:06:05,239 | INFO     | crewai_adapter.py:38 | src.adapters.crewai_adapter | Full task description: YOUR TASK: Plan a 7-day trip itinerary based on the chosen city and provided information.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Dubai
+
+### LIST_OF_ATTRACTIONS ###
+**Dubai City Guide (12–19 January 2026): Key Attractions, Food, Activities, Hidden Gems, Culture, & Tips**  
+
+**Key Attractions:**  
+1. **Burj Khalifa** (828 meters tall): Visit the observation decks at *At the Top* (Level 124/125) for panoramic views. Book tickets in advance to avoid crowds.  
+2. **Dubai Mall**: Explore the indoor shopping complex, the Dubai Aquarium & Underwater Zoo, and the *Dubai Mall Fountain* at night.  
+3. **Palm Jumeirah**: Walk the crescent-shaped beach, visit the *Atlantis The Palm* (water parks, aquarium), and enjoy sunset cruises.  
+4. **Dubai Creek**: Take a dhow cruise, visit the *Al Fahidi Historic District*, and explore the *Dubai Museum* (free entry) in the old fort.  
+5. **Museum of the Future**: Admire the futuristic architecture and interactive exhibits on technology and sustainability.  
+
+**Food Places:**  
+1. **Middle Eastern Cuisine**:  
+   - *Zahra* (Dubai Mall): Modern take on Arabic dishes like *kabsa* and *mansaf*.  
+   - *Al Makan* (Jumeirah Beach): Chef Hisham Fageeh’s restaurant for *machboos* and *shakshuka*.  
+2. **International Eats**:  
+   - *The Capital* (Dubai Mall): French fine dining with a view of the fountain.  
+   - *Sushi Zo* (Burj Khalifa): High-end Japanese cuisine with skyline views.  
+3. **Street Food & Markets**:  
+   - *Gold Souk* (Deira): Sample *falafel*, *shawarma*, and *knafeh* from local vendors.  
+   - *Spice Souk* (Al Seef): Explore aromatic spices and try *maqluba* or *kareed* (spiced lamb).  
+
+**Daily Activity Recommendations:**  
+- **Day 1 (12 Jan)**: Morning at *Burj Khalifa*, afternoon at *Dubai Mall*, evening at *Dubai Fountain*.  
+- **Day 2 (13 Jan)**: *Dubai Creek* cruise, *Al Fahidi Fort*, and *Dubai Museum*.  
+- **Day 3 (14 Jan)**: *Palm Jumeirah* beach walk, *Atlantis The Palm* aquarium, and dinner at *Sushi Zo*.  
+- **Day 4 (15 Jan)**: *Museum of the Future*, *Dubai Frame* (panoramic view), and *Dubai Marina* sunset.  
+- **Day 5 (16 Jan)**: Desert safari (opt for a private tour to avoid crowds), followed by *Dhow Cruise* in the evening.  
+- **Day 6 (17 Jan)**: *Al Seef* (historic area with cafes), *Gold Souk*, and *Spice Souk*.  
+- **Day 7 (18 Jan)**: *Dubai Tram* to *Jumeirah Beach*, relax at *Atlantis The Palm* waterpark, and enjoy *Shark Reef* at the aquarium.  
+- **Day 8 (19 Jan)**: Free time for shopping (e.g., *Dubai Mall* or *Global Village*) or a final trip to *Dubai Marina* for dinner.  
+
+**Hidden Gems:**  
+- **Dubai Heritage Village**: A living museum with traditional architecture and cultural performances.  
+- **Al Seef**: A historic area with restored buildings, boutique cafes, and art galleries.  
+- **Dubai Marina**: A vibrant waterfront area with yachts, restaurants, and the *Dubai Marina Mall*.  
+- **Dubai Opera**: Attend a performance (check for events during your stay).  
+
+**Cultural Hotspots:**  
+- **Al Fahidi Historic District**: Explore wind towers, traditional houses, and the *Dubai Museum*.  
+- **Dubai Creek Heritage Park**: Learn about the city’s maritime history and take a *dhow* ride.  
+- **Sheikh Saeed Al Maktoum House**: A restored mansion showcasing Emirati architecture and heritage.  
+
+**Practical Travel Tips:**  
+1. **Weather**: January is cool (15–25°C), ideal for outdoor activities.  
+2. **Dress Code**: Dress modestly (long sleeves, trousers for men; hijabs for women). Avoid revealing attire in public.  
+3. **Transport**: Use the *Dubai Metro* (red and green lines) for efficient travel. Taxis and ride-hailing apps are reliable.  
+4. **Safety**: Avoid venturing into remote desert areas alone; opt for guided tours.  
+5. **Currency**: UAE Dirhams (AED) are used. Credit cards are widely accepted.  
+6. **Visa**: Check for visa requirements (e.g., e-Visa for tourists).  
+7. **Language**: Arabic is official, but English is widely spoken. Learn basic phrases for smoother interactions.  
+8. **Nightlife**: *Dubai Marina* and *Sheikh Zayed Road* offer vibrant nightlife, but avoid areas like *Deira* after dark.  
+
+Enjoy Dubai’s blend of luxury, culture, and innovation during your visit!
+
+### DATES ###
+('12 January 2026', '19 January 2026')
+---
+
+Remember: Plan a 7-day trip itinerary based on the chosen city and provided information.
+2026-01-07 18:06:05,240 | INFO     | crewai_adapter.py:39 | src.adapters.crewai_adapter | Expected output: Detailed 7-day itinerary including daily activities, dining options, and transportation tips.
+2026-01-07 18:06:05,240 | INFO     | crewai_adapter.py:40 | src.adapters.crewai_adapter | Input length: 4172 chars
+2026-01-07 18:06:05,253 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-01-07 18:07:40,440 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-01-07 18:07:40,629 | INFO     | crewai_adapter.py:45 | src.adapters.crewai_adapter | Output of the agent: 
+**7-Day Dubai Itinerary (12–18 January 2026)**  
+
+**Day 1 (12 Jan): Burj Khalifa & Dubai Mall**  
+- **Morning**: Visit *Burj Khalifa* (book tickets in advance for *At the Top* observation decks at Level 124/125).  
+- **Afternoon**: Explore *Dubai Mall* (shopping, *Dubai Aquarium & Underwater Zoo*, and *Dubai Mall Fountain*).  
+- **Evening**: Watch the *Dubai Fountain* show at the mall’s plaza.  
+- **Dining**: *Zahra* (Dubai Mall) for modern Arabic cuisine (e.g., *kabsa*, *mansaf*).  
+- **Transport**: Use Dubai Metro (Red Line) to Burj Khalifa; walk to mall.  
+
+**Day 2 (13 Jan): Dubai Creek & Al Fahidi**  
+- **Morning**: Take a *dhow cruise* on *Dubai Creek* (optional: visit *Al Fahidi Historic District*).  
+- **Afternoon**: Explore *Dubai Museum* (free entry) in the Al Fahidi Fort.  
+- **Evening**: Stroll through *Al Seef* (hidden gem: historic area with cafes and art galleries).  
+- **Dining**: *Al Makan* (Jumeirah Beach) for *machboos* and *shakshuka*.  
+- **Transport**: Metro to Creek area; walk to Al Seef.  
+
+**Day 3 (14 Jan): Palm Jumeirah & Atlantis The Palm**  
+- **Morning**: Walk *Palm Jumeirah* beach; visit *Atlantis The Palm* (aquarium, water parks).  
+- **Afternoon**: Enjoy *Shark Reef* at the aquarium.  
+- **Evening**: Dine at *Sushi Zo* (Burj Khalifa) for Japanese cuisine with skyline views.  
+- **Transport**: Take the *Dubai Tram* to Jumeirah Beach or taxi to Palm Jumeirah.  
+
+**Day 4 (15 Jan): Museum of the Future & Dubai Frame**  
+- **Morning**: Visit *Museum of the Future* (futuristic architecture, tech exhibits).  
+- **Afternoon**: Explore *Dubai Frame* for panoramic views of the city.  
+- **Evening**: Sunset cruise along *Dubai Marina* (optional: dinner at *The Capital* for French cuisine).  
+- **Transport**: Metro to Museum of the Future; walk to Dubai Frame.  
+
+**Day 5 (16 Jan): Desert Safari & Dhow Cruise**  
+- **Morning**: Opt for a private desert safari (avoid crowds; include dune bashing and camel rides).  
+- **Evening**: Dhow cruise on *Dubai Creek* (optional: enjoy *falafel* and *knafeh* from Gold Souk vendors).  
+- **Transport**: Book a private transfer for the desert safari; taxi to Creek area.  
+
+**Day 6 (17 Jan): Gold Souk & Spice Souk**  
+- **Morning**: Explore *Gold Souk* (Deira) for jewelry, spices, and street food (*falafel*, *shawarma*).  
+- **Afternoon**: Visit *Spice Souk* (Al Seef) for aromatic spices and try *maqluba* or *kareed* (spiced lamb).  
+- **Dining**: *Spice Souk* eateries for Middle Eastern dishes.  
+- **Transport**: Metro to Deira; walk to Al Seef.  
+
+**Day 7 (18 Jan): Dubai Marina & Atlantis Waterpark**  
+- **Morning**: Take the *Dubai Tram* to *Jumeirah Beach* (relax or visit *Dubai Marina Mall*).  
+- **Afternoon**: Enjoy *Atlantis The Palm* waterpark (optional: *Lost Atlantis* water slides).  
+- **Evening**: Dinner at *Atlantis The Palm* or *Dubai Marina* restaurants.  
+- **Transport**: Tram to Jumeirah Beach; taxi to Atlantis.  
+
+**Practical Tips**:  
+- **Weather**: January is cool (15–25°C); dress in light layers.  
+- **Dress Code**: Modest attire (long sleeves, trousers for men; hijabs for women).  
+- **Transport**: Use Dubai Metro (Red/Green Lines), taxis, or ride-hailing apps.  
+- **Safety**: Avoid remote desert areas alone; book guided tours.  
+- **Currency**: UAE Dirhams (AED); credit cards widely accepted.  
+- **Visa**: Check e-Visa requirements (tourist visa valid for 1–3 months).  
+- **Language**: Arabic is official, but English is common. Learn basic phrases for interactions.  
+- **Nightlife**: *Dubai Marina* and *Sheikh Zayed Road* for vibrant nightlife; avoid Deira after dark.  
+
+**Optional Day 8 (19 Jan)**: Free time for shopping (e.g., *Dubai Mall* or *Global Village*) or a final trip to *Dubai Marina* for dinner.
+
+
+2026-01-07 18:07:40,630 | INFO     | pipeline.py:83 | src.core.pipeline | === Pipeline finished ===
+2026-01-07 18:07:40,730 | INFO     | pipeline.py:60 | __main__ | ✅ Final Pipeline Output:
+ chosen_city: Dubai
+ trip_itinerary: **7-Day Dubai Itinerary (12–18 January 2026)**  
+
+**Day 1 (12 Jan): Burj Khalifa & Dubai Mall**  
+- **Morning**: Visit *Burj Khalifa* (book tickets in advance for *At the Top* observation decks at Level 124/125).  
+- **Afternoon**: Explore *Dubai Mall* (shopping, *Dubai Aquarium & Underwater Zoo*, and *Dubai Mall Fountain*).  
+- **Evening**: Watch the *Dubai Fountain* show at the mall’s plaza.  
+- **Dining**: *Zahra* (Dubai Mall) for modern Arabic cuisine (e.g., *kabsa*, *mansaf*).  
+- **Transport**: Use Dubai Metro (Red Line) to Burj Khalifa; walk to mall.  
+
+**Day 2 (13 Jan): Dubai Creek & Al Fahidi**  
+- **Morning**: Take a *dhow cruise* on *Dubai Creek* (optional: visit *Al Fahidi Historic District*).  
+- **Afternoon**: Explore *Dubai Museum* (free entry) in the Al Fahidi Fort.  
+- **Evening**: Stroll through *Al Seef* (hidden gem: historic area with cafes and art galleries).  
+- **Dining**: *Al Makan* (Jumeirah Beach) for *machboos* and *shakshuka*.  
+- **Transport**: Metro to Creek area; walk to Al Seef.  
+
+**Day 3 (14 Jan): Palm Jumeirah & Atlantis The Palm**  
+- **Morning**: Walk *Palm Jumeirah* beach; visit *Atlantis The Palm* (aquarium, water parks).  
+- **Afternoon**: Enjoy *Shark Reef* at the aquarium.  
+- **Evening**: Dine at *Sushi Zo* (Burj Khalifa) for Japanese cuisine with skyline views.  
+- **Transport**: Take the *Dubai Tram* to Jumeirah Beach or taxi to Palm Jumeirah.  
+
+**Day 4 (15 Jan): Museum of the Future & Dubai Frame**  
+- **Morning**: Visit *Museum of the Future* (futuristic architecture, tech exhibits).  
+- **Afternoon**: Explore *Dubai Frame* for panoramic views of the city.  
+- **Evening**: Sunset cruise along *Dubai Marina* (optional: dinner at *The Capital* for French cuisine).  
+- **Transport**: Metro to Museum of the Future; walk to Dubai Frame.  
+
+**Day 5 (16 Jan): Desert Safari & Dhow Cruise**  
+- **Morning**: Opt for a private desert safari (avoid crowds; include dune bashing and camel rides).  
+- **Evening**: Dhow cruise on *Dubai Creek* (optional: enjoy *falafel* and *knafeh* from Gold Souk vendors).  
+- **Transport**: Book a private transfer for the desert safari; taxi to Creek area.  
+
+**Day 6 (17 Jan): Gold Souk & Spice Souk**  
+- **Morning**: Explore *Gold Souk* (Deira) for jewelry, spices, and street food (*falafel*, *shawarma*).  
+- **Afternoon**: Visit *Spice Souk* (Al Seef) for aromatic spices and try *maqluba* or *kareed* (spiced lamb).  
+- **Dining**: *Spice Souk* eateries for Middle Eastern dishes.  
+- **Transport**: Metro to Deira; walk to Al Seef.  
+
+**Day 7 (18 Jan): Dubai Marina & Atlantis Waterpark**  
+- **Morning**: Take the *Dubai Tram* to *Jumeirah Beach* (relax or visit *Dubai Marina Mall*).  
+- **Afternoon**: Enjoy *Atlantis The Palm* waterpark (optional: *Lost Atlantis* water slides).  
+- **Evening**: Dinner at *Atlantis The Palm* or *Dubai Marina* restaurants.  
+- **Transport**: Tram to Jumeirah Beach; taxi to Atlantis.  
+
+**Practical Tips**:  
+- **Weather**: January is cool (15–25°C); dress in light layers.  
+- **Dress Code**: Modest attire (long sleeves, trousers for men; hijabs for women).  
+- **Transport**: Use Dubai Metro (Red/Green Lines), taxis, or ride-hailing apps.  
+- **Safety**: Avoid remote desert areas alone; book guided tours.  
+- **Currency**: UAE Dirhams (AED); credit cards widely accepted.  
+- **Visa**: Check e-Visa requirements (tourist visa valid for 1–3 months).  
+- **Language**: Arabic is official, but English is common. Learn basic phrases for interactions.  
+- **Nightlife**: *Dubai Marina* and *Sheikh Zayed Road* for vibrant nightlife; avoid Deira after dark.  
+
+**Optional Day 8 (19 Jan)**: Free time for shopping (e.g., *Dubai Mall* or *Global Village*) or a final trip to *Dubai Marina* for dinner.
+2026-01-07 18:07:40,730 | INFO     | pipeline.py:61 | __main__ | ⏱️  Execution time: 256.90 seconds

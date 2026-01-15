@@ -1,5 +1,5 @@
-import random, os, sys
-import time, json, requests
+import os, sys
+import time
 
 os.environ["OLLAMA_HOST"] = "http://localhost:11434"
 
@@ -14,8 +14,6 @@ from src.pipeline_node_agents.adapters.crewai_adapter import CrewAIAdapter
 from src.pipeline_node_agents.core.node import FunctionNode, AgentNode
 from src.pipeline_node_agents.core.pipeline import Pipeline
 from crewai import Agent, LLM
-from ddgs import DDGS
-from bs4 import BeautifulSoup
 from src.pipeline_node_agents.tools.scraper import Scraper
 from src.pipeline_node_agents.tools.websearch import WebSearcher
 from src.pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger

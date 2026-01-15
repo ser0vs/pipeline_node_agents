@@ -1,4 +1,5 @@
-import os, sys, random, time
+import os, sys
+import random, time
 from statistics import mean
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))

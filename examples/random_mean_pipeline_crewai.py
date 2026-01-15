@@ -1,7 +1,6 @@
-import random, os, sys, time
+import os, sys
+import random, time
 
-
-import os
 os.environ["OLLAMA_HOST"] = "http://localhost:11434"
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))

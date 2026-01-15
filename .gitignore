@@ -9,6 +9,7 @@ build/
 .venv/
 venv/
 .env
-*.log
-logs/
+logs/**
+!logs/supplemental_materials/
+!logs/supplemental_materials/**
 .venv*

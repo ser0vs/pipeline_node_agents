@@ -1,0 +1,398 @@
+2026-01-07 17:18:53,744 | INFO     | pipeline.py:42 | __main__ | Context: {'list_of_cities': ['Madrid', 'Dubai'], 'dates': ('12 January 2026', '20 January 2026')}
+
+2026-01-07 17:18:53,745 | INFO     | pipeline.py:61 | src.core.pipeline | === Starting pipeline ===
+2026-01-07 17:18:53,745 | INFO     | pipeline.py:63 | src.core.pipeline | 
+2026-01-07 17:18:53,745 | INFO     | pipeline.py:65 | src.core.pipeline | 
+2026-01-07 17:18:53,745 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: ResearchCitiesNode
+2026-01-07 17:18:53,745 | INFO     | pipeline.py:61 | src.core.pipeline | === Starting pipeline ===
+2026-01-07 17:18:53,745 | INFO     | pipeline.py:63 | src.core.pipeline | 
+2026-01-07 17:18:53,746 | INFO     | pipeline.py:65 | src.core.pipeline | 
+2026-01-07 17:18:53,746 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-01-07 17:18:53,805 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-01-07 17:18:53,837 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine yandex: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20Madrid%20from%2012%20January%202026%20to%2020%20January%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-01-07 17:18:55,126 | INFO     | lib.rs:464 | primp | response: https://yandex.com/search/site/?text=weather+forecast+Madrid+from+12+January+2026+to+20+January+2026&web=1&searchid=7034950 200
+2026-01-07 17:18:55,167 | INFO     | node.py:44 | src.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: {'search_results': [{'title': 'Madrid , Madrid , Spain Weather Forecast | AccuWeather', 'snippet': '10-Day Weather Forecast . Tonight. 1/1.Early 2026 rain, mountain snow to expand in California and western US. 4 hours ago. Winter Weather . Bomb cyclone spawns blizzard, tornadoes from Midwest to Northeast.', 'url': 'https://www.accuweather.com/en/es/madrid/308526/weather-forecast/308526'}, {'title': "Weather - 38°37'S, 51°45'W - 14-Day Forecast & Rain | Ventusky", 'snippet': 'Location - Weather forecast for 14 days, information from meteorological stations, webcams, sunrise and sunset, wind and precipitation maps for this place.', 'url': 'https://www.ventusky.com/-38.62;-51.75'}, {'title': 'Hainan weather in January 2026 | Hainan 14 day weather', 'snippet': 'Full weather forecast for Hainan in January 2026 . Check the temperatures, chance of rain and more in Hainan during January .', 'url': 'https://www.weather25.com/asia/china/hainan?page=month&month=January'}, {'title': "Today’s Wordle hints and answer: January 7, 2026 ... | Tom's Guide", 'snippet': "Find out what today's Wordle hint and answer are for game #1,663, January 7, and get some hints for it. You might need them!", 'url': 'https://www.tomsguide.com/news/what-is-todays-wordle-answer'}, {'title': 'POGODNIK - Arctic blast 2026 EU Forecast for January', 'snippet': 'January 2026 Weather Forecast for Europe.Between January 9 and 12 , 2026 , the coldest conditions in Europe will be found across Eastern and North-Eastern regions, where night-time temperatures will commonly fall to −10…−18°C and locally lower.', 'url': 'https://pogodnik.com/en/news/arctic-blast-2026-eu-forecast-for-january'}]}
+2026-01-07 17:18:55,167 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: ScrapeNode
+2026-01-07 17:18:55,691 | INFO     | node.py:44 | src.core.node | [FunctionNode] ScrapeNode executed. Outputs: {'page_content': 'Madrid, Madrid, Spain Weather Forecast | AccuWeather Go Back For Business | Warnings Data Suite Forensics Advertising Superior Accuracy™ Madrid, Madrid 41° F Location Chevron down Location News Videos Use Current Location Recent Madrid Madrid 41° No results found. Try searching for a city, zip code or point of interest. settings Madrid, Madrid Weather Today WinterCast Local {stormName} Tracker Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Around the Globe Hurricane Tracker Severe Weather Radar & Maps News News & Features Astronomy Business Climate Health Recreation Sports Travel For Business Warnings Data Suite Forensics Advertising Superior Accuracy™ Video Today Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Today\'s Weather Wed, Jan 7 Clouds giving way to some sun and cold Hi: 49° Tonight: Partly cloudy Lo: 33° Current Weather 6:18 PM 41° F RealFeel® 39° Mostly clear More Details Wind E 5 mph Wind Gusts 16 mph Air Quality Poor Looking Ahead Cool Thursday Madrid Weather Radar Static Radar Temporarily Unavailable Thank you for your patience as we work to get everything up and running again. Refresh Page Clouds Temperature Hourly Weather Chevron left 7 PM 44° 4% 8 PM 42° 4% 9 PM 39° 4% 10 PM 37° 4% 11 PM 37° 4% 12 AM 37° 3% 1 AM 37° 0% 2 AM 36° 0% 3 AM 35° 0% 4 AM 35° 0% 5 AM 34° 0% 6 AM 34° 0% Chevron right 10-Day Weather Forecast Today 1/7 49° 33° Clearing and cold Night: Partly cloudy 13% Thu 1/8 44° 40° Chilly with low clouds Low clouds 7% Fri 1/9 53° 38° Breezy in the afternoon Partly cloudy 5% Sat 1/10 49° 36° Considerable clouds Cloudy 12% Sun 1/11 50° 45° Low clouds Overcast 25% Mon 1/12 54° 41° Low clouds Overcast 25% Tue 1/13 53° 42° Sun through high clouds Cloudy with a little rain 11% Wed 1/14 52° 38° Mostly cloudy, showers around Partly cloudy 57% Thu 1/15 50° 35° A little rain in the morning Partly cloudy 56% Fri 1/16 47° 33° Periods of rain Periods of rain 60% Sun & Moon 9 hrs 26 mins Rise 8:38 AM Set 6:04 PM Waning Gibbous Rise 10:56 PM Set 11:41 AM Air Quality See More Air Quality Poor The air has reached a high level of pollution and is unhealthy for sensitive groups. Reduce time spent outside if you are feeling symptoms such as difficulty breathing or throat irritation. Allergy Outlook See All Tree Pollen Low Data is not supported in this location Ragweed Pollen Low Data is not supported in this location Mold Low Data is not supported in this location Grass Pollen Low Data is not supported in this location Dust & Dander High Data is not supported in this location Contains modified Copernicus Atmosphere Monitoring Service information 2026 Top Stories Weather News Los Angeles wildfires one year later: rebuilding after $275B loss 3 hours ago Weather Forecasts Springlike warmth in East to be replaced by cold air, snowstorm risk 1 hour ago Weather News Stolen BMW turned ice sculpture along Lake Erie removed 23 hours ago Winter Weather Heavy snow, travel problems to expand from Cascades to interior West 5 hours ago Winter Weather Snow and ice to precede larger late-week storm in central, eastern US 52 minutes ago More Stories Featured Stories Astronomy Hubble telescope spots ‘failed’ starless galaxy known as Cloud 9 20 hours ago Severe Weather Top 5 tornado states in 2025 1 day ago Live Blog A Paris snowman at the Eiffel Tower LATEST ENTRY Snowman appears at Eiffel Tower after Paris Snowfall 22 hours ago Recreation Yellowstone tallied 1,136 earthquakes, hundreds of lost hats in 2025 1 day ago Astronomy January quietly brings a big change to daylight across the US 2 days ago World Europe Spain Madrid Madrid Weather Near Madrid: Alcalá de Henares , Madrid Leganés , Madrid Móstoles , Madrid Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect RealFeel® and RealFeel Shade™ Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect RealFeel® and RealFeel Shade™ Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News © 2026 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved. Terms of Use | Privacy Policy | Cookie Policy | About Your Privacy Do Not Sell or Share My Personal Information | Data Sources ... ... ... ... ...'}
+2026-01-07 17:18:55,691 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: WeatherSummaryNode
+2026-01-07 17:18:55,691 | INFO     | crewai_adapter.py:38 | src.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in Madrid around dates 12 January 2026 and 20 January 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Madrid, Madrid, Spain Weather Forecast | AccuWeather Go Back For Business | Warnings Data Suite Forensics Advertising Superior Accuracy™ Madrid, Madrid 41° F Location Chevron down Location News Videos Use Current Location Recent Madrid Madrid 41° No results found. Try searching for a city, zip code or point of interest. settings Madrid, Madrid Weather Today WinterCast Local {stormName} Tracker Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Around the Globe Hurricane Tracker Severe Weather Radar & Maps News News & Features Astronomy Business Climate Health Recreation Sports Travel For Business Warnings Data Suite Forensics Advertising Superior Accuracy™ Video Today Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Today's Weather Wed, Jan 7 Clouds giving way to some sun and cold Hi: 49° Tonight: Partly cloudy Lo: 33° Current Weather 6:18 PM 41° F RealFeel® 39° Mostly clear More Details Wind E 5 mph Wind Gusts 16 mph Air Quality Poor Looking Ahead Cool Thursday Madrid Weather Radar Static Radar Temporarily Unavailable Thank you for your patience as we work to get everything up and running again. Refresh Page Clouds Temperature Hourly Weather Chevron left 7 PM 44° 4% 8 PM 42° 4% 9 PM 39° 4% 10 PM 37° 4% 11 PM 37° 4% 12 AM 37° 3% 1 AM 37° 0% 2 AM 36° 0% 3 AM 35° 0% 4 AM 35° 0% 5 AM 34° 0% 6 AM 34° 0% Chevron right 10-Day Weather Forecast Today 1/7 49° 33° Clearing and cold Night: Partly cloudy 13% Thu 1/8 44° 40° Chilly with low clouds Low clouds 7% Fri 1/9 53° 38° Breezy in the afternoon Partly cloudy 5% Sat 1/10 49° 36° Considerable clouds Cloudy 12% Sun 1/11 50° 45° Low clouds Overcast 25% Mon 1/12 54° 41° Low clouds Overcast 25% Tue 1/13 53° 42° Sun through high clouds Cloudy with a little rain 11% Wed 1/14 52° 38° Mostly cloudy, showers around Partly cloudy 57% Thu 1/15 50° 35° A little rain in the morning Partly cloudy 56% Fri 1/16 47° 33° Periods of rain Periods of rain 60% Sun & Moon 9 hrs 26 mins Rise 8:38 AM Set 6:04 PM Waning Gibbous Rise 10:56 PM Set 11:41 AM Air Quality See More Air Quality Poor The air has reached a high level of pollution and is unhealthy for sensitive groups. Reduce time spent outside if you are feeling symptoms such as difficulty breathing or throat irritation. Allergy Outlook See All Tree Pollen Low Data is not supported in this location Ragweed Pollen Low Data is not supported in this location Mold Low Data is not supported in this location Grass Pollen Low Data is not supported in this location Dust & Dander High Data is not supported in this location Contains modified Copernicus Atmosphere Monitoring Service information 2026 Top Stories Weather News Los Angeles wildfires one year later: rebuilding after $275B loss 3 hours ago Weather Forecasts Springlike warmth in East to be replaced by cold air, snowstorm risk 1 hour ago Weather News Stolen BMW turned ice sculpture along Lake Erie removed 23 hours ago Winter Weather Heavy snow, travel problems to expand from Cascades to interior West 5 hours ago Winter Weather Snow and ice to precede larger late-week storm in central, eastern US 52 minutes ago More Stories Featured Stories Astronomy Hubble telescope spots ‘failed’ starless galaxy known as Cloud 9 20 hours ago Severe Weather Top 5 tornado states in 2025 1 day ago Live Blog A Paris snowman at the Eiffel Tower LATEST ENTRY Snowman appears at Eiffel Tower after Paris Snowfall 22 hours ago Recreation Yellowstone tallied 1,136 earthquakes, hundreds of lost hats in 2025 1 day ago Astronomy January quietly brings a big change to daylight across the US 2 days ago World Europe Spain Madrid Madrid Weather Near Madrid: Alcalá de Henares , Madrid Leganés , Madrid Móstoles , Madrid Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect RealFeel® and RealFeel Shade™ Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect RealFeel® and RealFeel Shade™ Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News © 2026 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved. Terms of Use | Privacy Policy | Cookie Policy | About Your Privacy Do Not Sell or Share My Personal Information | Data Sources ... ... ... ... ...
+---
+
+Remember: Analyze the provided text and summarize information about weather in Madrid around dates 12 January 2026 and 20 January 2026.
+2026-01-07 17:18:55,692 | INFO     | crewai_adapter.py:39 | src.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-01-07 17:18:55,692 | INFO     | crewai_adapter.py:40 | src.adapters.crewai_adapter | Input length: 5040 chars
+2026-01-07 17:18:55,715 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-01-07 17:18:59,556 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-01-07 17:18:59,809 | INFO     | crewai_adapter.py:45 | src.adapters.crewai_adapter | Output of the agent: 
+Unfortunately, there is no specific forecast or weather information provided for Madrid around dates 12 January 2026 and 20 January 2026 in the given text. The text provides a general 10-day weather forecast for Madrid starting from January 7, but it does not include specific details for these two dates.
+
+
+2026-01-07 17:18:59,810 | INFO     | pipeline.py:83 | src.core.pipeline | === Pipeline finished ===
+2026-01-07 17:18:59,910 | INFO     | functions.py:69 | examples.trip_planner.functions | ✅Pipeline Output of Madrid:
+Unfortunately, there is no specific forecast or weather information provided for Madrid around dates 12 January 2026 and 20 January 2026 in the given text. The text provides a general 10-day weather forecast for Madrid starting from January 7, but it does not include specific details for these two dates.
+2026-01-07 17:18:59,911 | INFO     | pipeline.py:61 | src.core.pipeline | === Starting pipeline ===
+2026-01-07 17:18:59,911 | INFO     | pipeline.py:63 | src.core.pipeline | 
+2026-01-07 17:18:59,911 | INFO     | pipeline.py:65 | src.core.pipeline | 
+2026-01-07 17:18:59,911 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-01-07 17:18:59,911 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-01-07 17:18:59,922 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine duckduckgo: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20Dubai%20from%2012%20January%202026%20to%2020%20January%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-01-07 17:19:00,187 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=FFWKtYyjc-enxbK9ZMq1MoCl;_ylu=lZX5N1P0A8lD_AnNa0N1jR7etzfhSYPpo7t7GsV-uSLD_4Y?p=weather+forecast+Dubai+from+12+January+2026+to+20+January+2026 200
+2026-01-07 17:19:00,809 | INFO     | node.py:44 | src.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: {'search_results': [{'title': 'Weather in Dubai in January 2026 (Dubayy) - detailed Weather Forecast ...', 'snippet': "World UAE Weather in Dubai Weather in Dubai in January 2026 Dubai Weather Forecast for January 2026 is based on long term prognosis and previous years' statistical data.", 'url': 'https://world-weather.info/forecast/uae/dubai/january-2026/'}, {'title': 'Weather in Dubai in January 2026 - Detailed Forecast', 'snippet': 'Discover the most accurate weather forecast for Dubai in January 2026 . Insights into temperature, precipitation, and weather trends.', 'url': 'https://www.easeweather.com/asia/united-arab-emirates/dubai/dubai/january'}, {'title': 'Dubai 2026 Past Weather (United Arab Emirates) - Weather Spark', 'snippet': 'Dubai 2026 Past Weather (United Arab Emirates) - Weather Spark', 'url': 'https://weatherspark.com/h/y/105470/2026/Historical-Weather-during-2026-in-Dubai-United-Arab-Emirates'}, {'title': 'Dubai weather in January 2026 | Dubai 14 day weather', 'snippet': 'Full weather forecast for Dubai in January 2026 . Check the temperatures, chance of rain and more in Dubai during January .', 'url': 'https://www.weather25.com/asia/united-arab-emirates/dubai?page=month&month=January'}, {'title': 'January 2026 Daily Weather Forecast for Dubai, Dubai - Plan Ahead', 'snippet': 'Get daily long-range weather forecasts for Dubai , Dubai in January 2026 . Plan outdoor activities with confidence using our proprietary forecast model.', 'url': 'https://www.weathertab.com/en/d/01/united-arab-emirates/dubayy/dubai/'}]}
+2026-01-07 17:19:00,809 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: ScrapeNode
+2026-01-07 17:19:00,941 | WARNING  | scraper.py:52 | src.tools.scraper | Attempt 1/5 failed: 403 Client Error: Forbidden for url: https://world-weather.info/forecast/uae/dubai/january-2026/
+2026-01-07 17:19:02,038 | WARNING  | scraper.py:52 | src.tools.scraper | Attempt 2/5 failed: 403 Client Error: Forbidden for url: https://world-weather.info/forecast/uae/dubai/january-2026/
+2026-01-07 17:19:03,159 | WARNING  | scraper.py:52 | src.tools.scraper | Attempt 3/5 failed: 403 Client Error: Forbidden for url: https://world-weather.info/forecast/uae/dubai/january-2026/
+2026-01-07 17:19:04,291 | WARNING  | scraper.py:52 | src.tools.scraper | Attempt 4/5 failed: 403 Client Error: Forbidden for url: https://world-weather.info/forecast/uae/dubai/january-2026/
+2026-01-07 17:19:05,432 | WARNING  | scraper.py:52 | src.tools.scraper | Attempt 5/5 failed: 403 Client Error: Forbidden for url: https://world-weather.info/forecast/uae/dubai/january-2026/
+2026-01-07 17:19:06,433 | WARNING  | scraper.py:65 | src.tools.scraper | Failed to scrape https://world-weather.info/forecast/uae/dubai/january-2026/: 
+Failed to scrape https://world-weather.info/forecast/uae/dubai/january-2026/ after 5 attempts,
+ going to next URL...
+2026-01-07 17:19:07,103 | INFO     | node.py:44 | src.core.node | [FunctionNode] ScrapeNode executed. Outputs: {'page_content': 'Weather in Dubai in January 2026 - Detailed Forecast Dubai Abu Dhabi Ajman City Al Ain City Dubai Dubai International Airport Jebel Ali Ras Al Khaimah City Sharjah More Locations January January February March April May June July August September October November December Weather in Dubai for January 2026 Your guide to Dubai weather in January - trends and predictions Temperatures Expect cooler weather in the next days in Dubai with the forecast suggesting a temperature of 21.2 ° C , lower than the historical average. In general, the average temperature in Dubai at the beginning of January is 23.3 ° C . As the month progressed, temperatures tended to moderately rise, reaching an average of 23.9 ° C by the end of January . Rain 🌧️ With an average of 4 rainy days, Dubai experiences minimal rainfall in January. 27 Dry days 4 Rainy days 0 Snow days 23 ° / 17 ° Temperatures 22 km/h Avg max wind 54 % Avg humidity Dubai Weather January Move between months or click on a day December January February March April May June July August September October November December February Mon. Tue. Wed. Thu. Fri. Sat. Sun. 1 24 ° 2 24 ° 3 24 ° 4 23 ° 5 23 ° 6 23 ° 7 22 ° 8 21 ° 9 21 ° 10 21 ° 11 22 ° 12 21 ° 13 21 ° 14 21 ° 15 22 ° 16 21 ° 17 21 ° 18 21 ° 19 21 ° 20 21 ° 21 23 ° 22 23 ° 23 23 ° 24 23 ° 25 24 ° 26 24 ° 27 24 ° 28 24 ° 29 23 ° 30 24 ° 31 24 ° Temperatures trend during January in Dubai See the weather trend as well as the moving average line January weather in Dubai day by day Click on a date for more information December February Date Weather Temperatures Rain UV More 1 Jan. Sunny 24 ° / 19 ° 1.1 mm 5 2 Jan. Sunny 24 ° / 18 ° 0.1 mm 6 3 Jan. Sunny 24 ° / 19 ° 1.1 mm 5 4 Jan. Sunny 23 ° / 18 ° 0.7 mm 5 5 Jan. Partly cloudy 23 ° / 18 ° 0.1 mm 6 6 Jan. Sunny 23 ° / 17 ° 0 mm 5 7 Jan. Sunny 22 ° / 21 ° 0 mm 1 8 Jan. Sunny 21 ° / 20 ° 0 mm 1.1 9 Jan. Sunny 21 ° / 19 ° 0 mm 1.1 10 Jan. Sunny 21 ° / 20 ° 0 mm 1.1 11 Jan. Sunny 22 ° / 19 ° 0 mm 1.5 12 Jan. Partly cloudy 21 ° / 20 ° 0 mm 6 13 Jan. Sunny 21 ° / 19 ° 0 mm 6 14 Jan. Partly cloudy 21 ° / 19 ° 0 mm 6 15 Jan. Sunny 22 ° / 21 ° 0 mm 6 16 Jan. Sunny 21 ° / 20 ° 0 mm 6 17 Jan. Sunny 21 ° / 19 ° 0 mm 6 18 Jan. Sunny 21 ° / 20 ° 0 mm 6 19 Jan. Sunny 21 ° / 20 ° 0 mm 6 20 Jan. Sunny 21 ° / 20 ° 0 mm 6 21 Jan. Sunny 23 ° / 17 ° 0 mm 6 22 Jan. Sunny 23 ° / 17 ° 0 mm 6 23 Jan. Sunny 23 ° / 16 ° 0.1 mm 6 24 Jan. Sunny 23 ° / 15 ° 0 mm 6 25 Jan. Sunny 24 ° / 16 ° 0.9 mm 6 26 Jan. Sunny 24 ° / 16 ° 1.7 mm 6 27 Jan. Sunny 24 ° / 17 ° 3 mm 6 28 Jan. Sunny 24 ° / 17 ° 0.4 mm 6 29 Jan. Sunny 23 ° / 16 ° 0 mm 6 30 Jan. Sunny 24 ° / 17 ° 0 mm 6 31 Jan. Sunny 24 ° / 17 ° 0 mm 6 Next Important Notice Our weather forecast for Dubai in January is based on the analysis of historical data rather than real-time forecast models. While this provides a general overview, weather conditions can change. We recommend that you check the Dubai forecast closer to your planned date for the most up-to-date weather information. Change Month ‹ 01 Jan 02 Feb 03 Mar 04 Apr 05 May 06 Jun 07 Jul 08 Aug 09 Sep 10 Oct 11 Nov 12 Dec › Dubai in January - FAQ What are the expected maximum and minimum temperatures in Dubai during January? During January, expect a variety of temperatures with highs around 23 ° and lows near 17 ° , suitable for diverse activities and preferences. How much rainfall should be expected in Dubai during January? Expect minimal rainfall in Dubai during January, with a total of 11.6 mm over approximately 4 days. This minimal precipitation is unlikely to significantly impact plans. What are the typical wind conditions in Dubai during January? The average wind speed in Dubai during January is 22 km/h , suggesting breezy to windy conditions, depending on your activities. January rainfall patterns in Dubai Explore the daily rainfall trends and prepare for Dubais January weather 💧 Typically, Dubai has 4 rainy days in January with a total of 11.6 mm of rainfall. UV exposure in Dubai during January Stay informed about UV levels for safe outdoor activities throughout the month of January ☀️ Quick links More Dubai weather pages Forecast February Today Tomorrow You are here Home Asia United Arab Emirates Dubai Dubai January Where is Dubai? Get accurate weather forecasts for Dubai, located at latitude 25.077 and longitude 55.309. Stay updated with localized weather information tailored for Dubai. Related locations Select a location for accurate weather forecast Abu Dhabi Doha Tenerife More Locations Found a mistake? We appreciate your attention to details. Tell us here .'}
+2026-01-07 17:19:07,103 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: WeatherSummaryNode
+2026-01-07 17:19:07,103 | INFO     | crewai_adapter.py:38 | src.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in Dubai around dates 12 January 2026 and 20 January 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Weather in Dubai in January 2026 - Detailed Forecast Dubai Abu Dhabi Ajman City Al Ain City Dubai Dubai International Airport Jebel Ali Ras Al Khaimah City Sharjah More Locations January January February March April May June July August September October November December Weather in Dubai for January 2026 Your guide to Dubai weather in January - trends and predictions Temperatures Expect cooler weather in the next days in Dubai with the forecast suggesting a temperature of 21.2 ° C , lower than the historical average. In general, the average temperature in Dubai at the beginning of January is 23.3 ° C . As the month progressed, temperatures tended to moderately rise, reaching an average of 23.9 ° C by the end of January . Rain 🌧️ With an average of 4 rainy days, Dubai experiences minimal rainfall in January. 27 Dry days 4 Rainy days 0 Snow days 23 ° / 17 ° Temperatures 22 km/h Avg max wind 54 % Avg humidity Dubai Weather January Move between months or click on a day December January February March April May June July August September October November December February Mon. Tue. Wed. Thu. Fri. Sat. Sun. 1 24 ° 2 24 ° 3 24 ° 4 23 ° 5 23 ° 6 23 ° 7 22 ° 8 21 ° 9 21 ° 10 21 ° 11 22 ° 12 21 ° 13 21 ° 14 21 ° 15 22 ° 16 21 ° 17 21 ° 18 21 ° 19 21 ° 20 21 ° 21 23 ° 22 23 ° 23 23 ° 24 23 ° 25 24 ° 26 24 ° 27 24 ° 28 24 ° 29 23 ° 30 24 ° 31 24 ° Temperatures trend during January in Dubai See the weather trend as well as the moving average line January weather in Dubai day by day Click on a date for more information December February Date Weather Temperatures Rain UV More 1 Jan. Sunny 24 ° / 19 ° 1.1 mm 5 2 Jan. Sunny 24 ° / 18 ° 0.1 mm 6 3 Jan. Sunny 24 ° / 19 ° 1.1 mm 5 4 Jan. Sunny 23 ° / 18 ° 0.7 mm 5 5 Jan. Partly cloudy 23 ° / 18 ° 0.1 mm 6 6 Jan. Sunny 23 ° / 17 ° 0 mm 5 7 Jan. Sunny 22 ° / 21 ° 0 mm 1 8 Jan. Sunny 21 ° / 20 ° 0 mm 1.1 9 Jan. Sunny 21 ° / 19 ° 0 mm 1.1 10 Jan. Sunny 21 ° / 20 ° 0 mm 1.1 11 Jan. Sunny 22 ° / 19 ° 0 mm 1.5 12 Jan. Partly cloudy 21 ° / 20 ° 0 mm 6 13 Jan. Sunny 21 ° / 19 ° 0 mm 6 14 Jan. Partly cloudy 21 ° / 19 ° 0 mm 6 15 Jan. Sunny 22 ° / 21 ° 0 mm 6 16 Jan. Sunny 21 ° / 20 ° 0 mm 6 17 Jan. Sunny 21 ° / 19 ° 0 mm 6 18 Jan. Sunny 21 ° / 20 ° 0 mm 6 19 Jan. Sunny 21 ° / 20 ° 0 mm 6 20 Jan. Sunny 21 ° / 20 ° 0 mm 6 21 Jan. Sunny 23 ° / 17 ° 0 mm 6 22 Jan. Sunny 23 ° / 17 ° 0 mm 6 23 Jan. Sunny 23 ° / 16 ° 0.1 mm 6 24 Jan. Sunny 23 ° / 15 ° 0 mm 6 25 Jan. Sunny 24 ° / 16 ° 0.9 mm 6 26 Jan. Sunny 24 ° / 16 ° 1.7 mm 6 27 Jan. Sunny 24 ° / 17 ° 3 mm 6 28 Jan. Sunny 24 ° / 17 ° 0.4 mm 6 29 Jan. Sunny 23 ° / 16 ° 0 mm 6 30 Jan. Sunny 24 ° / 17 ° 0 mm 6 31 Jan. Sunny 24 ° / 17 ° 0 mm 6 Next Important Notice Our weather forecast for Dubai in January is based on the analysis of historical data rather than real-time forecast models. While this provides a general overview, weather conditions can change. We recommend that you check the Dubai forecast closer to your planned date for the most up-to-date weather information. Change Month ‹ 01 Jan 02 Feb 03 Mar 04 Apr 05 May 06 Jun 07 Jul 08 Aug 09 Sep 10 Oct 11 Nov 12 Dec › Dubai in January - FAQ What are the expected maximum and minimum temperatures in Dubai during January? During January, expect a variety of temperatures with highs around 23 ° and lows near 17 ° , suitable for diverse activities and preferences. How much rainfall should be expected in Dubai during January? Expect minimal rainfall in Dubai during January, with a total of 11.6 mm over approximately 4 days. This minimal precipitation is unlikely to significantly impact plans. What are the typical wind conditions in Dubai during January? The average wind speed in Dubai during January is 22 km/h , suggesting breezy to windy conditions, depending on your activities. January rainfall patterns in Dubai Explore the daily rainfall trends and prepare for Dubais January weather 💧 Typically, Dubai has 4 rainy days in January with a total of 11.6 mm of rainfall. UV exposure in Dubai during January Stay informed about UV levels for safe outdoor activities throughout the month of January ☀️ Quick links More Dubai weather pages Forecast February Today Tomorrow You are here Home Asia United Arab Emirates Dubai Dubai January Where is Dubai? Get accurate weather forecasts for Dubai, located at latitude 25.077 and longitude 55.309. Stay updated with localized weather information tailored for Dubai. Related locations Select a location for accurate weather forecast Abu Dhabi Doha Tenerife More Locations Found a mistake? We appreciate your attention to details. Tell us here .
+---
+
+Remember: Analyze the provided text and summarize information about weather in Dubai around dates 12 January 2026 and 20 January 2026.
+2026-01-07 17:19:07,104 | INFO     | crewai_adapter.py:39 | src.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-01-07 17:19:07,104 | INFO     | crewai_adapter.py:40 | src.adapters.crewai_adapter | Input length: 4588 chars
+2026-01-07 17:19:07,117 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-01-07 17:19:09,416 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-01-07 17:19:09,575 | INFO     | crewai_adapter.py:45 | src.adapters.crewai_adapter | Output of the agent: 
+Based on the provided text, here is the weather information for Dubai around dates 12 January 2026 and 20 January 2026:
+
+For 12 January 2026:
+- Temperature: Partly cloudy with a high of 21°C and low of 20°C.
+- Rainfall: No rainfall expected.
+
+For 20 January 2026:
+- Temperature: Sunny with a high of 21°C and low of 20°C.
+
+
+2026-01-07 17:19:09,576 | INFO     | pipeline.py:83 | src.core.pipeline | === Pipeline finished ===
+2026-01-07 17:19:09,677 | INFO     | functions.py:69 | examples.trip_planner.functions | ✅Pipeline Output of Dubai:
+Based on the provided text, here is the weather information for Dubai around dates 12 January 2026 and 20 January 2026:
+
+For 12 January 2026:
+- Temperature: Partly cloudy with a high of 21°C and low of 20°C.
+- Rainfall: No rainfall expected.
+
+For 20 January 2026:
+- Temperature: Sunny with a high of 21°C and low of 20°C.
+2026-01-07 17:19:09,678 | INFO     | node.py:44 | src.core.node | [FunctionNode] ResearchCitiesNode executed. Outputs: {'weather_summaries': '### Madrid\n\nUnfortunately, there is no specific forecast or weather information provided for Madrid around dates 12 January 2026 and 20 January 2026 in the given text. The text provides a general 10-day weather forecast for Madrid starting from January 7, but it does not include specific details for these two dates.\n\n### Dubai\n\nBased on the provided text, here is the weather information for Dubai around dates 12 January 2026 and 20 January 2026:\n\nFor 12 January 2026:\n- Temperature: Partly cloudy with a high of 21°C and low of 20°C.\n- Rainfall: No rainfall expected.\n\nFor 20 January 2026:\n- Temperature: Sunny with a high of 21°C and low of 20°C.'}
+2026-01-07 17:19:09,678 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: CitySelectionNode
+2026-01-07 17:19:09,678 | INFO     | crewai_adapter.py:38 | src.adapters.crewai_adapter | Full task description: YOUR TASK: Choose one city from the provided list based on the weather summaries.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### WEATHER_SUMMARIES ###
+### Madrid
+
+Unfortunately, there is no specific forecast or weather information provided for Madrid around dates 12 January 2026 and 20 January 2026 in the given text. The text provides a general 10-day weather forecast for Madrid starting from January 7, but it does not include specific details for these two dates.
+
+### Dubai
+
+Based on the provided text, here is the weather information for Dubai around dates 12 January 2026 and 20 January 2026:
+
+For 12 January 2026:
+- Temperature: Partly cloudy with a high of 21°C and low of 20°C.
+- Rainfall: No rainfall expected.
+
+For 20 January 2026:
+- Temperature: Sunny with a high of 21°C and low of 20°C.
+---
+
+Remember: Choose one city from the provided list based on the weather summaries.
+2026-01-07 17:19:09,679 | INFO     | crewai_adapter.py:39 | src.adapters.crewai_adapter | Expected output: First line: Chosen city name. Following lines: brief explanation of why this city was chosen.
+2026-01-07 17:19:09,679 | INFO     | crewai_adapter.py:40 | src.adapters.crewai_adapter | Input length: 677 chars
+2026-01-07 17:19:09,692 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-01-07 17:19:10,725 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-01-07 17:19:10,894 | INFO     | crewai_adapter.py:45 | src.adapters.crewai_adapter | Output of the agent: 
+Dubai. Briefly explaining why I chose this city because it has 21°C temperature in both dates of 12 January 2026 and 20 January 2026.
+
+
+2026-01-07 17:19:10,894 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: ExtractChosenCityNode
+2026-01-07 17:19:10,894 | INFO     | node.py:44 | src.core.node | [FunctionNode] ExtractChosenCityNode executed. Outputs: {'chosen_city': 'Dubai. Briefly explaining why I chose this city because it has 21°C temperature in both dates of 12 January 2026 and 20 January 2026.'}
+2026-01-07 17:19:10,894 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: LocalExpertNode
+2026-01-07 17:19:10,894 | INFO     | crewai_adapter.py:38 | src.adapters.crewai_adapter | Full task description: YOUR TASK: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Dubai. Briefly explaining why I chose this city because it has 21°C temperature in both dates of 12 January 2026 and 20 January 2026.
+
+### DATES ###
+('12 January 2026', '20 January 2026')
+---
+
+Remember: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+2026-01-07 17:19:10,895 | INFO     | crewai_adapter.py:39 | src.adapters.crewai_adapter | Expected output: City guide including hidden gems, cultural hotspots, and practical travel tips
+2026-01-07 17:19:10,895 | INFO     | crewai_adapter.py:40 | src.adapters.crewai_adapter | Input length: 207 chars
+2026-01-07 17:19:10,914 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-01-07 17:19:22,634 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-01-07 17:19:22,813 | INFO     | crewai_adapter.py:45 | src.adapters.crewai_adapter | Output of the agent: 
+Your final answer must be the great and the most complete as possible, it must be outcome described.
+
+Dubai Guide: A Treasure Trove of Wonders
+
+Located on the southeastern coast of the Persian Gulf, Dubai is a vibrant city that seamlessly blends traditional Arabian culture with modern luxury. The city's warm climate, pleasant temperatures (21°C in January 2026), and numerous attractions make it an ideal destination for travelers.
+
+**Key Attractions:**
+
+1. **Burj Khalifa**: The tallest building in the world, offering breathtaking views of the city from its observation deck on the 124th floor.
+2. **Dubai Museum**: A museum showcasing the city's history and culture, with exhibits on traditional Arabian architecture, pearl diving, and the discovery of oil.
+3. **Dubai Fountain Show**: The world's largest choreographed fountain system, set to music and lights that illuminate the night sky.
+4. **Palm Jumeirah**: An artificial island in the shape of a palm tree, offering luxury resorts, beaches, and stunning views of the Arabian Gulf.
+5. **Desert Safari**: A thrilling adventure through the dunes, where you can ride camels, enjoy sandboarding, or take a leisurely camel ride.
+
+**Food Places:**
+
+1. **Al Mallah Restaurant**: A popular spot for traditional Arabian cuisine, including dishes like machboos and luqaimat.
+2. **Saray Restaurant**: A stylish restaurant serving Mediterranean-inspired food with a focus on fresh seafood.
+3. **Bastakiya Market**: A historic marketplace offering a range of street food, from falafel to shawarma.
+4. **Gordon Ramsay's Hell's Kitchen**: A high-end restaurant inspired by the famous TV show, offering modern French cuisine.
+5. **Jabal Ali Park Cafe**: A relaxed spot for a coffee or snack, with stunning views of the Arabian Gulf.
+
+**Daily Activity Recommendations:**
+
+1. **Visit the Gold Souk**: A bustling marketplace filled with gold and silver jewelry, perfumes, and other traditional souvenirs.
+2. **Take a Dhow Cruise**: A relaxing boat ride along the Dubai Creek, offering stunning views of the city's skyline.
+3. **Explore the Global Village**: A cultural park showcasing the traditions and customs of different countries from around the world.
+4. **Visit the Miracle Garden**: A floral wonderland featuring over 45 million flowers arranged in stunning patterns and designs.
+5. **Go Shopping at Mall of the Emirates**: One of Dubai's largest shopping malls, offering a range of high-end brands and luxury experiences.
+
+**Hidden Gems:**
+
+1. **The Hatta Wadi**: A scenic valley with crystal-clear waters, hiking trails, and stunning views.
+2. **The Jumeirah Mosque**: A beautiful mosque showcasing traditional Arabian architecture and design.
+3. **The Al Fahidi Historical Neighbourhood**: A historic district featuring traditional Arabian buildings, museums, and cultural attractions.
+4. **The Dubai Frame**: A unique attraction offering panoramic views of the city from a 150-meter tall frame.
+5. **The Global Village's Cultural Shows**: Evening performances showcasing traditional dances, music, and acrobatic feats from around the world.
+
+**Practical Travel Tips:**
+
+1. **Best Time to Visit:** January to March for pleasant weather, or November to December for festive atmosphere.
+2. **Getting Around:** Metrolink trains, buses, and taxis are readily available; consider purchasing a Nol Card for convenient travel.
+3. **Accommodation:** Choose from luxury hotels, budget-friendly options, or try a traditional Arabic riad for an authentic experience.
+4. **Respect Local Culture:** Dress modestly, remove your shoes when entering mosques or homes, and avoid public displays of affection.
+5. **Stay Hydrated:** Dubai's climate can be hot, so ensure to drink plenty of water throughout the day.
+
+With this comprehensive guide, you're ready to embark on an unforgettable adventure in Dubai!
+
+
+2026-01-07 17:19:22,813 | INFO     | pipeline.py:72 | src.core.pipeline | → Running node: TravelConciergeNode
+2026-01-07 17:19:22,814 | INFO     | crewai_adapter.py:38 | src.adapters.crewai_adapter | Full task description: YOUR TASK: Plan a 7-day trip itinerary based on the chosen city and provided information.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Dubai. Briefly explaining why I chose this city because it has 21°C temperature in both dates of 12 January 2026 and 20 January 2026.
+
+### LIST_OF_ATTRACTIONS ###
+Your final answer must be the great and the most complete as possible, it must be outcome described.
+
+Dubai Guide: A Treasure Trove of Wonders
+
+Located on the southeastern coast of the Persian Gulf, Dubai is a vibrant city that seamlessly blends traditional Arabian culture with modern luxury. The city's warm climate, pleasant temperatures (21°C in January 2026), and numerous attractions make it an ideal destination for travelers.
+
+**Key Attractions:**
+
+1. **Burj Khalifa**: The tallest building in the world, offering breathtaking views of the city from its observation deck on the 124th floor.
+2. **Dubai Museum**: A museum showcasing the city's history and culture, with exhibits on traditional Arabian architecture, pearl diving, and the discovery of oil.
+3. **Dubai Fountain Show**: The world's largest choreographed fountain system, set to music and lights that illuminate the night sky.
+4. **Palm Jumeirah**: An artificial island in the shape of a palm tree, offering luxury resorts, beaches, and stunning views of the Arabian Gulf.
+5. **Desert Safari**: A thrilling adventure through the dunes, where you can ride camels, enjoy sandboarding, or take a leisurely camel ride.
+
+**Food Places:**
+
+1. **Al Mallah Restaurant**: A popular spot for traditional Arabian cuisine, including dishes like machboos and luqaimat.
+2. **Saray Restaurant**: A stylish restaurant serving Mediterranean-inspired food with a focus on fresh seafood.
+3. **Bastakiya Market**: A historic marketplace offering a range of street food, from falafel to shawarma.
+4. **Gordon Ramsay's Hell's Kitchen**: A high-end restaurant inspired by the famous TV show, offering modern French cuisine.
+5. **Jabal Ali Park Cafe**: A relaxed spot for a coffee or snack, with stunning views of the Arabian Gulf.
+
+**Daily Activity Recommendations:**
+
+1. **Visit the Gold Souk**: A bustling marketplace filled with gold and silver jewelry, perfumes, and other traditional souvenirs.
+2. **Take a Dhow Cruise**: A relaxing boat ride along the Dubai Creek, offering stunning views of the city's skyline.
+3. **Explore the Global Village**: A cultural park showcasing the traditions and customs of different countries from around the world.
+4. **Visit the Miracle Garden**: A floral wonderland featuring over 45 million flowers arranged in stunning patterns and designs.
+5. **Go Shopping at Mall of the Emirates**: One of Dubai's largest shopping malls, offering a range of high-end brands and luxury experiences.
+
+**Hidden Gems:**
+
+1. **The Hatta Wadi**: A scenic valley with crystal-clear waters, hiking trails, and stunning views.
+2. **The Jumeirah Mosque**: A beautiful mosque showcasing traditional Arabian architecture and design.
+3. **The Al Fahidi Historical Neighbourhood**: A historic district featuring traditional Arabian buildings, museums, and cultural attractions.
+4. **The Dubai Frame**: A unique attraction offering panoramic views of the city from a 150-meter tall frame.
+5. **The Global Village's Cultural Shows**: Evening performances showcasing traditional dances, music, and acrobatic feats from around the world.
+
+**Practical Travel Tips:**
+
+1. **Best Time to Visit:** January to March for pleasant weather, or November to December for festive atmosphere.
+2. **Getting Around:** Metrolink trains, buses, and taxis are readily available; consider purchasing a Nol Card for convenient travel.
+3. **Accommodation:** Choose from luxury hotels, budget-friendly options, or try a traditional Arabic riad for an authentic experience.
+4. **Respect Local Culture:** Dress modestly, remove your shoes when entering mosques or homes, and avoid public displays of affection.
+5. **Stay Hydrated:** Dubai's climate can be hot, so ensure to drink plenty of water throughout the day.
+
+With this comprehensive guide, you're ready to embark on an unforgettable adventure in Dubai!
+
+### DATES ###
+('12 January 2026', '20 January 2026')
+---
+
+Remember: Plan a 7-day trip itinerary based on the chosen city and provided information.
+2026-01-07 17:19:22,814 | INFO     | crewai_adapter.py:39 | src.adapters.crewai_adapter | Expected output: Detailed 7-day itinerary including daily activities, dining options, and transportation tips.
+2026-01-07 17:19:22,814 | INFO     | crewai_adapter.py:40 | src.adapters.crewai_adapter | Input length: 4081 chars
+2026-01-07 17:19:22,832 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-01-07 17:19:35,618 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-01-07 17:19:35,808 | INFO     | crewai_adapter.py:45 | src.adapters.crewai_adapter | Output of the agent: 
+Your 7-day trip itinerary for Dubai is as follows:
+
+**Day 1 (12 January 2026): Arrival and Exploration**
+
+* Morning: Arrive at Dubai International Airport and take a Metrolink train to your hotel
+* Visit the Dubai Museum to learn about the city's history and culture
+* Lunch at Al Mallah Restaurant, trying traditional Arabian dishes like machboos and luqaimat
+* Afternoon: Explore the nearby Burj Khalifa area, taking in the stunning views from the observation deck on the 124th floor
+* Evening: Enjoy a spectacular show at the Dubai Fountain Show
+
+**Day 2 (13 January 2026): Desert Safari**
+
+* Morning: Take a Desert Safari tour, riding camels and enjoying sandboarding or a leisurely camel ride through the dunes
+* Lunch at a Bedouin camp, trying traditional Arabic cuisine and refreshing drinks
+* Afternoon: Visit the Miracle Garden, marveling at the stunning floral arrangements and patterns
+* Evening: Enjoy dinner at Gordon Ramsay's Hell's Kitchen, savoring modern French cuisine
+
+**Day 3 (14 January 2026): Palm Jumeirah and Relaxation**
+
+* Morning: Take a leisurely stroll around the Palm Jumeirah, enjoying the stunning views of the Arabian Gulf
+* Visit the iconic Atlantis, The Palm hotel, taking in its grandeur and luxury
+* Lunch at the hotel's restaurant, trying seafood and Mediterranean-inspired dishes
+* Afternoon: Relax at the hotel's spa or take a nap to recharge for the evening ahead
+* Evening: Enjoy a coffee or snack at Jabal Ali Park Cafe, watching the sunset over the Arabian Gulf
+
+**Day 4 (15 January 2026): Global Village and Shopping**
+
+* Morning: Visit the Global Village, exploring the cultural attractions, shops, and entertainment options from around the world
+* Lunch at one of the many food stalls or restaurants within the village
+* Afternoon: Go shopping at Mall of the Emirates, browsing high-end brands and luxury experiences
+* Evening: Enjoy dinner at Saray Restaurant, savoring Mediterranean-inspired cuisine
+
+**Day 5 (16 January 2026): Miracle Garden and Hatta Wadi**
+
+* Morning: Visit the Miracle Garden again, taking in its stunning floral arrangements and patterns
+* Take a day trip to the Hatta Wadi, hiking through scenic trails and enjoying crystal-clear waters
+* Lunch at a local restaurant or bring your own picnic
+* Afternoon: Return to Dubai, visiting any last-minute attractions before dinner
+
+**Day 6 (17 January 2026): Dubai Frame and Al Fahidi Historical Neighbourhood**
+
+* Morning: Visit the Dubai Frame, taking in panoramic views of the city from a 150-meter tall frame
+* Explore the nearby Al Fahidi Historical Neighbourhood, visiting traditional Arabian buildings, museums, and cultural attractions
+* Lunch at a local restaurant or food stall
+* Afternoon: Continue exploring the neighbourhood, shopping for souvenirs or browsing local markets
+
+**Day 7 (18 January 2026): Last Day in Dubai**
+
+* Morning: Spend some time relaxing at your hotel or visiting any last-minute attractions
+* Visit the Gold Souk, browsing gold and silver jewelry, perfumes, and other traditional souvenirs
+* Lunch at Bastakiya Market, trying street food and local cuisine
+* Afternoon: Depart for the airport and head home
+
+Practical Travel Tips:
+
+* Best time to visit: January to March for pleasant weather or November to December for festive atmosphere.
+* Getting around: Metrolink trains, buses, and taxis are readily available; consider purchasing a Nol Card for convenient travel.
+* Accommodation: Choose from luxury hotels, budget-friendly options, or try a traditional Arabic riad for an authentic experience.
+* Respect local culture: Dress modestly, remove your shoes when entering mosques or homes, and avoid public displays of affection.
+* Stay hydrated: Dubai's climate can be hot, so ensure to drink plenty of water throughout the day.
+
+Enjoy your trip to Dubai!
+
+
+2026-01-07 17:19:35,808 | INFO     | pipeline.py:83 | src.core.pipeline | === Pipeline finished ===
+2026-01-07 17:19:35,910 | INFO     | pipeline.py:60 | __main__ | ✅ Final Pipeline Output:
+ chosen_city: Dubai. Briefly explaining why I chose this city because it has 21°C temperature in both dates of 12 January 2026 and 20 January 2026.
+ trip_itinerary: Your 7-day trip itinerary for Dubai is as follows:
+
+**Day 1 (12 January 2026): Arrival and Exploration**
+
+* Morning: Arrive at Dubai International Airport and take a Metrolink train to your hotel
+* Visit the Dubai Museum to learn about the city's history and culture
+* Lunch at Al Mallah Restaurant, trying traditional Arabian dishes like machboos and luqaimat
+* Afternoon: Explore the nearby Burj Khalifa area, taking in the stunning views from the observation deck on the 124th floor
+* Evening: Enjoy a spectacular show at the Dubai Fountain Show
+
+**Day 2 (13 January 2026): Desert Safari**
+
+* Morning: Take a Desert Safari tour, riding camels and enjoying sandboarding or a leisurely camel ride through the dunes
+* Lunch at a Bedouin camp, trying traditional Arabic cuisine and refreshing drinks
+* Afternoon: Visit the Miracle Garden, marveling at the stunning floral arrangements and patterns
+* Evening: Enjoy dinner at Gordon Ramsay's Hell's Kitchen, savoring modern French cuisine
+
+**Day 3 (14 January 2026): Palm Jumeirah and Relaxation**
+
+* Morning: Take a leisurely stroll around the Palm Jumeirah, enjoying the stunning views of the Arabian Gulf
+* Visit the iconic Atlantis, The Palm hotel, taking in its grandeur and luxury
+* Lunch at the hotel's restaurant, trying seafood and Mediterranean-inspired dishes
+* Afternoon: Relax at the hotel's spa or take a nap to recharge for the evening ahead
+* Evening: Enjoy a coffee or snack at Jabal Ali Park Cafe, watching the sunset over the Arabian Gulf
+
+**Day 4 (15 January 2026): Global Village and Shopping**
+
+* Morning: Visit the Global Village, exploring the cultural attractions, shops, and entertainment options from around the world
+* Lunch at one of the many food stalls or restaurants within the village
+* Afternoon: Go shopping at Mall of the Emirates, browsing high-end brands and luxury experiences
+* Evening: Enjoy dinner at Saray Restaurant, savoring Mediterranean-inspired cuisine
+
+**Day 5 (16 January 2026): Miracle Garden and Hatta Wadi**
+
+* Morning: Visit the Miracle Garden again, taking in its stunning floral arrangements and patterns
+* Take a day trip to the Hatta Wadi, hiking through scenic trails and enjoying crystal-clear waters
+* Lunch at a local restaurant or bring your own picnic
+* Afternoon: Return to Dubai, visiting any last-minute attractions before dinner
+
+**Day 6 (17 January 2026): Dubai Frame and Al Fahidi Historical Neighbourhood**
+
+* Morning: Visit the Dubai Frame, taking in panoramic views of the city from a 150-meter tall frame
+* Explore the nearby Al Fahidi Historical Neighbourhood, visiting traditional Arabian buildings, museums, and cultural attractions
+* Lunch at a local restaurant or food stall
+* Afternoon: Continue exploring the neighbourhood, shopping for souvenirs or browsing local markets
+
+**Day 7 (18 January 2026): Last Day in Dubai**
+
+* Morning: Spend some time relaxing at your hotel or visiting any last-minute attractions
+* Visit the Gold Souk, browsing gold and silver jewelry, perfumes, and other traditional souvenirs
+* Lunch at Bastakiya Market, trying street food and local cuisine
+* Afternoon: Depart for the airport and head home
+
+Practical Travel Tips:
+
+* Best time to visit: January to March for pleasant weather or November to December for festive atmosphere.
+* Getting around: Metrolink trains, buses, and taxis are readily available; consider purchasing a Nol Card for convenient travel.
+* Accommodation: Choose from luxury hotels, budget-friendly options, or try a traditional Arabic riad for an authentic experience.
+* Respect local culture: Dress modestly, remove your shoes when entering mosques or homes, and avoid public displays of affection.
+* Stay hydrated: Dubai's climate can be hot, so ensure to drink plenty of water throughout the day.
+
+Enjoy your trip to Dubai!
+2026-01-07 17:19:35,912 | INFO     | pipeline.py:61 | __main__ | ⏱️  Execution time: 42.06 seconds
