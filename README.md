@@ -1,6 +1,6 @@
 # Pipeline Node Agents
 
-A lightweight Python framework for building modular AI pipelines with function nodes and agent nodes.
+A lightweight Python framework for building modular AI pipelines with function nodes and agent nodes. Designed to work well with lightweight local LLMs by giving you full control over context and task complexity at each step.
 
 ## Table of Contents
 
@@ -17,42 +17,63 @@ A lightweight Python framework for building modular AI pipelines with function n
 
 ## Key Features
 
+- **Local LLM support**: Works with Ollama for fully offline AI pipelines
 - **Modular architecture**: Compose pipelines from reusable function and agent nodes
 - **Flexible flow control**: Support for linear pipelines, conditional branching, and loops
 - **Adapter pattern**: Easy integration with different AI backends (CrewAI, LangChain, custom LLMs)
 - **Nested pipelines**: Run sub-pipelines within nodes for complex workflows
-- **Local LLM support**: Works with Ollama for fully offline AI pipelines
 
 ## Why This Framework?
 
-- **Easy to maintain**: Clean separation between node logic, adapters, and pipeline orchestration
-- **Easy to extend**: Add new adapters without modifying core pipeline logic
-- **Easy to test**: Each node can be tested independently with mock adapters
+- **Easy to maintain**: Build pipelines of any complexity to provide context clearly and friendly for lightweight LLMs
+- **Easy to extend**: Integrate with any AI agent framework by adding new adapters without modifying core pipeline logic
+- **Easy to test**: Each node can be tested independently with mock outputs
 
 ## Requirements
 
+### System
+- **OS**: Ubuntu 20.04 or later
+- **RAM**: 8 GB minimum (16 GB recommended)
+- **Disk**: 10 GB free space
+
+### Software
+- **curl**: For installing dependencies
+- **git**: For cloning the repository
 - [Poetry](https://python-poetry.org/) for dependency management
-- [Ollama](https://ollama.ai/) for local LLM support (optional, for AI agent nodes)
+- [Ollama](https://ollama.ai/) for local LLM support
 
 ## Installation
+
+In this guide, **curl** and **git** are assumed to be installed. If you do not have them, please follow the official documentation to install.
 
 1. **Install Poetry** (if not already installed):
     ```bash
     curl -sSL https://install.python-poetry.org | python3 -
     ```
 
-2. **Clone the repository and install dependencies**:
+2. **Install Ollama** (if not already installed):
     ```bash
+    curl -fsSL https://ollama.com/install.sh -o install.sh
+    ```
+
+3. **Clone the repository and install dependencies**:
+    ```bash
+    git clone <repository_url>
     cd pipeline_node_agents
-    poetry lock
     poetry install --no-root
+    ```
+
+
+4. **Install LLM** (default: `llama3.2:latest`):
+    ```bash
+    ollama pull llama3.2:latest
     ```
 
 ## How to Run
 
 > **Prerequisites:**
-> 1. Start Ollama: `ollama serve`
-> 2. Make sure the required model is installed using `ollama list` (as of December 3rd 2025, it's *llama3.2*)
+> 1. Start Ollama in a **separate terminal**: `ollama serve`
+> 2. Make sure the required model is installed using `ollama list` (as of January 15th 2026, it's *llama3.2*)
 
 ### Option 1: Run an example directly
 
@@ -94,7 +115,7 @@ poetry run python3 examples/random_mean_pipeline.py
 ./scripts/run_single_pipeline.sh examples/input_checker_pipeline.py 2 "Munich, Vienna"
 
 # Run with multiple inputs (use $'\n' to separate)
-./scripts/run_single_pipeline.sh examples/trip_planner/pipeline.py 1 $'Paris, Rome\n15 June 2025\n22 June 2025'
+./scripts/run_single_pipeline.sh examples/trip_planner/pipeline.py 1 $'Madrid, Dubai\n30 January 2026\n5 February 2026'
 ```
 
 #### Run All Smoke Tests

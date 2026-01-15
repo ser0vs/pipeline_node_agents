@@ -17,7 +17,7 @@
   - [Creating Adapters](#creating-adapters)
 - [Testing](#testing)
   - [Testing Individual Nodes](#testing-individual-nodes)
-  - [Using Mock Values](#using-mock-values)
+  - [Testing Pipelines Using Mock Values](#testing-pipelines-using-mock-values)
 - [Error Handling](#error-handling)
   - [Node-Level Error Handling](#node-level-error-handling)
   - [Pipeline-Level Error Handling](#pipeline-level-error-handling)
