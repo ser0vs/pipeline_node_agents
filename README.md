@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
 Expected output:
 ```
-Hello, World! Pipeline Node Agents v0.1.2 is working.
+Hello, World! Pipeline Node Agents <version> is working.
 ```
 
 ## Maintenance Guide
