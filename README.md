@@ -11,9 +11,8 @@ A lightweight Python framework for building modular AI pipelines with function n
 - [How to Run](#how-to-run)
   - [Option 1: Run an example directly](#option-1-run-an-example-directly)
   - [Option 2: Using Runner Scripts](#option-2-using-runner-scripts)
-    - [Run a Single Pipeline](#run-a-single-pipeline)
-    - [Run All Smoke Tests](#run-all-smoke-tests)
 - [Maintenance Guide](#maintenance-guide)
+- [Import as Python Package](#import-as-python-package)
 
 ## Key Features
 
@@ -134,6 +133,34 @@ poetry run python3 examples/random_mean_pipeline.py
 ```
 
 Logs are automatically saved to `logs/` directory by the Python logging system.
+
+## Import as Python Package
+
+### Requirements
+
+- **Python 3.11 - 3.13** (required)
+
+### Installation from Test PyPI
+
+```bash
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ pipeline-node-agents
+```
+
+> **Note:** The `--extra-index-url` flag is required because some dependencies (like `crewai`, `litellm`) are only available on the main PyPI, not Test PyPI.
+
+### Verify Installation
+
+```python
+from pipeline_node_agents import greet
+
+if __name__ == "__main__":
+    print(greet())
+```
+
+Expected output:
+```
+Hello, World! Pipeline Node Agents v0.1.2 is working.
+```
 
 ## Maintenance Guide
 
