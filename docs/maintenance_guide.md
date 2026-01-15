@@ -332,7 +332,7 @@ Keep context dictionaries lean - only pass necessary data between nodes.
 - Ensure the adapter is correctly configured
 
 **Issue: Import errors**
-- Verify all dependencies are installed: `poetry install --no-root`
+- Verify all dependencies are installed: `poetry install`
 - Check Python path includes the project root
 
 **Issue: Search results are irrelevant or in wrong language**

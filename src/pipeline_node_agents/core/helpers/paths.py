@@ -15,7 +15,5 @@ def get_project_root(start: Path | None = None) -> Path:
             return parent
         if (parent / ".git").exists():
             return parent
-        if (parent / "src").exists():
-            return parent
 
     return start.parents[-1]

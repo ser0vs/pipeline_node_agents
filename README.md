@@ -60,7 +60,7 @@ In this guide, **curl** and **git** are assumed to be installed. If you do not h
     ```bash
     git clone <repository_url>
     cd pipeline_node_agents
-    poetry install --no-root
+    poetry install
     ```
 
 
