@@ -1,8 +1,8 @@
 from datetime import datetime
 from pathlib import Path
 
-from src.core.helpers.paths import get_project_root
-from src.core.logging_config import configure_logging
+from src.pipeline_node_agents.core.helpers.paths import get_project_root
+from src.pipeline_node_agents.core.logging_config import configure_logging
 
 
 def init_pipeline_logger(

@@ -1,14 +1,14 @@
 import sys
 import time
 
-from src.adapters.python_fn_adapter import PythonFnAdapter
-from src.adapters.crewai_adapter import CrewAIAdapter
-from src.core.node import FunctionNode, AgentNode
-from src.core.pipeline import Pipeline
-from src.tools.scraper import Scraper
-from src.tools.websearch import WebSearcher
+from src.pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
+from src.pipeline_node_agents.adapters.crewai_adapter import CrewAIAdapter
+from src.pipeline_node_agents.core.node import FunctionNode, AgentNode
+from src.pipeline_node_agents.core.pipeline import Pipeline
+from src.pipeline_node_agents.tools.scraper import Scraper
+from src.pipeline_node_agents.tools.websearch import WebSearcher
 from examples.trip_planner.agents import TripPlannerAgents
-from src.core.logging_config import get_logger
+from src.pipeline_node_agents.core.logging_config import get_logger
 
 logger = get_logger(__name__)
 

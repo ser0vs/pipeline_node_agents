@@ -10,13 +10,13 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 
-from src.adapters.python_fn_adapter import PythonFnAdapter
-from src.adapters.crewai_adapter import CrewAIAdapter
-from src.core.node import FunctionNode, AgentNode
-from src.core.pipeline import Pipeline
+from src.pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
+from src.pipeline_node_agents.adapters.crewai_adapter import CrewAIAdapter
+from src.pipeline_node_agents.core.node import FunctionNode, AgentNode
+from src.pipeline_node_agents.core.pipeline import Pipeline
 from crewai import Agent, LLM
-from src.core.logger_bootstrap import init_pipeline_logger
-from src.core.logging_config import get_logger
+from src.pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
+from src.pipeline_node_agents.core.logging_config import get_logger
 
 init_pipeline_logger(pipeline_name="random_mean_pipeline")
 logger = get_logger(__name__)

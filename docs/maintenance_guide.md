@@ -29,7 +29,7 @@
 
 ```
 pipeline_node_agents/
-├── src/
+├── src/pipeline_nodes_agents/
 │   ├── core/
 │   │   ├── node.py          # FunctionNode, AgentNode definitions
 │   │   └── pipeline.py      # Pipeline orchestration
@@ -54,8 +54,8 @@ Please add your custom pipelines into the `examples` folder. Feel free to use ex
 ### Creating a Function Node
 
 ```python
-from src.adapters.python_fn_adapter import PythonFnAdapter
-from src.core.node import FunctionNode
+from src.pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
+from src.pipeline_node_agents.core.node import FunctionNode
 
 def my_function(input_value: int) -> dict:
     return {"output_value": input_value * 2}
@@ -71,7 +71,7 @@ node = FunctionNode(
 ### Creating an Agent Node
 
 ```python
-from src.core.node import AgentNode
+from src.pipeline_node_agents.core.node import AgentNode
 
 node = AgentNode(
     name="MyAgentNode",
@@ -88,7 +88,7 @@ node = AgentNode(
 For simple sequential pipelines, pass a list of nodes:
 
 ```python
-from src.core.pipeline import Pipeline
+from src.pipeline_node_agents.core.pipeline import Pipeline
 
 pipeline = Pipeline(nodes=[node1, node2, node3])
 result = pipeline.run(initial_context={"input_value": 5})
@@ -101,7 +101,7 @@ This creates edges: `node1 -> node2 -> node3`
 For pipelines with conditional branching or complex flows:
 
 ```python
-from src.core.pipeline import Pipeline
+from src.pipeline_node_agents.core.pipeline import Pipeline
 
 # Create pipeline with a start node
 pipeline = Pipeline(start_node=decision_node)
@@ -278,8 +278,8 @@ except Exception as e:
 The framework uses Python's logging module. Initialize logging in your pipelines (replace `YOUR_LOG_DIR_NAME` with your name for the directory):
 
 ```python
-from src.core.logging_config import get_logger
-from src.core.logger_bootstrap import init_pipeline_logger
+from src.pipeline_node_agents.core.logging_config import get_logger
+from src.pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
 
 init_pipeline_logger(pipeline_name="YOUR_LOG_DIR_NAME")
 logger = get_logger(__name__)

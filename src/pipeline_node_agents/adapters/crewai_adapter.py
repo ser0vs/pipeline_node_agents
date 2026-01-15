@@ -1,9 +1,9 @@
-from src.adapters.base_adapter import BaseAdapter
+from src.pipeline_node_agents.adapters.base_adapter import BaseAdapter
 from crewai import Agent, Task, Crew
 
-from src.adapters.base_adapter import BaseAdapter
+from src.pipeline_node_agents.adapters.base_adapter import BaseAdapter
 from crewai import Agent, Task, Crew
-from src.core.logging_config import get_logger
+from src.pipeline_node_agents.core.logging_config import get_logger
 
 logger = get_logger(__name__)
 

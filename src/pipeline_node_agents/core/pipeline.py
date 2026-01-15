@@ -1,6 +1,6 @@
 from __future__ import annotations
-from src.core.helpers.pipeline_visualizer import PipelineVisualizer
-from src.core.logging_config import get_logger
+from src.pipeline_node_agents.core.helpers.pipeline_visualizer import PipelineVisualizer
+from src.pipeline_node_agents.core.logging_config import get_logger
 
 logger = get_logger(__name__)
 
