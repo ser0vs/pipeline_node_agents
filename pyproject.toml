@@ -17,11 +17,10 @@ packages = [
 python = ">=3.11,<3.14"
 crewai = { version = "^1.6.1", python = ">=3.10,<3.14" }
 litellm = "^1.80.7"
-duckduckgo-search = "^7.0.0"
 requests = "^2.32.0"
 beautifulsoup4 = "^4.14.3"
 lxml = "^6.0.2"
-ddgs = "^9.9.3"
+ddgs = "^9.8.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

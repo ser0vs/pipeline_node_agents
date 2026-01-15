@@ -53,7 +53,7 @@ In this guide, **curl** and **git** are assumed to be installed. If you do not h
 
 2. **Install Ollama** (if not already installed):
     ```bash
-    curl -fsSL https://ollama.com/install.sh -o install.sh
+    curl -fsSL https://ollama.com/install.sh | sh
     ```
 
 3. **Clone the repository and install dependencies**:
