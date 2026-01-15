@@ -6,8 +6,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import time
 import requests
 from bs4 import BeautifulSoup
-from src.pipeline_node_agents.core.logging_config import get_logger
-from src.pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
+from pipeline_node_agents.core.logging_config import get_logger
+from pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
 
 logger = get_logger(__name__)
 

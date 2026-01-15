@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from src.pipeline_node_agents.adapters.base_adapter import BaseAdapter
-from src.pipeline_node_agents.core.logging_config import get_logger
+from pipeline_node_agents.adapters.base_adapter import BaseAdapter
+from pipeline_node_agents.core.logging_config import get_logger
 
 logger = get_logger(__name__)
 

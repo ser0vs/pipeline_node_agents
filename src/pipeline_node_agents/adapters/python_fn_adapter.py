@@ -1,4 +1,4 @@
-from src.pipeline_node_agents.adapters.base_adapter import BaseAdapter
+from pipeline_node_agents.adapters.base_adapter import BaseAdapter
 
 class PythonFnAdapter(BaseAdapter):
     """Adapter for wrapping simple Python functions."""
