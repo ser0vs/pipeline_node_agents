@@ -1,5 +1,6 @@
 import os, sys
 import random, time
+import logging
 
 os.environ["OLLAMA_HOST"] = "http://localhost:11434"
 
@@ -17,66 +18,79 @@ from crewai import Agent, LLM
 from src.pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
 from src.pipeline_node_agents.core.logging_config import get_logger
 
-init_pipeline_logger(pipeline_name="random_mean_pipeline")
-logger = get_logger(__name__)
 
+class RandomMeanPipelineCrewAI:
+    """
+    A single-run pipeline that generates random numbers and summarizes them using CrewAI.
+    """
 
-# --- Function Node 1: Generate random numbers ---
-def generate_random_numbers(limit: int) -> list:
-    numbers = [random.uniform(0, limit) for _ in range(10)]
-    return numbers
+    def __init__(self, logger: logging.Logger | None = None) -> None:
+        self.logger = logger or logging.getLogger(__name__)
 
-# --- CrewAI Node 2: Summarize numbers ---
-ollama_llm = LLM(
-    model="ollama/llama3.2",
-    base_url="http://localhost:11434"
-)
+        # --- CrewAI LLM and Agent setup ---
+        self.ollama_llm = LLM(
+            model="ollama/llama3.2",
+            base_url="http://localhost:11434"
+        )
 
-number_summary_agent = Agent(
-    name="NumberSummaryAgent",
-    role="Expert in statistics",
-    goal="Receive a list of numbers and return a brief textual summary",
-    backstory="Expert in statistics and data analysis with years of experience.",
-    llm=ollama_llm
-)
+        self.number_summary_agent = Agent(
+            name="NumberSummaryAgent",
+            role="Expert in statistics",
+            goal="Receive a list of numbers and return a brief textual summary",
+            backstory="Expert in statistics and data analysis with years of experience.",
+            llm=self.ollama_llm
+        )
 
-def main():
-    # Node 1: Generate random numbers
-    node1 = FunctionNode(
-        name="RandomNumberGenerator",
-        adapter=PythonFnAdapter(generate_random_numbers),
-        inputs=["limit"],
-        output="random_numbers"
-    )
+    # --- Function Node 1: Generate random numbers ---
+    def generate_random_numbers(self, limit: int) -> list[float]:
+        numbers = [random.uniform(0, limit) for _ in range(10)]
+        return numbers
 
-    # Node 2: CrewAI summarization
-    node2 = AgentNode(
-        name="NumberSummaryNode",
-        adapter=CrewAIAdapter(number_summary_agent),
-        inputs=["random_numbers"],
-        output="summary"
-    )
+    def run(self) -> dict:
+        self.logger.info("Starting RandomMeanPipelineCrewAI")
 
-    pipeline = Pipeline(nodes=[node1, node2])
+        # Node 1: Generate random numbers
+        node1 = FunctionNode(
+            name="RandomNumberGenerator",
+            adapter=PythonFnAdapter(self.generate_random_numbers),
+            inputs=["limit"],
+            output="random_numbers"
+        )
 
-    context = {"limit": 5}
+        # Node 2: CrewAI summarization
+        node2 = AgentNode(
+            name="NumberSummaryNode",
+            adapter=CrewAIAdapter(self.number_summary_agent),
+            inputs=["random_numbers"],
+            output="summary"
+        )
 
-    start_time = time.perf_counter()
-    result = pipeline.run(context)
-    elapsed_time = time.perf_counter() - start_time
+        pipeline = Pipeline(nodes=[node1, node2])
 
-    print(f"\n⏱️  Execution time: {elapsed_time:.2f} seconds")
+        context = {"limit": 5}
 
-    time.sleep(0.1)
-    sys.stdout = sys.__stdout__ 
-    sys.stderr = sys.__stderr__
+        start_time = time.perf_counter()
+        result = pipeline.run(context)
+        elapsed = time.perf_counter() - start_time
 
-    print("\n✅ Final Pipeline Output:")
-    print(result.get("summary"))
+        time.sleep(0.1)
+        sys.stdout = sys.__stdout__
+        sys.stderr = sys.__stderr__
 
-    logger.info(f"✅Final Pipeline Output:\n{result.get('summary')}")
-    logger.info(f"⏱️  Execution time: {elapsed_time:.2f} seconds")
+        print()
+        print(f"✅ Final Pipeline Output:\n{result.get('summary')}")
+        print()
+        print(f"⏱️  Execution time: {elapsed:.2f} seconds")
+        print()
+
+        self.logger.info("✅ Final Pipeline Output: %s", result.get('summary'))
+        self.logger.info("⏱️  Execution time: %.2f seconds", elapsed)
+
+        return result
 
 
 if __name__ == "__main__":
-    main()
+    init_pipeline_logger(pipeline_name="random_mean_pipeline_crewai", project_root=PROJECT_ROOT)
+    logger = get_logger(__name__)
+    pipeline = RandomMeanPipelineCrewAI(logger=logger)
+    pipeline.run()
