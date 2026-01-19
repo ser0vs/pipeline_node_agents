@@ -18,11 +18,10 @@ class RandomMeanPipelineCrewAI:
     A single-run pipeline that generates random numbers and summarizes them using CrewAI.
     """
 
-    def __init__(self, logger: logging.Logger | None = None) -> None:
+    def __init__(self, ollama_llm=None, logger: logging.Logger | None = None) -> None:
         self.logger = logger or logging.getLogger(__name__)
 
-        # --- CrewAI LLM and Agent setup ---
-        self.ollama_llm = LLM(
+        self.ollama_llm = ollama_llm or LLM(
             model="ollama/llama3.2",
             base_url="http://localhost:11434"
         )

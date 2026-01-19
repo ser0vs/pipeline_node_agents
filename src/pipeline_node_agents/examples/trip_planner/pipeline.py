@@ -1,9 +1,11 @@
 import sys
 import time
 import logging
+from crewai import LLM
 
 from pipeline_node_agents.core.pipeline import Pipeline
 from pipeline_node_agents.examples.trip_planner.nodes import TripPlannerNodes
+from pipeline_node_agents.examples.trip_planner.config import TripPlannerConfig
 from pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
 from pipeline_node_agents.core.logging_config import get_logger
 
@@ -14,18 +16,23 @@ class TripPlannerPipeline:
     and creating a detailed itinerary.
     """
 
-    def __init__(self, logger: logging.Logger | None = None) -> None:
+    def __init__(self, ollama_llm=None, logger: logging.Logger | None = None) -> None:
+        self.ollama_llm = ollama_llm or LLM(
+            model="ollama/llama3.2",
+            base_url="http://localhost:11434"
+        )
+        TripPlannerConfig.set_ollama_llm(self.ollama_llm)
         self.logger = logger or logging.getLogger(__name__)
 
     def run(self) -> dict:
         self.logger.info("Starting TripPlannerPipeline")
 
         main_pipeline = Pipeline(nodes=[
-            TripPlannerNodes.research_cities_node,
-            TripPlannerNodes.city_selection_node,
-            TripPlannerNodes.extract_chosen_city_node,
-            TripPlannerNodes.local_expert_node,
-            TripPlannerNodes.travel_concierge_node
+            TripPlannerNodes.get_research_cities_node(),
+            TripPlannerNodes.get_city_selection_node(),
+            TripPlannerNodes.get_extract_chosen_city_node(),
+            TripPlannerNodes.get_local_expert_node(),
+            TripPlannerNodes.get_travel_concierge_node()
         ])
 
         list_of_cities = input("Enter a list of cities (comma-separated): ").split(",")

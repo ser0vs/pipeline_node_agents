@@ -45,7 +45,7 @@ class TripPlannerFunctions:
             weather_summary_node = AgentNode(
                 name="WeatherSummaryNode",
                 adapter=CrewAIAdapter(
-                    TripPlannerAgents.summary_agent,
+                    TripPlannerAgents.get_summary_agent(),
                     task_description=f"Analyze the provided text and summarize information about weather in {city} around dates {dates[0]} and {dates[1]}.",
                     expected_output="Short summary of the weather information."
                 ),
