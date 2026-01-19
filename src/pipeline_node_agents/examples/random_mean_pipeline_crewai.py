@@ -4,19 +4,13 @@ import logging
 
 os.environ["OLLAMA_HOST"] = "http://localhost:11434"
 
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
-if PROJECT_ROOT not in sys.path:
-    sys.path.insert(0, PROJECT_ROOT)
-
-
-from src.pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
-from src.pipeline_node_agents.adapters.crewai_adapter import CrewAIAdapter
-from src.pipeline_node_agents.core.node import FunctionNode, AgentNode
-from src.pipeline_node_agents.core.pipeline import Pipeline
+from pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
+from pipeline_node_agents.adapters.crewai_adapter import CrewAIAdapter
+from pipeline_node_agents.core.node import FunctionNode, AgentNode
+from pipeline_node_agents.core.pipeline import Pipeline
 from crewai import Agent, LLM
-from src.pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
-from src.pipeline_node_agents.core.logging_config import get_logger
+from pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
+from pipeline_node_agents.core.logging_config import get_logger
 
 
 class RandomMeanPipelineCrewAI:
@@ -90,7 +84,7 @@ class RandomMeanPipelineCrewAI:
 
 
 if __name__ == "__main__":
-    init_pipeline_logger(pipeline_name="random_mean_pipeline_crewai", project_root=PROJECT_ROOT)
+    init_pipeline_logger(pipeline_name="random_mean_pipeline_crewai")
     logger = get_logger(__name__)
     pipeline = RandomMeanPipelineCrewAI(logger=logger)
     pipeline.run()

@@ -1,18 +1,13 @@
-import os, sys
 import random, time
 from statistics import mean
-
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
-if PROJECT_ROOT not in sys.path:
-    sys.path.insert(0, PROJECT_ROOT)
-
-from src.pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
-from src.pipeline_node_agents.core.node import FunctionNode
-from src.pipeline_node_agents.core.pipeline import Pipeline
-from src.pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
-from src.pipeline_node_agents.core.logging_config import get_logger
 import logging
+
+from pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
+from pipeline_node_agents.core.node import FunctionNode
+from pipeline_node_agents.core.pipeline import Pipeline
+from pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
+from pipeline_node_agents.core.logging_config import get_logger
+
 
 class RandomMeanPipeline:
     """
@@ -69,7 +64,7 @@ class RandomMeanPipeline:
         return result
 
 if __name__ == "__main__":
-    init_pipeline_logger(pipeline_name="random_mean_pipeline", project_root=PROJECT_ROOT)
+    init_pipeline_logger(pipeline_name="random_mean_pipeline")
     logger = get_logger(__name__)
     pipeline = RandomMeanPipeline(logger=logger)
     pipeline.run()

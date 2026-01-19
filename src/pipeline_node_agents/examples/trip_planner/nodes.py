@@ -1,8 +1,8 @@
-from src.pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
-from src.pipeline_node_agents.adapters.crewai_adapter import CrewAIAdapter
-from src.pipeline_node_agents.core.node import FunctionNode, AgentNode
-from examples.trip_planner.agents import TripPlannerAgents
-from examples.trip_planner.functions import TripPlannerFunctions
+from pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
+from pipeline_node_agents.adapters.crewai_adapter import CrewAIAdapter
+from pipeline_node_agents.core.node import FunctionNode, AgentNode
+from pipeline_node_agents.examples.trip_planner.agents import TripPlannerAgents
+from pipeline_node_agents.examples.trip_planner.functions import TripPlannerFunctions
 
 
 class TripPlannerNodes:

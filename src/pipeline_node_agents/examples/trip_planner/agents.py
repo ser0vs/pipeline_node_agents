@@ -1,16 +1,9 @@
-import os, sys
+import os
 
 os.environ["OLLAMA_HOST"] = "http://localhost:11434"
 
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
-
-if PROJECT_ROOT not in sys.path:
-    sys.path.insert(0, PROJECT_ROOT)
-
-
 from crewai import Agent
-from examples.trip_planner.config import TripPlannerConfig
+from pipeline_node_agents.examples.trip_planner.config import TripPlannerConfig
 
 
 class TripPlannerAgents:

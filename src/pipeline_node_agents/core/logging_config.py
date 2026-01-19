@@ -7,10 +7,6 @@ LOG_FORMAT = (
     "%(filename)s:%(lineno)d | %(name)s | %(message)s"
 )
 
-LOG_DIR = Path(__file__).resolve().parents[2] / "logs"
-LOG_DIR.mkdir(exist_ok=True)
-
-
 def configure_logging(log_file: Path | None = None, level: str = "INFO"):
     handlers = {
         "console": {

@@ -1,17 +1,11 @@
-import os
 import sys
 import time
 import logging
 
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(os.path.dirname(CURRENT_DIR))
-if PROJECT_ROOT not in sys.path:
-    sys.path.insert(0, PROJECT_ROOT)
-
-from src.pipeline_node_agents.core.pipeline import Pipeline
-from examples.trip_planner.nodes import TripPlannerNodes
-from src.pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
-from src.pipeline_node_agents.core.logging_config import get_logger
+from pipeline_node_agents.core.pipeline import Pipeline
+from pipeline_node_agents.examples.trip_planner.nodes import TripPlannerNodes
+from pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
+from pipeline_node_agents.core.logging_config import get_logger
 
 
 class TripPlannerPipeline:
@@ -26,7 +20,6 @@ class TripPlannerPipeline:
     def run(self) -> dict:
         self.logger.info("Starting TripPlannerPipeline")
 
-        # Full pipeline
         main_pipeline = Pipeline(nodes=[
             TripPlannerNodes.research_cities_node,
             TripPlannerNodes.city_selection_node,
@@ -71,7 +64,7 @@ class TripPlannerPipeline:
 
 
 def main():
-    init_pipeline_logger(pipeline_name="trip_planner_pipeline", project_root=PROJECT_ROOT)
+    init_pipeline_logger(pipeline_name="trip_planner_pipeline")
     logger = get_logger(__name__)
 
     pipeline = TripPlannerPipeline(logger=logger)
