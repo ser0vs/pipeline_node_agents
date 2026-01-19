@@ -33,8 +33,8 @@ pipeline_node_agents/
 │   ├── core/
 │   │   ├── node.py          # FunctionNode, AgentNode definitions
 │   │   └── pipeline.py      # Pipeline orchestration
-│   └── adapters/            # Adapters for different execution backends
-├── examples/                # Example pipelines
+│   ├── adapters/            # Adapters for different execution backends
+│   └── examples/            # Example pipelines
 ├── docs/                    # Documentation
 ├── logs/                    # Logs, saved locally
 ├── pyproject.toml
