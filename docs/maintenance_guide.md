@@ -17,12 +17,8 @@
     - [Edge Conditions](#edge-conditions)
     - [Creating Loops](#creating-loops)
     - [Creating Adapters](#creating-adapters)
-- [Testing](#testing)
-  - [Testing Individual Nodes](#testing-individual-nodes)
-  - [Testing Pipelines Using Mock Values](#testing-pipelines-using-mock-values)
-- [Error Handling](#error-handling)
-  - [Node-Level Error Handling](#node-level-error-handling)
-  - [Pipeline-Level Error Handling](#pipeline-level-error-handling)
+- [Run Test Scripts](#run-test-scripts)
+- [Testing with Mock](#testing)
 - [Logging](#logging)
 - [Performance Optimization](#performance-optimization)
 - [Troubleshooting](#troubleshooting)
@@ -59,11 +55,10 @@ pipeline_node_agents/
 - **Easy to extend**: Integrate with any AI agent framework by adding new adapters without modifying core pipeline logic
 - **Easy to test**: Each node can be tested independently with mock outputs
 
-## Basics
-
-Every pipeline built in this framework consists of Nodes, which take some values as input and return one value as output. The main goal of maintenance is to build a schema of Nodes that will process data efficiently. The original framework has 2 types of nodes: Agent node and Function node. Agent node processes the data using an LLM which works with the corresponding adapter and returns the result. Function node executes any Python function using the corresponding adapter.
 
 ## How to Maintain
+Every pipeline built in this framework consists of Nodes, which take some values as input and return one value as output. The main goal of maintenance is to build a schema of Nodes that will process data efficiently. The original framework has 2 types of nodes: Agent node and Function node. Agent node processes the data using an LLM which works with the corresponding adapter and returns the result. Function node executes any Python function using the corresponding adapter.
+
 
 Please add your custom pipelines into the `examples` folder. Feel free to use existing pipelines as templates.
 
@@ -221,30 +216,72 @@ If you want to use your own agent framework, feel free to add the corresponding 
 
 The adapter's `invoke` method can accept any input fields, but it has to return only one output. 
 
-## Testing
+## Run Test Scripts
 
-### Testing Individual Nodes
 
-Function nodes can be tested using standard unit tests.
+> **Prerequisites:**
+> Completed ollama setup as described in [Readme Setup Ollama](../README.md#1-setup-ollama)
 
-```python
-def test_my_function_node():
-    node = FunctionNode(
-        name="TestNode",
-        adapter=PythonFnAdapter(my_function),
-        inputs=["input_value"],
-        output="output_value"
-    )
-    
-    context = {"input_value": 5}
-    result = node.execute(context)
-    
-    assert result["output_value"] == 10
+- **Install Poetry** (if not already installed):
+    ```bash
+    curl -sSL https://install.python-poetry.org | python3 -
+    ```
+
+- **Clone the repository and install dependencies**:
+    ```bash
+    git clone <repository_url>
+    cd pipeline_node_agents
+    poetry install
+    ```
+
+- **Make scripts executable**:
+    ```bash
+    chmod +x scripts/*.sh
+    ```
+
+### Option 1: Run a Single Pipeline
+
+```bash
+./scripts/run_single_pipeline.sh <path_to_pipeline> <runs> [input_strings]
 ```
 
-As agent nodes are not deterministic, they cannot be tested with standard instruments. However, it is better to test nodes separately before building them into a complicated pipeline.
+**Parameters:**
+- `<path_to_pipeline>` - Path to the Python pipeline file
+- `<runs>` - Number of times to run the pipeline
+- `[input_strings]` - Optional: newline-separated inputs for interactive prompts
 
-### Testing Pipelines Using Mock Values
+**Examples:**
+```bash
+# Run a simple pipeline 3 times
+./scripts/run_single_pipeline.sh src/pipeline_node_agents/examples/random_mean_pipeline.py 3
+
+# Run with single input
+./scripts/run_single_pipeline.sh src/pipeline_node_agents/examples/input_checker_pipeline.py 2 "Munich, Vienna"
+
+# Run with multiple inputs (use $'\n' to separate)
+./scripts/run_single_pipeline.sh src/pipeline_node_agents/examples/trip_planner/pipeline.py 1 $'Madrid, Dubai\n30 January 2026\n5 February 2026'
+```
+
+### Option 2: Run a Single Pipeline
+
+```bash
+./scripts/run_smoke_pipelines.sh [number_of_runs_per_pipeline]
+```
+
+**Examples:**
+```bash
+# Run all example pipelines once
+./scripts/run_smoke_pipelines.sh
+
+# Run all example pipelines 3 times each
+./scripts/run_smoke_pipelines.sh 3
+```
+
+Logs are automatically saved to `logs/` directory by the Python logging system.
+
+
+
+## Testing with Mock
 
 Use mock values for testing without external dependencies using the optional `mock_value` argument in the node constructor. Example:
 
@@ -262,32 +299,6 @@ This can be particularly useful when debugging a complex pipeline: you do not ne
 
 Note: Do not forget to remove all mock_values before deployment.
 
-## Error Handling
-
-### Node-Level Error Handling
-
-Add error handling within your functions:
-
-```python
-def safe_function(input_value: int) -> dict:
-    try:
-        result = risky_operation(input_value)
-        return {"output": result, "error": None}
-    except Exception as e:
-        return {"output": None, "error": str(e)}
-```
-
-### Pipeline-Level Error Handling
-
-Wrap pipeline execution in try-except blocks:
-
-```python
-try:
-    result = pipeline.run(context)
-except Exception as e:
-    logger.error(f"Pipeline failed: {e}")
-    # Handle gracefully or re-raise
-```
 
 ## Logging
 
@@ -298,8 +309,8 @@ from pipeline_node_agents.core.logging_config import get_logger
 from pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
 
 def main():
-    # Replace "my_pipeline" with your pipeline name
-    init_pipeline_logger(pipeline_name="my_pipeline")
+    # Replace "my_pipeline" and "my_project_root" with your pipeline name and project root
+    init_pipeline_logger(pipeline_name="my_pipeline", project_root="my_project_root")
     logger = get_logger(__name__)
     
     logger.info("Starting pipeline execution")
