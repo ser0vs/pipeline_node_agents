@@ -2,18 +2,6 @@
 
 A lightweight Python framework for building modular AI pipelines with function nodes and agent nodes. Designed to work well with lightweight local LLMs by giving you full control over context and task complexity at each step.
 
-## Table of Contents
-
-- [Key Features](#key-features)
-- [Why This Framework?](#why-this-framework)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [How to Run](#how-to-run)
-  - [Option 1: Run an example directly](#option-1-run-an-example-directly)
-  - [Option 2: Using Runner Scripts](#option-2-using-runner-scripts)
-- [Maintenance Guide](#maintenance-guide)
-- [Import as Python Package](#import-as-python-package)
-
 ## Key Features
 
 - **Local LLM support**: Works with Ollama for fully offline AI pipelines
@@ -28,14 +16,44 @@ A lightweight Python framework for building modular AI pipelines with function n
 - **Easy to extend**: Integrate with any AI agent framework by adding new adapters without modifying core pipeline logic
 - **Easy to test**: Each node can be tested independently with mock outputs
 
+
+
+# Basic usage
+
 ## Requirements
 
-### System
-- **OS**: Ubuntu 20.04 or later
-- **RAM**: 8 GB minimum (16 GB recommended)
-- **Disk**: 10 GB free space
+- **Python 3.11 - 3.13** (required)
 
-### Software
+## Installation
+
+```bash
+python3 -m venv .venv
+```
+```bash
+source .venv/bin/activate
+```
+```bash
+pip install pipeline-node-agents
+```
+
+
+## Verify Installation
+
+```python
+from pipeline_node_agents import greet
+
+print(greet())
+```
+
+Expected output:
+```
+Hello, World! Pipeline Node Agents <version> is working.
+```
+
+# Usage as developer
+
+## Requirements
+
 - **curl**: For installing dependencies
 - **git**: For cloning the repository
 - [Poetry](https://python-poetry.org/) for dependency management
@@ -108,13 +126,13 @@ poetry run python3 examples/random_mean_pipeline.py
 **Examples:**
 ```bash
 # Run a simple pipeline 3 times
-./scripts/run_single_pipeline.sh examples/random_mean_pipeline.py 3
+./scripts/run_single_pipeline.sh src/pipeline_node_agents/examples/random_mean_pipeline.py 3
 
 # Run with single input
-./scripts/run_single_pipeline.sh examples/input_checker_pipeline.py 2 "Munich, Vienna"
+./scripts/run_single_pipeline.sh src/pipeline_node_agents/examples/input_checker_pipeline.py 2 "Munich, Vienna"
 
 # Run with multiple inputs (use $'\n' to separate)
-./scripts/run_single_pipeline.sh examples/trip_planner/pipeline.py 1 $'Madrid, Dubai\n30 January 2026\n5 February 2026'
+./scripts/run_single_pipeline.sh src/pipeline_node_agents/examples/trip_planner/pipeline.py 1 $'Madrid, Dubai\n30 January 2026\n5 February 2026'
 ```
 
 #### Run All Smoke Tests
@@ -134,33 +152,7 @@ poetry run python3 examples/random_mean_pipeline.py
 
 Logs are automatically saved to `logs/` directory by the Python logging system.
 
-## Import as Python Package
 
-### Requirements
-
-- **Python 3.11 - 3.13** (required)
-
-### Installation from Test PyPI
-
-```bash
-pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ pipeline-node-agents
-```
-
-> **Note:** The `--extra-index-url` flag is required because some dependencies (like `crewai`, `litellm`) are only available on the main PyPI, not Test PyPI.
-
-### Verify Installation
-
-```python
-from pipeline_node_agents import greet
-
-if __name__ == "__main__":
-    print(greet())
-```
-
-Expected output:
-```
-Hello, World! Pipeline Node Agents <version> is working.
-```
 
 ## Maintenance Guide
 
