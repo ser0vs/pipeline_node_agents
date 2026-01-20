@@ -13,7 +13,7 @@ A lightweight Python framework for building modular AI pipelines with function n
 ## Requirements
 
 - **Python 3.11 - 3.13** (required)
-- [Ollama](https://ollama.ai/) for local LLM support
+- [Ollama](https://ollama.ai/) with pulled model (default *llama3.2:latest*)
 
 ## Installation
 
@@ -54,6 +54,8 @@ ollama list
 ````
 as of January 15th 2026, the default LLM is *llama3.2*
 
+> Please follow the detailed instruction of [Ollama installation](#1-setup-ollama) if one of these prerequisites is not fulfilled.
+
 ### Option 1: With defined model and logger (recommended)
 ```python
 from crewai import LLM
@@ -93,28 +95,36 @@ pipeline.run()
 
 In this guide, **curl** and **git** are assumed to be installed. If you do not have them, please follow the official documentation to install.
 
-1. **Install Poetry** (if not already installed):
-    ```bash
-    curl -sSL https://install.python-poetry.org | python3 -
-    ```
-
-2. **Install Ollama** (if not already installed):
+### 1. Setup Ollama
+- **Install Ollama** (if not already installed):
     ```bash
     curl -fsSL https://ollama.com/install.sh | sh
     ```
 
-3. **Clone the repository and install dependencies**:
+- **Run ollama in a separate terminal**:
+    ```bash
+    ollama serve
+    ```
+
+- **Install LLM** (default: `llama3.2:latest`):
+    ```bash
+    ollama pull llama3.2:latest
+    ```
+
+### 2. Setup Poetry and Repository
+
+- **Install Poetry** (if not already installed):
+    ```bash
+    curl -sSL https://install.python-poetry.org | python3 -
+    ```
+
+- **Clone the repository and install dependencies**:
     ```bash
     git clone <repository_url>
     cd pipeline_node_agents
     poetry install
     ```
 
-
-4. **Install LLM** (default: `llama3.2:latest`):
-    ```bash
-    ollama pull llama3.2:latest
-    ```
 
 ## How to Run
 
