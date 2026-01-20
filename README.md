@@ -80,7 +80,23 @@ pipeline = TripPlannerPipeline()
 pipeline.run()
 ```
 
+### Available pipelines
 
+The following pipelines are included as examples:
+
+- ConditioningPipeline
+
+- InputCheckerPipeline
+
+- RandomMeanPipeline
+
+- RandomMeanPipelineCrewAI
+
+- SearchAndSummarizePipeline
+
+- TripPlannerPipeline
+
+To run one of them, replace "TripPlannerPipeline" in the code example with a class from the list.
 
 # Usage as Developer
 
