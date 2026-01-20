@@ -6,9 +6,10 @@ authors = [
     {name = "Sergei Ovsiannikov", email = "a12230165@unet.univie.ac.at"}
 ]
 
-homepage = "https://github.com/ser0vs/pipeline_node_agents"
-repository = "https://github.com/ser0vs/pipeline_node_agents"
-documentation = "https://github.com/ser0vs/pipeline_node_agents/blob/master/docs/maintenance_guide.md"
+[project.urls]
+Homepage = "https://github.com/ser0vs/pipeline_node_agents"
+Repository = "https://github.com/ser0vs/pipeline_node_agents"
+Documentation = "https://github.com/ser0vs/pipeline_node_agents/blob/master/docs/maintenance_guide.md"
 
 readme = "README.md"
 requires-python = ">=3.11,<3.14"

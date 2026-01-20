@@ -1,8 +1,10 @@
-# Maintenance guide
+# Maintenance Guide
 
 ## Table of Contents
 
 - [Project Structure](#project-structure)
+- [Key Features](#key-features)
+- [Why This Framework?](#why-this-framework)
 - [Basics](#basics)
 - [How to Maintain](#how-to-maintain)
   - [Creating a Function Node](#creating-a-function-node)
@@ -14,7 +16,7 @@
     - [Nested Pipelines](#nested-pipelines)
     - [Edge Conditions](#edge-conditions)
     - [Creating Loops](#creating-loops)
-  - [Creating Adapters](#creating-adapters)
+    - [Creating Adapters](#creating-adapters)
 - [Testing](#testing)
   - [Testing Individual Nodes](#testing-individual-nodes)
   - [Testing Pipelines Using Mock Values](#testing-pipelines-using-mock-values)
@@ -29,7 +31,7 @@
 
 ```
 pipeline_node_agents/
-├── src/pipeline_nodes_agents/
+├── src/pipeline_node_agents/
 │   ├── core/
 │   │   ├── node.py          # FunctionNode, AgentNode definitions
 │   │   └── pipeline.py      # Pipeline orchestration
@@ -43,22 +45,36 @@ pipeline_node_agents/
 
 ![Core Class Diagram](simplified_core_class_diagram.svg)
 
+## Key Features
+
+- **Local LLM support**: Works with Ollama for fully offline AI pipelines
+- **Modular architecture**: Compose pipelines from reusable function and agent nodes
+- **Flexible flow control**: Support for linear pipelines, conditional branching, and loops
+- **Adapter pattern**: Easy integration with different AI backends (CrewAI, LangChain, custom LLMs)
+- **Nested pipelines**: Run sub-pipelines within nodes for complex workflows
+
+## Why This Framework?
+
+- **Easy to maintain**: Build pipelines of any complexity to provide context clearly and friendly for lightweight LLMs
+- **Easy to extend**: Integrate with any AI agent framework by adding new adapters without modifying core pipeline logic
+- **Easy to test**: Each node can be tested independently with mock outputs
+
 ## Basics
 
 Every pipeline built in this framework consists of Nodes, which take some values as input and return one value as output. The main goal of maintenance is to build a schema of Nodes that will process data efficiently. The original framework has 2 types of nodes: Agent node and Function node. Agent node processes the data using an LLM which works with the corresponding adapter and returns the result. Function node executes any Python function using the corresponding adapter.
 
-## How to maintain
+## How to Maintain
 
 Please add your custom pipelines into the `examples` folder. Feel free to use existing pipelines as templates.
 
 ### Creating a Function Node
 
 ```python
-from src.pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
-from src.pipeline_node_agents.core.node import FunctionNode
+from pipeline_node_agents.adapters.python_fn_adapter import PythonFnAdapter
+from pipeline_node_agents.core.node import FunctionNode
 
-def my_function(input_value: int) -> dict:
-    return {"output_value": input_value * 2}
+def my_function(input_value: int) -> int:
+    return input_value * 2
 
 node = FunctionNode(
     name="MyNode",
@@ -71,11 +87,11 @@ node = FunctionNode(
 ### Creating an Agent Node
 
 ```python
-from src.pipeline_node_agents.core.node import AgentNode
+from pipeline_node_agents.core.node import AgentNode
 
 node = AgentNode(
     name="MyAgentNode",
-    adapter=your_adapter,  # Use an appropriate adapter from src/adapters/
+    adapter=your_adapter,  # Use an appropriate adapter from adapters/
     inputs=["data"],
     output="result"
 )
@@ -88,7 +104,7 @@ node = AgentNode(
 For simple sequential pipelines, pass a list of nodes:
 
 ```python
-from src.pipeline_node_agents.core.pipeline import Pipeline
+from pipeline_node_agents.core.pipeline import Pipeline
 
 pipeline = Pipeline(nodes=[node1, node2, node3])
 result = pipeline.run(initial_context={"input_value": 5})
@@ -101,7 +117,7 @@ This creates edges: `node1 -> node2 -> node3`
 For pipelines with conditional branching or complex flows:
 
 ```python
-from src.pipeline_node_agents.core.pipeline import Pipeline
+from pipeline_node_agents.core.pipeline import Pipeline
 
 # Create pipeline with a start node
 pipeline = Pipeline(start_node=decision_node)
@@ -275,22 +291,22 @@ except Exception as e:
 
 ## Logging
 
-The framework uses Python's logging module. Initialize logging in your pipelines (replace `YOUR_LOG_DIR_NAME` with your name for the directory):
+The framework uses Python's logging module. Initialize logging in your pipelines:
 
 ```python
-from src.pipeline_node_agents.core.logging_config import get_logger
-from src.pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
-
-init_pipeline_logger(pipeline_name="YOUR_LOG_DIR_NAME")
-logger = get_logger(__name__)
+from pipeline_node_agents.core.logging_config import get_logger
+from pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
 
 def main():
+    # Replace "my_pipeline" with your pipeline name
     init_pipeline_logger(pipeline_name="my_pipeline")
+    logger = get_logger(__name__)
+    
     logger.info("Starting pipeline execution")
     # ... your pipeline code
 ```
 
-Logs are automatically saved to the `logs/YOUR_LOG_DIR_NAME` directory.
+Logs are automatically saved to the `logs/<pipeline_name>/` directory.
 
 ## Performance Optimization
 

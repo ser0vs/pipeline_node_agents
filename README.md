@@ -2,36 +2,27 @@
 
 A lightweight Python framework for building modular AI pipelines with function nodes and agent nodes. Designed to work well with lightweight local LLMs by giving you full control over context and task complexity at each step.
 
-## Key Features
+## Table of Contents
 
-- **Local LLM support**: Works with Ollama for fully offline AI pipelines
-- **Modular architecture**: Compose pipelines from reusable function and agent nodes
-- **Flexible flow control**: Support for linear pipelines, conditional branching, and loops
-- **Adapter pattern**: Easy integration with different AI backends (CrewAI, LangChain, custom LLMs)
-- **Nested pipelines**: Run sub-pipelines within nodes for complex workflows
-
-## Why This Framework?
-
-- **Easy to maintain**: Build pipelines of any complexity to provide context clearly and friendly for lightweight LLMs
-- **Easy to extend**: Integrate with any AI agent framework by adding new adapters without modifying core pipeline logic
-- **Easy to test**: Each node can be tested independently with mock outputs
+- [Basic Usage](#basic-usage)
+- [Usage as Developer](#usage-as-developer)
 
 
-
-# Basic usage
+# Basic Usage
 
 ## Requirements
 
 - **Python 3.11 - 3.13** (required)
+- [Ollama](https://ollama.ai/) for local LLM support
 
 ## Installation
 
+*(Optional, but recommended)* create python virtual environment:
 ```bash
-python3 -m venv .venv
+python3 -m venv .venv && source .venv/bin/activate
 ```
-```bash
-source .venv/bin/activate
-```
+
+Install package:
 ```bash
 pip install pipeline-node-agents
 ```
@@ -50,7 +41,46 @@ Expected output:
 Hello, World! Pipeline Node Agents <version> is working.
 ```
 
-# Usage as developer
+## Run Pipelines
+
+### Prerequisites:
+1. Start Ollama in a **separate terminal**: 
+```bash
+ollama serve
+```
+2. Make sure the required model is installed using 
+```bash
+ollama list
+````
+as of January 15th 2026, the default LLM is *llama3.2*
+
+### Option 1: With defined model and logger (recommended)
+```python
+from crewai import LLM
+from pipeline_node_agents import init_pipeline_logger, get_logger, TripPlannerPipeline
+
+init_pipeline_logger(pipeline_name="trip_planner_pipeline", project_root=".")
+logger = get_logger(__name__)
+
+# Default model is llama3.2, change if needed
+ollama_llm = LLM(model="ollama/llama3.2", base_url="http://localhost:11434")
+
+pipeline = TripPlannerPipeline(ollama_llm=ollama_llm, logger=logger)
+pipeline.run()
+```
+
+### Option 2: Without logger
+```python
+from pipeline_node_agents import TripPlannerPipeline
+
+# Default model is llama3.2
+pipeline = TripPlannerPipeline()
+pipeline.run()
+```
+
+
+
+# Usage as Developer
 
 ## Requirements
 
