@@ -34,6 +34,7 @@ pipeline_node_agents/
 │   ├── adapters/            # Adapters for different execution backends
 │   └── examples/            # Example pipelines
 ├── docs/                    # Documentation
+├── scripts/                 # Bash scripts for test execution
 ├── logs/                    # Logs, saved locally
 ├── pyproject.toml
 └── README.md
