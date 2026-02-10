@@ -36,6 +36,10 @@ class BrowserTools():
         text_elements = soup.find_all(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'td', 'th', 'span', 'div'])
         content = "\n\n".join([el.get_text(strip=True) for el in text_elements if el.get_text(strip=True)])
         content = [content[i:i + 8000] for i in range(0, len(content), 8000)]
+
+        maximum_chunks = 3
+        content = content[:maximum_chunks]
+
         summaries = []
         for idx, chunk in enumerate(content):
             ollama_model = os.getenv("OLLAMA_MODEL", "llama3.2:latest")
