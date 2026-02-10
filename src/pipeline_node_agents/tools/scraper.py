@@ -49,7 +49,7 @@ class Scraper:
                 return text
 
             except Exception as e:
-                logger.warning(f"Attempt {attempt}/{max_attempts} failed: {e}")
+                logger.warning(f"Attempt {attempt}/{max_attempts} to scrape {url} failed: {e}")
                 time.sleep(1)
 
         raise RuntimeError(f"Failed to scrape {url} after {max_attempts} attempts")

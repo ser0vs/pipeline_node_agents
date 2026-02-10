@@ -4,9 +4,17 @@ os.environ["OLLAMA_HOST"] = "http://localhost:11434"
 
 from crewai import Agent
 from pipeline_node_agents.examples.trip_planner.config import TripPlannerConfig
+from pipeline_node_agents.tools.browser_tools_crewai import BrowserTools
+from pipeline_node_agents.tools.calculator_tools_crewai import CalculatorTools
+from pipeline_node_agents.tools.search_tools_crewai import SearchTools
 
 
 class TripPlannerAgents:
+
+    scrape_and_summarize_website = BrowserTools.scrape_and_summarize_website
+    calculate = CalculatorTools.calculate
+    search_internet = SearchTools.search_internet
+
     @classmethod
     def get_summary_agent(cls) -> Agent:
         return Agent(
@@ -14,7 +22,8 @@ class TripPlannerAgents:
             role="Expert in summarizing textual content.",
             goal="Summarize the provided text with respect to the given task.",
             backstory="You are a highly skilled expert in summarizing information.",
-            llm=TripPlannerConfig.ollama_llm
+            llm=TripPlannerConfig.ollama_llm,
+            tools=[]
         )
 
     @classmethod
@@ -24,7 +33,8 @@ class TripPlannerAgents:
             role="Expert in city and place recommendations.",
             goal="Choose one city from the provided list based on weather summaries.",
             backstory="You are a highly skilled city travel expert.",
-            llm=TripPlannerConfig.ollama_llm
+            llm=TripPlannerConfig.ollama_llm,
+            tools=[cls.search_internet, cls.scrape_and_summarize_website]
         )
 
     @classmethod
@@ -34,7 +44,8 @@ class TripPlannerAgents:
             role="Local Expert in defined city.",
             goal="Provide the best recommendation where to go in defined city based on text content.",
             backstory="You are a highly skilled local expert with deep knowledge of the city's culture, attractions, and hidden gems.",
-            llm=TripPlannerConfig.ollama_llm
+            llm=TripPlannerConfig.ollama_llm,
+            tools=[cls.search_internet, cls.scrape_and_summarize_website]
         )
 
     @classmethod
@@ -44,5 +55,6 @@ class TripPlannerAgents:
             role="Expert in planning of trips and travel itineraries.",
             goal="Plan the best trip itinerary based on the chosen city and provided information.",
             backstory="You are a highly skilled travel concierge with expertise in creating personalized travel plans.",
-            llm=TripPlannerConfig.ollama_llm
+            llm=TripPlannerConfig.ollama_llm,
+            tools=[cls.search_internet, cls.scrape_and_summarize_website, cls.calculate]
         )

@@ -3,7 +3,7 @@
 # =============================================================
 # Run all smoke pipelines (smoke tests)
 #
-# Usage: ./run_smoke_pipelines.sh [number_of_runs_per_pipeline]
+# Usage: ./scripts/run_smoke_pipelines.sh [number_of_runs_per_pipeline]
 #
 # Logs are handled by Python's logging system
 # =============================================================
