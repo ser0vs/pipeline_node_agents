@@ -46,7 +46,7 @@ class TripPlannerAgents:
             backstory="You are a highly skilled local expert with deep knowledge of the city's culture, attractions, and hidden gems.",
             llm=TripPlannerConfig.ollama_llm,
             tools=[cls.search_internet, cls.scrape_and_summarize_website],
-            max_iter=2,
+            max_iter=3,
             allow_delegation=False,
             verbose=True
         )
@@ -56,11 +56,16 @@ class TripPlannerAgents:
         return Agent(
             name="TravelConciergeAgent",
             role="Expert in planning of trips and travel itineraries.",
-            goal="Plan the best trip itinerary based on the chosen city and provided information.",
+            goal=("Plan the best trip itinerary based on the chosen city and provided information.\n\n"
+            "Rules:\n"
+            "- You may use at most ONE tool.\n"
+            "- After receiving tool results, you MUST provide the final itinerary.\n"
+            "- The final answer MUST NOT contain 'Action', 'Thought', or tool calls.\n"
+            "- The final answer must only contain the completed itinerary."),
             backstory="You are a highly skilled travel concierge with expertise in creating personalized travel plans.",
             llm=TripPlannerConfig.ollama_llm,
             tools=[cls.search_internet, cls.scrape_and_summarize_website, cls.calculate],
-            max_iter=2,
+            max_iter=3,
             allow_delegation=False,
             verbose=True
         )
