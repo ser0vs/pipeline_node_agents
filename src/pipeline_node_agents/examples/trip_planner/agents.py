@@ -46,7 +46,7 @@ class TripPlannerAgents:
             "Rule: use tools only when necessary."),
             backstory="You are a highly skilled local expert with deep knowledge of the city's culture, attractions, and hidden gems.",
             llm=TripPlannerConfig.ollama_llm,
-            tools=[cls.search_internet, cls.scrape_and_summarize_website],
+            tools=[],
             verbose=True
         )
 
