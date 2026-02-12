@@ -92,6 +92,30 @@ pipeline = TripPlannerPipeline()
 pipeline.run()
 ```
 
+#### Available tools configuration
+
+As default, agent nodes work as pure LLMs (without tools). You can allow them to search for information by themselves. 
+
+> **Note:** Usage of tools is not recommended for light-weight LLMs (<8 billion hyperparameters).
+
+To enable tools for specific agents in `TripPlannerPipeline`:
+
+1. Enable tools for local expert agent only:
+    ```python
+    pipeline = TripPlannerPipeline(local_expert_tools_enabled=True)
+    ```
+
+2. Enable tools for travel concierge agent only:
+    ```python
+    pipeline = TripPlannerPipeline(travel_concierge_tools_enabled=True)
+    ```
+
+3. Enable tools for both agents:
+    ```python
+    pipeline = TripPlannerPipeline(local_expert_tools_enabled=True, travel_concierge_tools_enabled=True)
+    ```
+
+
 #### Available pipelines
 
 The following pipelines are included as examples:
