@@ -12,7 +12,7 @@ from pipeline_node_agents.core.logger_bootstrap import init_pipeline_logger
 from pipeline_node_agents.core.logging_config import get_logger
 
 
-__version__ = "0.1.6"
+__version__ = "0.1.9"
 __all__ = ["FunctionNode", "AgentNode", "Pipeline", "greet", "ConditioningPipeline", "InputCheckerPipeline", 
            "RandomMeanPipeline", "RandomMeanPipelineCrewAI", "SearchAndSummarizePipeline", "TripPlannerPipeline",
            "init_pipeline_logger", "get_logger"]
