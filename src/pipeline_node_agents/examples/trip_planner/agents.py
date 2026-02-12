@@ -48,7 +48,7 @@ class TripPlannerAgents:
             "Rule: use tools only when necessary."),
             backstory="You are a highly skilled local expert with deep knowledge of the city's culture, attractions, and hidden gems.",
             llm=TripPlannerConfig.ollama_llm,
-            tools=[],
+            tools=[cls.search_internet, cls.scrape_and_summarize_website],
             verbose=True
         )
 
@@ -61,6 +61,6 @@ class TripPlannerAgents:
             "Rule: use tools only when necessary."),
             backstory="You are a highly skilled travel concierge with expertise in creating personalized travel plans.",
             llm=TripPlannerConfig.ollama_llm,
-            tools=[],
+            tools=[cls.search_internet, cls.scrape_and_summarize_website, cls.calculate],
             verbose=True
         )
