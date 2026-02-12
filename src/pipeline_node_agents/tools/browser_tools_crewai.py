@@ -3,6 +3,10 @@ from crewai import Agent, Task, Crew, LLM
 from crewai.tools import tool
 from bs4 import BeautifulSoup
 
+from pipeline_node_agents.core.logging_config import get_logger
+
+logger = get_logger(__name__)
+
 
 class BrowserTools():
 
@@ -16,6 +20,7 @@ class BrowserTools():
         Returns:
             Summarized content from the website
         """
+        logger.info("Tool 'Scrape website content' is used with parameters: website=%s", website)
         try:
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'

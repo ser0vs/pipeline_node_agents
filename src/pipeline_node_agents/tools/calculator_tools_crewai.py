@@ -3,6 +3,11 @@ import ast
 import operator
 import re
 
+from pipeline_node_agents.core.logging_config import get_logger
+
+logger = get_logger(__name__)
+
+
 class CalculatorTools():
     @tool("Make a calculation")
     def calculate(operation: str) -> str:
@@ -15,6 +20,7 @@ class CalculatorTools():
         Returns:
             The result of the calculation or an error message
         """
+        logger.info("Tool 'Make a calculation' is used with parameters: operation=%s", operation)
         try:
             # Define allowed operators for safe evaluation
             allowed_operators = {

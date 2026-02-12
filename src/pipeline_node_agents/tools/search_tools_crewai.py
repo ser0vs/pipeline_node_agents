@@ -3,6 +3,10 @@ import time
 from crewai.tools import tool
 from ddgs import DDGS
 
+from pipeline_node_agents.core.logging_config import get_logger
+
+logger = get_logger(__name__)
+
 
 class SearchTools():
 
@@ -16,6 +20,7 @@ class SearchTools():
     Returns:
         Search results with titles, links, and snippets
     """
+    logger.info("Tool 'Search the internet' is used with parameters: query=%s", query)
     top_result_to_return = 4
     max_attempts = 5
     

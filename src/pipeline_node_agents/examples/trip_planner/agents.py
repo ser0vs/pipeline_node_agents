@@ -56,7 +56,7 @@ class TripPlannerAgents:
             name="TravelConciergeAgent",
             role="Expert in planning of trips and travel itineraries.",
             goal=("Plan the best trip itinerary based on the chosen city and provided information."
-            "Rule: use tools only when necessary. Build itinerary yourself, NEVER search for already made itineraries."),
+            "Rule: use tools only when necessary."),
             backstory="You are a highly skilled travel concierge with expertise in creating personalized travel plans.",
             llm=TripPlannerConfig.ollama_llm,
             tools=[cls.search_internet, cls.scrape_and_summarize_website, cls.calculate],
