@@ -7,6 +7,9 @@ from pipeline_node_agents.examples.trip_planner.config import TripPlannerConfig
 from pipeline_node_agents.tools.browser_tools_crewai import BrowserTools
 from pipeline_node_agents.tools.calculator_tools_crewai import CalculatorTools
 from pipeline_node_agents.tools.search_tools_crewai import SearchTools
+from pipeline_node_agents.core.logging_config import get_logger
+
+logger = get_logger(__name__)
 
 
 class TripPlannerAgents:
@@ -40,7 +43,11 @@ class TripPlannerAgents:
         )
 
     @classmethod
-    def get_local_expert_agent(cls) -> Agent:
+    def get_local_expert_agent(cls, tools_enabled=False) -> Agent:
+        tools = []
+        if tools_enabled:
+            tools = [cls.search_internet, cls.scrape_and_summarize_website]
+        logger.info(f"LocalExpertAgent tools {'enabled' if tools_enabled else 'disabled'}")
         return Agent(
             name="LocalExpertAgent",
             role="Local Expert in defined city.",
@@ -48,12 +55,16 @@ class TripPlannerAgents:
             "Rule: use tools only when necessary."),
             backstory="You are a highly skilled local expert with deep knowledge of the city's culture, attractions, and hidden gems.",
             llm=TripPlannerConfig.ollama_llm,
-            tools=[],
+            tools=tools,
             verbose=True
         )
 
     @classmethod
-    def get_travel_concierge_agent(cls) -> Agent:
+    def get_travel_concierge_agent(cls, tools_enabled=False) -> Agent:
+        tools = []
+        if tools_enabled:
+            tools = [cls.search_internet, cls.scrape_and_summarize_website]
+        logger.info(f"TravelConciergeAgent tools {'enabled' if tools_enabled else 'disabled'}")
         return Agent(
             name="TravelConciergeAgent",
             role="Expert in planning of trips and travel itineraries.",
@@ -61,6 +72,6 @@ class TripPlannerAgents:
             "Rule: use tools only when necessary."),
             backstory="You are a highly skilled travel concierge with expertise in creating personalized travel plans.",
             llm=TripPlannerConfig.ollama_llm,
-            tools=[],
+            tools=tools,
             verbose=True
         )

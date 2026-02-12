@@ -16,13 +16,15 @@ class TripPlannerPipeline:
     and creating a detailed itinerary.
     """
 
-    def __init__(self, ollama_llm=None, logger: logging.Logger | None = None) -> None:
+    def __init__(self, ollama_llm=None, logger: logging.Logger | None = None, local_expert_tools_enabled=False, travel_concierge_tools_enabled=False) -> None:
         self.ollama_llm = ollama_llm or LLM(
             model="ollama/llama3.2",
             base_url="http://localhost:11434"
         )
         TripPlannerConfig.set_ollama_llm(self.ollama_llm)
         self.logger = logger or logging.getLogger(__name__)
+        self.local_expert_tools_enabled = local_expert_tools_enabled
+        self.travel_concierge_tools_enabled = travel_concierge_tools_enabled
 
     def run(self) -> dict:
         self.logger.info("Starting TripPlannerPipeline")
@@ -31,8 +33,8 @@ class TripPlannerPipeline:
             TripPlannerNodes.get_research_cities_node(),
             TripPlannerNodes.get_city_selection_node(),
             TripPlannerNodes.get_extract_chosen_city_node(),
-            TripPlannerNodes.get_local_expert_node(),
-            TripPlannerNodes.get_travel_concierge_node()
+            TripPlannerNodes.get_local_expert_node(self.local_expert_tools_enabled),
+            TripPlannerNodes.get_travel_concierge_node(self.travel_concierge_tools_enabled)
         ])
 
         list_of_cities = input("Enter a list of cities (comma-separated): ").split(",")
@@ -74,7 +76,7 @@ def main():
     init_pipeline_logger(pipeline_name="trip_planner_pipeline")
     logger = get_logger(__name__)
 
-    pipeline = TripPlannerPipeline(logger=logger)
+    pipeline = TripPlannerPipeline(logger=logger, local_expert_tools_enabled=True)
     pipeline.run()
 
 

@@ -38,11 +38,11 @@ class TripPlannerNodes:
         )
 
     @classmethod
-    def get_local_expert_node(cls) -> AgentNode:
+    def get_local_expert_node(cls, tools_enabled=False) -> AgentNode:
         return AgentNode(
             name="LocalExpertNode",
             adapter=CrewAIAdapter(
-                TripPlannerAgents.get_local_expert_agent(),
+                TripPlannerAgents.get_local_expert_agent(tools_enabled),
                 task_description="Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.",
                 expected_output="City guide including hidden gems, cultural hotspots, and practical travel tips"
             ),
@@ -51,11 +51,11 @@ class TripPlannerNodes:
         )
 
     @classmethod
-    def get_travel_concierge_node(cls) -> AgentNode:
+    def get_travel_concierge_node(cls, tools_enabled=False) -> AgentNode:
         return AgentNode(
             name="TravelConciergeNode",
             adapter=CrewAIAdapter(
-                TripPlannerAgents.get_travel_concierge_agent(),
+                TripPlannerAgents.get_travel_concierge_agent(tools_enabled),
                 task_description="Plan a 7-day trip itinerary based on the chosen city and provided information.",
                 expected_output="Detailed 7-day itinerary including daily activities, dining options, and transportation tips.",
             ),
