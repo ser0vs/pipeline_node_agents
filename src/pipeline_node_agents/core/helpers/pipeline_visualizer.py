@@ -34,7 +34,13 @@ class PipelineVisualizer:
             lines = [main_line]
             lines.append(PipelineVisualizer._render_side_branches(edges, side_branches, main_line, visited))
             lines.append(PipelineVisualizer._render_main_loops(loop_edges, main_line))
-            return "\n".join(line for line in lines if line)
+            content = "\n".join(line for line in lines if line)
+            max_width = max(len(line) for line in content.split("\n")) if content else 0
+            frame_width = max_width + 4
+            frame = "┌" + "─" * (frame_width - 2) + "┐\n"
+            frame += "\n".join(f"│ {line.ljust(max_width)} │" for line in content.split("\n"))
+            frame += "\n└" + "─" * (frame_width - 2) + "┘"
+            return frame
         except Exception as e:
             return f"Error: {e}\n{traceback.format_exc()}\nUnable to visualize the pipeline due to unexpected error"
 
