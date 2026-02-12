@@ -42,15 +42,10 @@ class TripPlannerAgents:
         return Agent(
             name="LocalExpertAgent",
             role="Local Expert in defined city.",
-            goal=("Provide the best recommendation where to go in defined city based on text content."
-            "Rules:\n"
-            "- You may use at most ONE tool.\n"
-            "- The final answer must only contain the completed list of attractions."),
+            goal="Provide the best recommendation where to go in defined city based on text content.",
             backstory="You are a highly skilled local expert with deep knowledge of the city's culture, attractions, and hidden gems.",
             llm=TripPlannerConfig.ollama_llm,
             tools=[cls.search_internet, cls.scrape_and_summarize_website],
-            max_iter=3,
-            allow_delegation=False,
             verbose=True
         )
 
@@ -59,14 +54,9 @@ class TripPlannerAgents:
         return Agent(
             name="TravelConciergeAgent",
             role="Expert in planning of trips and travel itineraries.",
-            goal=("Plan the best trip itinerary based on the chosen city and provided information.\n\n"
-            "Rules:\n"
-            "- You may use at most ONE tool.\n"
-            "- The final answer must only contain the completed itinerary."),
+            goal="Plan the best trip itinerary based on the chosen city and provided information.",
             backstory="You are a highly skilled travel concierge with expertise in creating personalized travel plans.",
             llm=TripPlannerConfig.ollama_llm,
             tools=[cls.search_internet, cls.scrape_and_summarize_website, cls.calculate],
-            max_iter=3,
-            allow_delegation=False,
             verbose=True
         )
