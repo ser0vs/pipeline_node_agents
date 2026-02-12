@@ -59,6 +59,6 @@ class TripPlannerAgents:
             "Rule: use tools only when necessary."),
             backstory="You are a highly skilled travel concierge with expertise in creating personalized travel plans.",
             llm=TripPlannerConfig.ollama_llm,
-            tools=[cls.calculate],
+            tools=[],
             verbose=True
         )
