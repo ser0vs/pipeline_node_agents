@@ -22,21 +22,21 @@ class PipelineVisualizer:
     def visualize(
         edges: dict[str, list[tuple[str, str]]],
         start_node: str
-    ) -> None:
+    ) -> str:
         """
         Visualize a directed graph in CLI, including loops.
+        Returns the visualization as a string.
         """
         try:
             main_path, visited, loop_edges = PipelineVisualizer._walk_main_path(edges, start_node)
             side_branches = PipelineVisualizer._find_side_branches(edges, main_path)
             main_line = PipelineVisualizer._render_main_line(main_path)
-            print(main_line)
-            PipelineVisualizer._print_side_branches(edges, side_branches, main_line, visited)
-            PipelineVisualizer._print_main_loops(loop_edges, main_line)
+            lines = [main_line]
+            lines.append(PipelineVisualizer._render_side_branches(edges, side_branches, main_line, visited))
+            lines.append(PipelineVisualizer._render_main_loops(loop_edges, main_line))
+            return "\n".join(line for line in lines if line)
         except Exception as e:
-            print(f"Error: {e}")
-            traceback.print_exc()
-            print("Unable to visualize the pipeline due to unexpected error")
+            return f"Error: {e}\n{traceback.format_exc()}\nUnable to visualize the pipeline due to unexpected error"
 
 
 
@@ -131,41 +131,45 @@ class PipelineVisualizer:
         return " -> ".join(main_path)
 
     @staticmethod
-    def _print_side_branches(
+    def _render_side_branches(
         edges: dict[str, list[tuple[str, str]]],
         side_branches: dict[str, list[str]],
         main_line: str,
         visited: set[str],
-    ) -> None:
+    ) -> str:
         """
-        Print side branches and their loop annotations.
+        Render side branches and their loop annotations as a string.
         """
+        lines = []
         for node, branches in side_branches.items():
             base_offset = main_line.index(node) + len(node)
             indent = " " * base_offset
 
             for branch in branches:
-                print(f"{indent} |")
+                lines.append(f"{indent} |")
                 branch_line, branch_loops = PipelineVisualizer._render_branch_with_loops(
                     branch, edges, visited
                 )
-                print(f"{indent} ----> {branch_line}")
+                lines.append(f"{indent} ----> {branch_line}")
 
                 for loop in branch_loops:
-                    print(f"{indent}        ↺ loop to {loop}")
+                    lines.append(f"{indent}        ↺ loop to {loop}")
+        return "\n".join(lines)
 
     @staticmethod
-    def _print_main_loops(
+    def _render_main_loops(
         loop_edges: list[tuple[str, str]],
         main_line: str,
-    ) -> None:
+    ) -> str:
         """
-        Print loop edges detected on the main path.
+        Render loop edges detected on the main path as a string.
         """
+        lines = []
         for src, target in loop_edges:
             offset = main_line.index(src) + len(src)
             indent = " " * offset
-            print(f"{indent} ↺ loop to {target}")
+            lines.append(f"{indent} ↺ loop to {target}")
+        return "\n".join(lines)
 
 
 
@@ -231,7 +235,7 @@ def main() -> None:
         print("\n" + "=" * len(title))
         print(title)
         print("=" * len(title))
-        PipelineVisualizer.visualize(edges, start_node)
+        print(PipelineVisualizer.visualize(edges, start_node))
 
 
 if __name__ == "__main__":

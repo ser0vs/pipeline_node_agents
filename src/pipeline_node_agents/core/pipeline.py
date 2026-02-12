@@ -58,12 +58,8 @@ class Pipeline:
         context = initial_context or {}
         current_node = start_node or self.start_node
 
-        logger.info("=== Starting pipeline ===")
+        logger.info("=== Starting pipeline ===\n" + PipelineVisualizer.visualize(self.edges, self.start_node) + "\n")
         
-        logger.info("")
-        PipelineVisualizer.visualize(self.edges, self.start_node)    
-        logger.info("")
-
         if current_node is None:
             raise ValueError("No start node defined for the pipeline.")
 
