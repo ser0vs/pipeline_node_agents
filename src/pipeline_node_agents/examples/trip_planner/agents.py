@@ -23,7 +23,8 @@ class TripPlannerAgents:
             goal="Summarize the provided text with respect to the given task.",
             backstory="You are a highly skilled expert in summarizing information.",
             llm=TripPlannerConfig.ollama_llm,
-            tools=[]
+            tools=[],
+            verbose=True
         )
 
     @classmethod
@@ -34,7 +35,8 @@ class TripPlannerAgents:
             goal="Choose one city from the provided list based on weather summaries.",
             backstory="You are a highly skilled city travel expert.",
             llm=TripPlannerConfig.ollama_llm,
-            tools=[]
+            tools=[],
+            verbose=True
         )
 
     @classmethod
