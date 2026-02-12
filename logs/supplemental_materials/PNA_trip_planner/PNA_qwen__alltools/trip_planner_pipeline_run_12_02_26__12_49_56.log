@@ -1,0 +1,374 @@
+2026-02-12 12:49:56,732 | INFO     | pipeline.py:28 | __main__ | Starting TripPlannerPipeline
+2026-02-12 12:49:56,734 | INFO     | pipeline.py:51 | __main__ | Context: {'list_of_cities': ['Madrid', ' Dubai'], 'dates': ('14 February 20265', '16 February 2026'), 'location': 'Vienna', 'interests': 'art, history, and food'}
+2026-02-12 12:49:56,734 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+2026-02-12 12:49:56,734 | INFO     | pipeline.py:63 | pipeline_node_agents.core.pipeline | 
+2026-02-12 12:49:56,734 | INFO     | pipeline.py:65 | pipeline_node_agents.core.pipeline | 
+2026-02-12 12:49:56,734 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: ResearchCitiesNode
+2026-02-12 12:49:56,735 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+2026-02-12 12:49:56,735 | INFO     | pipeline.py:63 | pipeline_node_agents.core.pipeline | 
+2026-02-12 12:49:56,735 | INFO     | pipeline.py:65 | pipeline_node_agents.core.pipeline | 
+2026-02-12 12:49:56,735 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-02-12 12:49:56,801 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 12:49:56,817 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine mojeek: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20Madrid%20from%2014%20February%2020265%20to%2016%20February%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 12:49:57,451 | INFO     | lib.rs:464 | primp | response: https://www.mojeek.com/search?q=weather+forecast+Madrid+from+14+February+20265+to+16+February+2026 403
+2026-02-12 12:49:57,509 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: [{'title': 'Madrid weather in February 2026 | Madrid 14 day weather', 'snippet': 'Full weather forecast for Madrid in February 2026 . Check the temperatures, chance of rain and more in Madrid during February .', 'url': 'https://www.weather25.com/europe/spain/madrid?page=month&month=February'}, {'title': 'Madrid, Madrid, Spain Monthly Weather | AccuWeather', 'snippet': 'Get the monthly weather forecast for Madrid , Madrid , Spain, including daily high/low, historical averages, to help you plan ahead.', 'url': 'https://www.accuweather.com/en/es/madrid/28034/february-weather/95245_pc'}, {'title': 'February 2026 Daily Weather Forecast for Madrid, Madrid - Plan Ahead', 'snippet': 'Our Madrid , Comunidad de Madrid Daily Weather Forecast for February 2026 , developed from a specialized dynamic long-range model, provides precise daily temperature and rainfall predictions. This model, distinct from standard statistical or climatological approaches, is the result of over 50 years of dedicated private research, offering a clearer and more accurate meteorological insight.', 'url': 'https://www.weathertab.com/en/c/o/02/kingdom-of-spain/comunidad-de-madrid/madrid/'}, {'title': 'Weather in Madrid in February 2026 - Detailed Forecast', 'snippet': 'Discover the most accurate weather forecast for Madrid in February 2026 . Insights into temperature, precipitation, and weather trends.', 'url': 'https://www.easeweather.com/weather/month/madrid/february'}, {'title': 'Weather in Madrid in February 2026 (Community of Madrid) - detailed ...', 'snippet': "World Spain Community of Madrid Weather in Madrid Weather in Madrid in February 2026 Madrid Weather Forecast for February 2026 is based on long term prognosis and previous years' statistical data.", 'url': 'https://world-weather.info/forecast/spain/madrid/february-2026/'}]
+2026-02-12 12:49:57,509 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: ScrapeNode
+2026-02-12 12:49:57,911 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ScrapeNode executed. Outputs: Madrid weather in February 2026 | Madrid 14 day weather Home Europe Spain Madrid February Location was added to My Locations Location was removed from My Locations January A Coruna Adeje Albir Alcoy Alcudia Alicante Almeria Almunecar Altea Arboleas Arguineguin Arona Arrecife Badajoz Ballermann Barcelona Benalmadena Benidorm Benitachell Bilbao Buenavista del Norte Burgos Busot Caceres Cadiz Cala Millor Cala Ratjada Calahonda Calella Caleta de Fuste Calpe Cambrils Canillas de Albaida Cartagena Competa Cordoba Cordoue Corralejo Costa Adeje Costa Blanca Costa Brava Costa Daurada Costa Teguise Costa de la Luz Costa del Sol Crevillente Denia Estaryit Estepona Finestrat Formentera Fuengirola Fuerteventura Gandia Gijon Girona Grado Gran Canaria Gran Tarajal Granada Guardamar Hondon de los Frailes Ibiza Jandia Javea Jerez de la Frontera L'Estartit La Gomera La Palma Lanzarote Las Palmas Lloret de Mar Los Alcázares Los Cristianos Los Gigantes Los Montesinos Madrid Majorca Malaga Malgrat de Mar Mallorca Marbella Maspalomas Mazarron Menorca Mijas Minorca Mogan Moraira Morro Jable Motril Murcia Nerja Oviedo Palma Pamplona Peguera Pilar de la Horadada Playa Blanca Playa de las America Playa del Ingles Porto Cristo Puerto Rico Puerto Rico de Gran Canaria Puerto de Mogan Puerto de Pollensa Puerto de Santiago Puerto de la Cruz Puerto del Carmen Ronda Roses Sagunto Salamanca Salobrena Salou San Pedro del Pinatar San Sebastian Sancti Petri Santa Cruz de Tenerife Santa Cruz de la Palma Santa Ponsa Santa Susanna Santander Santany Santiago de Compostela Segovia Seville Soller Tarajalejo Tarifa Tarragona Tenerife Toledo Torre de la Horadada Torremolinos Torrevieja Torrox Tuineje Valencia Valladolid Vigo Villamartin Zaragoza Zumaia March Madrid weather in February 2026 Click on a day for an hourly weather forecast Thursday Feb 12 0.5 mm 13 ° / 7 ° Friday Feb 13 13.3 mm 10 ° / 6 ° Saturday Feb 14 0 mm 10 ° / 3 ° Sunday Feb 15 0 mm 12 ° / 3 ° Monday Feb 16 0 mm 16 ° / 5 ° Tuesday Feb 17 0 mm 15 ° / 5 ° Wednesday Feb 18 0 mm 15 ° / 6 ° Thursday Feb 19 0 mm 15 ° / 6 ° Friday Feb 20 0 mm 15 ° / 5 ° Saturday Feb 21 0 mm 15 ° / 6 ° Sunday Feb 22 0 mm 16 ° / 6 ° Monday Feb 23 0 mm 15 ° / 7 ° Tuesday Feb 24 0 mm 15 ° / 5 ° Wednesday Feb 25 0 mm 19 ° / 6 ° Next Month >> The average weather in Madrid in February The weather in Madrid in February is very cold with temperatures between 4 ° C and 13 ° C , warm clothes are a must. You can expect about 3 to 8 days of rain in Madrid during the month of February. It’s a good idea to bring along your umbrella so that you don’t get caught in poor weather. Please note that Madrid can expect a few days of snow in February . Our weather forecast can give you a great sense of what weather to expect in Madrid in February 2026 . If you’re planning to visit Madrid in the near future, we highly recommend that you review the 14 day weather forecast for Madrid before you arrive. Temperatures 13 ° / 4 ° Rainy Days 3 Snowy Days 1 Dry Days 24 Rainfall 37 mm Sun Hours 10.3 Hrs Historic average weather for February February Sun Mon Tue Wed Thu Fri Sat 1 13 ° / 5 ° 2 12 ° / 5 ° 3 13 ° / 6 ° 4 14 ° / 6 ° 5 14 ° / 7 ° 6 13 ° / 6 ° 7 11 ° / 5 ° 8 11 ° / 5 ° 9 12 ° / 5 ° 10 13 ° / 6 ° 11 13 ° / 6 ° 12 13 ° / 7 ° 13 10 ° / 6 ° 14 10 ° / 3 ° 15 12 ° / 3 ° 16 16 ° / 5 ° 17 15 ° / 5 ° 18 15 ° / 6 ° 19 15 ° / 6 ° 20 15 ° / 5 ° 21 15 ° / 6 ° 22 16 ° / 6 ° 23 15 ° / 7 ° 24 15 ° / 5 ° 25 19 ° / 6 ° 26 14 ° / 6 ° 27 14 ° / 6 ° 28 14 ° / 6 ° Click on a day for an hourly weather forecast Explore the weather in Madrid in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Madrid annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 11 ° / 3 ° 4 26 1 42 mm Ok Madrid in January February 13 ° / 4 ° 3 24 1 37 mm Ok Madrid in February March 16 ° / 6 ° 5 26 0 57 mm Good Madrid in March April 19 ° / 8 ° 4 26 0 64 mm Good Madrid in April May 25 ° / 12 ° 3 28 0 33 mm Perfect Madrid in May June 30 ° / 18 ° 2 28 0 25 mm Good Madrid in June July 34 ° / 22 ° 0 31 0 11 mm Ok Madrid in July August 34 ° / 21 ° 0 31 0 10 mm Ok Madrid in August September 29 ° / 17 ° 1 29 0 26 mm Good Madrid in September October 23 ° / 13 ° 3 28 0 59 mm Perfect Madrid in October November 15 ° / 7 ° 4 26 0 52 mm Good Madrid in November December 12 ° / 4 ° 3 27 0 45 mm Ok Madrid in December Temperatures in Madrid in February Rain in Madrid in February Recommended Hotels in Madrid We know that finding the ideal hotel in Madrid can be a hard task... That’s why we run our special tools and found the best hotels in Madrid. Click on hotel for more details. Hotels in Madrid VP Plaza España Design Book Now Barceló Imagine Book Now Barceló Emperatriz Book Now Weather in Madrid in February - FAQ What is the average temperature in Madrid in February? The average temperature in Madrid in February is 4 / 13 ° C . What is the chance of rain in Madrid in February? On average, there are 3 rainy days in Madrid during February. Weather wise, is February a good time to visit Madrid? The weather in Madrid in February is ok. Can it snow in Madrid in February? On average, there are 1 snowy days in Madrid in February. More about the weather in Madrid Madrid 14 day weather Long range weather for Madrid Madrid weather in March Madrid Webcam Weather tomorrow Hotels in Madrid
+2026-02-12 12:49:57,911 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: WeatherSummaryNode
+2026-02-12 12:49:57,911 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in Madrid around dates 14 February 20265 and 16 February 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Madrid weather in February 2026 | Madrid 14 day weather Home Europe Spain Madrid February Location was added to My Locations Location was removed from My Locations January A Coruna Adeje Albir Alcoy Alcudia Alicante Almeria Almunecar Altea Arboleas Arguineguin Arona Arrecife Badajoz Ballermann Barcelona Benalmadena Benidorm Benitachell Bilbao Buenavista del Norte Burgos Busot Caceres Cadiz Cala Millor Cala Ratjada Calahonda Calella Caleta de Fuste Calpe Cambrils Canillas de Albaida Cartagena Competa Cordoba Cordoue Corralejo Costa Adeje Costa Blanca Costa Brava Costa Daurada Costa Teguise Costa de la Luz Costa del Sol Crevillente Denia Estaryit Estepona Finestrat Formentera Fuengirola Fuerteventura Gandia Gijon Girona Grado Gran Canaria Gran Tarajal Granada Guardamar Hondon de los Frailes Ibiza Jandia Javea Jerez de la Frontera L'Estartit La Gomera La Palma Lanzarote Las Palmas Lloret de Mar Los Alcázares Los Cristianos Los Gigantes Los Montesinos Madrid Majorca Malaga Malgrat de Mar Mallorca Marbella Maspalomas Mazarron Menorca Mijas Minorca Mogan Moraira Morro Jable Motril Murcia Nerja Oviedo Palma Pamplona Peguera Pilar de la Horadada Playa Blanca Playa de las America Playa del Ingles Porto Cristo Puerto Rico Puerto Rico de Gran Canaria Puerto de Mogan Puerto de Pollensa Puerto de Santiago Puerto de la Cruz Puerto del Carmen Ronda Roses Sagunto Salamanca Salobrena Salou San Pedro del Pinatar San Sebastian Sancti Petri Santa Cruz de Tenerife Santa Cruz de la Palma Santa Ponsa Santa Susanna Santander Santany Santiago de Compostela Segovia Seville Soller Tarajalejo Tarifa Tarragona Tenerife Toledo Torre de la Horadada Torremolinos Torrevieja Torrox Tuineje Valencia Valladolid Vigo Villamartin Zaragoza Zumaia March Madrid weather in February 2026 Click on a day for an hourly weather forecast Thursday Feb 12 0.5 mm 13 ° / 7 ° Friday Feb 13 13.3 mm 10 ° / 6 ° Saturday Feb 14 0 mm 10 ° / 3 ° Sunday Feb 15 0 mm 12 ° / 3 ° Monday Feb 16 0 mm 16 ° / 5 ° Tuesday Feb 17 0 mm 15 ° / 5 ° Wednesday Feb 18 0 mm 15 ° / 6 ° Thursday Feb 19 0 mm 15 ° / 6 ° Friday Feb 20 0 mm 15 ° / 5 ° Saturday Feb 21 0 mm 15 ° / 6 ° Sunday Feb 22 0 mm 16 ° / 6 ° Monday Feb 23 0 mm 15 ° / 7 ° Tuesday Feb 24 0 mm 15 ° / 5 ° Wednesday Feb 25 0 mm 19 ° / 6 ° Next Month >> The average weather in Madrid in February The weather in Madrid in February is very cold with temperatures between 4 ° C and 13 ° C , warm clothes are a must. You can expect about 3 to 8 days of rain in Madrid during the month of February. It’s a good idea to bring along your umbrella so that you don’t get caught in poor weather. Please note that Madrid can expect a few days of snow in February . Our weather forecast can give you a great sense of what weather to expect in Madrid in February 2026 . If you’re planning to visit Madrid in the near future, we highly recommend that you review the 14 day weather forecast for Madrid before you arrive. Temperatures 13 ° / 4 ° Rainy Days 3 Snowy Days 1 Dry Days 24 Rainfall 37 mm Sun Hours 10.3 Hrs Historic average weather for February February Sun Mon Tue Wed Thu Fri Sat 1 13 ° / 5 ° 2 12 ° / 5 ° 3 13 ° / 6 ° 4 14 ° / 6 ° 5 14 ° / 7 ° 6 13 ° / 6 ° 7 11 ° / 5 ° 8 11 ° / 5 ° 9 12 ° / 5 ° 10 13 ° / 6 ° 11 13 ° / 6 ° 12 13 ° / 7 ° 13 10 ° / 6 ° 14 10 ° / 3 ° 15 12 ° / 3 ° 16 16 ° / 5 ° 17 15 ° / 5 ° 18 15 ° / 6 ° 19 15 ° / 6 ° 20 15 ° / 5 ° 21 15 ° / 6 ° 22 16 ° / 6 ° 23 15 ° / 7 ° 24 15 ° / 5 ° 25 19 ° / 6 ° 26 14 ° / 6 ° 27 14 ° / 6 ° 28 14 ° / 6 ° Click on a day for an hourly weather forecast Explore the weather in Madrid in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Madrid annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 11 ° / 3 ° 4 26 1 42 mm Ok Madrid in January February 13 ° / 4 ° 3 24 1 37 mm Ok Madrid in February March 16 ° / 6 ° 5 26 0 57 mm Good Madrid in March April 19 ° / 8 ° 4 26 0 64 mm Good Madrid in April May 25 ° / 12 ° 3 28 0 33 mm Perfect Madrid in May June 30 ° / 18 ° 2 28 0 25 mm Good Madrid in June July 34 ° / 22 ° 0 31 0 11 mm Ok Madrid in July August 34 ° / 21 ° 0 31 0 10 mm Ok Madrid in August September 29 ° / 17 ° 1 29 0 26 mm Good Madrid in September October 23 ° / 13 ° 3 28 0 59 mm Perfect Madrid in October November 15 ° / 7 ° 4 26 0 52 mm Good Madrid in November December 12 ° / 4 ° 3 27 0 45 mm Ok Madrid in December Temperatures in Madrid in February Rain in Madrid in February Recommended Hotels in Madrid We know that finding the ideal hotel in Madrid can be a hard task... That’s why we run our special tools and found the best hotels in Madrid. Click on hotel for more details. Hotels in Madrid VP Plaza España Design Book Now Barceló Imagine Book Now Barceló Emperatriz Book Now Weather in Madrid in February - FAQ What is the average temperature in Madrid in February? The average temperature in Madrid in February is 4 / 13 ° C . What is the chance of rain in Madrid in February? On average, there are 3 rainy days in Madrid during February. Weather wise, is February a good time to visit Madrid? The weather in Madrid in February is ok. Can it snow in Madrid in February? On average, there are 1 snowy days in Madrid in February. More about the weather in Madrid Madrid 14 day weather Long range weather for Madrid Madrid weather in March Madrid Webcam Weather tomorrow Hotels in Madrid
+---
+
+Remember: Analyze the provided text and summarize information about weather in Madrid around dates 14 February 20265 and 16 February 2026.
+2026-02-12 12:49:57,912 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-02-12 12:49:57,912 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 5440 chars
+2026-02-12 12:49:57,935 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-02-12 12:50:27,650 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 12:50:28,004 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+For Madrid in February 2026, the weather on **14 February** was dry with no rainfall, and temperatures ranged between **10 °C (high)** and **3 °C (low)**. On **16 February**, the weather was also dry, with no rainfall, and temperatures ranged between **16 °C (high)** and **5 °C (low)**. The overall February 2026 weather in Madrid is cold, with average temperatures between **4 °C and 13 °C**, 3 rainy days, 1 snowy day, and 24 dry days. The 14-day forecast shows generally stable conditions, with no rain recorded on both 14 and 16 February.
+
+
+2026-02-12 12:50:28,005 | INFO     | pipeline.py:83 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 12:50:28,105 | INFO     | functions.py:67 | pipeline_node_agents.examples.trip_planner.functions | ✅Pipeline Output of Madrid:
+For Madrid in February 2026, the weather on **14 February** was dry with no rainfall, and temperatures ranged between **10 °C (high)** and **3 °C (low)**. On **16 February**, the weather was also dry, with no rainfall, and temperatures ranged between **16 °C (high)** and **5 °C (low)**. The overall February 2026 weather in Madrid is cold, with average temperatures between **4 °C and 13 °C**, 3 rainy days, 1 snowy day, and 24 dry days. The 14-day forecast shows generally stable conditions, with no rain recorded on both 14 and 16 February.
+2026-02-12 12:50:28,106 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+2026-02-12 12:50:28,106 | INFO     | pipeline.py:63 | pipeline_node_agents.core.pipeline | 
+2026-02-12 12:50:28,106 | INFO     | pipeline.py:65 | pipeline_node_agents.core.pipeline | 
+2026-02-12 12:50:28,106 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-02-12 12:50:28,107 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 12:50:28,119 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine brave: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20%20Dubai%20from%2014%20February%2020265%20to%2016%20February%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 12:50:28,216 | INFO     | lib.rs:464 | primp | response: https://search.brave.com/search?q=weather+forecast++Dubai+from+14+February+20265+to+16+February+2026&source=web 429
+2026-02-12 12:50:28,503 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=kHWOVLY2IclGlpxNq3fzo23Q;_ylu=fsJfVb_Y8LCuU7DVhzo2Wdz-QftLgJ5-20p4TZ2QbHFa5CU?p=weather+forecast++Dubai+from+14+February+20265+to+16+February+2026 200
+2026-02-12 12:50:28,857 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: [{'title': 'Dubai weather in February 2026 | Dubai 14 day weather', 'snippet': 'Our weather forecast can give you a great sense of what weather to expect in Dubai in February 2026 . If you’re planning to visit Dubai in the near future, we highly recommend that you review the 14 day weather forecast for Dubai before you arrive. Click on a day for an hourly weather forecast .', 'url': 'https://www.weather25.com/asia/united-arab-emirates/dubai?page=month&month=February'}, {'title': 'Dubai, Dubai, United Arab Emirates Monthly Weather | AccuWeather', 'snippet': 'Get the monthly weather forecast for Dubai , Dubai , United Arab Emirates, including daily high/low, historical averages, to help you plan ahead.', 'url': 'https://www.accuweather.com/en/ae/dubai/323091/february-weather/323091'}, {'title': 'Weather in Dubai in February 2026 - Detailed Forecast', 'snippet': 'Discover the most accurate weather forecast for Dubai in February 2026 . Insights into temperature, precipitation, and weather trends.', 'url': 'https://www.easeweather.com/asia/united-arab-emirates/dubai/dubai/february'}, {'title': 'Dubai February 2026 Historical Weather Data (United Arab ...', 'snippet': '4 days ago · It features all historical weather data series we have available, including the Dubai temperature history for February 2026 . You can drill down from year to month and even day level reports by clicking on the graphs.', 'url': 'https://weatherspark.com/h/m/105470/2026/2/Historical-Weather-in-February-2026-in-Dubai-United-Arab-Emirates'}, {'title': 'Weather in Dubai in February 2026 (Dubayy) - Detailed Weather ...', 'snippet': "Dubai Weather Forecast for February 2026 is based on long term prognosis and previous years' statistical data. Wind direction chart for Dubai (daytime), based on February 2026 wind statistics. Average daytime values for February 2026 .", 'url': 'https://world-weather.info/forecast/uae/dubai/february-2026/'}]
+2026-02-12 12:50:28,857 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: ScrapeNode
+2026-02-12 12:50:29,119 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ScrapeNode executed. Outputs: Dubai weather in February 2026 | Dubai 14 day weather Home Asia United Arab Emirates Dubai February Location was added to My Locations Location was removed from My Locations January Abu Dhabi Dubai Fujairah Palm Islands Ras Al Khaimah Sharjah March Dubai weather in February 2026 Click on a day for an hourly weather forecast Thursday Feb 12 0 mm 26 ° / 21 ° Friday Feb 13 0 mm 25 ° / 22 ° Saturday Feb 14 0 mm 25 ° / 22 ° Sunday Feb 15 0 mm 25 ° / 22 ° Monday Feb 16 0 mm 23 ° / 21 ° Tuesday Feb 17 0 mm 23 ° / 20 ° Wednesday Feb 18 0 mm 24 ° / 21 ° Thursday Feb 19 0 mm 24 ° / 21 ° Friday Feb 20 0 mm 24 ° / 22 ° Saturday Feb 21 0 mm 23 ° / 21 ° Sunday Feb 22 0 mm 22 ° / 20 ° Monday Feb 23 0 mm 22 ° / 19 ° Tuesday Feb 24 0 mm 22 ° / 20 ° Wednesday Feb 25 0 mm 22 ° / 19 ° Next Month >> The average weather in Dubai in February The weather in Dubai in February is hot. The average temperatures are between 20 ° C and 25 ° C . You can expect a few rainy days in Dubai during February, but usually the weather is comfortable in February. Our weather forecast can give you a great sense of what weather to expect in Dubai in February 2026 . If you’re planning to visit Dubai in the near future, we highly recommend that you review the 14 day weather forecast for Dubai before you arrive. Temperatures 25 ° / 20 ° Rainy Days 1 Snowy Days 0 Dry Days 28 Rainfall 6 mm Sun Hours 11.9 Hrs Historic average weather for February February Sun Mon Tue Wed Thu Fri Sat 1 22 ° / 18 ° 2 22 ° / 19 ° 3 22 ° / 18 ° 4 23 ° / 18 ° 5 23 ° / 18 ° 6 23 ° / 18 ° 7 23 ° / 19 ° 8 24 ° / 19 ° 9 23 ° / 19 ° 10 23 ° / 18 ° 11 23 ° / 17 ° 12 26 ° / 21 ° 13 25 ° / 22 ° 14 25 ° / 22 ° 15 25 ° / 22 ° 16 23 ° / 21 ° 17 23 ° / 20 ° 18 24 ° / 21 ° 19 24 ° / 21 ° 20 24 ° / 22 ° 21 23 ° / 21 ° 22 22 ° / 20 ° 23 22 ° / 19 ° 24 22 ° / 20 ° 25 22 ° / 19 ° 26 25 ° / 20 ° 27 24 ° / 20 ° 28 24 ° / 19 ° Click on a day for an hourly weather forecast Explore the weather in Dubai in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Dubai annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 24 ° / 19 ° 1 30 0 15 mm Perfect Dubai in January February 25 ° / 20 ° 1 28 0 6 mm Perfect Dubai in February March 28 ° / 22 ° 1 30 0 14 mm Perfect Dubai in March April 32 ° / 26 ° 0 30 0 7 mm Good Dubai in April May 36 ° / 29 ° 0 31 0 1 mm Ok Dubai in May June 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in June July 39 ° / 33 ° 0 31 0 1 mm Bad Dubai in July August 39 ° / 33 ° 0 31 0 2 mm Bad Dubai in August September 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in September October 35 ° / 28 ° 0 31 0 0 mm Ok Dubai in October November 30 ° / 24 ° 0 30 0 8 mm Good Dubai in November December 26 ° / 21 ° 0 31 0 8 mm Perfect Dubai in December Temperatures in Dubai in February Rain in Dubai in February Recommended Hotels in Dubai We know that finding the ideal hotel in Dubai can be a hard task... That’s why we run our special tools and found the best hotels in Dubai. Click on hotel for more details. Hotels in Dubai Al Jaddaf Rotana Suite Hotel Book Now Grand Cosmopolitan Hotel Book Now Crowne Plaza Dubai Marina, an IHG Hotel Book Now Weather in Dubai in February - FAQ What is the average temperature in Dubai in February? The average temperature in Dubai in February is 20 / 25 ° C . What is the chance of rain in Dubai in February? On average, there are 1 rainy days in Dubai during February. Weather wise, is February a good time to visit Dubai? The weather in Dubai in February is perfect. Can it snow in Dubai in February? On average, there are 0 snowy days in Dubai in February. More about the weather in Dubai Dubai 14 day weather Long range weather for Dubai Dubai weather in March Dubai Webcam Weather tomorrow Hotels in Dubai
+2026-02-12 12:50:29,119 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: WeatherSummaryNode
+2026-02-12 12:50:29,119 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in  Dubai around dates 14 February 20265 and 16 February 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Dubai weather in February 2026 | Dubai 14 day weather Home Asia United Arab Emirates Dubai February Location was added to My Locations Location was removed from My Locations January Abu Dhabi Dubai Fujairah Palm Islands Ras Al Khaimah Sharjah March Dubai weather in February 2026 Click on a day for an hourly weather forecast Thursday Feb 12 0 mm 26 ° / 21 ° Friday Feb 13 0 mm 25 ° / 22 ° Saturday Feb 14 0 mm 25 ° / 22 ° Sunday Feb 15 0 mm 25 ° / 22 ° Monday Feb 16 0 mm 23 ° / 21 ° Tuesday Feb 17 0 mm 23 ° / 20 ° Wednesday Feb 18 0 mm 24 ° / 21 ° Thursday Feb 19 0 mm 24 ° / 21 ° Friday Feb 20 0 mm 24 ° / 22 ° Saturday Feb 21 0 mm 23 ° / 21 ° Sunday Feb 22 0 mm 22 ° / 20 ° Monday Feb 23 0 mm 22 ° / 19 ° Tuesday Feb 24 0 mm 22 ° / 20 ° Wednesday Feb 25 0 mm 22 ° / 19 ° Next Month >> The average weather in Dubai in February The weather in Dubai in February is hot. The average temperatures are between 20 ° C and 25 ° C . You can expect a few rainy days in Dubai during February, but usually the weather is comfortable in February. Our weather forecast can give you a great sense of what weather to expect in Dubai in February 2026 . If you’re planning to visit Dubai in the near future, we highly recommend that you review the 14 day weather forecast for Dubai before you arrive. Temperatures 25 ° / 20 ° Rainy Days 1 Snowy Days 0 Dry Days 28 Rainfall 6 mm Sun Hours 11.9 Hrs Historic average weather for February February Sun Mon Tue Wed Thu Fri Sat 1 22 ° / 18 ° 2 22 ° / 19 ° 3 22 ° / 18 ° 4 23 ° / 18 ° 5 23 ° / 18 ° 6 23 ° / 18 ° 7 23 ° / 19 ° 8 24 ° / 19 ° 9 23 ° / 19 ° 10 23 ° / 18 ° 11 23 ° / 17 ° 12 26 ° / 21 ° 13 25 ° / 22 ° 14 25 ° / 22 ° 15 25 ° / 22 ° 16 23 ° / 21 ° 17 23 ° / 20 ° 18 24 ° / 21 ° 19 24 ° / 21 ° 20 24 ° / 22 ° 21 23 ° / 21 ° 22 22 ° / 20 ° 23 22 ° / 19 ° 24 22 ° / 20 ° 25 22 ° / 19 ° 26 25 ° / 20 ° 27 24 ° / 20 ° 28 24 ° / 19 ° Click on a day for an hourly weather forecast Explore the weather in Dubai in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Dubai annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 24 ° / 19 ° 1 30 0 15 mm Perfect Dubai in January February 25 ° / 20 ° 1 28 0 6 mm Perfect Dubai in February March 28 ° / 22 ° 1 30 0 14 mm Perfect Dubai in March April 32 ° / 26 ° 0 30 0 7 mm Good Dubai in April May 36 ° / 29 ° 0 31 0 1 mm Ok Dubai in May June 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in June July 39 ° / 33 ° 0 31 0 1 mm Bad Dubai in July August 39 ° / 33 ° 0 31 0 2 mm Bad Dubai in August September 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in September October 35 ° / 28 ° 0 31 0 0 mm Ok Dubai in October November 30 ° / 24 ° 0 30 0 8 mm Good Dubai in November December 26 ° / 21 ° 0 31 0 8 mm Perfect Dubai in December Temperatures in Dubai in February Rain in Dubai in February Recommended Hotels in Dubai We know that finding the ideal hotel in Dubai can be a hard task... That’s why we run our special tools and found the best hotels in Dubai. Click on hotel for more details. Hotels in Dubai Al Jaddaf Rotana Suite Hotel Book Now Grand Cosmopolitan Hotel Book Now Crowne Plaza Dubai Marina, an IHG Hotel Book Now Weather in Dubai in February - FAQ What is the average temperature in Dubai in February? The average temperature in Dubai in February is 20 / 25 ° C . What is the chance of rain in Dubai in February? On average, there are 1 rainy days in Dubai during February. Weather wise, is February a good time to visit Dubai? The weather in Dubai in February is perfect. Can it snow in Dubai in February? On average, there are 0 snowy days in Dubai in February. More about the weather in Dubai Dubai 14 day weather Long range weather for Dubai Dubai weather in March Dubai Webcam Weather tomorrow Hotels in Dubai
+---
+
+Remember: Analyze the provided text and summarize information about weather in  Dubai around dates 14 February 20265 and 16 February 2026.
+2026-02-12 12:50:29,120 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-02-12 12:50:29,120 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 3838 chars
+2026-02-12 12:50:29,132 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-02-12 12:51:00,044 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 12:51:00,398 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+For Dubai on **14 February 2026**, the weather is dry with 0 mm rainfall, and temperatures range between 25 °C (high) and 22 °C (low). On **16 February 2026**, the weather remains dry with 0 mm rainfall, and temperatures range between 23 °C (high) and 21 °C (low). Both days fall within Dubai's typical February weather pattern of hot temperatures (20 °C–25 °C) and minimal rainfall (1 rainy day in February).
+
+
+2026-02-12 12:51:00,398 | INFO     | pipeline.py:83 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 12:51:00,499 | INFO     | functions.py:67 | pipeline_node_agents.examples.trip_planner.functions | ✅Pipeline Output of  Dubai:
+For Dubai on **14 February 2026**, the weather is dry with 0 mm rainfall, and temperatures range between 25 °C (high) and 22 °C (low). On **16 February 2026**, the weather remains dry with 0 mm rainfall, and temperatures range between 23 °C (high) and 21 °C (low). Both days fall within Dubai's typical February weather pattern of hot temperatures (20 °C–25 °C) and minimal rainfall (1 rainy day in February).
+2026-02-12 12:51:00,500 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ResearchCitiesNode executed. Outputs: ### Madrid
+
+For Madrid in February 2026, the weather on **14 February** was dry with no rainfall, and temperatures ranged between **10 °C (high)** and **3 °C (low)**. On **16 February**, the weather was also dry, with no rainfall, and temperatures ranged between **16 °C (high)** and **5 °C (low)**. The overall February 2026 weather in Madrid is cold, with average temperatures between **4 °C and 13 °C**, 3 rainy days, 1 snowy day, and 24 dry days. The 14-day forecast shows generally stable conditions, with no rain recorded on both 14 and 16 February.
+
+###  Dubai
+
+For Dubai on **14 February 2026**, the weather is dry with 0 mm rainfall, and temperatures range between 25 °C (high) and 22 °C (low). On **16 February 2026**, the weather remains dry with 0 mm rainfall, and temperatures range between 23 °C (high) and 21 °C (low). Both days fall within Dubai's typical February weather pattern of hot temperatures (20 °C–25 °C) and minimal rainfall (1 rainy day in February).
+2026-02-12 12:51:00,500 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: CitySelectionNode
+2026-02-12 12:51:00,501 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Choose one city from the provided list based on the weather summaries.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### WEATHER_SUMMARIES ###
+### Madrid
+
+For Madrid in February 2026, the weather on **14 February** was dry with no rainfall, and temperatures ranged between **10 °C (high)** and **3 °C (low)**. On **16 February**, the weather was also dry, with no rainfall, and temperatures ranged between **16 °C (high)** and **5 °C (low)**. The overall February 2026 weather in Madrid is cold, with average temperatures between **4 °C and 13 °C**, 3 rainy days, 1 snowy day, and 24 dry days. The 14-day forecast shows generally stable conditions, with no rain recorded on both 14 and 16 February.
+
+###  Dubai
+
+For Dubai on **14 February 2026**, the weather is dry with 0 mm rainfall, and temperatures range between 25 °C (high) and 22 °C (low). On **16 February 2026**, the weather remains dry with 0 mm rainfall, and temperatures range between 23 °C (high) and 21 °C (low). Both days fall within Dubai's typical February weather pattern of hot temperatures (20 °C–25 °C) and minimal rainfall (1 rainy day in February).
+---
+
+Remember: Choose one city from the provided list based on the weather summaries.
+2026-02-12 12:51:00,502 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: First line: Chosen city name. Following lines: brief explanation of why this city was chosen.
+2026-02-12 12:51:00,502 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 1004 chars
+2026-02-12 12:51:00,514 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-02-12 12:51:23,543 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 12:51:24,185 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Dubai  
+Dubai's weather in February 2026 is characterized by consistently dry conditions with no rainfall on both 14 and 16 February, and temperatures ranging between 21 °C (low) and 25 °C (high). This aligns with Dubai's typical February pattern of hot temperatures (20 °C–25 °C) and minimal rainfall (only 1 rainy day in February). In contrast, Madrid experiences cold temperatures (4 °C–13 °C), with 3 rainy days, 1 snowy day, and 24 dry days, making Dubai the more favorable choice for stable, warm weather during the specified dates.
+
+
+2026-02-12 12:51:24,185 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: ExtractChosenCityNode
+2026-02-12 12:51:24,185 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ExtractChosenCityNode executed. Outputs: Dubai
+2026-02-12 12:51:24,185 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: LocalExpertNode
+2026-02-12 12:51:24,185 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Dubai
+
+### DATES ###
+('14 February 20265', '16 February 2026')
+---
+
+Remember: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+2026-02-12 12:51:24,186 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: City guide including hidden gems, cultural hotspots, and practical travel tips
+2026-02-12 12:51:24,186 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 82 chars
+2026-02-12 12:51:24,203 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-02-12 12:51:55,628 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 12:51:55,996 | INFO     | search_tools_crewai.py:23 | pipeline_node_agents.tools.search_tools_crewai | Tool 'Search the internet' is used with parameters: query=Dubai 2026 attractions food activities hidden gems cultural spots travel tips
+2026-02-12 12:51:55,997 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 12:51:56,010 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine brave: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Dubai%202026%20attractions%20food%20activities%20hidden%20gems%20cultural%20spots%20travel%20tips): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 12:51:56,095 | INFO     | lib.rs:464 | primp | response: https://search.brave.com/search?q=Dubai+2026+attractions+food+activities+hidden+gems+cultural+spots+travel+tips&source=web 429
+2026-02-12 12:51:56,883 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-02-12 12:52:55,485 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 12:52:55,879 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+**Dubai City Guide: Key Attractions, Hidden Gems, Food, Culture & Travel Tips (14–16 February 2026)**
+
+---
+
+### **Key Attractions**  
+1. **Burj Khalifa & Dubai Frame** – Skyline icon and panoramic views.  
+2. **Palm Jumeirah** – Luxurious beaches and the Atlantis, The Palm resort.  
+3. **Dubai Mall** – One of the world’s largest malls with an aquarium and indoor ski slope.  
+4. **Dubai Fountain** – Spectacular water shows synchronized to music.  
+5. **Sheikh Zayed Road** – Shopping, dining, and the iconic Mall of the Emirates.  
+
+---
+
+### **Hidden Gems**  
+1. **Al Seef** – Historic district with traditional architecture, cafes, and markets.  
+2. **Dubai Museum (Al Fahidi Historic District)** – Learn about UAE culture and heritage.  
+3. **Museum of the Future** – Futuristic architecture and interactive exhibits.  
+4. **Dubai Creek Food Market** – Local flavors, fresh seafood, and traditional Emirati dishes.  
+5. **Al Karama Heritage Village** – Authentic Emirati lifestyle and crafts.  
+
+---
+
+### **Food Places**  
+1. **Spice Market (Dubai Creek)** – Try shawarma, machboos, and Arabic coffee.  
+2. **Al Fahidi Food Hall** – Global cuisine in a historic setting.  
+3. **Jumeirah Beach Hotel’s Beachside Restaurant** – Seafood with ocean views.  
+4. **Babushka** – Russian-inspired dishes in a cozy setting.  
+5. **Zuma** – High-end Japanese fusion with a rooftop terrace.  
+
+---
+
+### **Cultural Hotspots**  
+1. **Dubai Museum** – Explore UAE history and the oldest building in Dubai.  
+2. **Gold Souk** – Shop for jewelry and traditional crafts.  
+3. **Dubai Heritage Village** – Interactive exhibits on Emirati traditions.  
+4. **Al Qasba Heritage Village** – Traditional architecture and cultural performances.  
+5. **Abra Ride (Dubai Creek)** – Classic boat ride to the creek’s heart.  
+
+---
+
+### **Daily Activity Recommendations**  
+- **Day 1 (14 Feb):** Visit the Dubai Museum and Al Seef in the morning. Enjoy lunch at Spice Market, then relax at Dubai Creek.  
+- **Day 2 (15 Feb):** Explore the Burj Khalifa and Dubai Fountain. Visit the Dubai Mall in the evening.  
+- **Day 3 (16 Feb):** Take a desert safari or visit the Museum of the Future. Dine at Zuma for a farewell meal.  
+
+---
+
+### **Practical Travel Tips**  
+- **Weather:** February is mild (15–25°C). Dress in light clothing but carry a light jacket.  
+- **Transport:** Use the Dubai Metro, taxis, or ride-hailing apps. Avoid traffic during peak hours.  
+- **Crowds:** Visit attractions early in the morning to avoid crowds.  
+- **Events:** Check for local festivals or events in February (e.g., Dubai Shopping Festival, though it typically runs in January).  
+- **Safety:** Always carry ID, stay hydrated, and follow traffic rules.  
+
+Enjoy your trip to Dubai! 🌆✨
+
+
+2026-02-12 12:52:55,880 | INFO     | pipeline.py:72 | pipeline_node_agents.core.pipeline | → Running node: TravelConciergeNode
+2026-02-12 12:52:55,880 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Plan a 7-day trip itinerary based on the chosen city and provided information.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Dubai
+
+### LIST_OF_ATTRACTIONS ###
+**Dubai City Guide: Key Attractions, Hidden Gems, Food, Culture & Travel Tips (14–16 February 2026)**
+
+---
+
+### **Key Attractions**  
+1. **Burj Khalifa & Dubai Frame** – Skyline icon and panoramic views.  
+2. **Palm Jumeirah** – Luxurious beaches and the Atlantis, The Palm resort.  
+3. **Dubai Mall** – One of the world’s largest malls with an aquarium and indoor ski slope.  
+4. **Dubai Fountain** – Spectacular water shows synchronized to music.  
+5. **Sheikh Zayed Road** – Shopping, dining, and the iconic Mall of the Emirates.  
+
+---
+
+### **Hidden Gems**  
+1. **Al Seef** – Historic district with traditional architecture, cafes, and markets.  
+2. **Dubai Museum (Al Fahidi Historic District)** – Learn about UAE culture and heritage.  
+3. **Museum of the Future** – Futuristic architecture and interactive exhibits.  
+4. **Dubai Creek Food Market** – Local flavors, fresh seafood, and traditional Emirati dishes.  
+5. **Al Karama Heritage Village** – Authentic Emirati lifestyle and crafts.  
+
+---
+
+### **Food Places**  
+1. **Spice Market (Dubai Creek)** – Try shawarma, machboos, and Arabic coffee.  
+2. **Al Fahidi Food Hall** – Global cuisine in a historic setting.  
+3. **Jumeirah Beach Hotel’s Beachside Restaurant** – Seafood with ocean views.  
+4. **Babushka** – Russian-inspired dishes in a cozy setting.  
+5. **Zuma** – High-end Japanese fusion with a rooftop terrace.  
+
+---
+
+### **Cultural Hotspots**  
+1. **Dubai Museum** – Explore UAE history and the oldest building in Dubai.  
+2. **Gold Souk** – Shop for jewelry and traditional crafts.  
+3. **Dubai Heritage Village** – Interactive exhibits on Emirati traditions.  
+4. **Al Qasba Heritage Village** – Traditional architecture and cultural performances.  
+5. **Abra Ride (Dubai Creek)** – Classic boat ride to the creek’s heart.  
+
+---
+
+### **Daily Activity Recommendations**  
+- **Day 1 (14 Feb):** Visit the Dubai Museum and Al Seef in the morning. Enjoy lunch at Spice Market, then relax at Dubai Creek.  
+- **Day 2 (15 Feb):** Explore the Burj Khalifa and Dubai Fountain. Visit the Dubai Mall in the evening.  
+- **Day 3 (16 Feb):** Take a desert safari or visit the Museum of the Future. Dine at Zuma for a farewell meal.  
+
+---
+
+### **Practical Travel Tips**  
+- **Weather:** February is mild (15–25°C). Dress in light clothing but carry a light jacket.  
+- **Transport:** Use the Dubai Metro, taxis, or ride-hailing apps. Avoid traffic during peak hours.  
+- **Crowds:** Visit attractions early in the morning to avoid crowds.  
+- **Events:** Check for local festivals or events in February (e.g., Dubai Shopping Festival, though it typically runs in January).  
+- **Safety:** Always carry ID, stay hydrated, and follow traffic rules.  
+
+Enjoy your trip to Dubai! 🌆✨
+
+### DATES ###
+('14 February 20265', '16 February 2026')
+---
+
+Remember: Plan a 7-day trip itinerary based on the chosen city and provided information.
+2026-02-12 12:52:55,881 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Detailed 7-day itinerary including daily activities, dining options, and transportation tips.
+2026-02-12 12:52:55,881 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 2857 chars
+2026-02-12 12:52:55,895 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= qwen3:8b; provider = ollama
+2026-02-12 12:54:22,263 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 12:54:22,911 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+**7-Day Dubai Itinerary (14–20 February 2026)**  
+
+**Day 1 (14 Feb): Arrival & Cultural Immersion**  
+- **Morning:** Check into your hotel (e.g., Jumeirah Beach Hotel) and visit **Dubai Museum (Al Fahidi Historic District)** to learn about UAE history.  
+- **Afternoon:** Explore **Al Seef** for traditional architecture, cafes, and markets. Take a guided tour of **Dubai Creek** and enjoy an **Abra ride** to the creek’s heart.  
+- **Dinner:** Dine at **Al Fahidi Food Hall** for global cuisine in a historic setting.  
+- **Transport:** Use Dubai Metro or taxis; avoid traffic during peak hours.  
+
+**Day 2 (15 Feb): Iconic Landmarks & Retail Therapy**  
+- **Morning:** Visit **Burj Khalifa** (skydeck access) and **Dubai Fountain** for synchronized water shows.  
+- **Afternoon:** Explore **Sheikh Zayed Road**, shopping at **Mall of the Emirates**, and relax at **Dubai Mall** (visit the aquarium and indoor ski slope).  
+- **Dinner:** Enjoy seafood at **Jumeirah Beach Hotel’s Beachside Restaurant** with ocean views.  
+- **Transport:** Use ride-hailing apps for convenience.  
+
+**Day 3 (16 Feb): Futuristic Adventures & Desert Escapes**  
+- **Morning:** Visit **Museum of the Future** for interactive exhibits and futuristic architecture.  
+- **Afternoon:** Take a **desert safari** (sandboarding, camel ride, and dune bashing).  
+- **Evening:** Farewell dinner at **Zuma** (rooftop terrace with Japanese fusion cuisine).  
+- **Transport:** Book desert safari packages in advance.  
+
+**Day 4 (17 Feb): Palm Jumeirah & Waterfront Luxury**  
+- **Morning:** Tour **Palm Jumeirah**, visit **Atlantis, The Palm** (Aquaventure water park), and relax at **One&Only The Palm** beach.  
+- **Afternoon:** Shop at **Palm Jumeirah’s luxury malls** (e.g., The Plaza).  
+- **Dinner:** Try **Spice Market** for shawarma and Arabic coffee.  
+- **Transport:** Take a water taxi or metro to Palm Jumeirah.  
+
+**Day 5 (18 Feb): Cultural Heritage & Traditional Markets**  
+- **Morning:** Explore **Gold Souk** for jewelry shopping and **Dubai Heritage Village** for interactive Emirati traditions.  
+- **Afternoon:** Visit **Al Qasba Heritage Village** for cultural performances and traditional architecture.  
+- **Dinner:** Dine at **Babushka** for Russian-inspired dishes in a cozy setting.  
+- **Transport:** Use taxis or metro for local markets.  
+
+**Day 6 (19 Feb): Hidden Gems & Local Flavors**  
+- **Morning:** Discover **Al Karama Heritage Village** for authentic Emirati crafts and lifestyle.  
+- **Afternoon:** Explore **Dubai Creek Food Market** for fresh seafood and traditional Emirati dishes.  
+- **Evening:** Stroll through **Dubai Mall** or enjoy a sunset at **Dubai Frame**.  
+- **Transport:** Use metro or ride-hailing apps.  
+
+**Day 7 (20 Feb): Leisure & Departure**  
+- **Morning:** Relax at **Jumeirah Beach** or visit **Dubai Marina** for boat tours.  
+- **Afternoon:** Shop at **Dubai Mall** or **Mall of the Emirates** for last-minute purchases.  
+- **Evening:** Depart after a final meal at **Al Fahidi Food Hall** or **Spice Market**.  
+- **Transport:** Use airport shuttle or taxi for departure.  
+
+**Practical Tips:**  
+- **Weather:** February is mild (15–25°C); dress in light clothing with a light jacket.  
+- **Safety:** Carry ID, stay hydrated, and follow traffic rules.  
+- **Events:** Check for local festivals (e.g., Dubai Shopping Festival in January, but February may have smaller events).  
+- **Crowds:** Visit attractions early to avoid queues.
+
+
+2026-02-12 12:54:22,914 | INFO     | pipeline.py:83 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 12:54:23,015 | INFO     | pipeline.py:66 | __main__ | ✅ Final Pipeline Output:
+ chosen_city: Dubai
+ trip_itinerary: **7-Day Dubai Itinerary (14–20 February 2026)**  
+
+**Day 1 (14 Feb): Arrival & Cultural Immersion**  
+- **Morning:** Check into your hotel (e.g., Jumeirah Beach Hotel) and visit **Dubai Museum (Al Fahidi Historic District)** to learn about UAE history.  
+- **Afternoon:** Explore **Al Seef** for traditional architecture, cafes, and markets. Take a guided tour of **Dubai Creek** and enjoy an **Abra ride** to the creek’s heart.  
+- **Dinner:** Dine at **Al Fahidi Food Hall** for global cuisine in a historic setting.  
+- **Transport:** Use Dubai Metro or taxis; avoid traffic during peak hours.  
+
+**Day 2 (15 Feb): Iconic Landmarks & Retail Therapy**  
+- **Morning:** Visit **Burj Khalifa** (skydeck access) and **Dubai Fountain** for synchronized water shows.  
+- **Afternoon:** Explore **Sheikh Zayed Road**, shopping at **Mall of the Emirates**, and relax at **Dubai Mall** (visit the aquarium and indoor ski slope).  
+- **Dinner:** Enjoy seafood at **Jumeirah Beach Hotel’s Beachside Restaurant** with ocean views.  
+- **Transport:** Use ride-hailing apps for convenience.  
+
+**Day 3 (16 Feb): Futuristic Adventures & Desert Escapes**  
+- **Morning:** Visit **Museum of the Future** for interactive exhibits and futuristic architecture.  
+- **Afternoon:** Take a **desert safari** (sandboarding, camel ride, and dune bashing).  
+- **Evening:** Farewell dinner at **Zuma** (rooftop terrace with Japanese fusion cuisine).  
+- **Transport:** Book desert safari packages in advance.  
+
+**Day 4 (17 Feb): Palm Jumeirah & Waterfront Luxury**  
+- **Morning:** Tour **Palm Jumeirah**, visit **Atlantis, The Palm** (Aquaventure water park), and relax at **One&Only The Palm** beach.  
+- **Afternoon:** Shop at **Palm Jumeirah’s luxury malls** (e.g., The Plaza).  
+- **Dinner:** Try **Spice Market** for shawarma and Arabic coffee.  
+- **Transport:** Take a water taxi or metro to Palm Jumeirah.  
+
+**Day 5 (18 Feb): Cultural Heritage & Traditional Markets**  
+- **Morning:** Explore **Gold Souk** for jewelry shopping and **Dubai Heritage Village** for interactive Emirati traditions.  
+- **Afternoon:** Visit **Al Qasba Heritage Village** for cultural performances and traditional architecture.  
+- **Dinner:** Dine at **Babushka** for Russian-inspired dishes in a cozy setting.  
+- **Transport:** Use taxis or metro for local markets.  
+
+**Day 6 (19 Feb): Hidden Gems & Local Flavors**  
+- **Morning:** Discover **Al Karama Heritage Village** for authentic Emirati crafts and lifestyle.  
+- **Afternoon:** Explore **Dubai Creek Food Market** for fresh seafood and traditional Emirati dishes.  
+- **Evening:** Stroll through **Dubai Mall** or enjoy a sunset at **Dubai Frame**.  
+- **Transport:** Use metro or ride-hailing apps.  
+
+**Day 7 (20 Feb): Leisure & Departure**  
+- **Morning:** Relax at **Jumeirah Beach** or visit **Dubai Marina** for boat tours.  
+- **Afternoon:** Shop at **Dubai Mall** or **Mall of the Emirates** for last-minute purchases.  
+- **Evening:** Depart after a final meal at **Al Fahidi Food Hall** or **Spice Market**.  
+- **Transport:** Use airport shuttle or taxi for departure.  
+
+**Practical Tips:**  
+- **Weather:** February is mild (15–25°C); dress in light clothing with a light jacket.  
+- **Safety:** Carry ID, stay hydrated, and follow traffic rules.  
+- **Events:** Check for local festivals (e.g., Dubai Shopping Festival in January, but February may have smaller events).  
+- **Crowds:** Visit attractions early to avoid queues.
+2026-02-12 12:54:23,016 | INFO     | pipeline.py:68 | __main__ | ⏱️  Execution time: 266.18 seconds

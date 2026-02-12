@@ -1,0 +1,376 @@
+2026-02-12 14:40:37,028 | INFO     | pipeline.py:28 | __main__ | Starting TripPlannerPipeline
+2026-02-12 14:40:37,029 | INFO     | pipeline.py:51 | __main__ | Context: {'list_of_cities': ['Madrid', ' Dubai'], 'dates': ('14 February 20265', '16 February 2026'), 'location': 'Vienna', 'interests': 'art, history, and food'}
+2026-02-12 14:40:37,030 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ ResearchCitiesNode -> CitySelectionNode -> ExtractChosenCityNode -> LocalExpertNode -> TravelConciergeNode │
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+2026-02-12 14:40:37,030 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ResearchCitiesNode
+2026-02-12 14:40:37,030 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+
+┌──────────────────────────────────────────────────────────┐
+│ DuckDuckGoSearchNode -> ScrapeNode -> WeatherSummaryNode │
+└──────────────────────────────────────────────────────────┘
+
+2026-02-12 14:40:37,031 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-02-12 14:40:37,090 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 14:40:37,121 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine yahoo: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20Madrid%20from%2014%20February%2020265%20to%2016%20February%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 14:40:37,338 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=c9iLqpY4K5dqg1MPuHPUAXcL;_ylu=IVq6-eLGmkH7YlZvkLx3-v37rRpDRil05Yl6kjRiUfDW8Jo?p=weather+forecast+Madrid+from+14+February+20265+to+16+February+2026 200
+2026-02-12 14:40:37,790 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: [{'title': 'Madrid, Madrid, Spain Monthly Weather | AccuWeather', 'snippet': 'Get the monthly weather forecast for Madrid , Madrid , Spain, including daily high/low, historical averages, to help you plan ahead.', 'url': 'https://www.accuweather.com/en/es/madrid/28034/february-weather/95245_pc'}, {'title': 'Madrid weather in February 2026 | Madrid 14 day weather', 'snippet': '1 day ago · Our weather forecast can give you a great sense of what weather to expect in Madrid in February 2026 . If you’re planning to visit Madrid in the near future, we highly recommend that you review the 14 day weather forecast for Madrid before you arrive. Click on a day for an hourly weather forecast .', 'url': 'https://www.weather25.com/europe/spain/madrid?page=month&month=February'}, {'title': 'Weather in Madrid in February 2026 - Detailed Forecast', 'snippet': 'Feb 5, 2026 · Discover the most accurate weather forecast for Madrid in February 2026 . Insights into temperature, precipitation, and weather trends.', 'url': 'https://www.easeweather.com/weather/month/madrid/february'}, {'title': 'February 2026 Daily Weather Forecast for Madrid, Madrid - Plan Ahead', 'snippet': 'Our Madrid , Comunidad de Madrid Daily Weather Forecast for February 2026 , developed from a specialized dynamic long-range model, provides precise daily temperature and rainfall predictions. This model, distinct from standard statistical or climatological approaches, is the result of over 50 years of dedicated private research, offering a clearer and more accurate meteorological insight.', 'url': 'https://www.weathertab.com/en/c/o/02/kingdom-of-spain/comunidad-de-madrid/madrid/'}, {'title': 'Weather in Madrid in February 2026 (Community of Madrid) - detailed ...', 'snippet': "World Spain Community of Madrid Weather in Madrid Weather in Madrid in February 2026 Madrid Weather Forecast for February 2026 is based on long term prognosis and previous years' statistical data.", 'url': 'https://world-weather.info/forecast/spain/madrid/february-2026/'}]
+2026-02-12 14:40:37,790 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ScrapeNode
+2026-02-12 14:40:38,168 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ScrapeNode executed. Outputs: Madrid, Madrid, Spain Monthly Weather | AccuWeather Go Back For Business | Warnings Data Suite Forensics Advertising Superior Accuracy™ Madrid, Madrid 56° F Location Chevron down Location News Videos Use Current Location Recent Madrid Madrid 56° No results found. Try searching for a city, zip code or point of interest. Create Your Account Unlock extended daily and hourly forecasts — all with your free account. Let's Go Chevron right Have an account already? Log In settings Madrid, Madrid Weather Today WinterCast Local {stormName} Tracker Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Around the Globe Hurricane Tracker Severe Weather Radar & Maps News News & Features Astronomy Business Climate Health Recreation Sports Travel For Business Warnings Data Suite Forensics Advertising Superior Accuracy™ Video Today Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities February January February March April May June July August September October November December 2026 2025 2026 2027 Daily S M T W T F S 1 46° 40° 2 49° 41° 3 48° 40° 4 52° 37° 5 58° 46° 6 48° 41° 7 45° 38° 8 53° 38° 9 54° 42° 10 58° 53° 11 59° 52° 12 56° 47° 13 52° 40° 14 51° 37° 15 56° 43° 16 61° 43° 17 58° 42° 18 56° 41° 19 52° 36° 20 54° 36° 21 54° 37° 22 56° 34° 23 58° 38° 24 59° 37° 25 57° 35° 26 56° 34° 27 57° 35° 28 56° 35° Temperature Graph °F 70° 62° 54° 46° 38° Feb Today 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 Avg. Hi Avg. Lo Actual Hi Actual Lo Forecast Hi Forecast Lo Further Ahead March 2026 April 2026 May 2026 Around the Globe Hurricane Tracker Severe Weather Radar & Maps News Video Top Stories Weather Forecasts Even warmer weather awaits central, eastern US later in February 2 hours ago Winter Weather Extreme cold in New York City linked to at least 17 deaths 1 day ago Winter Weather More big storms heading for California, West starting in mid-February 3 hours ago Recreation Death Valley could have rare superbloom in 2026 1 day ago Weather Forecasts Upcoming Valentine's Day storm to bring drenching rain to southern US 3 hours ago More Stories Featured Stories Weather News Gray wolf tracked in Los Angeles County for first time 19 hours ago Winter Weather Two boys die after falling through ice in Oklahoma 1 day ago Astronomy A 'ring of fire' eclipse is coming Feb. 17 19 hours ago Astronomy A snow-rimmed Grand Canyon stands out in astronaut photo 2 days ago Recreation Yosemite ‘Firefall’ returns soon, but weather will decide how it looks 47 minutes ago World Europe Spain Madrid Madrid Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News © 2026 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved. Terms of Use | Privacy Policy | Cookie Policy | About Your Privacy Do Not Sell or Share My Personal Information | Data Sources ... ... ... ... ...
+2026-02-12 14:40:38,168 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: WeatherSummaryNode
+2026-02-12 14:40:38,168 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in Madrid around dates 14 February 20265 and 16 February 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Madrid, Madrid, Spain Monthly Weather | AccuWeather Go Back For Business | Warnings Data Suite Forensics Advertising Superior Accuracy™ Madrid, Madrid 56° F Location Chevron down Location News Videos Use Current Location Recent Madrid Madrid 56° No results found. Try searching for a city, zip code or point of interest. Create Your Account Unlock extended daily and hourly forecasts — all with your free account. Let's Go Chevron right Have an account already? Log In settings Madrid, Madrid Weather Today WinterCast Local {stormName} Tracker Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Around the Globe Hurricane Tracker Severe Weather Radar & Maps News News & Features Astronomy Business Climate Health Recreation Sports Travel For Business Warnings Data Suite Forensics Advertising Superior Accuracy™ Video Today Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities February January February March April May June July August September October November December 2026 2025 2026 2027 Daily S M T W T F S 1 46° 40° 2 49° 41° 3 48° 40° 4 52° 37° 5 58° 46° 6 48° 41° 7 45° 38° 8 53° 38° 9 54° 42° 10 58° 53° 11 59° 52° 12 56° 47° 13 52° 40° 14 51° 37° 15 56° 43° 16 61° 43° 17 58° 42° 18 56° 41° 19 52° 36° 20 54° 36° 21 54° 37° 22 56° 34° 23 58° 38° 24 59° 37° 25 57° 35° 26 56° 34° 27 57° 35° 28 56° 35° Temperature Graph °F 70° 62° 54° 46° 38° Feb Today 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 Avg. Hi Avg. Lo Actual Hi Actual Lo Forecast Hi Forecast Lo Further Ahead March 2026 April 2026 May 2026 Around the Globe Hurricane Tracker Severe Weather Radar & Maps News Video Top Stories Weather Forecasts Even warmer weather awaits central, eastern US later in February 2 hours ago Winter Weather Extreme cold in New York City linked to at least 17 deaths 1 day ago Winter Weather More big storms heading for California, West starting in mid-February 3 hours ago Recreation Death Valley could have rare superbloom in 2026 1 day ago Weather Forecasts Upcoming Valentine's Day storm to bring drenching rain to southern US 3 hours ago More Stories Featured Stories Weather News Gray wolf tracked in Los Angeles County for first time 19 hours ago Winter Weather Two boys die after falling through ice in Oklahoma 1 day ago Astronomy A 'ring of fire' eclipse is coming Feb. 17 19 hours ago Astronomy A snow-rimmed Grand Canyon stands out in astronaut photo 2 days ago Recreation Yosemite ‘Firefall’ returns soon, but weather will decide how it looks 47 minutes ago World Europe Spain Madrid Madrid Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News © 2026 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved. Terms of Use | Privacy Policy | Cookie Policy | About Your Privacy Do Not Sell or Share My Personal Information | Data Sources ... ... ... ... ...
+---
+
+Remember: Analyze the provided text and summarize information about weather in Madrid around dates 14 February 20265 and 16 February 2026.
+2026-02-12 14:40:38,168 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-02-12 14:40:38,168 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 3837 chars
+2026-02-12 14:40:38,194 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 14:40:41,125 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 14:40:41,561 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+The text provides information about the weather in Madrid, Spain for February 2026. For the specific dates of 14 February 2026 and 16 February 2026, the forecast is not explicitly stated in the provided content. The temperature graph shows the average high and low temperatures from January to March 2026, but it does not provide the exact weather conditions for the mentioned dates.
+
+
+2026-02-12 14:40:41,561 | INFO     | pipeline.py:79 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 14:40:41,662 | INFO     | functions.py:67 | pipeline_node_agents.examples.trip_planner.functions | ✅Pipeline Output of Madrid:
+The text provides information about the weather in Madrid, Spain for February 2026. For the specific dates of 14 February 2026 and 16 February 2026, the forecast is not explicitly stated in the provided content. The temperature graph shows the average high and low temperatures from January to March 2026, but it does not provide the exact weather conditions for the mentioned dates.
+2026-02-12 14:40:41,663 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+
+┌──────────────────────────────────────────────────────────┐
+│ DuckDuckGoSearchNode -> ScrapeNode -> WeatherSummaryNode │
+└──────────────────────────────────────────────────────────┘
+
+2026-02-12 14:40:41,663 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-02-12 14:40:41,663 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 14:40:41,676 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine mojeek: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20%20Dubai%20from%2014%20February%2020265%20to%2016%20February%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 14:40:42,303 | INFO     | lib.rs:464 | primp | response: https://www.mojeek.com/search?q=weather+forecast++Dubai+from+14+February+20265+to+16+February+2026 403
+2026-02-12 14:40:42,393 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: [{'title': 'Dubai weather in February 2026 | Dubai 14 day weather', 'snippet': 'Full weather forecast for Dubai in February 2026 . Check the temperatures, chance of rain and more in Dubai during February .', 'url': 'https://www.weather25.com/asia/united-arab-emirates/dubai?page=month&month=February'}, {'title': 'Dubai, Dubai, United Arab Emirates Monthly Weather | AccuWeather', 'snippet': 'Get the monthly weather forecast for Dubai , Dubai , United Arab Emirates, including daily high/low, historical averages, to help you plan ahead.', 'url': 'https://www.accuweather.com/en/ae/dubai/323091/february-weather/323091'}, {'title': 'Weather in Dubai in February 2026 - Detailed Forecast', 'snippet': 'Discover the most accurate weather forecast for Dubai in February 2026 . Insights into temperature, precipitation, and weather trends.', 'url': 'https://www.easeweather.com/asia/united-arab-emirates/dubai/dubai/february'}, {'title': 'February weather in Dubai ≡ Weather forecast in Dubai (United Arab ...', 'snippet': 'Accurate and detailed weather forecast for Dubai in February 2026 , including current temperature, weather news, and water temperature updates.', 'url': 'https://www.meteoprog.com/weather/Dubaj/month/february/'}, {'title': 'February 2026 Daily Weather Forecast for Dubai, Dubai - Plan Ahead', 'snippet': 'Our Dubai , Dubai Daily Weather Forecast for February 2026 , developed from a specialized dynamic long-range model, provides precise daily temperature and rainfall predictions. This model, distinct from standard statistical or climatological approaches, is the result of over 50 years of dedicated private research, offering a clearer and more accurate meteorological insight.', 'url': 'https://www.weathertab.com/en/d/02/united-arab-emirates/dubayy/dubai/'}]
+2026-02-12 14:40:42,393 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ScrapeNode
+2026-02-12 14:40:42,645 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ScrapeNode executed. Outputs: Dubai weather in February 2026 | Dubai 14 day weather Home Asia United Arab Emirates Dubai February Location was added to My Locations Location was removed from My Locations January Abu Dhabi Dubai Fujairah Palm Islands Ras Al Khaimah Sharjah March Dubai weather in February 2026 Click on a day for an hourly weather forecast Thursday Feb 12 0 mm 26 ° / 21 ° Friday Feb 13 0 mm 25 ° / 22 ° Saturday Feb 14 0 mm 25 ° / 22 ° Sunday Feb 15 0 mm 25 ° / 22 ° Monday Feb 16 0 mm 23 ° / 21 ° Tuesday Feb 17 0 mm 23 ° / 20 ° Wednesday Feb 18 0 mm 24 ° / 21 ° Thursday Feb 19 0 mm 24 ° / 21 ° Friday Feb 20 0 mm 24 ° / 22 ° Saturday Feb 21 0 mm 23 ° / 21 ° Sunday Feb 22 0 mm 22 ° / 20 ° Monday Feb 23 0 mm 22 ° / 19 ° Tuesday Feb 24 0 mm 22 ° / 20 ° Wednesday Feb 25 0 mm 22 ° / 19 ° Next Month >> The average weather in Dubai in February The weather in Dubai in February is hot. The average temperatures are between 20 ° C and 25 ° C . You can expect a few rainy days in Dubai during February, but usually the weather is comfortable in February. Our weather forecast can give you a great sense of what weather to expect in Dubai in February 2026 . If you’re planning to visit Dubai in the near future, we highly recommend that you review the 14 day weather forecast for Dubai before you arrive. Temperatures 25 ° / 20 ° Rainy Days 1 Snowy Days 0 Dry Days 28 Rainfall 6 mm Sun Hours 11.9 Hrs Historic average weather for February February Sun Mon Tue Wed Thu Fri Sat 1 22 ° / 18 ° 2 22 ° / 19 ° 3 22 ° / 18 ° 4 23 ° / 18 ° 5 23 ° / 18 ° 6 23 ° / 18 ° 7 23 ° / 19 ° 8 24 ° / 19 ° 9 23 ° / 19 ° 10 23 ° / 18 ° 11 23 ° / 17 ° 12 26 ° / 21 ° 13 25 ° / 22 ° 14 25 ° / 22 ° 15 25 ° / 22 ° 16 23 ° / 21 ° 17 23 ° / 20 ° 18 24 ° / 21 ° 19 24 ° / 21 ° 20 24 ° / 22 ° 21 23 ° / 21 ° 22 22 ° / 20 ° 23 22 ° / 19 ° 24 22 ° / 20 ° 25 22 ° / 19 ° 26 25 ° / 20 ° 27 24 ° / 20 ° 28 24 ° / 19 ° Click on a day for an hourly weather forecast Explore the weather in Dubai in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Dubai annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 24 ° / 19 ° 1 30 0 15 mm Perfect Dubai in January February 25 ° / 20 ° 1 28 0 6 mm Perfect Dubai in February March 28 ° / 22 ° 1 30 0 14 mm Perfect Dubai in March April 32 ° / 26 ° 0 30 0 7 mm Good Dubai in April May 36 ° / 29 ° 0 31 0 1 mm Ok Dubai in May June 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in June July 39 ° / 33 ° 0 31 0 1 mm Bad Dubai in July August 39 ° / 33 ° 0 31 0 2 mm Bad Dubai in August September 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in September October 35 ° / 28 ° 0 31 0 0 mm Ok Dubai in October November 30 ° / 24 ° 0 30 0 8 mm Good Dubai in November December 26 ° / 21 ° 0 31 0 8 mm Perfect Dubai in December Temperatures in Dubai in February Rain in Dubai in February Recommended Hotels in Dubai We know that finding the ideal hotel in Dubai can be a hard task... That’s why we run our special tools and found the best hotels in Dubai. Click on hotel for more details. Hotels in Dubai Al Jaddaf Rotana Suite Hotel Book Now Grand Cosmopolitan Hotel Book Now Crowne Plaza Dubai Marina, an IHG Hotel Book Now Weather in Dubai in February - FAQ What is the average temperature in Dubai in February? The average temperature in Dubai in February is 20 / 25 ° C . What is the chance of rain in Dubai in February? On average, there are 1 rainy days in Dubai during February. Weather wise, is February a good time to visit Dubai? The weather in Dubai in February is perfect. Can it snow in Dubai in February? On average, there are 0 snowy days in Dubai in February. More about the weather in Dubai Dubai 14 day weather Long range weather for Dubai Dubai weather in March Dubai Webcam Weather tomorrow Hotels in Dubai
+2026-02-12 14:40:42,645 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: WeatherSummaryNode
+2026-02-12 14:40:42,646 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in  Dubai around dates 14 February 20265 and 16 February 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Dubai weather in February 2026 | Dubai 14 day weather Home Asia United Arab Emirates Dubai February Location was added to My Locations Location was removed from My Locations January Abu Dhabi Dubai Fujairah Palm Islands Ras Al Khaimah Sharjah March Dubai weather in February 2026 Click on a day for an hourly weather forecast Thursday Feb 12 0 mm 26 ° / 21 ° Friday Feb 13 0 mm 25 ° / 22 ° Saturday Feb 14 0 mm 25 ° / 22 ° Sunday Feb 15 0 mm 25 ° / 22 ° Monday Feb 16 0 mm 23 ° / 21 ° Tuesday Feb 17 0 mm 23 ° / 20 ° Wednesday Feb 18 0 mm 24 ° / 21 ° Thursday Feb 19 0 mm 24 ° / 21 ° Friday Feb 20 0 mm 24 ° / 22 ° Saturday Feb 21 0 mm 23 ° / 21 ° Sunday Feb 22 0 mm 22 ° / 20 ° Monday Feb 23 0 mm 22 ° / 19 ° Tuesday Feb 24 0 mm 22 ° / 20 ° Wednesday Feb 25 0 mm 22 ° / 19 ° Next Month >> The average weather in Dubai in February The weather in Dubai in February is hot. The average temperatures are between 20 ° C and 25 ° C . You can expect a few rainy days in Dubai during February, but usually the weather is comfortable in February. Our weather forecast can give you a great sense of what weather to expect in Dubai in February 2026 . If you’re planning to visit Dubai in the near future, we highly recommend that you review the 14 day weather forecast for Dubai before you arrive. Temperatures 25 ° / 20 ° Rainy Days 1 Snowy Days 0 Dry Days 28 Rainfall 6 mm Sun Hours 11.9 Hrs Historic average weather for February February Sun Mon Tue Wed Thu Fri Sat 1 22 ° / 18 ° 2 22 ° / 19 ° 3 22 ° / 18 ° 4 23 ° / 18 ° 5 23 ° / 18 ° 6 23 ° / 18 ° 7 23 ° / 19 ° 8 24 ° / 19 ° 9 23 ° / 19 ° 10 23 ° / 18 ° 11 23 ° / 17 ° 12 26 ° / 21 ° 13 25 ° / 22 ° 14 25 ° / 22 ° 15 25 ° / 22 ° 16 23 ° / 21 ° 17 23 ° / 20 ° 18 24 ° / 21 ° 19 24 ° / 21 ° 20 24 ° / 22 ° 21 23 ° / 21 ° 22 22 ° / 20 ° 23 22 ° / 19 ° 24 22 ° / 20 ° 25 22 ° / 19 ° 26 25 ° / 20 ° 27 24 ° / 20 ° 28 24 ° / 19 ° Click on a day for an hourly weather forecast Explore the weather in Dubai in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Dubai annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 24 ° / 19 ° 1 30 0 15 mm Perfect Dubai in January February 25 ° / 20 ° 1 28 0 6 mm Perfect Dubai in February March 28 ° / 22 ° 1 30 0 14 mm Perfect Dubai in March April 32 ° / 26 ° 0 30 0 7 mm Good Dubai in April May 36 ° / 29 ° 0 31 0 1 mm Ok Dubai in May June 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in June July 39 ° / 33 ° 0 31 0 1 mm Bad Dubai in July August 39 ° / 33 ° 0 31 0 2 mm Bad Dubai in August September 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in September October 35 ° / 28 ° 0 31 0 0 mm Ok Dubai in October November 30 ° / 24 ° 0 30 0 8 mm Good Dubai in November December 26 ° / 21 ° 0 31 0 8 mm Perfect Dubai in December Temperatures in Dubai in February Rain in Dubai in February Recommended Hotels in Dubai We know that finding the ideal hotel in Dubai can be a hard task... That’s why we run our special tools and found the best hotels in Dubai. Click on hotel for more details. Hotels in Dubai Al Jaddaf Rotana Suite Hotel Book Now Grand Cosmopolitan Hotel Book Now Crowne Plaza Dubai Marina, an IHG Hotel Book Now Weather in Dubai in February - FAQ What is the average temperature in Dubai in February? The average temperature in Dubai in February is 20 / 25 ° C . What is the chance of rain in Dubai in February? On average, there are 1 rainy days in Dubai during February. Weather wise, is February a good time to visit Dubai? The weather in Dubai in February is perfect. Can it snow in Dubai in February? On average, there are 0 snowy days in Dubai in February. More about the weather in Dubai Dubai 14 day weather Long range weather for Dubai Dubai weather in March Dubai Webcam Weather tomorrow Hotels in Dubai
+---
+
+Remember: Analyze the provided text and summarize information about weather in  Dubai around dates 14 February 20265 and 16 February 2026.
+2026-02-12 14:40:42,646 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-02-12 14:40:42,646 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 3838 chars
+2026-02-12 14:40:42,659 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 14:40:45,841 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 14:40:46,281 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+The average temperature in Dubai during February 2026 around dates 14th February and 16th February is between 20°C to 25°C. There are a few rainy days expected, but generally, the weather is comfortable. On 14th February, the temperatures were 25°C/22°C and on 16th February, the temperatures were 23°C/21°C. However, there is no information available in the provided content regarding the exact date of 16th February 2026 as the data starts from 12th February.
+
+
+2026-02-12 14:40:46,281 | INFO     | pipeline.py:79 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 14:40:46,382 | INFO     | functions.py:67 | pipeline_node_agents.examples.trip_planner.functions | ✅Pipeline Output of  Dubai:
+The average temperature in Dubai during February 2026 around dates 14th February and 16th February is between 20°C to 25°C. There are a few rainy days expected, but generally, the weather is comfortable. On 14th February, the temperatures were 25°C/22°C and on 16th February, the temperatures were 23°C/21°C. However, there is no information available in the provided content regarding the exact date of 16th February 2026 as the data starts from 12th February.
+2026-02-12 14:40:46,382 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ResearchCitiesNode executed. Outputs: ### Madrid
+
+The text provides information about the weather in Madrid, Spain for February 2026. For the specific dates of 14 February 2026 and 16 February 2026, the forecast is not explicitly stated in the provided content. The temperature graph shows the average high and low temperatures from January to March 2026, but it does not provide the exact weather conditions for the mentioned dates.
+
+###  Dubai
+
+The average temperature in Dubai during February 2026 around dates 14th February and 16th February is between 20°C to 25°C. There are a few rainy days expected, but generally, the weather is comfortable. On 14th February, the temperatures were 25°C/22°C and on 16th February, the temperatures were 23°C/21°C. However, there is no information available in the provided content regarding the exact date of 16th February 2026 as the data starts from 12th February.
+2026-02-12 14:40:46,383 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: CitySelectionNode
+2026-02-12 14:40:46,383 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Choose one city from the provided list based on the weather summaries.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### WEATHER_SUMMARIES ###
+### Madrid
+
+The text provides information about the weather in Madrid, Spain for February 2026. For the specific dates of 14 February 2026 and 16 February 2026, the forecast is not explicitly stated in the provided content. The temperature graph shows the average high and low temperatures from January to March 2026, but it does not provide the exact weather conditions for the mentioned dates.
+
+###  Dubai
+
+The average temperature in Dubai during February 2026 around dates 14th February and 16th February is between 20°C to 25°C. There are a few rainy days expected, but generally, the weather is comfortable. On 14th February, the temperatures were 25°C/22°C and on 16th February, the temperatures were 23°C/21°C. However, there is no information available in the provided content regarding the exact date of 16th February 2026 as the data starts from 12th February.
+---
+
+Remember: Choose one city from the provided list based on the weather summaries.
+2026-02-12 14:40:46,383 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: First line: Chosen city name. Following lines: brief explanation of why this city was chosen.
+2026-02-12 14:40:46,383 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 896 chars
+2026-02-12 14:40:46,394 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 14:40:48,713 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 14:40:49,135 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Dubai
+
+Dubai was chosen based on its comfortable weather conditions during February 2026. The average temperature in Dubai around dates 14th February and 16th February is between 20°C to 25°C, making it an ideal destination for those seeking pleasant weather. Although there are a few rainy days expected, the overall forecast suggests that Dubai's climate remains comfortable throughout the period.
+
+
+2026-02-12 14:40:49,135 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ExtractChosenCityNode
+2026-02-12 14:40:49,136 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ExtractChosenCityNode executed. Outputs: Dubai
+2026-02-12 14:40:49,136 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: LocalExpertNode
+2026-02-12 14:40:49,136 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Dubai
+
+### DATES ###
+('14 February 20265', '16 February 2026')
+---
+
+Remember: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+2026-02-12 14:40:49,137 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: City guide including hidden gems, cultural hotspots, and practical travel tips
+2026-02-12 14:40:49,137 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 82 chars
+2026-02-12 14:40:49,156 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 14:41:06,343 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 14:41:06,779 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Your final answer must be the great and the most complete as possible, it must be outcome described.
+
+Dubai Guide: Discover the Best Attractions, Food, and Daily Activities
+=====================================================================================
+
+Welcome to Dubai, a city that seamlessly blends traditional Arabian culture with modern luxury. As your local expert, I'm excited to share with you the best attractions, food places, and daily activity recommendations for your upcoming trip.
+
+**Key Attractions:**
+
+1. **Burj Khalifa**: The tallest building in the world, offering breathtaking views of the city from its observation deck.
+2. **Dubai Miracle Garden**: A floral wonderland with over 45 million flowers arranged in stunning designs and patterns.
+3. **Palm Jumeirah**: A man-made island in the shape of a palm tree, featuring luxury resorts, restaurants, and beaches.
+4. **Dubai Museum**: A museum showcasing the city's history and culture, located in the historic Al Fahidi Fort.
+5. **Desert Safari**: Explore the Arabian Desert on a thrilling dune-bashing adventure, followed by a relaxing camel ride under the stars.
+
+**Cultural Hotspots:**
+
+1. **Jumeirah Mosque**: A beautiful mosque that showcases Islamic architecture and offers guided tours.
+2. **Dubai Creek**: Take a traditional Abra (boat) ride along the creek and explore the historic trading district.
+3. **Al Fahidi Historical Neighbourhood**: Wander through this charming neighborhood to discover traditional Arabian architecture, shops, and restaurants.
+4. **Global Village**: A cultural and entertainment park featuring pavilions from around the world, offering a glimpse into global traditions and cuisine.
+5. **Dubai Opera**: Catch a performance at this stunning opera house, designed by Zaha Hadid.
+
+**Food Places:**
+
+1. **Al Mallah Restaurant**: Savor traditional Emirati cuisine in a cozy setting, including dishes like machboos (rice with meat or fish) and luqaimat (sweet dumplings).
+2. **Tajina Spice Market**: Explore this bustling market to discover a wide range of Middle Eastern spices, sweets, and snacks.
+3. **Sarabi Restaurant**: Enjoy authentic Yemeni cuisine in a beautifully decorated setting, featuring dishes like saltah (a spicy stew) and kabsa (rice with meat or fish).
+4. **The Address Downtown Dubai**: Relax at this rooftop bar, offering stunning views of the city skyline and a range of cocktails.
+5. **Al Fanar Restaurant**: Treat yourself to delicious seafood at this beachfront restaurant, located on the Palm Jumeirah.
+
+**Daily Activities:**
+
+1. **Visit the Souks**: Explore the traditional souks (markets) like Gold Souk, Spice Souk, or Textile Souk to discover unique handicrafts and souvenirs.
+2. **Take a Henna Design Session**: Get a traditional Arabic henna design applied to your hands or feet for a unique souvenir.
+3. **Go Shopping at the Mall of the Emirates**: This massive shopping mall features over 500 stores, including luxury brands and entertainment options like ski slopes and virtual reality experiences.
+4. **Relax on Kite Beach**: Enjoy the sun, sand, and crystal-clear waters of this popular beach, perfect for swimming, sunbathing, or trying water sports.
+5. **Take a Traditional Arabic Coffee Break**: Visit a local café to experience the traditional Arabic coffee culture, complete with cardamom-infused coffee, dates, and conversation.
+
+**Practical Travel Tips:**
+
+1. **Dress Modestly**: Respect local customs by dressing modestly, especially when visiting mosques or government buildings.
+2. **Haggle at Souks**: Haggling is a normal part of souk culture; don't be afraid to negotiate prices for goods and services.
+3. **Use Public Transportation**: Dubai's public transportation system is efficient and affordable; consider using the metro or bus to get around the city.
+4. **Stay Hydrated**: The desert climate can be hot and dry; drink plenty of water throughout the day to stay hydrated.
+5. **Respect Ramadan**: During the holy month of Ramadan, respect local customs by fasting from dawn to sunset, avoiding public displays of affection, and dressing modestly.
+
+I hope this comprehensive guide has provided you with a wealth of information to plan an unforgettable trip to Dubai!
+
+
+2026-02-12 14:41:06,779 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: TravelConciergeNode
+2026-02-12 14:41:06,780 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Plan a 7-day trip itinerary based on the chosen city and provided information.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Dubai
+
+### LIST_OF_ATTRACTIONS ###
+Your final answer must be the great and the most complete as possible, it must be outcome described.
+
+Dubai Guide: Discover the Best Attractions, Food, and Daily Activities
+=====================================================================================
+
+Welcome to Dubai, a city that seamlessly blends traditional Arabian culture with modern luxury. As your local expert, I'm excited to share with you the best attractions, food places, and daily activity recommendations for your upcoming trip.
+
+**Key Attractions:**
+
+1. **Burj Khalifa**: The tallest building in the world, offering breathtaking views of the city from its observation deck.
+2. **Dubai Miracle Garden**: A floral wonderland with over 45 million flowers arranged in stunning designs and patterns.
+3. **Palm Jumeirah**: A man-made island in the shape of a palm tree, featuring luxury resorts, restaurants, and beaches.
+4. **Dubai Museum**: A museum showcasing the city's history and culture, located in the historic Al Fahidi Fort.
+5. **Desert Safari**: Explore the Arabian Desert on a thrilling dune-bashing adventure, followed by a relaxing camel ride under the stars.
+
+**Cultural Hotspots:**
+
+1. **Jumeirah Mosque**: A beautiful mosque that showcases Islamic architecture and offers guided tours.
+2. **Dubai Creek**: Take a traditional Abra (boat) ride along the creek and explore the historic trading district.
+3. **Al Fahidi Historical Neighbourhood**: Wander through this charming neighborhood to discover traditional Arabian architecture, shops, and restaurants.
+4. **Global Village**: A cultural and entertainment park featuring pavilions from around the world, offering a glimpse into global traditions and cuisine.
+5. **Dubai Opera**: Catch a performance at this stunning opera house, designed by Zaha Hadid.
+
+**Food Places:**
+
+1. **Al Mallah Restaurant**: Savor traditional Emirati cuisine in a cozy setting, including dishes like machboos (rice with meat or fish) and luqaimat (sweet dumplings).
+2. **Tajina Spice Market**: Explore this bustling market to discover a wide range of Middle Eastern spices, sweets, and snacks.
+3. **Sarabi Restaurant**: Enjoy authentic Yemeni cuisine in a beautifully decorated setting, featuring dishes like saltah (a spicy stew) and kabsa (rice with meat or fish).
+4. **The Address Downtown Dubai**: Relax at this rooftop bar, offering stunning views of the city skyline and a range of cocktails.
+5. **Al Fanar Restaurant**: Treat yourself to delicious seafood at this beachfront restaurant, located on the Palm Jumeirah.
+
+**Daily Activities:**
+
+1. **Visit the Souks**: Explore the traditional souks (markets) like Gold Souk, Spice Souk, or Textile Souk to discover unique handicrafts and souvenirs.
+2. **Take a Henna Design Session**: Get a traditional Arabic henna design applied to your hands or feet for a unique souvenir.
+3. **Go Shopping at the Mall of the Emirates**: This massive shopping mall features over 500 stores, including luxury brands and entertainment options like ski slopes and virtual reality experiences.
+4. **Relax on Kite Beach**: Enjoy the sun, sand, and crystal-clear waters of this popular beach, perfect for swimming, sunbathing, or trying water sports.
+5. **Take a Traditional Arabic Coffee Break**: Visit a local café to experience the traditional Arabic coffee culture, complete with cardamom-infused coffee, dates, and conversation.
+
+**Practical Travel Tips:**
+
+1. **Dress Modestly**: Respect local customs by dressing modestly, especially when visiting mosques or government buildings.
+2. **Haggle at Souks**: Haggling is a normal part of souk culture; don't be afraid to negotiate prices for goods and services.
+3. **Use Public Transportation**: Dubai's public transportation system is efficient and affordable; consider using the metro or bus to get around the city.
+4. **Stay Hydrated**: The desert climate can be hot and dry; drink plenty of water throughout the day to stay hydrated.
+5. **Respect Ramadan**: During the holy month of Ramadan, respect local customs by fasting from dawn to sunset, avoiding public displays of affection, and dressing modestly.
+
+I hope this comprehensive guide has provided you with a wealth of information to plan an unforgettable trip to Dubai!
+
+### DATES ###
+('14 February 20265', '16 February 2026')
+---
+
+Remember: Plan a 7-day trip itinerary based on the chosen city and provided information.
+2026-02-12 14:41:06,780 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Detailed 7-day itinerary including daily activities, dining options, and transportation tips.
+2026-02-12 14:41:06,780 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 4341 chars
+2026-02-12 14:41:06,791 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 14:41:25,181 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 14:41:25,610 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Your 7-Day Dubai Itinerary
+
+Day 1: Arrival and Exploring Downtown Dubai
+
+* Morning: Arrive at Dubai International Airport and take a taxi or metro to your hotel
+* 10:00 AM: Check-in to your hotel and freshen up
+* 11:30 AM: Visit the Burj Khalifa, the tallest building in the world ( tickets start from AED 125 per person)
+* 1:30 PM: Lunch at Al Mallah Restaurant, try traditional Emirati cuisine like machboos and luqaimat
+* 3:00 PM: Explore the Dubai Museum, located in the historic Al Fahidi Fort (tickets start from AED 3.50 per person)
+* 6:00 PM: Take a stroll along the Dubai Creek and visit the Jumeirah Mosque for a glimpse into Islamic architecture
+* 8:00 PM: Enjoy dinner at The Address Downtown Dubai, try their signature cocktails and seafood dishes
+
+Day 2: Desert Adventure
+
+* 9:00 AM: Depart for the desert on a dune-bashing adventure (tickets start from AED 150 per person)
+* 12:30 PM: Take a camel ride under the stars in the Arabian Desert
+* 3:00 PM: Return to your hotel and relax by the pool or take a nap
+* 7:00 PM: Dinner at Sarabi Restaurant, try authentic Yemeni cuisine like saltah and kabsa
+* 9:30 PM: Relax at your hotel or explore the nearby area
+
+Day 3: Palm Jumeirah and Beach Time
+
+* 10:00 AM: Take a ferry to Palm Jumeirah and enjoy the crystal-clear waters of Kite Beach ( tickets start from AED 20 per person)
+* 12:30 PM: Lunch at Al Fanar Restaurant, try their seafood dishes and enjoy the beachfront views
+* 2:30 PM: Explore the luxury resorts and restaurants on Palm Jumeirah
+* 6:00 PM: Return to your hotel and relax by the pool or take a nap
+* 8:30 PM: Dinner at The Address Downtown Dubai, try their signature cocktails and seafood dishes
+
+Day 4: Global Village and Shopping
+
+* 10:00 AM: Visit the Global Village, a cultural and entertainment park featuring pavilions from around the world (tickets start from AED 50 per person)
+* 1:30 PM: Lunch at one of the food stalls or restaurants inside the village
+* 3:30 PM: Go shopping at the Mall of the Emirates, one of the largest shopping malls in the world
+* 6:00 PM: Return to your hotel and relax by the pool or take a nap
+* 8:30 PM: Dinner at Al Mallah Restaurant, try traditional Emirati cuisine like machboos and luqaimat
+
+Day 5: Miracle Garden and Desert Sunset
+
+* 10:00 AM: Visit the Dubai Miracle Garden, a floral wonderland with over 45 million flowers (tickets start from AED 50 per person)
+* 1:30 PM: Lunch at one of the food stalls or restaurants inside the garden
+* 3:30 PM: Take a Desert Safari tour to watch the sunset in the Arabian Desert (tickets start from AED 150 per person)
+* 7:00 PM: Return to your hotel and relax by the pool or take a nap
+* 8:30 PM: Dinner at Sarabi Restaurant, try authentic Yemeni cuisine like saltah and kabsa
+
+Day 6: Traditional Arabic Coffee Break and Relaxation
+
+* 10:00 AM: Take a traditional Arabic coffee break at a local café (around AED 20 per person)
+* 11:30 AM: Visit the Al Fahidi Historical Neighbourhood to explore traditional Arabian architecture, shops, and restaurants
+* 1:30 PM: Lunch at one of the food stalls or restaurants in the neighborhood
+* 3:00 PM: Relax by the pool or take a nap at your hotel
+* 6:00 PM: Enjoy dinner at Al Fanar Restaurant, try their seafood dishes and enjoy the beachfront views
+
+Day 7: Departure
+
+* 10:00 AM: Check-out of your hotel and depart for Dubai International Airport
+* 12:00 PM: Return your rental car (if applicable) and check-in for your flight
+
+
+2026-02-12 14:41:25,611 | INFO     | pipeline.py:79 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 14:41:25,711 | INFO     | pipeline.py:66 | __main__ | ✅ Final Pipeline Output:
+ chosen_city: Dubai
+ trip_itinerary: Your 7-Day Dubai Itinerary
+
+Day 1: Arrival and Exploring Downtown Dubai
+
+* Morning: Arrive at Dubai International Airport and take a taxi or metro to your hotel
+* 10:00 AM: Check-in to your hotel and freshen up
+* 11:30 AM: Visit the Burj Khalifa, the tallest building in the world ( tickets start from AED 125 per person)
+* 1:30 PM: Lunch at Al Mallah Restaurant, try traditional Emirati cuisine like machboos and luqaimat
+* 3:00 PM: Explore the Dubai Museum, located in the historic Al Fahidi Fort (tickets start from AED 3.50 per person)
+* 6:00 PM: Take a stroll along the Dubai Creek and visit the Jumeirah Mosque for a glimpse into Islamic architecture
+* 8:00 PM: Enjoy dinner at The Address Downtown Dubai, try their signature cocktails and seafood dishes
+
+Day 2: Desert Adventure
+
+* 9:00 AM: Depart for the desert on a dune-bashing adventure (tickets start from AED 150 per person)
+* 12:30 PM: Take a camel ride under the stars in the Arabian Desert
+* 3:00 PM: Return to your hotel and relax by the pool or take a nap
+* 7:00 PM: Dinner at Sarabi Restaurant, try authentic Yemeni cuisine like saltah and kabsa
+* 9:30 PM: Relax at your hotel or explore the nearby area
+
+Day 3: Palm Jumeirah and Beach Time
+
+* 10:00 AM: Take a ferry to Palm Jumeirah and enjoy the crystal-clear waters of Kite Beach ( tickets start from AED 20 per person)
+* 12:30 PM: Lunch at Al Fanar Restaurant, try their seafood dishes and enjoy the beachfront views
+* 2:30 PM: Explore the luxury resorts and restaurants on Palm Jumeirah
+* 6:00 PM: Return to your hotel and relax by the pool or take a nap
+* 8:30 PM: Dinner at The Address Downtown Dubai, try their signature cocktails and seafood dishes
+
+Day 4: Global Village and Shopping
+
+* 10:00 AM: Visit the Global Village, a cultural and entertainment park featuring pavilions from around the world (tickets start from AED 50 per person)
+* 1:30 PM: Lunch at one of the food stalls or restaurants inside the village
+* 3:30 PM: Go shopping at the Mall of the Emirates, one of the largest shopping malls in the world
+* 6:00 PM: Return to your hotel and relax by the pool or take a nap
+* 8:30 PM: Dinner at Al Mallah Restaurant, try traditional Emirati cuisine like machboos and luqaimat
+
+Day 5: Miracle Garden and Desert Sunset
+
+* 10:00 AM: Visit the Dubai Miracle Garden, a floral wonderland with over 45 million flowers (tickets start from AED 50 per person)
+* 1:30 PM: Lunch at one of the food stalls or restaurants inside the garden
+* 3:30 PM: Take a Desert Safari tour to watch the sunset in the Arabian Desert (tickets start from AED 150 per person)
+* 7:00 PM: Return to your hotel and relax by the pool or take a nap
+* 8:30 PM: Dinner at Sarabi Restaurant, try authentic Yemeni cuisine like saltah and kabsa
+
+Day 6: Traditional Arabic Coffee Break and Relaxation
+
+* 10:00 AM: Take a traditional Arabic coffee break at a local café (around AED 20 per person)
+* 11:30 AM: Visit the Al Fahidi Historical Neighbourhood to explore traditional Arabian architecture, shops, and restaurants
+* 1:30 PM: Lunch at one of the food stalls or restaurants in the neighborhood
+* 3:00 PM: Relax by the pool or take a nap at your hotel
+* 6:00 PM: Enjoy dinner at Al Fanar Restaurant, try their seafood dishes and enjoy the beachfront views
+
+Day 7: Departure
+
+* 10:00 AM: Check-out of your hotel and depart for Dubai International Airport
+* 12:00 PM: Return your rental car (if applicable) and check-in for your flight
+2026-02-12 14:41:25,712 | INFO     | pipeline.py:68 | __main__ | ⏱️  Execution time: 48.58 seconds

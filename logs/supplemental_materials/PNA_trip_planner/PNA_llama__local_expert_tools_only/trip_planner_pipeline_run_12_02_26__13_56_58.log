@@ -1,0 +1,347 @@
+2026-02-12 13:56:58,525 | INFO     | pipeline.py:28 | __main__ | Starting TripPlannerPipeline
+2026-02-12 13:56:58,527 | INFO     | pipeline.py:51 | __main__ | Context: {'list_of_cities': ['Madrid', ' Dubai'], 'dates': ('14 February 20265', '16 February 2026'), 'location': 'Vienna', 'interests': 'art, history, and food'}
+2026-02-12 13:56:58,527 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+ResearchCitiesNode -> CitySelectionNode -> ExtractChosenCityNode -> LocalExpertNode -> TravelConciergeNode
+
+2026-02-12 13:56:58,527 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ResearchCitiesNode
+2026-02-12 13:56:58,528 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+DuckDuckGoSearchNode -> ScrapeNode -> WeatherSummaryNode
+
+2026-02-12 13:56:58,528 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-02-12 13:56:58,606 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 13:56:58,639 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine yandex: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20Madrid%20from%2014%20February%2020265%20to%2016%20February%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 13:56:58,890 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=qkh_muqTTSg6CCbIEG90VGhE;_ylu=XWwys2x-lrGVNg8cdBDSX7y3lhI9MhcGVeMISGMBOzdmtYg?p=weather+forecast+Madrid+from+14+February+20265+to+16+February+2026 200
+2026-02-12 13:56:59,781 | INFO     | lib.rs:464 | primp | response: https://yandex.com/search/site/?text=weather+forecast+Madrid+from+14+February+20265+to+16+February+2026&web=1&searchid=7641377 200
+2026-02-12 13:56:59,834 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: [{'title': 'Madrid , Madrid , Spain Weather Forecast | AccuWeather', 'snippet': 'Madrid Weather Radar. Static Radar Temporarily Unavailable. Weather News. Daylight saving time 2026 : When do clocks spring forward?', 'url': 'https://www.accuweather.com/en/es/madrid/308526/weather-forecast/308526'}, {'title': '14 -day weather forecast for Madrid . - BBC Weather', 'snippet': 'Madrid - Weather warnings issued. 14 -day forecast .Pressure: Pressure: 1018 millibars, Rising,1018mb, Rising. Observation station: Madrid (Latitude 40.4167, Longitude -3.6833).', 'url': 'https://www.bbc.com/weather/3117735'}, {'title': 'Weather', 'snippet': 'World weather and local weather forecast . The weather forecast for 15 days, hourly forecast and current conditions .', 'url': 'https://en.tutiempo.net/'}, {'title': 'Weather forecast for Paris and Île-de-France from February 9 to 15...', 'snippet': 'The weather forecast for this week from February 9 to 15, 2026 , in Paris and the Île-de-France region looks particularly stormy.', 'url': 'https://www.sortiraparis.com/en/news/in-paris/articles/332748-weather-in-paris-and-ile-de-france-from-february-9-to-15-2026'}, {'title': 'Madrigalejo 10 Day Weather . Forecast for Madrigalejo - Spain...', 'snippet': 'Madrigalejo Weather forecast for 10 days - maximum and minimum temperature, probability of precipitation, wind speed and direction, average air humidity and atmospheric pressure, maximum ultraviolet index by day - Madrigalejo, Extremadura, Spain | RusMeteo...', 'url': 'https://globalmeteo.com/weather/madrigalejo/10days/'}]
+2026-02-12 13:56:59,834 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ScrapeNode
+2026-02-12 13:57:00,541 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ScrapeNode executed. Outputs: Madrid, Madrid, Spain Weather Forecast | AccuWeather Go Back For Business | Warnings Data Suite Forensics Advertising Superior Accuracy™ Madrid, Madrid 55° F Location Chevron down Location News Videos Use Current Location Recent Madrid Madrid 55° No results found. Try searching for a city, zip code or point of interest. Create Your Account Unlock extended daily and hourly forecasts — all with your free account. Let's Go Chevron right Have an account already? Log In settings Madrid, Madrid Weather Today WinterCast Local {stormName} Tracker Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Around the Globe Hurricane Tracker Severe Weather Radar & Maps News News & Features Astronomy Business Climate Health Recreation Sports Travel For Business Warnings Data Suite Forensics Advertising Superior Accuracy™ Video Today Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Today's Weather Thu, Feb 12 Breezy this morning; otherwise, some sun, then increasing clouds Hi: 57° Tonight: Overcast with showers late Lo: 46° Current Weather 2:57 PM 55° F RealFeel® 52° Partly sunny More Details RealFeel Shade™ 49° Wind SW 14 mph Wind Gusts 28 mph Air Quality Fair Looking Ahead Expect showery weather late Thursday night through Friday evening Madrid Weather Radar Static Radar Temporarily Unavailable Thank you for your patience as we work to get everything up and running again. Refresh Page Clouds Temperature Hourly Weather Chevron left 3 PM 55° 0% 4 PM 56° 1% 5 PM 55° 1% 6 PM 53° 3% 7 PM 51° 7% 8 PM 50° 7% 9 PM 49° 7% 10 PM 49° 7% 11 PM 48° 7% 12 AM 48° 10% 1 AM 48° 49% 2 AM 48° 49% Chevron right 10-Day Weather Forecast Today 2/12 57° 46° Breezy this morning Night: Overcast with showers late 4% Fri 2/13 51° 40° A little rain Breezy; a shower or two early 60% Sat 2/14 52° 39° Clearing and breezy Clear to partly cloudy 0% Sun 2/15 56° 42° Mostly cloudy Cloudy 7% Mon 2/16 61° 42° Cloudy Partly to mostly cloudy 8% Tue 2/17 58° 42° Partly sunny Mainly clear 1% Wed 2/18 58° 39° Low clouds may break Mostly cloudy 25% Thu 2/19 54° 37° Showers around in the p.m. Partly cloudy 56% Fri 2/20 54° 36° Partly sunny Partly cloudy 1% Sat 2/21 55° 37° Clouds and sun Increasing clouds 2% Sun & Moon 10 hrs 33 mins Rise 8:13 AM Set 6:46 PM Waning Crescent Rise 5:00 AM Set 1:38 PM Air Quality See More Air Quality Fair The air quality is generally acceptable for most individuals. However, sensitive groups may experience minor to moderate symptoms from long-term exposure. Allergy Outlook See All Tree Pollen Low Data is not supported in this location Ragweed Pollen Low Data is not supported in this location Mold Low Data is not supported in this location Grass Pollen Low Data is not supported in this location Dust & Dander High Data is not supported in this location Contains modified Copernicus Atmosphere Monitoring Service information 2026 Top Stories Weather Forecasts Even warmer weather awaits central, eastern US later in February 2 hours ago Winter Weather Extreme cold in New York City linked to at least 17 deaths 1 day ago Winter Weather More big storms heading for California, West starting in mid-February 2 hours ago Recreation Death Valley could have rare superbloom in 2026 1 day ago Weather Forecasts Upcoming Valentine's Day storm to bring drenching rain to southern US 2 hours ago More Stories Featured Stories Weather News Gray wolf tracked in Los Angeles County for first time 18 hours ago Winter Weather Two boys die after falling through ice in Oklahoma 1 day ago Astronomy A 'ring of fire' eclipse is coming Feb. 17 18 hours ago Astronomy A snow-rimmed Grand Canyon stands out in astronaut photo 2 days ago Weather News Avalanches on Italian mountains claim 13 lives 3 days ago World Europe Spain Madrid Madrid Weather Near Madrid: Alcalá de Henares , Madrid Leganés , Madrid Móstoles , Madrid Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News © 2026 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved. Terms of Use | Privacy Policy | Cookie Policy | About Your Privacy Do Not Sell or Share My Personal Information | Data Sources ... ... ... ... ...
+2026-02-12 13:57:00,542 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: WeatherSummaryNode
+2026-02-12 13:57:00,542 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in Madrid around dates 14 February 20265 and 16 February 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Madrid, Madrid, Spain Weather Forecast | AccuWeather Go Back For Business | Warnings Data Suite Forensics Advertising Superior Accuracy™ Madrid, Madrid 55° F Location Chevron down Location News Videos Use Current Location Recent Madrid Madrid 55° No results found. Try searching for a city, zip code or point of interest. Create Your Account Unlock extended daily and hourly forecasts — all with your free account. Let's Go Chevron right Have an account already? Log In settings Madrid, Madrid Weather Today WinterCast Local {stormName} Tracker Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Around the Globe Hurricane Tracker Severe Weather Radar & Maps News News & Features Astronomy Business Climate Health Recreation Sports Travel For Business Warnings Data Suite Forensics Advertising Superior Accuracy™ Video Today Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Today's Weather Thu, Feb 12 Breezy this morning; otherwise, some sun, then increasing clouds Hi: 57° Tonight: Overcast with showers late Lo: 46° Current Weather 2:57 PM 55° F RealFeel® 52° Partly sunny More Details RealFeel Shade™ 49° Wind SW 14 mph Wind Gusts 28 mph Air Quality Fair Looking Ahead Expect showery weather late Thursday night through Friday evening Madrid Weather Radar Static Radar Temporarily Unavailable Thank you for your patience as we work to get everything up and running again. Refresh Page Clouds Temperature Hourly Weather Chevron left 3 PM 55° 0% 4 PM 56° 1% 5 PM 55° 1% 6 PM 53° 3% 7 PM 51° 7% 8 PM 50° 7% 9 PM 49° 7% 10 PM 49° 7% 11 PM 48° 7% 12 AM 48° 10% 1 AM 48° 49% 2 AM 48° 49% Chevron right 10-Day Weather Forecast Today 2/12 57° 46° Breezy this morning Night: Overcast with showers late 4% Fri 2/13 51° 40° A little rain Breezy; a shower or two early 60% Sat 2/14 52° 39° Clearing and breezy Clear to partly cloudy 0% Sun 2/15 56° 42° Mostly cloudy Cloudy 7% Mon 2/16 61° 42° Cloudy Partly to mostly cloudy 8% Tue 2/17 58° 42° Partly sunny Mainly clear 1% Wed 2/18 58° 39° Low clouds may break Mostly cloudy 25% Thu 2/19 54° 37° Showers around in the p.m. Partly cloudy 56% Fri 2/20 54° 36° Partly sunny Partly cloudy 1% Sat 2/21 55° 37° Clouds and sun Increasing clouds 2% Sun & Moon 10 hrs 33 mins Rise 8:13 AM Set 6:46 PM Waning Crescent Rise 5:00 AM Set 1:38 PM Air Quality See More Air Quality Fair The air quality is generally acceptable for most individuals. However, sensitive groups may experience minor to moderate symptoms from long-term exposure. Allergy Outlook See All Tree Pollen Low Data is not supported in this location Ragweed Pollen Low Data is not supported in this location Mold Low Data is not supported in this location Grass Pollen Low Data is not supported in this location Dust & Dander High Data is not supported in this location Contains modified Copernicus Atmosphere Monitoring Service information 2026 Top Stories Weather Forecasts Even warmer weather awaits central, eastern US later in February 2 hours ago Winter Weather Extreme cold in New York City linked to at least 17 deaths 1 day ago Winter Weather More big storms heading for California, West starting in mid-February 2 hours ago Recreation Death Valley could have rare superbloom in 2026 1 day ago Weather Forecasts Upcoming Valentine's Day storm to bring drenching rain to southern US 2 hours ago More Stories Featured Stories Weather News Gray wolf tracked in Los Angeles County for first time 18 hours ago Winter Weather Two boys die after falling through ice in Oklahoma 1 day ago Astronomy A 'ring of fire' eclipse is coming Feb. 17 18 hours ago Astronomy A snow-rimmed Grand Canyon stands out in astronaut photo 2 days ago Weather News Avalanches on Italian mountains claim 13 lives 3 days ago World Europe Spain Madrid Madrid Weather Near Madrid: Alcalá de Henares , Madrid Leganés , Madrid Móstoles , Madrid Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News © 2026 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved. Terms of Use | Privacy Policy | Cookie Policy | About Your Privacy Do Not Sell or Share My Personal Information | Data Sources ... ... ... ... ...
+---
+
+Remember: Analyze the provided text and summarize information about weather in Madrid around dates 14 February 20265 and 16 February 2026.
+2026-02-12 13:57:00,543 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-02-12 13:57:00,543 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 5126 chars
+2026-02-12 13:57:00,571 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:03,961 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:04,383 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Today's Weather Thu, Feb 12 Breezy this morning; otherwise, some sun, then increasing clouds Hi: 57° Tonight: Overcast with showers late Lo: 46° Current Weather 2:57 PM 55° F RealFeel® 52° Partly sunny More Details RealFeel Shade™ 49° Wind SW 14 mph Wind Gusts 28 mph Air Quality Fair Looking Ahead Expect showery weather late Thursday night through Friday evening
+
+For the forecast on February 14, 2026:
+
+No detailed information was provided for this date
+
+
+2026-02-12 13:57:04,384 | INFO     | pipeline.py:79 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 13:57:04,485 | INFO     | functions.py:67 | pipeline_node_agents.examples.trip_planner.functions | ✅Pipeline Output of Madrid:
+Today's Weather Thu, Feb 12 Breezy this morning; otherwise, some sun, then increasing clouds Hi: 57° Tonight: Overcast with showers late Lo: 46° Current Weather 2:57 PM 55° F RealFeel® 52° Partly sunny More Details RealFeel Shade™ 49° Wind SW 14 mph Wind Gusts 28 mph Air Quality Fair Looking Ahead Expect showery weather late Thursday night through Friday evening
+
+For the forecast on February 14, 2026:
+
+No detailed information was provided for this date
+2026-02-12 13:57:04,486 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+DuckDuckGoSearchNode -> ScrapeNode -> WeatherSummaryNode
+
+2026-02-12 13:57:04,486 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-02-12 13:57:04,486 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 13:57:04,500 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine brave: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20%20Dubai%20from%2014%20February%2020265%20to%2016%20February%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 13:57:04,578 | INFO     | lib.rs:464 | primp | response: https://search.brave.com/search?q=weather+forecast++Dubai+from+14+February+20265+to+16+February+2026&source=web 429
+2026-02-12 13:57:04,715 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=qRH7AIZtRBYUJEZowxpVcLOi;_ylu=4fLp-UclcrnYYBE5scPHaYFF9RNVZpmMP48BTNWOkC33it4?p=weather+forecast++Dubai+from+14+February+20265+to+16+February+2026 200
+2026-02-12 13:57:05,068 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: [{'title': 'Dubai weather in February 2026 | Dubai 14 day weather', 'snippet': 'Our weather forecast can give you a great sense of what weather to expect in Dubai in February 2026 . If you’re planning to visit Dubai in the near future, we highly recommend that you review the 14 day weather forecast for Dubai before you arrive. Click on a day for an hourly weather forecast .', 'url': 'https://www.weather25.com/asia/united-arab-emirates/dubai?page=month&month=February'}, {'title': 'Dubai, Dubai, United Arab Emirates Monthly Weather | AccuWeather', 'snippet': 'Get the monthly weather forecast for Dubai , Dubai , United Arab Emirates, including daily high/low, historical averages, to help you plan ahead.', 'url': 'https://www.accuweather.com/en/ae/dubai/323091/february-weather/323091'}, {'title': 'Weather in Dubai in February 2026 - Detailed Forecast', 'snippet': 'Discover the most accurate weather forecast for Dubai in February 2026 . Insights into temperature, precipitation, and weather trends.', 'url': 'https://www.easeweather.com/asia/united-arab-emirates/dubai/dubai/february'}, {'title': 'Dubai February 2026 Historical Weather Data (United Arab ...', 'snippet': '4 days ago · It features all historical weather data series we have available, including the Dubai temperature history for February 2026 . You can drill down from year to month and even day level reports by clicking on the graphs.', 'url': 'https://weatherspark.com/h/m/105470/2026/2/Historical-Weather-in-February-2026-in-Dubai-United-Arab-Emirates'}, {'title': 'Weather in Dubai in February 2026 (Dubayy) - Detailed Weather ...', 'snippet': "Dubai Weather Forecast for February 2026 is based on long term prognosis and previous years' statistical data. Wind direction chart for Dubai (daytime), based on February 2026 wind statistics. Average daytime values for February 2026 .", 'url': 'https://world-weather.info/forecast/uae/dubai/february-2026/'}]
+2026-02-12 13:57:05,068 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ScrapeNode
+2026-02-12 13:57:05,325 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ScrapeNode executed. Outputs: Dubai weather in February 2026 | Dubai 14 day weather Home Asia United Arab Emirates Dubai February Location was added to My Locations Location was removed from My Locations January Abu Dhabi Dubai Fujairah Palm Islands Ras Al Khaimah Sharjah March Dubai weather in February 2026 Click on a day for an hourly weather forecast Thursday Feb 12 0 mm 26 ° / 21 ° Friday Feb 13 0 mm 25 ° / 22 ° Saturday Feb 14 0 mm 25 ° / 22 ° Sunday Feb 15 0 mm 25 ° / 22 ° Monday Feb 16 0 mm 23 ° / 21 ° Tuesday Feb 17 0 mm 23 ° / 20 ° Wednesday Feb 18 0 mm 24 ° / 21 ° Thursday Feb 19 0 mm 24 ° / 21 ° Friday Feb 20 0 mm 24 ° / 22 ° Saturday Feb 21 0 mm 23 ° / 21 ° Sunday Feb 22 0 mm 22 ° / 20 ° Monday Feb 23 0 mm 22 ° / 19 ° Tuesday Feb 24 0 mm 22 ° / 20 ° Wednesday Feb 25 0 mm 22 ° / 19 ° Next Month >> The average weather in Dubai in February The weather in Dubai in February is hot. The average temperatures are between 20 ° C and 25 ° C . You can expect a few rainy days in Dubai during February, but usually the weather is comfortable in February. Our weather forecast can give you a great sense of what weather to expect in Dubai in February 2026 . If you’re planning to visit Dubai in the near future, we highly recommend that you review the 14 day weather forecast for Dubai before you arrive. Temperatures 25 ° / 20 ° Rainy Days 1 Snowy Days 0 Dry Days 28 Rainfall 6 mm Sun Hours 11.9 Hrs Historic average weather for February February Sun Mon Tue Wed Thu Fri Sat 1 22 ° / 18 ° 2 22 ° / 19 ° 3 22 ° / 18 ° 4 23 ° / 18 ° 5 23 ° / 18 ° 6 23 ° / 18 ° 7 23 ° / 19 ° 8 24 ° / 19 ° 9 23 ° / 19 ° 10 23 ° / 18 ° 11 23 ° / 17 ° 12 26 ° / 21 ° 13 25 ° / 22 ° 14 25 ° / 22 ° 15 25 ° / 22 ° 16 23 ° / 21 ° 17 23 ° / 20 ° 18 24 ° / 21 ° 19 24 ° / 21 ° 20 24 ° / 22 ° 21 23 ° / 21 ° 22 22 ° / 20 ° 23 22 ° / 19 ° 24 22 ° / 20 ° 25 22 ° / 19 ° 26 25 ° / 20 ° 27 24 ° / 20 ° 28 24 ° / 19 ° Click on a day for an hourly weather forecast Explore the weather in Dubai in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Dubai annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 24 ° / 19 ° 1 30 0 15 mm Perfect Dubai in January February 25 ° / 20 ° 1 28 0 6 mm Perfect Dubai in February March 28 ° / 22 ° 1 30 0 14 mm Perfect Dubai in March April 32 ° / 26 ° 0 30 0 7 mm Good Dubai in April May 36 ° / 29 ° 0 31 0 1 mm Ok Dubai in May June 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in June July 39 ° / 33 ° 0 31 0 1 mm Bad Dubai in July August 39 ° / 33 ° 0 31 0 2 mm Bad Dubai in August September 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in September October 35 ° / 28 ° 0 31 0 0 mm Ok Dubai in October November 30 ° / 24 ° 0 30 0 8 mm Good Dubai in November December 26 ° / 21 ° 0 31 0 8 mm Perfect Dubai in December Temperatures in Dubai in February Rain in Dubai in February Recommended Hotels in Dubai We know that finding the ideal hotel in Dubai can be a hard task... That’s why we run our special tools and found the best hotels in Dubai. Click on hotel for more details. Hotels in Dubai Al Jaddaf Rotana Suite Hotel Book Now Grand Cosmopolitan Hotel Book Now Crowne Plaza Dubai Marina, an IHG Hotel Book Now Weather in Dubai in February - FAQ What is the average temperature in Dubai in February? The average temperature in Dubai in February is 20 / 25 ° C . What is the chance of rain in Dubai in February? On average, there are 1 rainy days in Dubai during February. Weather wise, is February a good time to visit Dubai? The weather in Dubai in February is perfect. Can it snow in Dubai in February? On average, there are 0 snowy days in Dubai in February. More about the weather in Dubai Dubai 14 day weather Long range weather for Dubai Dubai weather in March Dubai Webcam Weather tomorrow Hotels in Dubai
+2026-02-12 13:57:05,326 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: WeatherSummaryNode
+2026-02-12 13:57:05,326 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in  Dubai around dates 14 February 20265 and 16 February 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Dubai weather in February 2026 | Dubai 14 day weather Home Asia United Arab Emirates Dubai February Location was added to My Locations Location was removed from My Locations January Abu Dhabi Dubai Fujairah Palm Islands Ras Al Khaimah Sharjah March Dubai weather in February 2026 Click on a day for an hourly weather forecast Thursday Feb 12 0 mm 26 ° / 21 ° Friday Feb 13 0 mm 25 ° / 22 ° Saturday Feb 14 0 mm 25 ° / 22 ° Sunday Feb 15 0 mm 25 ° / 22 ° Monday Feb 16 0 mm 23 ° / 21 ° Tuesday Feb 17 0 mm 23 ° / 20 ° Wednesday Feb 18 0 mm 24 ° / 21 ° Thursday Feb 19 0 mm 24 ° / 21 ° Friday Feb 20 0 mm 24 ° / 22 ° Saturday Feb 21 0 mm 23 ° / 21 ° Sunday Feb 22 0 mm 22 ° / 20 ° Monday Feb 23 0 mm 22 ° / 19 ° Tuesday Feb 24 0 mm 22 ° / 20 ° Wednesday Feb 25 0 mm 22 ° / 19 ° Next Month >> The average weather in Dubai in February The weather in Dubai in February is hot. The average temperatures are between 20 ° C and 25 ° C . You can expect a few rainy days in Dubai during February, but usually the weather is comfortable in February. Our weather forecast can give you a great sense of what weather to expect in Dubai in February 2026 . If you’re planning to visit Dubai in the near future, we highly recommend that you review the 14 day weather forecast for Dubai before you arrive. Temperatures 25 ° / 20 ° Rainy Days 1 Snowy Days 0 Dry Days 28 Rainfall 6 mm Sun Hours 11.9 Hrs Historic average weather for February February Sun Mon Tue Wed Thu Fri Sat 1 22 ° / 18 ° 2 22 ° / 19 ° 3 22 ° / 18 ° 4 23 ° / 18 ° 5 23 ° / 18 ° 6 23 ° / 18 ° 7 23 ° / 19 ° 8 24 ° / 19 ° 9 23 ° / 19 ° 10 23 ° / 18 ° 11 23 ° / 17 ° 12 26 ° / 21 ° 13 25 ° / 22 ° 14 25 ° / 22 ° 15 25 ° / 22 ° 16 23 ° / 21 ° 17 23 ° / 20 ° 18 24 ° / 21 ° 19 24 ° / 21 ° 20 24 ° / 22 ° 21 23 ° / 21 ° 22 22 ° / 20 ° 23 22 ° / 19 ° 24 22 ° / 20 ° 25 22 ° / 19 ° 26 25 ° / 20 ° 27 24 ° / 20 ° 28 24 ° / 19 ° Click on a day for an hourly weather forecast Explore the weather in Dubai in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Dubai annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 24 ° / 19 ° 1 30 0 15 mm Perfect Dubai in January February 25 ° / 20 ° 1 28 0 6 mm Perfect Dubai in February March 28 ° / 22 ° 1 30 0 14 mm Perfect Dubai in March April 32 ° / 26 ° 0 30 0 7 mm Good Dubai in April May 36 ° / 29 ° 0 31 0 1 mm Ok Dubai in May June 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in June July 39 ° / 33 ° 0 31 0 1 mm Bad Dubai in July August 39 ° / 33 ° 0 31 0 2 mm Bad Dubai in August September 38 ° / 31 ° 0 30 0 0 mm Bad Dubai in September October 35 ° / 28 ° 0 31 0 0 mm Ok Dubai in October November 30 ° / 24 ° 0 30 0 8 mm Good Dubai in November December 26 ° / 21 ° 0 31 0 8 mm Perfect Dubai in December Temperatures in Dubai in February Rain in Dubai in February Recommended Hotels in Dubai We know that finding the ideal hotel in Dubai can be a hard task... That’s why we run our special tools and found the best hotels in Dubai. Click on hotel for more details. Hotels in Dubai Al Jaddaf Rotana Suite Hotel Book Now Grand Cosmopolitan Hotel Book Now Crowne Plaza Dubai Marina, an IHG Hotel Book Now Weather in Dubai in February - FAQ What is the average temperature in Dubai in February? The average temperature in Dubai in February is 20 / 25 ° C . What is the chance of rain in Dubai in February? On average, there are 1 rainy days in Dubai during February. Weather wise, is February a good time to visit Dubai? The weather in Dubai in February is perfect. Can it snow in Dubai in February? On average, there are 0 snowy days in Dubai in February. More about the weather in Dubai Dubai 14 day weather Long range weather for Dubai Dubai weather in March Dubai Webcam Weather tomorrow Hotels in Dubai
+---
+
+Remember: Analyze the provided text and summarize information about weather in  Dubai around dates 14 February 20265 and 16 February 2026.
+2026-02-12 13:57:05,326 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-02-12 13:57:05,326 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 3838 chars
+2026-02-12 13:57:05,338 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:07,807 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:08,234 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+The average temperature in Dubai in February 2026 is between 20 ° C and 25 ° C. On February 14th, 2026, the weather was expected to be 25 ° / 22 °. There were no rainy days forecasted for this date. However, on February 16th, 2026, the weather was expected to be 23 ° / 21 ° with one dry day and a rainfall of 6 mm.
+
+
+2026-02-12 13:57:08,234 | INFO     | pipeline.py:79 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 13:57:08,335 | INFO     | functions.py:67 | pipeline_node_agents.examples.trip_planner.functions | ✅Pipeline Output of  Dubai:
+The average temperature in Dubai in February 2026 is between 20 ° C and 25 ° C. On February 14th, 2026, the weather was expected to be 25 ° / 22 °. There were no rainy days forecasted for this date. However, on February 16th, 2026, the weather was expected to be 23 ° / 21 ° with one dry day and a rainfall of 6 mm.
+2026-02-12 13:57:08,335 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ResearchCitiesNode executed. Outputs: ### Madrid
+
+Today's Weather Thu, Feb 12 Breezy this morning; otherwise, some sun, then increasing clouds Hi: 57° Tonight: Overcast with showers late Lo: 46° Current Weather 2:57 PM 55° F RealFeel® 52° Partly sunny More Details RealFeel Shade™ 49° Wind SW 14 mph Wind Gusts 28 mph Air Quality Fair Looking Ahead Expect showery weather late Thursday night through Friday evening
+
+For the forecast on February 14, 2026:
+
+No detailed information was provided for this date
+
+###  Dubai
+
+The average temperature in Dubai in February 2026 is between 20 ° C and 25 ° C. On February 14th, 2026, the weather was expected to be 25 ° / 22 °. There were no rainy days forecasted for this date. However, on February 16th, 2026, the weather was expected to be 23 ° / 21 ° with one dry day and a rainfall of 6 mm.
+2026-02-12 13:57:08,335 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: CitySelectionNode
+2026-02-12 13:57:08,335 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Choose one city from the provided list based on the weather summaries.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### WEATHER_SUMMARIES ###
+### Madrid
+
+Today's Weather Thu, Feb 12 Breezy this morning; otherwise, some sun, then increasing clouds Hi: 57° Tonight: Overcast with showers late Lo: 46° Current Weather 2:57 PM 55° F RealFeel® 52° Partly sunny More Details RealFeel Shade™ 49° Wind SW 14 mph Wind Gusts 28 mph Air Quality Fair Looking Ahead Expect showery weather late Thursday night through Friday evening
+
+For the forecast on February 14, 2026:
+
+No detailed information was provided for this date
+
+###  Dubai
+
+The average temperature in Dubai in February 2026 is between 20 ° C and 25 ° C. On February 14th, 2026, the weather was expected to be 25 ° / 22 °. There were no rainy days forecasted for this date. However, on February 16th, 2026, the weather was expected to be 23 ° / 21 ° with one dry day and a rainfall of 6 mm.
+---
+
+Remember: Choose one city from the provided list based on the weather summaries.
+2026-02-12 13:57:08,335 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: First line: Chosen city name. Following lines: brief explanation of why this city was chosen.
+2026-02-12 13:57:08,335 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 823 chars
+2026-02-12 13:57:08,354 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:11,497 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:11,938 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Dubai
+
+I chose Dubai because it has the most pleasant weather among the two cities provided. With an average temperature of 20-25 °C in February 2026, Dubai offers a comfortable climate that is ideal for outdoor activities. On February 14th, 2026, the weather was expected to be sunny with no rainy days forecasted, making it perfect for sightseeing and exploring the city's attractions. Additionally, on February 16th, 2026, there will be only one dry day with a rainfall of 6 mm, which is minimal compared to other cities. Overall, Dubai's weather in February 2026 seems like an excellent choice for anyone looking to enjoy a warm and sunny getaway.
+
+
+2026-02-12 13:57:11,938 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ExtractChosenCityNode
+2026-02-12 13:57:11,938 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ExtractChosenCityNode executed. Outputs: Dubai
+2026-02-12 13:57:11,938 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: LocalExpertNode
+2026-02-12 13:57:11,939 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Dubai
+
+### DATES ###
+('14 February 20265', '16 February 2026')
+---
+
+Remember: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+2026-02-12 13:57:11,939 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: City guide including hidden gems, cultural hotspots, and practical travel tips
+2026-02-12 13:57:11,939 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 82 chars
+2026-02-12 13:57:11,960 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:13,460 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:14,393 | INFO     | search_tools_crewai.py:23 | pipeline_node_agents.tools.search_tools_crewai | Tool 'Search the internet' is used with parameters: query=Dubai key attractions food places daily activity recommendations
+2026-02-12 13:57:14,397 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 13:57:14,420 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine mojeek: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Dubai%20key%20attractions%20food%20places%20daily%20activity%20recommendations): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 13:57:14,652 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=f4VOyos9Z95eH3dsM1icexId;_ylu=mhVv9SU_Rxzx09yjpyRx3I2Zd-Tf0zQY6QNjJ1OFqJiwZ28?p=Dubai+key+attractions+food+places+daily+activity+recommendations 200
+2026-02-12 13:57:15,296 | INFO     | lib.rs:464 | primp | response: https://www.mojeek.com/search?q=Dubai+key+attractions+food+places+daily+activity+recommendations 403
+2026-02-12 13:57:15,303 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:17,035 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:17,476 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:18,962 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:19,366 | INFO     | search_tools_crewai.py:23 | pipeline_node_agents.tools.search_tools_crewai | Tool 'Search the internet' is used with parameters: query=best restaurants in dubai
+2026-02-12 13:57:19,366 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 13:57:19,381 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine yahoo: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=best%20restaurants%20in%20dubai): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 13:57:19,645 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=mhJfoNjShvekmFFvMyXDkKlE;_ylu=KXgndITAWw3aIZnO885v8rYBgkWN96xR3Oxn2cEu37YNF5c?p=best+restaurants+in+dubai 200
+2026-02-12 13:57:20,168 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:21,632 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:22,044 | INFO     | search_tools_crewai.py:23 | pipeline_node_agents.tools.search_tools_crewai | Tool 'Search the internet' is used with parameters: query=Dubai museum and surrounding area
+2026-02-12 13:57:22,048 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 13:57:22,078 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine yandex: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Dubai%20museum%20and%20surrounding%20area): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 13:57:22,309 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=AW6G6-nZ3esF9kkrfFvwj-U4;_ylu=3hY0E0kZW-j9jCaFxCsmc4sY8rZPIJ0bzKon6UKjKiFt2CA?p=Dubai+museum+and+surrounding+area 200
+2026-02-12 13:57:23,343 | INFO     | lib.rs:464 | primp | response: https://yandex.com/search/site/?text=Dubai+museum+and+surrounding+area&web=1&searchid=4001475 200
+2026-02-12 13:57:23,384 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:24,831 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:25,253 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:27,189 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:27,867 | INFO     | browser_tools_crewai.py:23 | pipeline_node_agents.tools.browser_tools_crewai | Tool 'Scrape website content' is used with parameters: website=https://www.timeoutdubai.com/
+2026-02-12 13:57:28,081 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:30,218 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:30,649 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:32,510 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:32,925 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:34,750 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:35,232 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:38,658 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:39,076 | INFO     | search_tools_crewai.py:23 | pipeline_node_agents.tools.search_tools_crewai | Tool 'Search the internet' is used with parameters: query=best time to visit dubai
+2026-02-12 13:57:39,078 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 13:57:39,093 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine yahoo: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=best%20time%20to%20visit%20dubai): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 13:57:39,312 | INFO     | lib.rs:464 | primp | response: https://search.yahoo.com/search;_ylt=TXHkNDd1C2eZvevQyTuqmEd8;_ylu=jhG-Z8wAFZ_PByh1RRTwle35eQS2EUhA0PR3Mnh3q9NtK_g?p=best+time+to+visit+dubai 200
+2026-02-12 13:57:39,720 | INFO     | lib.rs:464 | primp | response: https://www.mojeek.com/search?q=best+time+to+visit+dubai 403
+2026-02-12 13:57:39,885 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:43,591 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:44,042 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+The best time to visit Dubai is from November to March, with pleasant weather (temperatures between 57°F and 88°F) and a plethora of interesting events and outdoor activities.
+
+
+2026-02-12 13:57:44,042 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: TravelConciergeNode
+2026-02-12 13:57:44,043 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Plan a 7-day trip itinerary based on the chosen city and provided information.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Dubai
+
+### LIST_OF_ATTRACTIONS ###
+The best time to visit Dubai is from November to March, with pleasant weather (temperatures between 57°F and 88°F) and a plethora of interesting events and outdoor activities.
+
+### DATES ###
+('14 February 20265', '16 February 2026')
+---
+
+Remember: Plan a 7-day trip itinerary based on the chosen city and provided information.
+2026-02-12 13:57:44,043 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Detailed 7-day itinerary including daily activities, dining options, and transportation tips.
+2026-02-12 13:57:44,043 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 287 chars
+2026-02-12 13:57:44,055 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 13:57:56,716 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 13:57:57,179 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Your 7-day Dubai Itinerary
+
+Day 1 (February 14, 2026): Arrival in Dubai
+
+* Arrive at Dubai International Airport
+* Transfer to hotel and check-in
+* Spend the rest of the day relaxing at the hotel or exploring the nearby area
+* Dinner suggestion: Al Mallah Restaurant, a traditional Emirati restaurant serving local cuisine like machboos (a rice dish with meat) and luqaimat (sweet dumplings)
+
+Day 2 (February 15, 2026): Dubai Landmarks
+
+* Start the day with a visit to Burj Khalifa, the tallest building in the world
+* Take the high-speed elevator to the observation deck on the 124th floor for panoramic views of the city
+* Visit the nearby Dubai Fountain Show, the world's largest choreographed fountain system
+* Lunch suggestion: At.mosphere, located at Burj Khalifa, offering international cuisine with stunning views
+* Afternoon visit to the Dubai Museum, showcasing the city's history and culture
+* Dinner suggestion: Nando's, a popular chain serving spicy PERi-PERi chicken
+
+Day 3 (February 16, 2026): Desert Adventure
+
+* Take a morning desert safari, exploring the dunes of the Arabian Desert
+* Enjoy activities like dune bashing, camel riding, and sandboarding
+* Lunch suggestion: try traditional Arabic cuisine at a desert camp like Al Qudra or Dubai Desert Safari
+* Visit the iconic Palm Jumeirah island in the afternoon, with stunning views of the city skyline
+* Dinner suggestion: Sufra, located on the beachfront of the Burj Al Arab, offering international cuisine
+
+Day 4 (February 17, 2026): Shopping and Relaxation
+
+* Spend the day at the Dubai Mall, one of the world's largest shopping centers
+* Visit the Dubai Fountain Show at night for a spectacular display of water, music, and lights
+* Lunch suggestion: try some Middle Eastern cuisine at the mall's food court or visit the renowned restaurant, Gordon Ramsay Street Grill
+* Relaxation time in the afternoon at the Jumeirah Mosque, an iconic Islamic place of worship
+* Dinner suggestion: Ravi Restaurant, offering traditional Indian cuisine
+
+Day 5 (February 18, 2026): Cultural Experiences
+
+* Visit the Louvre Abu Dhabi, a stunning museum showcasing art and artifacts from around the world
+* Explore the Sheikh Zayed Mosque, one of the world's largest mosques with impressive architecture
+* Lunch suggestion: try some traditional Emirati cuisine at Al Fanar Restaurant in the mosque complex
+* Afternoon visit to the Global Village, an entertainment and cultural park featuring pavilions from different countries around the world
+* Dinner suggestion: Suhail, located near the Burj Al Arab, offering international cuisine
+
+Day 6 (February 19, 2026): Outdoor Activities
+
+* Spend the day at the Dubai Marina, enjoying shopping, dining, and water activities like boat cruises or kayaking
+* Lunch suggestion: try some seafood at the marina's waterfront restaurants
+* Visit the Dubai Frame, a unique structure offering panoramic views of the city
+* Dinner suggestion: Le Petit Café, located in the Dubai Media City area, offering French-inspired cuisine
+
+Day 7 (February 20, 2026): Last Day in Dubai
+
+* Spend the morning shopping at the Gold Souk, one of the oldest and most famous markets in Dubai
+* Lunch suggestion: try some local street food or visit the nearby Al Dhiyafa Street for more dining options
+* Departure from Dubai International Airport for your return journey
+
+Transportation Tips:
+- Use taxis, Uber, or private transfers to get around Dubai
+- Consider purchasing a Nol Card for public transportation
+- Rent a car or book airport transfers in advance for the desert safari
+
+
+2026-02-12 13:57:57,180 | INFO     | pipeline.py:79 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 13:57:57,280 | INFO     | pipeline.py:66 | __main__ | ✅ Final Pipeline Output:
+ chosen_city: Dubai
+ trip_itinerary: Your 7-day Dubai Itinerary
+
+Day 1 (February 14, 2026): Arrival in Dubai
+
+* Arrive at Dubai International Airport
+* Transfer to hotel and check-in
+* Spend the rest of the day relaxing at the hotel or exploring the nearby area
+* Dinner suggestion: Al Mallah Restaurant, a traditional Emirati restaurant serving local cuisine like machboos (a rice dish with meat) and luqaimat (sweet dumplings)
+
+Day 2 (February 15, 2026): Dubai Landmarks
+
+* Start the day with a visit to Burj Khalifa, the tallest building in the world
+* Take the high-speed elevator to the observation deck on the 124th floor for panoramic views of the city
+* Visit the nearby Dubai Fountain Show, the world's largest choreographed fountain system
+* Lunch suggestion: At.mosphere, located at Burj Khalifa, offering international cuisine with stunning views
+* Afternoon visit to the Dubai Museum, showcasing the city's history and culture
+* Dinner suggestion: Nando's, a popular chain serving spicy PERi-PERi chicken
+
+Day 3 (February 16, 2026): Desert Adventure
+
+* Take a morning desert safari, exploring the dunes of the Arabian Desert
+* Enjoy activities like dune bashing, camel riding, and sandboarding
+* Lunch suggestion: try traditional Arabic cuisine at a desert camp like Al Qudra or Dubai Desert Safari
+* Visit the iconic Palm Jumeirah island in the afternoon, with stunning views of the city skyline
+* Dinner suggestion: Sufra, located on the beachfront of the Burj Al Arab, offering international cuisine
+
+Day 4 (February 17, 2026): Shopping and Relaxation
+
+* Spend the day at the Dubai Mall, one of the world's largest shopping centers
+* Visit the Dubai Fountain Show at night for a spectacular display of water, music, and lights
+* Lunch suggestion: try some Middle Eastern cuisine at the mall's food court or visit the renowned restaurant, Gordon Ramsay Street Grill
+* Relaxation time in the afternoon at the Jumeirah Mosque, an iconic Islamic place of worship
+* Dinner suggestion: Ravi Restaurant, offering traditional Indian cuisine
+
+Day 5 (February 18, 2026): Cultural Experiences
+
+* Visit the Louvre Abu Dhabi, a stunning museum showcasing art and artifacts from around the world
+* Explore the Sheikh Zayed Mosque, one of the world's largest mosques with impressive architecture
+* Lunch suggestion: try some traditional Emirati cuisine at Al Fanar Restaurant in the mosque complex
+* Afternoon visit to the Global Village, an entertainment and cultural park featuring pavilions from different countries around the world
+* Dinner suggestion: Suhail, located near the Burj Al Arab, offering international cuisine
+
+Day 6 (February 19, 2026): Outdoor Activities
+
+* Spend the day at the Dubai Marina, enjoying shopping, dining, and water activities like boat cruises or kayaking
+* Lunch suggestion: try some seafood at the marina's waterfront restaurants
+* Visit the Dubai Frame, a unique structure offering panoramic views of the city
+* Dinner suggestion: Le Petit Café, located in the Dubai Media City area, offering French-inspired cuisine
+
+Day 7 (February 20, 2026): Last Day in Dubai
+
+* Spend the morning shopping at the Gold Souk, one of the oldest and most famous markets in Dubai
+* Lunch suggestion: try some local street food or visit the nearby Al Dhiyafa Street for more dining options
+* Departure from Dubai International Airport for your return journey
+
+Transportation Tips:
+- Use taxis, Uber, or private transfers to get around Dubai
+- Consider purchasing a Nol Card for public transportation
+- Rent a car or book airport transfers in advance for the desert safari
+2026-02-12 13:57:57,281 | INFO     | pipeline.py:68 | __main__ | ⏱️  Execution time: 58.65 seconds

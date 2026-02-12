@@ -1,0 +1,369 @@
+2026-02-12 14:37:30,978 | INFO     | pipeline.py:28 | __main__ | Starting TripPlannerPipeline
+2026-02-12 14:37:30,980 | INFO     | pipeline.py:51 | __main__ | Context: {'list_of_cities': ['Madrid', ' Dubai'], 'dates': ('14 February 20265', '16 February 2026'), 'location': 'Vienna', 'interests': 'art, history, and food'}
+2026-02-12 14:37:30,980 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ ResearchCitiesNode -> CitySelectionNode -> ExtractChosenCityNode -> LocalExpertNode -> TravelConciergeNode │
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+2026-02-12 14:37:30,980 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ResearchCitiesNode
+2026-02-12 14:37:30,981 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+
+┌──────────────────────────────────────────────────────────┐
+│ DuckDuckGoSearchNode -> ScrapeNode -> WeatherSummaryNode │
+└──────────────────────────────────────────────────────────┘
+
+2026-02-12 14:37:30,981 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-02-12 14:37:31,041 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 14:37:31,072 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine brave: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20Madrid%20from%2014%20February%2020265%20to%2016%20February%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 14:37:31,142 | INFO     | lib.rs:464 | primp | response: https://search.brave.com/search?q=weather+forecast+Madrid+from+14+February+20265+to+16+February+2026&source=web 429
+2026-02-12 14:37:31,788 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: [{'title': 'Madrid weather in February 2026 | Madrid 14 day weather', 'snippet': 'Full weather forecast for Madrid in February 2026 . Check the temperatures, chance of rain and more in Madrid during February .', 'url': 'https://www.weather25.com/europe/spain/madrid?page=month&month=February'}, {'title': 'Madrid, Madrid, Spain Monthly Weather | AccuWeather', 'snippet': 'Get the monthly weather forecast for Madrid , Madrid , Spain, including daily high/low, historical averages, to help you plan ahead.', 'url': 'https://www.accuweather.com/en/es/madrid/28034/february-weather/95245_pc'}, {'title': 'February 2026 Daily Weather Forecast for Madrid, Madrid - Plan Ahead', 'snippet': 'Our Madrid , Comunidad de Madrid Daily Weather Forecast for February 2026 , developed from a specialized dynamic long-range model, provides precise daily temperature and rainfall predictions. This model, distinct from standard statistical or climatological approaches, is the result of over 50 years of dedicated private research, offering a clearer and more accurate meteorological insight.', 'url': 'https://www.weathertab.com/en/c/o/02/kingdom-of-spain/comunidad-de-madrid/madrid/'}, {'title': 'Weather in Madrid in February 2026 - Detailed Forecast', 'snippet': 'Discover the most accurate weather forecast for Madrid in February 2026 . Insights into temperature, precipitation, and weather trends.', 'url': 'https://www.easeweather.com/weather/month/madrid/february'}, {'title': 'Weather in Madrid in February 2026 (Community of Madrid) - detailed ...', 'snippet': "World Spain Community of Madrid Weather in Madrid Weather in Madrid in February 2026 Madrid Weather Forecast for February 2026 is based on long term prognosis and previous years' statistical data.", 'url': 'https://world-weather.info/forecast/spain/madrid/february-2026/'}]
+2026-02-12 14:37:31,788 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ScrapeNode
+2026-02-12 14:37:32,014 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ScrapeNode executed. Outputs: Madrid weather in February 2026 | Madrid 14 day weather Home Europe Spain Madrid February Location was added to My Locations Location was removed from My Locations January A Coruna Adeje Albir Alcoy Alcudia Alicante Almeria Almunecar Altea Arboleas Arguineguin Arona Arrecife Badajoz Ballermann Barcelona Benalmadena Benidorm Benitachell Bilbao Buenavista del Norte Burgos Busot Caceres Cadiz Cala Millor Cala Ratjada Calahonda Calella Caleta de Fuste Calpe Cambrils Canillas de Albaida Cartagena Competa Cordoba Cordoue Corralejo Costa Adeje Costa Blanca Costa Brava Costa Daurada Costa Teguise Costa de la Luz Costa del Sol Crevillente Denia Estaryit Estepona Finestrat Formentera Fuengirola Fuerteventura Gandia Gijon Girona Grado Gran Canaria Gran Tarajal Granada Guardamar Hondon de los Frailes Ibiza Jandia Javea Jerez de la Frontera L'Estartit La Gomera La Palma Lanzarote Las Palmas Lloret de Mar Los Alcázares Los Cristianos Los Gigantes Los Montesinos Madrid Majorca Malaga Malgrat de Mar Mallorca Marbella Maspalomas Mazarron Menorca Mijas Minorca Mogan Moraira Morro Jable Motril Murcia Nerja Oviedo Palma Pamplona Peguera Pilar de la Horadada Playa Blanca Playa de las America Playa del Ingles Porto Cristo Puerto Rico Puerto Rico de Gran Canaria Puerto de Mogan Puerto de Pollensa Puerto de Santiago Puerto de la Cruz Puerto del Carmen Ronda Roses Sagunto Salamanca Salobrena Salou San Pedro del Pinatar San Sebastian Sancti Petri Santa Cruz de Tenerife Santa Cruz de la Palma Santa Ponsa Santa Susanna Santander Santany Santiago de Compostela Segovia Seville Soller Tarajalejo Tarifa Tarragona Tenerife Toledo Torre de la Horadada Torremolinos Torrevieja Torrox Tuineje Valencia Valladolid Vigo Villamartin Zaragoza Zumaia March Madrid weather in February 2026 Click on a day for an hourly weather forecast Thursday Feb 12 0.5 mm 13 ° / 7 ° Friday Feb 13 13.3 mm 10 ° / 6 ° Saturday Feb 14 0 mm 10 ° / 3 ° Sunday Feb 15 0 mm 12 ° / 3 ° Monday Feb 16 0 mm 16 ° / 5 ° Tuesday Feb 17 0 mm 15 ° / 5 ° Wednesday Feb 18 0 mm 15 ° / 6 ° Thursday Feb 19 0 mm 15 ° / 6 ° Friday Feb 20 0 mm 15 ° / 5 ° Saturday Feb 21 0 mm 15 ° / 6 ° Sunday Feb 22 0 mm 16 ° / 6 ° Monday Feb 23 0 mm 15 ° / 7 ° Tuesday Feb 24 0 mm 15 ° / 5 ° Wednesday Feb 25 0 mm 19 ° / 6 ° Next Month >> The average weather in Madrid in February The weather in Madrid in February is very cold with temperatures between 4 ° C and 13 ° C , warm clothes are a must. You can expect about 3 to 8 days of rain in Madrid during the month of February. It’s a good idea to bring along your umbrella so that you don’t get caught in poor weather. Please note that Madrid can expect a few days of snow in February . Our weather forecast can give you a great sense of what weather to expect in Madrid in February 2026 . If you’re planning to visit Madrid in the near future, we highly recommend that you review the 14 day weather forecast for Madrid before you arrive. Temperatures 13 ° / 4 ° Rainy Days 3 Snowy Days 1 Dry Days 24 Rainfall 37 mm Sun Hours 10.3 Hrs Historic average weather for February February Sun Mon Tue Wed Thu Fri Sat 1 13 ° / 5 ° 2 12 ° / 5 ° 3 13 ° / 6 ° 4 14 ° / 6 ° 5 14 ° / 7 ° 6 13 ° / 6 ° 7 11 ° / 5 ° 8 11 ° / 5 ° 9 12 ° / 5 ° 10 13 ° / 6 ° 11 13 ° / 6 ° 12 13 ° / 7 ° 13 10 ° / 6 ° 14 10 ° / 3 ° 15 12 ° / 3 ° 16 16 ° / 5 ° 17 15 ° / 5 ° 18 15 ° / 6 ° 19 15 ° / 6 ° 20 15 ° / 5 ° 21 15 ° / 6 ° 22 16 ° / 6 ° 23 15 ° / 7 ° 24 15 ° / 5 ° 25 19 ° / 6 ° 26 14 ° / 6 ° 27 14 ° / 6 ° 28 14 ° / 6 ° Click on a day for an hourly weather forecast Explore the weather in Madrid in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Madrid annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 11 ° / 3 ° 4 26 1 42 mm Ok Madrid in January February 13 ° / 4 ° 3 24 1 37 mm Ok Madrid in February March 16 ° / 6 ° 5 26 0 57 mm Good Madrid in March April 19 ° / 8 ° 4 26 0 64 mm Good Madrid in April May 25 ° / 12 ° 3 28 0 33 mm Perfect Madrid in May June 30 ° / 18 ° 2 28 0 25 mm Good Madrid in June July 34 ° / 22 ° 0 31 0 11 mm Ok Madrid in July August 34 ° / 21 ° 0 31 0 10 mm Ok Madrid in August September 29 ° / 17 ° 1 29 0 26 mm Good Madrid in September October 23 ° / 13 ° 3 28 0 59 mm Perfect Madrid in October November 15 ° / 7 ° 4 26 0 52 mm Good Madrid in November December 12 ° / 4 ° 3 27 0 45 mm Ok Madrid in December Temperatures in Madrid in February Rain in Madrid in February Recommended Hotels in Madrid We know that finding the ideal hotel in Madrid can be a hard task... That’s why we run our special tools and found the best hotels in Madrid. Click on hotel for more details. Hotels in Madrid VP Plaza España Design Book Now Barceló Imagine Book Now Barceló Emperatriz Book Now Weather in Madrid in February - FAQ What is the average temperature in Madrid in February? The average temperature in Madrid in February is 4 / 13 ° C . What is the chance of rain in Madrid in February? On average, there are 3 rainy days in Madrid during February. Weather wise, is February a good time to visit Madrid? The weather in Madrid in February is ok. Can it snow in Madrid in February? On average, there are 1 snowy days in Madrid in February. More about the weather in Madrid Madrid 14 day weather Long range weather for Madrid Madrid weather in March Madrid Webcam Weather tomorrow Hotels in Madrid
+2026-02-12 14:37:32,015 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: WeatherSummaryNode
+2026-02-12 14:37:32,015 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in Madrid around dates 14 February 20265 and 16 February 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Madrid weather in February 2026 | Madrid 14 day weather Home Europe Spain Madrid February Location was added to My Locations Location was removed from My Locations January A Coruna Adeje Albir Alcoy Alcudia Alicante Almeria Almunecar Altea Arboleas Arguineguin Arona Arrecife Badajoz Ballermann Barcelona Benalmadena Benidorm Benitachell Bilbao Buenavista del Norte Burgos Busot Caceres Cadiz Cala Millor Cala Ratjada Calahonda Calella Caleta de Fuste Calpe Cambrils Canillas de Albaida Cartagena Competa Cordoba Cordoue Corralejo Costa Adeje Costa Blanca Costa Brava Costa Daurada Costa Teguise Costa de la Luz Costa del Sol Crevillente Denia Estaryit Estepona Finestrat Formentera Fuengirola Fuerteventura Gandia Gijon Girona Grado Gran Canaria Gran Tarajal Granada Guardamar Hondon de los Frailes Ibiza Jandia Javea Jerez de la Frontera L'Estartit La Gomera La Palma Lanzarote Las Palmas Lloret de Mar Los Alcázares Los Cristianos Los Gigantes Los Montesinos Madrid Majorca Malaga Malgrat de Mar Mallorca Marbella Maspalomas Mazarron Menorca Mijas Minorca Mogan Moraira Morro Jable Motril Murcia Nerja Oviedo Palma Pamplona Peguera Pilar de la Horadada Playa Blanca Playa de las America Playa del Ingles Porto Cristo Puerto Rico Puerto Rico de Gran Canaria Puerto de Mogan Puerto de Pollensa Puerto de Santiago Puerto de la Cruz Puerto del Carmen Ronda Roses Sagunto Salamanca Salobrena Salou San Pedro del Pinatar San Sebastian Sancti Petri Santa Cruz de Tenerife Santa Cruz de la Palma Santa Ponsa Santa Susanna Santander Santany Santiago de Compostela Segovia Seville Soller Tarajalejo Tarifa Tarragona Tenerife Toledo Torre de la Horadada Torremolinos Torrevieja Torrox Tuineje Valencia Valladolid Vigo Villamartin Zaragoza Zumaia March Madrid weather in February 2026 Click on a day for an hourly weather forecast Thursday Feb 12 0.5 mm 13 ° / 7 ° Friday Feb 13 13.3 mm 10 ° / 6 ° Saturday Feb 14 0 mm 10 ° / 3 ° Sunday Feb 15 0 mm 12 ° / 3 ° Monday Feb 16 0 mm 16 ° / 5 ° Tuesday Feb 17 0 mm 15 ° / 5 ° Wednesday Feb 18 0 mm 15 ° / 6 ° Thursday Feb 19 0 mm 15 ° / 6 ° Friday Feb 20 0 mm 15 ° / 5 ° Saturday Feb 21 0 mm 15 ° / 6 ° Sunday Feb 22 0 mm 16 ° / 6 ° Monday Feb 23 0 mm 15 ° / 7 ° Tuesday Feb 24 0 mm 15 ° / 5 ° Wednesday Feb 25 0 mm 19 ° / 6 ° Next Month >> The average weather in Madrid in February The weather in Madrid in February is very cold with temperatures between 4 ° C and 13 ° C , warm clothes are a must. You can expect about 3 to 8 days of rain in Madrid during the month of February. It’s a good idea to bring along your umbrella so that you don’t get caught in poor weather. Please note that Madrid can expect a few days of snow in February . Our weather forecast can give you a great sense of what weather to expect in Madrid in February 2026 . If you’re planning to visit Madrid in the near future, we highly recommend that you review the 14 day weather forecast for Madrid before you arrive. Temperatures 13 ° / 4 ° Rainy Days 3 Snowy Days 1 Dry Days 24 Rainfall 37 mm Sun Hours 10.3 Hrs Historic average weather for February February Sun Mon Tue Wed Thu Fri Sat 1 13 ° / 5 ° 2 12 ° / 5 ° 3 13 ° / 6 ° 4 14 ° / 6 ° 5 14 ° / 7 ° 6 13 ° / 6 ° 7 11 ° / 5 ° 8 11 ° / 5 ° 9 12 ° / 5 ° 10 13 ° / 6 ° 11 13 ° / 6 ° 12 13 ° / 7 ° 13 10 ° / 6 ° 14 10 ° / 3 ° 15 12 ° / 3 ° 16 16 ° / 5 ° 17 15 ° / 5 ° 18 15 ° / 6 ° 19 15 ° / 6 ° 20 15 ° / 5 ° 21 15 ° / 6 ° 22 16 ° / 6 ° 23 15 ° / 7 ° 24 15 ° / 5 ° 25 19 ° / 6 ° 26 14 ° / 6 ° 27 14 ° / 6 ° 28 14 ° / 6 ° Click on a day for an hourly weather forecast Explore the weather in Madrid in other months 01 January 02 February 03 March 04 April 05 May 06 June 07 July 08 August 09 September 10 October 11 November 12 December Madrid annual weather Month Temperatures Rainy Days Dry Days Snowy Days Rainfall Weather More details January 11 ° / 3 ° 4 26 1 42 mm Ok Madrid in January February 13 ° / 4 ° 3 24 1 37 mm Ok Madrid in February March 16 ° / 6 ° 5 26 0 57 mm Good Madrid in March April 19 ° / 8 ° 4 26 0 64 mm Good Madrid in April May 25 ° / 12 ° 3 28 0 33 mm Perfect Madrid in May June 30 ° / 18 ° 2 28 0 25 mm Good Madrid in June July 34 ° / 22 ° 0 31 0 11 mm Ok Madrid in July August 34 ° / 21 ° 0 31 0 10 mm Ok Madrid in August September 29 ° / 17 ° 1 29 0 26 mm Good Madrid in September October 23 ° / 13 ° 3 28 0 59 mm Perfect Madrid in October November 15 ° / 7 ° 4 26 0 52 mm Good Madrid in November December 12 ° / 4 ° 3 27 0 45 mm Ok Madrid in December Temperatures in Madrid in February Rain in Madrid in February Recommended Hotels in Madrid We know that finding the ideal hotel in Madrid can be a hard task... That’s why we run our special tools and found the best hotels in Madrid. Click on hotel for more details. Hotels in Madrid VP Plaza España Design Book Now Barceló Imagine Book Now Barceló Emperatriz Book Now Weather in Madrid in February - FAQ What is the average temperature in Madrid in February? The average temperature in Madrid in February is 4 / 13 ° C . What is the chance of rain in Madrid in February? On average, there are 3 rainy days in Madrid during February. Weather wise, is February a good time to visit Madrid? The weather in Madrid in February is ok. Can it snow in Madrid in February? On average, there are 1 snowy days in Madrid in February. More about the weather in Madrid Madrid 14 day weather Long range weather for Madrid Madrid weather in March Madrid Webcam Weather tomorrow Hotels in Madrid
+---
+
+Remember: Analyze the provided text and summarize information about weather in Madrid around dates 14 February 20265 and 16 February 2026.
+2026-02-12 14:37:32,015 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-02-12 14:37:32,015 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 5440 chars
+2026-02-12 14:37:32,037 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 14:37:39,180 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 14:37:39,931 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+The provided text contains detailed information about the weather in Madrid around the dates 14 February 2026 and 16 February 2026. According to the 14-day weather forecast for Madrid in February 2026, the temperatures are expected to range from 4°C to 13°C, with an average of 10.3 hours of sunshine per day. There are no rainy days predicted on 14 February, but 0 mm of rainfall is recorded. On 16 February, it's expected that there will be clear weather and sunny skies.
+
+The text also provides information about the historical average weather for February in Madrid, with an average temperature of 4/13°C. It is mentioned that there are typically 3 rainy days and 1 snowy day in Madrid during February.
+
+It's worth noting that the text does not provide specific weather conditions or forecasts for 16 February 2026. However, based on general weather trends, it can be inferred that 16 February may experience clear skies and sunny weather.
+
+Overall, the weather in Madrid around these dates is expected to be cold with some sunny days, but without further information, precise predictions cannot be made.
+
+
+2026-02-12 14:37:39,932 | INFO     | pipeline.py:79 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 14:37:40,033 | INFO     | functions.py:67 | pipeline_node_agents.examples.trip_planner.functions | ✅Pipeline Output of Madrid:
+The provided text contains detailed information about the weather in Madrid around the dates 14 February 2026 and 16 February 2026. According to the 14-day weather forecast for Madrid in February 2026, the temperatures are expected to range from 4°C to 13°C, with an average of 10.3 hours of sunshine per day. There are no rainy days predicted on 14 February, but 0 mm of rainfall is recorded. On 16 February, it's expected that there will be clear weather and sunny skies.
+
+The text also provides information about the historical average weather for February in Madrid, with an average temperature of 4/13°C. It is mentioned that there are typically 3 rainy days and 1 snowy day in Madrid during February.
+
+It's worth noting that the text does not provide specific weather conditions or forecasts for 16 February 2026. However, based on general weather trends, it can be inferred that 16 February may experience clear skies and sunny weather.
+
+Overall, the weather in Madrid around these dates is expected to be cold with some sunny days, but without further information, precise predictions cannot be made.
+2026-02-12 14:37:40,035 | INFO     | pipeline.py:61 | pipeline_node_agents.core.pipeline | === Starting pipeline ===
+
+┌──────────────────────────────────────────────────────────┐
+│ DuckDuckGoSearchNode -> ScrapeNode -> WeatherSummaryNode │
+└──────────────────────────────────────────────────────────┘
+
+2026-02-12 14:37:40,035 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: DuckDuckGoSearchNode
+2026-02-12 14:37:40,036 | WARNING  | ddgs.py:120 | ddgs.ddgs | KeyError('lite') - backend is not exist or disabled. Available: brave, duckduckgo, mojeek, wikipedia, yahoo, yandex. Using 'auto'
+2026-02-12 14:37:40,055 | INFO     | ddgs.py:199 | ddgs.ddgs | Error in engine mojeek: DDGSException("RuntimeError: RuntimeError('error sending request for url (https://wt.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=weather%20forecast%20%20Dubai%20from%2014%20February%2020265%20to%2016%20February%202026): client error (Connect)\\n\\nCaused by:\\n    0: client error (Connect)\\n    1: dns error: failed to lookup address information: Name or service not known\\n    2: failed to lookup address information: Name or service not known')")
+2026-02-12 14:37:40,864 | INFO     | lib.rs:464 | primp | response: https://www.mojeek.com/search?q=weather+forecast++Dubai+from+14+February+20265+to+16+February+2026 403
+2026-02-12 14:37:41,496 | INFO     | lib.rs:464 | primp | response: https://yandex.com/search/site/?text=weather+forecast++Dubai+from+14+February+20265+to+16+February+2026&web=1&searchid=2287614 200
+2026-02-12 14:37:41,549 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] DuckDuckGoSearchNode executed. Outputs: [{'title': 'Dubai , Dubai , United Arab Emirates Weather Forecast | AccuWeather', 'snippet': "2/ 14 . 30° 19°.2 hours ago. Astronomy. 6 planets, moon will align in February , but there's a catch.", 'url': 'https://www.accuweather.com/en/ae/dubai/323091/weather-forecast/323091'}, {'title': '14 -day weather forecast for Dubai . - BBC Weather', 'snippet': '9 mph 14 km/h north-westerly. A clear sky and a gentle breeze. Friday 6th February Fri 6th.Saturday 14 th February Sat 14 th.', 'url': 'https://www.bbc.com/weather/292223'}, {'title': 'Yr - Weather forecast for Dubai for the next 10 days.', 'snippet': 'Dubai . Regional capital (United Arab Emirates), elevation 25 m. Press to show information about this location.Maximum minimum temperature:27°/ 14 °. Precipitation 0mm. Wind:5m/s.', 'url': 'https://www.yr.no/en/forecast/daily-table/2-292223/United+Arab+Emirates/Dubai/Dubai'}, {'title': 'Dubai Weather Forecast', 'snippet': 'Live weather reports from Dubai weather stations and weather warnings that include risk of thunder, high UV index and forecast gales. See the links below the 12-day Dubai weather forecast table for other cities and towns nearby along with weather conditions for local outdoor activities.', 'url': 'https://www.weather-forecast.com/locations/Dubai/forecasts/latest'}, {'title': 'Weather - Dubayy - 14 -Day Forecast & Rain | Ventusky', 'snippet': 'Dubayy - Weather forecast for 14 days, information from meteorological stations, webcams, sunrise and sunset, wind and precipitation maps for this place.', 'url': 'https://www.ventusky.com/dubai'}]
+2026-02-12 14:37:41,549 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ScrapeNode
+2026-02-12 14:37:41,887 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ScrapeNode executed. Outputs: Dubai, Dubai, United Arab Emirates Weather Forecast | AccuWeather Go Back For Business | Warnings Data Suite Forensics Advertising Superior Accuracy™ Dubai, Dubai 79° F Location Chevron down Location News Videos Use Current Location Recent Dubai Dubai 79° No results found. Try searching for a city, zip code or point of interest. Create Your Account Unlock extended daily and hourly forecasts — all with your free account. Let's Go Chevron right Have an account already? Log In settings Dubai, Dubai Weather Today WinterCast Local {stormName} Tracker Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Around the Globe Hurricane Tracker Radar & Maps News News & Features Astronomy Business Climate Health Recreation Sports Travel For Business Warnings Data Suite Forensics Advertising Superior Accuracy™ Video Today Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Today's Weather Thu, Feb 12 Very warm with sun giving way to increasing clouds Hi: 88° Tonight: Clear to partly cloudy Lo: 68° Current Weather 6:37 PM 79° F RealFeel® 77° Clear More Details Wind N 9 mph Wind Gusts 9 mph Air Quality Unhealthy Looking Ahead Air quality will be very unhealthy Sunday morning through late Sunday night Dubai Weather Radar Static Radar Temporarily Unavailable Thank you for your patience as we work to get everything up and running again. Refresh Page Clouds Temperature Hourly Weather Chevron left 7 PM 78° 0% 8 PM 77° 0% 9 PM 76° 0% 10 PM 76° 0% 11 PM 75° 0% 12 AM 74° 0% 1 AM 73° 0% 2 AM 73° 0% 3 AM 71° 0% 4 AM 71° 0% 5 AM 71° 0% 6 AM 70° 0% Chevron right 10-Day Weather Forecast Today 2/12 88° 68° Turning cloudy and very warm Night: Clear to partly cloudy 0% Fri 2/13 87° 66° Very warm with hazy sun Clear 0% Sat 2/14 87° 67° Sunny and very warm Clear 0% Sun 2/15 87° 68° Hazy and remaining very warm Hazy 0% Mon 2/16 83° 65° Plenty of sunshine Clear 0% Tue 2/17 84° 67° Hazy sun Clear 0% Wed 2/18 85° 66° Hazy sunshine Clear 0% Thu 2/19 86° 65° Very warm with hazy sunshine Clear 0% Fri 2/20 83° 66° Plenty of sunshine Mainly clear 0% Sat 2/21 81° 69° Mostly sunny Warm with increasing clouds 0% Sun & Moon 11 hrs 14 mins Rise 6:56 AM Set 6:10 PM Waning Crescent Rise 3:03 AM Set 1:26 PM Air Quality See More Air Quality Unhealthy Health effects can be immediately felt by sensitive groups. Healthy individuals may experience difficulty breathing and throat irritation with prolonged exposure. Limit outdoor activity. Allergy Outlook See All Dust & Dander Very High Data is not supported in this location Top Stories Weather Forecasts Even warmer weather awaits central, eastern US later in February 2 hours ago Winter Weather Extreme cold in New York City linked to at least 17 deaths 1 day ago Winter Weather More big storms heading for California, West starting in mid-February 3 hours ago Recreation Death Valley could have rare superbloom in 2026 1 day ago Weather Forecasts Upcoming Valentine's Day storm to bring drenching rain to southern US 3 hours ago More Stories Featured Stories Weather News Gray wolf tracked in Los Angeles County for first time 19 hours ago Winter Weather Two boys die after falling through ice in Oklahoma 1 day ago Astronomy A 'ring of fire' eclipse is coming Feb. 17 19 hours ago Astronomy A snow-rimmed Grand Canyon stands out in astronaut photo 2 days ago Recreation Yosemite ‘Firefall’ returns soon, but weather will decide how it looks 44 minutes ago World Middle East United Arab Emirates Dubai Dubai Weather Near Dubai: Ajman , Ajman Al Satwa , Dubai Sharjah , Ajman Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News © 2026 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved. Terms of Use | Privacy Policy | Cookie Policy | About Your Privacy Do Not Sell or Share My Personal Information | Data Sources ... ... ... ... ...
+2026-02-12 14:37:41,887 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: WeatherSummaryNode
+2026-02-12 14:37:41,888 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Analyze the provided text and summarize information about weather in  Dubai around dates 14 February 20265 and 16 February 2026.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### PAGE_CONTENT ###
+Dubai, Dubai, United Arab Emirates Weather Forecast | AccuWeather Go Back For Business | Warnings Data Suite Forensics Advertising Superior Accuracy™ Dubai, Dubai 79° F Location Chevron down Location News Videos Use Current Location Recent Dubai Dubai 79° No results found. Try searching for a city, zip code or point of interest. Create Your Account Unlock extended daily and hourly forecasts — all with your free account. Let's Go Chevron right Have an account already? Log In settings Dubai, Dubai Weather Today WinterCast Local {stormName} Tracker Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Around the Globe Hurricane Tracker Radar & Maps News News & Features Astronomy Business Climate Health Recreation Sports Travel For Business Warnings Data Suite Forensics Advertising Superior Accuracy™ Video Today Hourly Daily Radar MinuteCast® Monthly Air Quality Health & Activities Today's Weather Thu, Feb 12 Very warm with sun giving way to increasing clouds Hi: 88° Tonight: Clear to partly cloudy Lo: 68° Current Weather 6:37 PM 79° F RealFeel® 77° Clear More Details Wind N 9 mph Wind Gusts 9 mph Air Quality Unhealthy Looking Ahead Air quality will be very unhealthy Sunday morning through late Sunday night Dubai Weather Radar Static Radar Temporarily Unavailable Thank you for your patience as we work to get everything up and running again. Refresh Page Clouds Temperature Hourly Weather Chevron left 7 PM 78° 0% 8 PM 77° 0% 9 PM 76° 0% 10 PM 76° 0% 11 PM 75° 0% 12 AM 74° 0% 1 AM 73° 0% 2 AM 73° 0% 3 AM 71° 0% 4 AM 71° 0% 5 AM 71° 0% 6 AM 70° 0% Chevron right 10-Day Weather Forecast Today 2/12 88° 68° Turning cloudy and very warm Night: Clear to partly cloudy 0% Fri 2/13 87° 66° Very warm with hazy sun Clear 0% Sat 2/14 87° 67° Sunny and very warm Clear 0% Sun 2/15 87° 68° Hazy and remaining very warm Hazy 0% Mon 2/16 83° 65° Plenty of sunshine Clear 0% Tue 2/17 84° 67° Hazy sun Clear 0% Wed 2/18 85° 66° Hazy sunshine Clear 0% Thu 2/19 86° 65° Very warm with hazy sunshine Clear 0% Fri 2/20 83° 66° Plenty of sunshine Mainly clear 0% Sat 2/21 81° 69° Mostly sunny Warm with increasing clouds 0% Sun & Moon 11 hrs 14 mins Rise 6:56 AM Set 6:10 PM Waning Crescent Rise 3:03 AM Set 1:26 PM Air Quality See More Air Quality Unhealthy Health effects can be immediately felt by sensitive groups. Healthy individuals may experience difficulty breathing and throat irritation with prolonged exposure. Limit outdoor activity. Allergy Outlook See All Dust & Dander Very High Data is not supported in this location Top Stories Weather Forecasts Even warmer weather awaits central, eastern US later in February 2 hours ago Winter Weather Extreme cold in New York City linked to at least 17 deaths 1 day ago Winter Weather More big storms heading for California, West starting in mid-February 3 hours ago Recreation Death Valley could have rare superbloom in 2026 1 day ago Weather Forecasts Upcoming Valentine's Day storm to bring drenching rain to southern US 3 hours ago More Stories Featured Stories Weather News Gray wolf tracked in Los Angeles County for first time 19 hours ago Winter Weather Two boys die after falling through ice in Oklahoma 1 day ago Astronomy A 'ring of fire' eclipse is coming Feb. 17 19 hours ago Astronomy A snow-rimmed Grand Canyon stands out in astronaut photo 2 days ago Recreation Yosemite ‘Firefall’ returns soon, but weather will decide how it looks 44 minutes ago World Middle East United Arab Emirates Dubai Dubai Weather Near Dubai: Ajman , Ajman Al Satwa , Dubai Sharjah , Ajman Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News Company Proven Superior Accuracy™ About AccuWeather Digital Advertising Careers Press Contact Us Products & Services For Business For Partners For Advertising AccuWeather APIs AccuWeather Connect Personal Weather Stations Apps & Downloads iPhone App Android App See all Apps & Downloads Subscription Services AccuWeather Premium AccuWeather Professional More AccuWeather Ready Business Health Hurricane Leisure and Recreation Severe Weather Space and Astronomy Sports Travel Weather News © 2026 AccuWeather, Inc. "AccuWeather" and sun design are registered trademarks of AccuWeather, Inc. All Rights Reserved. Terms of Use | Privacy Policy | Cookie Policy | About Your Privacy Do Not Sell or Share My Personal Information | Data Sources ... ... ... ... ...
+---
+
+Remember: Analyze the provided text and summarize information about weather in  Dubai around dates 14 February 20265 and 16 February 2026.
+2026-02-12 14:37:41,888 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Short summary of the weather information.
+2026-02-12 14:37:41,888 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 4817 chars
+2026-02-12 14:37:41,902 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 14:37:43,758 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 14:37:44,172 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Unfortunately, there is no weather forecast for Dubai around dates 14 February 2026 and 16 February 2026 in the provided content. The content only provides a general overview of the weather forecast for Dubai from 2/12 to 2/21.
+
+
+2026-02-12 14:37:44,173 | INFO     | pipeline.py:79 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 14:37:44,273 | INFO     | functions.py:67 | pipeline_node_agents.examples.trip_planner.functions | ✅Pipeline Output of  Dubai:
+Unfortunately, there is no weather forecast for Dubai around dates 14 February 2026 and 16 February 2026 in the provided content. The content only provides a general overview of the weather forecast for Dubai from 2/12 to 2/21.
+2026-02-12 14:37:44,274 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ResearchCitiesNode executed. Outputs: ### Madrid
+
+The provided text contains detailed information about the weather in Madrid around the dates 14 February 2026 and 16 February 2026. According to the 14-day weather forecast for Madrid in February 2026, the temperatures are expected to range from 4°C to 13°C, with an average of 10.3 hours of sunshine per day. There are no rainy days predicted on 14 February, but 0 mm of rainfall is recorded. On 16 February, it's expected that there will be clear weather and sunny skies.
+
+The text also provides information about the historical average weather for February in Madrid, with an average temperature of 4/13°C. It is mentioned that there are typically 3 rainy days and 1 snowy day in Madrid during February.
+
+It's worth noting that the text does not provide specific weather conditions or forecasts for 16 February 2026. However, based on general weather trends, it can be inferred that 16 February may experience clear skies and sunny weather.
+
+Overall, the weather in Madrid around these dates is expected to be cold with some sunny days, but without further information, precise predictions cannot be made.
+
+###  Dubai
+
+Unfortunately, there is no weather forecast for Dubai around dates 14 February 2026 and 16 February 2026 in the provided content. The content only provides a general overview of the weather forecast for Dubai from 2/12 to 2/21.
+2026-02-12 14:37:44,274 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: CitySelectionNode
+2026-02-12 14:37:44,274 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Choose one city from the provided list based on the weather summaries.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### WEATHER_SUMMARIES ###
+### Madrid
+
+The provided text contains detailed information about the weather in Madrid around the dates 14 February 2026 and 16 February 2026. According to the 14-day weather forecast for Madrid in February 2026, the temperatures are expected to range from 4°C to 13°C, with an average of 10.3 hours of sunshine per day. There are no rainy days predicted on 14 February, but 0 mm of rainfall is recorded. On 16 February, it's expected that there will be clear weather and sunny skies.
+
+The text also provides information about the historical average weather for February in Madrid, with an average temperature of 4/13°C. It is mentioned that there are typically 3 rainy days and 1 snowy day in Madrid during February.
+
+It's worth noting that the text does not provide specific weather conditions or forecasts for 16 February 2026. However, based on general weather trends, it can be inferred that 16 February may experience clear skies and sunny weather.
+
+Overall, the weather in Madrid around these dates is expected to be cold with some sunny days, but without further information, precise predictions cannot be made.
+
+###  Dubai
+
+Unfortunately, there is no weather forecast for Dubai around dates 14 February 2026 and 16 February 2026 in the provided content. The content only provides a general overview of the weather forecast for Dubai from 2/12 to 2/21.
+---
+
+Remember: Choose one city from the provided list based on the weather summaries.
+2026-02-12 14:37:44,274 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: First line: Chosen city name. Following lines: brief explanation of why this city was chosen.
+2026-02-12 14:37:44,274 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 1387 chars
+2026-02-12 14:37:44,288 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 14:37:46,951 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 14:37:47,372 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Madrid
+
+Madrid was chosen based on its detailed 14-day weather forecast for February 2026, which includes expected temperatures ranging from 4°C to 13°C, with an average of 10.3 hours of sunshine per day. Additionally, the text mentions that there are typically 3 rainy days and 1 snowy day in Madrid during February, but no specific rainfall is predicted on 14 February. Overall, Madrid's weather forecast suggests a mix of cold temperatures and sunny days, making it an attractive destination for those seeking a winter getaway with some pleasant weather.
+
+
+2026-02-12 14:37:47,373 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: ExtractChosenCityNode
+2026-02-12 14:37:47,373 | INFO     | node.py:54 | pipeline_node_agents.core.node | [FunctionNode] ExtractChosenCityNode executed. Outputs: Madrid
+2026-02-12 14:37:47,374 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: LocalExpertNode
+2026-02-12 14:37:47,375 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Madrid
+
+### DATES ###
+('14 February 20265', '16 February 2026')
+---
+
+Remember: Gather insights about key attractions, food places, and daily activity recommendations of the chosen city.
+2026-02-12 14:37:47,376 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: City guide including hidden gems, cultural hotspots, and practical travel tips
+2026-02-12 14:37:47,376 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 83 chars
+2026-02-12 14:37:47,391 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 14:37:57,335 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 14:37:57,778 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Madrid, the vibrant capital of Spain, is a city that seamlessly blends rich history, cultural attractions, and modern delights. Here's your comprehensive guide to exploring this enchanting city.
+
+**Key Attractions:**
+
+1.  **The Royal Palace of Madrid**: An impressive structure that serves as the official residence of the Spanish royal family, offering guided tours of its opulent chambers and gardens.
+2.  **Museo del Prado**: One of Europe's premier art museums, featuring an extensive collection of European art from the 12th to the 19th centuries, including works by Goya, Velázquez, and El Greco.
+3.  **Retiro Park**: A tranquil oasis in the heart of the city, offering stunning gardens, a lake, and plenty of walking trails for relaxation and recreation.
+4.  **Plaza Mayor**: The historic central square that has been the hub of Madrid's social life for centuries, featuring lively street performers, cafes, and shops.
+
+**Food Places:**
+
+1.  **Casa Mono**: A cozy, award-winning tapas bar serving innovative small plates in a warm, welcoming atmosphere.
+2.  **Botín**: Established in 1725, this historic tavern offers an extensive menu of classic Spanish dishes and an impressive wine list.
+3.  **El Qu Jetcho**: For the best of Madrid's modern gastronomy, head to this three-Michelin-starred restaurant offering a unique culinary journey.
+4.  **Churros con Chocolate**: A must-try experience at any time of day, these iconic Spanish treats are typically enjoyed with a rich, thick hot chocolate.
+
+**Daily Activity Recommendations:**
+
+1.  **Take a guided tour of the Rastro Market**, where you can find everything from vintage clothing to antique furniture and collectibles.
+2.  **Visit the Reina Sofia Museum**, home to Picasso's "Guernica" as well as works by other prominent Spanish artists.
+3.  **Wander through the lively Malasaña neighborhood**, known for its street art, eclectic shops, and trendy bars.
+4.  **Catch a performance at the Teatro Real opera house**, one of Europe's premier opera venues.
+
+**Hidden Gems:**
+
+1.  **The Mercado San Miguel**: This beautifully restored market offers a taste of Madrid's culinary past with its antique food stalls and vendors selling local delicacies.
+2.  **Parque del Oeste**: A lesser-known park that provides peaceful respite from the city, featuring a beautiful rose garden, a deer sanctuary, and stunning views of the surrounding landscape.
+3.  **The Thyssen-Bornemisza Museum**, which completes Madrid's "Golden Triangle" art museum complex along with the Prado and Reina Sofia.
+
+**Practical Travel Tips:**
+
+1.  **Madrid is a hilly city**, so be prepared for some walking uphill in certain areas.
+2.  **Public transportation** is efficient and extensive, making it easy to get around without a car.
+3.  **Tap water is safe to drink**, making it a great option when exploring the city.
+
+Enjoy your time in Madrid!
+
+
+2026-02-12 14:37:57,779 | INFO     | pipeline.py:68 | pipeline_node_agents.core.pipeline | → Running node: TravelConciergeNode
+2026-02-12 14:37:57,779 | INFO     | crewai_adapter.py:35 | pipeline_node_agents.adapters.crewai_adapter | Full task description: YOUR TASK: Plan a 7-day trip itinerary based on the chosen city and provided information.
+
+Based on the following content, complete the task above. Focus specifically on answering the task.
+
+---
+### CHOSEN_CITY ###
+Madrid
+
+### LIST_OF_ATTRACTIONS ###
+Madrid, the vibrant capital of Spain, is a city that seamlessly blends rich history, cultural attractions, and modern delights. Here's your comprehensive guide to exploring this enchanting city.
+
+**Key Attractions:**
+
+1.  **The Royal Palace of Madrid**: An impressive structure that serves as the official residence of the Spanish royal family, offering guided tours of its opulent chambers and gardens.
+2.  **Museo del Prado**: One of Europe's premier art museums, featuring an extensive collection of European art from the 12th to the 19th centuries, including works by Goya, Velázquez, and El Greco.
+3.  **Retiro Park**: A tranquil oasis in the heart of the city, offering stunning gardens, a lake, and plenty of walking trails for relaxation and recreation.
+4.  **Plaza Mayor**: The historic central square that has been the hub of Madrid's social life for centuries, featuring lively street performers, cafes, and shops.
+
+**Food Places:**
+
+1.  **Casa Mono**: A cozy, award-winning tapas bar serving innovative small plates in a warm, welcoming atmosphere.
+2.  **Botín**: Established in 1725, this historic tavern offers an extensive menu of classic Spanish dishes and an impressive wine list.
+3.  **El Qu Jetcho**: For the best of Madrid's modern gastronomy, head to this three-Michelin-starred restaurant offering a unique culinary journey.
+4.  **Churros con Chocolate**: A must-try experience at any time of day, these iconic Spanish treats are typically enjoyed with a rich, thick hot chocolate.
+
+**Daily Activity Recommendations:**
+
+1.  **Take a guided tour of the Rastro Market**, where you can find everything from vintage clothing to antique furniture and collectibles.
+2.  **Visit the Reina Sofia Museum**, home to Picasso's "Guernica" as well as works by other prominent Spanish artists.
+3.  **Wander through the lively Malasaña neighborhood**, known for its street art, eclectic shops, and trendy bars.
+4.  **Catch a performance at the Teatro Real opera house**, one of Europe's premier opera venues.
+
+**Hidden Gems:**
+
+1.  **The Mercado San Miguel**: This beautifully restored market offers a taste of Madrid's culinary past with its antique food stalls and vendors selling local delicacies.
+2.  **Parque del Oeste**: A lesser-known park that provides peaceful respite from the city, featuring a beautiful rose garden, a deer sanctuary, and stunning views of the surrounding landscape.
+3.  **The Thyssen-Bornemisza Museum**, which completes Madrid's "Golden Triangle" art museum complex along with the Prado and Reina Sofia.
+
+**Practical Travel Tips:**
+
+1.  **Madrid is a hilly city**, so be prepared for some walking uphill in certain areas.
+2.  **Public transportation** is efficient and extensive, making it easy to get around without a car.
+3.  **Tap water is safe to drink**, making it a great option when exploring the city.
+
+Enjoy your time in Madrid!
+
+### DATES ###
+('14 February 20265', '16 February 2026')
+---
+
+Remember: Plan a 7-day trip itinerary based on the chosen city and provided information.
+2026-02-12 14:37:57,780 | INFO     | crewai_adapter.py:36 | pipeline_node_agents.adapters.crewai_adapter | Expected output: Detailed 7-day itinerary including daily activities, dining options, and transportation tips.
+2026-02-12 14:37:57,781 | INFO     | crewai_adapter.py:37 | pipeline_node_agents.adapters.crewai_adapter | Input length: 2987 chars
+2026-02-12 14:37:57,796 | INFO     | utils.py:3419 | LiteLLM | 
+LiteLLM completion() model= llama3.2; provider = ollama
+2026-02-12 14:38:08,896 | INFO     | utils.py:1308 | LiteLLM | Wrapper: Completed Call, calling success_handler
+2026-02-12 14:38:09,346 | INFO     | crewai_adapter.py:42 | pipeline_node_agents.adapters.crewai_adapter | Output of the agent: 
+Your 7-day itinerary for Madrid includes the following activities:
+
+Day 1 (February 14, 2026): Arrival in Madrid
+
+* Arrive at Adolfo Suárez Madrid–Barajas Airport
+* Transfer to hotel and check-in
+* Spend the afternoon exploring the nearby Mercado San Miguel, a beautifully restored market offering a taste of Madrid's culinary past with its antique food stalls and vendors selling local delicacies.
+* Dinner at Casa Mono, a cozy, award-winning tapas bar serving innovative small plates in a warm, welcoming atmosphere.
+
+Day 2 (February 15, 2026): Royal Palace of Madrid
+
+* Breakfast at Botín, established in 1725, this historic tavern offers an extensive menu of classic Spanish dishes and an impressive wine list.
+* Guided tour of the Royal Palace of Madrid
+* Lunch at a local restaurant serving traditional Spanish cuisine
+* Afternoon: Explore the beautiful Retiro Park, offering stunning gardens, a lake, and plenty of walking trails for relaxation and recreation.
+* Dinner at El Qu Jetcho, for the best of Madrid's modern gastronomy.
+
+Day 3 (February 16, 2026): Museo del Prado
+
+* Breakfast at Churros con Chocolate, a must-try experience at any time of day, these iconic Spanish treats are typically enjoyed with a rich, thick hot chocolate.
+* Visit to the world-famous Museo del Prado, one of Europe's premier art museums, featuring an extensive collection of European art from the 12th to the 19th centuries.
+* Lunch at a nearby café or restaurant
+* Afternoon: Explore the lively Malasaña neighborhood, known for its street art, eclectic shops, and trendy bars.
+* Dinner at Botín.
+
+Day 4 (February 17, 2026): Reina Sofia Museum
+
+* Breakfast at Casa Mono.
+* Visit to the Reina Sofia Museum, home to Picasso's "Guernica" as well as works by other prominent Spanish artists.
+* Lunch at a local restaurant serving traditional Spanish cuisine
+* Afternoon: Explore the nearby Thyssen-Bornemisza Museum, which completes Madrid's "Golden Triangle" art museum complex along with the Prado and Reina Sofia.
+* Dinner at El Qu Jetcho.
+
+Day 5 (February 18, 2026): Teatro Real
+
+* Breakfast at Churros con Chocolate.
+* Afternoon: Catch a performance at the Teatro Real opera house, one of Europe's premier opera venues.
+* Lunch at a nearby restaurant
+* Evening: Explore the lively streets and nightlife of Madrid.
+
+Day 6 (February 19, 2026): Rastro Market
+
+* Breakfast at Botín.
+* Visit to the Rastro Market, where you can find everything from vintage clothing to antique furniture and collectibles.
+* Lunch at a local food stall or restaurant
+* Afternoon: Explore the nearby Parque del Oeste, a lesser-known park that provides peaceful respite from the city, featuring a beautiful rose garden, a deer sanctuary, and stunning views of the surrounding landscape.
+
+Day 7 (February 20, 2026): Departure
+
+* Breakfast at Casa Mono.
+* Spend the morning shopping for souvenirs or exploring any last-minute attractions
+* Depart for Adolfo Suárez Madrid–Barajas Airport and transfer to your next destination.
+
+
+2026-02-12 14:38:09,347 | INFO     | pipeline.py:79 | pipeline_node_agents.core.pipeline | === Pipeline finished ===
+2026-02-12 14:38:09,447 | INFO     | pipeline.py:66 | __main__ | ✅ Final Pipeline Output:
+ chosen_city: Madrid
+ trip_itinerary: Your 7-day itinerary for Madrid includes the following activities:
+
+Day 1 (February 14, 2026): Arrival in Madrid
+
+* Arrive at Adolfo Suárez Madrid–Barajas Airport
+* Transfer to hotel and check-in
+* Spend the afternoon exploring the nearby Mercado San Miguel, a beautifully restored market offering a taste of Madrid's culinary past with its antique food stalls and vendors selling local delicacies.
+* Dinner at Casa Mono, a cozy, award-winning tapas bar serving innovative small plates in a warm, welcoming atmosphere.
+
+Day 2 (February 15, 2026): Royal Palace of Madrid
+
+* Breakfast at Botín, established in 1725, this historic tavern offers an extensive menu of classic Spanish dishes and an impressive wine list.
+* Guided tour of the Royal Palace of Madrid
+* Lunch at a local restaurant serving traditional Spanish cuisine
+* Afternoon: Explore the beautiful Retiro Park, offering stunning gardens, a lake, and plenty of walking trails for relaxation and recreation.
+* Dinner at El Qu Jetcho, for the best of Madrid's modern gastronomy.
+
+Day 3 (February 16, 2026): Museo del Prado
+
+* Breakfast at Churros con Chocolate, a must-try experience at any time of day, these iconic Spanish treats are typically enjoyed with a rich, thick hot chocolate.
+* Visit to the world-famous Museo del Prado, one of Europe's premier art museums, featuring an extensive collection of European art from the 12th to the 19th centuries.
+* Lunch at a nearby café or restaurant
+* Afternoon: Explore the lively Malasaña neighborhood, known for its street art, eclectic shops, and trendy bars.
+* Dinner at Botín.
+
+Day 4 (February 17, 2026): Reina Sofia Museum
+
+* Breakfast at Casa Mono.
+* Visit to the Reina Sofia Museum, home to Picasso's "Guernica" as well as works by other prominent Spanish artists.
+* Lunch at a local restaurant serving traditional Spanish cuisine
+* Afternoon: Explore the nearby Thyssen-Bornemisza Museum, which completes Madrid's "Golden Triangle" art museum complex along with the Prado and Reina Sofia.
+* Dinner at El Qu Jetcho.
+
+Day 5 (February 18, 2026): Teatro Real
+
+* Breakfast at Churros con Chocolate.
+* Afternoon: Catch a performance at the Teatro Real opera house, one of Europe's premier opera venues.
+* Lunch at a nearby restaurant
+* Evening: Explore the lively streets and nightlife of Madrid.
+
+Day 6 (February 19, 2026): Rastro Market
+
+* Breakfast at Botín.
+* Visit to the Rastro Market, where you can find everything from vintage clothing to antique furniture and collectibles.
+* Lunch at a local food stall or restaurant
+* Afternoon: Explore the nearby Parque del Oeste, a lesser-known park that provides peaceful respite from the city, featuring a beautiful rose garden, a deer sanctuary, and stunning views of the surrounding landscape.
+
+Day 7 (February 20, 2026): Departure
+
+* Breakfast at Casa Mono.
+* Spend the morning shopping for souvenirs or exploring any last-minute attractions
+* Depart for Adolfo Suárez Madrid–Barajas Airport and transfer to your next destination.
+2026-02-12 14:38:09,447 | INFO     | pipeline.py:68 | __main__ | ⏱️  Execution time: 38.37 seconds
