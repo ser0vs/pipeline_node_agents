@@ -24,7 +24,7 @@ class SearchAndSummarizePipeline:
         self.logger = logger or logging.getLogger(__name__)
 
         self.ollama_llm = ollama_llm or LLM(
-            model="ollama/llama3.2",
+            model="ollama/qwen3:8b",
             base_url="http://localhost:11434"
         )
 

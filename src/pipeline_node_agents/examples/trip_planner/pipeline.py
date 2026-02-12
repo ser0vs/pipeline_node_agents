@@ -18,7 +18,7 @@ class TripPlannerPipeline:
 
     def __init__(self, ollama_llm=None, logger: logging.Logger | None = None) -> None:
         self.ollama_llm = ollama_llm or LLM(
-            model="ollama/llama3.2",
+            model="ollama/qwen3:8b",
             base_url="http://localhost:11434"
         )
         TripPlannerConfig.set_ollama_llm(self.ollama_llm)
