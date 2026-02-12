@@ -45,8 +45,6 @@ class TripPlannerAgents:
             goal=("Provide the best recommendation where to go in defined city based on text content."
             "Rules:\n"
             "- You may use at most ONE tool.\n"
-            "- After receiving tool results, you MUST provide the final list of attractions.\n"
-            "- The final answer MUST NOT contain 'Action', 'Thought', or tool calls.\n"
             "- The final answer must only contain the completed list of attractions."),
             backstory="You are a highly skilled local expert with deep knowledge of the city's culture, attractions, and hidden gems.",
             llm=TripPlannerConfig.ollama_llm,
@@ -64,8 +62,6 @@ class TripPlannerAgents:
             goal=("Plan the best trip itinerary based on the chosen city and provided information.\n\n"
             "Rules:\n"
             "- You may use at most ONE tool.\n"
-            "- After receiving tool results, you MUST provide the final itinerary.\n"
-            "- The final answer MUST NOT contain 'Action', 'Thought', or tool calls.\n"
             "- The final answer must only contain the completed itinerary."),
             backstory="You are a highly skilled travel concierge with expertise in creating personalized travel plans.",
             llm=TripPlannerConfig.ollama_llm,
