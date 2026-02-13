@@ -16,7 +16,7 @@ class TripPlannerPipeline:
     and creating a detailed itinerary.
     """
 
-    def __init__(self, ollama_llm=None, logger: logging.Logger | None = None, local_expert_tools_enabled=True, travel_concierge_tools_enabled=True) -> None:
+    def __init__(self, ollama_llm=None, logger: logging.Logger | None = None, local_expert_tools_enabled=False, travel_concierge_tools_enabled=False) -> None:
         self.ollama_llm = ollama_llm or LLM(
             model="ollama/llama3.2",
             base_url="http://localhost:11434"
