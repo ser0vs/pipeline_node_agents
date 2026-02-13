@@ -76,7 +76,7 @@ def main():
     init_pipeline_logger(pipeline_name="trip_planner_pipeline")
     logger = get_logger(__name__)
 
-    pipeline = TripPlannerPipeline(logger=logger)
+    pipeline = TripPlannerPipeline(logger=logger, local_expert_tools_enabled=True, travel_concierge_tools_enabled=True)
     pipeline.run()
 
 
