@@ -24,9 +24,11 @@ class ConditioningPipeline:
     def __init__(self, ollama_llm=None, logger: logging.Logger | None = None) -> None:
         self.logger = logger or logging.getLogger(__name__)
 
+        ollama_model = os.getenv("OLLAMA_MODEL", "llama3.2:latest")
+        ollama_base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
         self.ollama_llm = ollama_llm or LLM(
-            model="ollama/llama3.2",
-            base_url="http://localhost:11434"
+            model=ollama_model,
+            base_url=ollama_base_url
         )
 
         self.cinema_expert_agent = Agent(
