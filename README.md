@@ -145,5 +145,78 @@ pipeline.run()
 
 ## Maintenance Guide
 
-For detailed maintenance instructions, including how to create nodes, build pipelines, and extend the framework, please refer to the [Maintenance Guide](docs/maintenance_guide.md).
 
+### Creating a Custom Tool
+
+The `tools/` directory provides utility classes for operations used by pipeline nodes. Tools are implemented as simple static methods within classes.
+
+To create a custom tool, define a class with static methods:
+
+```python
+# filepath: pipeline_node_agents/src/pipeline_node_agents/tools/subtractor.py
+class Subtractor:
+    @staticmethod
+    def subtract(a: float, b: float) -> float:
+        """Subtract two numbers and return the difference."""
+        return a - b
+```
+
+### Using Custom Tools in FunctionNode
+
+Once created, integrate your tool into a `FunctionNode`:
+
+```python
+# main file
+from pipeline_node_agents import PythonFnAdapter
+from pipeline_node_agents.core.node import FunctionNode
+from pipeline_node_agents.tools.subtractor import Subtractor
+
+subtraction_node = FunctionNode(
+    name="SubtractionNode",
+    adapter=PythonFnAdapter(Subtractor.subtract),
+    inputs=["number_a", "number_b"],
+    output="difference"
+)
+```
+
+### Using Custom Tools in AgentNode (example with CrewAI)
+
+For agent nodes, tools must be wrapped using CrewAI's `@tool` decorator:
+```python
+# filepath: pipeline_node_agents/src/pipeline_node_agents/tools/subtractor_crewai.py
+from crewai.tools import tool
+
+class CrewAISubtractor:
+    @staticmethod
+    @tool("Subtract two numbers")
+    def subtract(a: float, b: float) -> float:
+        """Calculate the difference between two numbers."""
+        return a - b
+```
+
+
+```python
+# main file
+from crewai import Agent
+from pipeline_node_agents.core.node import AgentNode
+from pipeline_node_agents.adapters.crewai_adapter import CrewAIAdapter
+from pipeline_node_agents.core.tools.subtractor_crewai import CrewAISubtractor
+
+agent = Agent(
+    name="Calculator Agent",
+    role="Math Assistant",
+    goal="Perform calculations",
+    backstory="A helpful math assistant",
+    tools=[CrewAISubtractor.subtract],
+    llm=ollama_llm
+)
+
+node = AgentNode(
+    name="MyAgentNode",
+    adapter=CrewAIAdapter(agent=agent, task_description="Perform the calculation"),
+    inputs=["data"],
+    output="result"
+)
+```
+
+For other maintenance aspects such as creating nodes, building pipelines, and extending the framework, refer to the full [Maintenance Guide](docs/maintenance_guide.md).
